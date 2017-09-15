@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Idea 常用配置 | Xiaoxiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="隐藏.idea文件夹和.iml等文件（可选） 1在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;  文件编码设置 12345File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置：Global Encoding:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Idea 常用配置">
+<meta property="og:url" content="http://yoursite.com/2017/08/19/idea-config-instructions/index.html">
+<meta property="og:site_name" content="Xiaoxiao">
+<meta property="og:description" content="隐藏.idea文件夹和.iml等文件（可选） 1在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;  文件编码设置 12345File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置：Global Encoding:">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-15T10:51:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Idea 常用配置">
+<meta name="twitter:description" content="隐藏.idea文件夹和.iml等文件（可选） 1在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;  文件编码设置 12345File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置：Global Encoding:">
+  
+    <link rel="alternate" href="/atom.xml" title="Xiaoxiao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Xiaoxiao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="default-idea-config-instructions" class="article article-type-default" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/19/idea-config-instructions/" class="article-date">
+  <time datetime="2017-08-19T13:09:09.000Z" itemprop="datePublished">2017-08-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Idea 常用配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><hr>
+<ol>
+<li><p>隐藏.idea文件夹和.iml等文件（可选）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在 File-&gt;Settings-&gt;Editor-&gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;</div></pre></td></tr></table></figure>
+</li>
+<li><p>文件编码设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">File-&gt;Settings-&gt;Editor-&gt;File Encodings 下设置：</div><div class="line">Global Encoding:UTF-8</div><div class="line">Projectt Encoding:UTF-8</div><div class="line">Default encoding for properties files:UTF-8</div><div class="line">勾选上 Transparent native-to-ascii conversion</div></pre></td></tr></table></figure>
+</li>
+<li><p>自动导入所有包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">在 Intellij IDEA 一次只能导入单个包，没有像Eclipse快速导入包的快捷键Ctrl+Shift+O，但是Intellij IDEA下有个自动导入包的功能。</div><div class="line">在File-&gt;Settings-&gt;Editor-&gt;General-&gt;Auto Import下进行配置:</div><div class="line">Insert imports on paste:复制代码的时候，对于导入的包是否需要进行询问的一个选项。</div><div class="line">    ASK(有需要导入的包名时会弹提示框，问你要不要导入)</div><div class="line">    NONE(有需要导入的包名时不会弹提示框，也不会自动导入)</div><div class="line">    ALL(有需要导入的包名时会自动导入，不会弹提示框)</div><div class="line">Show import popup:当输入的类的声明没被导入时，会弹出一个选择的对话框</div><div class="line">Optimize imports on fly: 自动优化包导入，移除不需要的包</div><div class="line">Add unambiguous imports on the fly: 这个就是自动导入功能了，当你输入类名后声明就被自动导入了</div><div class="line">Exclude from Import and Completion: 这个其实就是你自定义import,可以不用关注，一般来说是用不上的</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置默认换行符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File-&gt;Other Settings-&gt;Default Settings</div><div class="line">Editor-&gt;Code Style</div><div class="line">Line separator (for new files) 选择 Unix and OS X(\n)</div></pre></td></tr></table></figure>
+</li>
+<li><p>生成 javadoc 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在菜单栏选择Tools-&gt;Gerenate JavaDoc</div><div class="line">	在 Other command line arguments 中输入：-encoding utf-8 -charset utf-8, 避免中文乱码</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/19/idea-config-instructions/" data-id="cj7lrd6sr000dvh64ig63itic" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/06/dream/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          dream
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/Proust-Questionnaire/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">普鲁斯特问卷</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/15/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/15/git-command-line-instructions/">git 命令行指引</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/06/dream/">dream</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/19/idea-config-instructions/">Idea 常用配置</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Proust-Questionnaire/">普鲁斯特问卷</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ethan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
