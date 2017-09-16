@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Xiaoxiao
-subtitle:
+title: xiaoxiao
+subtitle: 兴趣因你而生
 description:
 author: Ethan
 language: zh-Hans
@@ -12,8 +12,8 @@ timezone: Asia/Taipei
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
-root: /
+url: https://ghlingjun.github.io/xiaoxiao
+root: /xiaoxiao/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -72,7 +72,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
