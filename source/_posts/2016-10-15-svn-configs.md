@@ -2,6 +2,7 @@
 layout: default
 title: SVN 配置
 date: 2016-10-15 21:09:09
+tags: svn
 ---
 # {{ page.title }}
 

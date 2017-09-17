@@ -2,6 +2,7 @@
 layout: default
 title: Idea 常用配置
 date: 2017-08-19 21:09:09
+tags: idea
 ---
 # {{ page.title }}
 

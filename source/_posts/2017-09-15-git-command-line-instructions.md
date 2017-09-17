@@ -2,6 +2,7 @@
 layout: default
 title: git 命令行指引
 date: 2017-09-15 10:09:09
+tags: git
 ---
 # {{ page.title }}
 
