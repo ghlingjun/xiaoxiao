@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="隐藏.idea文件夹和.iml等文件（可选） 1在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;  文件编码设置 12345File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置：Global Encoding:">
+<meta name="description" content="隐藏.idea文件夹和.iml等文件（可选）   在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;   文件编码设置File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置： 1234Global Encoding:">
 <meta name="keywords" content="idea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Idea 常用配置">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2017/08/19/idea-config-instructions/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="隐藏.idea文件夹和.iml等文件（可选） 1在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;  文件编码设置 12345File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置：Global Encoding:">
+<meta property="og:description" content="隐藏.idea文件夹和.iml等文件（可选）   在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;   文件编码设置File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置： 1234Global Encoding:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T14:32:48.000Z">
+<meta property="og:updated_time" content="2017-09-22T00:21:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Idea 常用配置">
-<meta name="twitter:description" content="隐藏.idea文件夹和.iml等文件（可选） 1在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;  文件编码设置 12345File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置：Global Encoding:">
+<meta name="twitter:description" content="隐藏.idea文件夹和.iml等文件（可选）   在 File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;   文件编码设置File-&amp;gt;Settings-&amp;gt;Editor-&amp;gt;File Encodings 下设置： 1234Global Encoding:">
 
 
 
@@ -341,24 +341,32 @@
       
 
       
-        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><hr>
+        <ol>
+<li>隐藏.idea文件夹和.iml等文件（可选）</li>
+</ol>
+<blockquote>
+<p>在 File-&gt;Settings-&gt;Editor-&gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;</p>
+</blockquote>
 <ol>
-<li><p>隐藏.idea文件夹和.iml等文件（可选）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在 File-&gt;Settings-&gt;Editor-&gt;File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;</div></pre></td></tr></table></figure>
+<li><p>文件编码设置<br>File-&gt;Settings-&gt;Editor-&gt;File Encodings 下设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Global Encoding: UTF-8</div><div class="line">Projectt Encoding: UTF-8</div><div class="line">Default encoding for properties files: UTF-8</div><div class="line">勾选上 Transparent native-to-ascii conversion</div></pre></td></tr></table></figure>
 </li>
-<li><p>文件编码设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">File-&gt;Settings-&gt;Editor-&gt;File Encodings 下设置：</div><div class="line">Global Encoding:UTF-8</div><div class="line">Projectt Encoding:UTF-8</div><div class="line">Default encoding for properties files:UTF-8</div><div class="line">勾选上 Transparent native-to-ascii conversion</div></pre></td></tr></table></figure>
-</li>
-<li><p>自动导入所有包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">在 Intellij IDEA 一次只能导入单个包，没有像Eclipse快速导入包的快捷键Ctrl+Shift+O，但是Intellij IDEA下有个自动导入包的功能。</div><div class="line">在File-&gt;Settings-&gt;Editor-&gt;General-&gt;Auto Import下进行配置:</div><div class="line">Insert imports on paste:复制代码的时候，对于导入的包是否需要进行询问的一个选项。</div><div class="line">    ASK(有需要导入的包名时会弹提示框，问你要不要导入)</div><div class="line">    NONE(有需要导入的包名时不会弹提示框，也不会自动导入)</div><div class="line">    ALL(有需要导入的包名时会自动导入，不会弹提示框)</div><div class="line">Show import popup:当输入的类的声明没被导入时，会弹出一个选择的对话框</div><div class="line">Optimize imports on fly: 自动优化包导入，移除不需要的包</div><div class="line">Add unambiguous imports on the fly: 这个就是自动导入功能了，当你输入类名后声明就被自动导入了</div><div class="line">Exclude from Import and Completion: 这个其实就是你自定义import,可以不用关注，一般来说是用不上的</div></pre></td></tr></table></figure>
-</li>
-<li><p>设置默认换行符</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File-&gt;Other Settings-&gt;Default Settings</div><div class="line">Editor-&gt;Code Style</div><div class="line">Line separator (for new files) 选择 Unix and OS X(\n)</div></pre></td></tr></table></figure>
-</li>
-<li><p>生成 javadoc 配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在菜单栏选择Tools-&gt;Gerenate JavaDoc</div><div class="line">	在 Other command line arguments 中输入：-encoding utf-8 -charset utf-8, 避免中文乱码</div></pre></td></tr></table></figure>
+<li><p>自动导入所有包<br>在 Intellij IDEA 一次只能导入单个包，没有像Eclipse快速导入包的快捷键Ctrl+Shift+O，但是Intellij IDEA下有个自动导入包的功能。</p>
 </li>
 </ol>
+<p>在File-&gt;Settings-&gt;Editor-&gt;General-&gt;Auto Import下进行配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Insert imports on paste: 复制代码的时候，对于导入的包是否需要进行询问的一个选项。</div><div class="line">    ASK(有需要导入的包名时会弹提示框，问你要不要导入)</div><div class="line">    NONE(有需要导入的包名时不会弹提示框，也不会自动导入)</div><div class="line">    ALL(有需要导入的包名时会自动导入，不会弹提示框)</div><div class="line">Show import popup: 当输入的类的声明没被导入时，会弹出一个选择的对话框</div><div class="line">Optimize imports on fly: 自动优化包导入，移除不需要的包</div><div class="line">Add unambiguous imports on the fly: 这个就是自动导入功能了，当你输入类名后声明就被自动导入了</div><div class="line">Exclude from Import and Completion: 这个其实就是你自定义import,可以不用关注，一般来说是用不上的</div></pre></td></tr></table></figure></p>
+<ol>
+<li>设置默认换行符</li>
+</ol>
+<blockquote>
+<p>File-&gt;Other Settings-&gt;Default Settings<br>Editor-&gt;Code Style<br>Line separator (for new files) 选择 Unix and OS X(\n)</p>
+</blockquote>
+<ol>
+<li>生成 javadoc 配置</li>
+</ol>
+<blockquote>
+<p>在菜单栏选择Tools-&gt;Gerenate JavaDoc<br>在 Other command line arguments 中输入：-encoding utf-8 -charset utf-8, 避免中文乱码</p>
+</blockquote>
 
       
     </div>
@@ -453,17 +461,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -533,22 +532,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

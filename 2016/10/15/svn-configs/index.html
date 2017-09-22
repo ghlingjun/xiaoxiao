@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="svn 服务启动命令 sudo svnserve -d -r /data/svn sudo killall svnserve   ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .   忽略已存在的文件 svn export config.properties config.properties-tmp svn rm config.properti">
+<meta name="description" content="svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .忽略已存在的文件 svn export config.properties config.properties-tmpsvn rm config.propertiessvn c">
 <meta name="keywords" content="svn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVN 配置">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2016/10/15/svn-configs/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="svn 服务启动命令 sudo svnserve -d -r /data/svn sudo killall svnserve   ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .   忽略已存在的文件 svn export config.properties config.properties-tmp svn rm config.properti">
+<meta property="og:description" content="svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .忽略已存在的文件 svn export config.properties config.properties-tmpsvn rm config.propertiessvn c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T14:33:48.000Z">
+<meta property="og:updated_time" content="2017-09-22T00:26:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVN 配置">
-<meta name="twitter:description" content="svn 服务启动命令 sudo svnserve -d -r /data/svn sudo killall svnserve   ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .   忽略已存在的文件 svn export config.properties config.properties-tmp svn rm config.properti">
+<meta name="twitter:description" content="svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .忽略已存在的文件 svn export config.properties config.properties-tmpsvn rm config.propertiessvn c">
 
 
 
@@ -341,50 +341,16 @@
       
 
       
-        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><hr>
-<h2 id="svn-服务启动命令"><a href="#svn-服务启动命令" class="headerlink" title="svn 服务启动命令"></a>svn 服务启动命令</h2><pre><code>
-sudo svnserve -d -r /data/svn
-sudo killall svnserve
-</code></pre>
-
-<h2 id="ignore-命令"><a href="#ignore-命令" class="headerlink" title="ignore 命令"></a>ignore 命令</h2><h3 id="忽略文件夹"><a href="#忽略文件夹" class="headerlink" title="忽略文件夹"></a>忽略文件夹</h3><pre><code>
-svn prospect svn:ignore ‘schema’ .
-</code></pre>
-
-<h3 id="忽略已存在的文件"><a href="#忽略已存在的文件" class="headerlink" title="忽略已存在的文件"></a>忽略已存在的文件</h3><pre><code>
-svn export config.properties config.properties-tmp
-svn rm config.properties
-svn ci -m ‘remove config.properties’
-mv config.properties-tmp config.properties
-svn propset svn:ignore ‘config.properties’ .
-svn ci - ‘ignore config.properties’
-</code></pre>
-
+        <h2 id="svn-服务启动命令"><a href="#svn-服务启动命令" class="headerlink" title="svn 服务启动命令"></a>svn 服务启动命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo svnserve -d -r /data/svn</div><div class="line">sudo killall svnserve</div></pre></td></tr></table></figure>
+<h2 id="ignore-命令"><a href="#ignore-命令" class="headerlink" title="ignore 命令"></a>ignore 命令</h2><p>忽略文件夹</p>
+<p><pre><code><br>svn prospect svn:ignore ‘schema’ .<br></code></pre><br>忽略已存在的文件</p>
+<p><pre><code><br>svn export config.properties config.properties-tmp<br>svn rm config.properties<br>svn ci -m ‘remove config.properties’<br>mv config.properties-tmp config.properties<br>svn propset svn:ignore ‘config.properties’ .<br>svn ci - ‘ignore config.properties’<br></code></pre></p>
 <h3 id="忽略文件夹中某几个文件"><a href="#忽略文件夹中某几个文件" class="headerlink" title="忽略文件夹中某几个文件"></a>忽略文件夹中某几个文件</h3><blockquote>
-<p>在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：</p>
+<p>在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.list</div><div class="line">.iml</div><div class="line">.idea</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div></pre></td></tr></table></figure></p>
+<p>然后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn prospect svn:ignore -F .svnignore .</div></pre></td></tr></table></figure></p>
 </blockquote>
-<pre><code>
-.list
-.iml
-.idea
-</code></pre>
-
-<blockquote>
-<p>然后：</p>
-</blockquote>
-<pre><code>
-svn prospect svn:ignore -F .svnignore .
-</code></pre>
-
-<h2 id="add-a-tag"><a href="#add-a-tag" class="headerlink" title="add a tag"></a>add a tag</h2><pre><code>
-!/bin/bash
-export VERSION=v1.2.0
-svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/tags/$VERSION
-</code></pre>
-
-<h2 id="重定位location"><a href="#重定位location" class="headerlink" title="重定位location"></a>重定位location</h2><pre><code>
-svn relocate url
-</code></pre>
+<h2 id="add-a-tag"><a href="#add-a-tag" class="headerlink" title="add a tag"></a>add a tag</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">!/bin/bash</div><div class="line">export VERSION=v1.2.0</div><div class="line">svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/tags/$VERSION</div></pre></td></tr></table></figure>
+<h2 id="重定位location"><a href="#重定位location" class="headerlink" title="重定位location"></a>重定位location</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn relocate url</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -569,7 +535,7 @@ svn relocate url
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#svn-服务启动命令"><span class="nav-number">1.1.</span> <span class="nav-text">svn 服务启动命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ignore-命令"><span class="nav-number">1.2.</span> <span class="nav-text">ignore 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略文件夹"><span class="nav-number">1.2.1.</span> <span class="nav-text">忽略文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略已存在的文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">忽略已存在的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略文件夹中某几个文件"><span class="nav-number">1.2.3.</span> <span class="nav-text">忽略文件夹中某几个文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-a-tag"><span class="nav-number">1.3.</span> <span class="nav-text">add a tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重定位location"><span class="nav-number">1.4.</span> <span class="nav-text">重定位location</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#svn-服务启动命令"><span class="nav-number">1.</span> <span class="nav-text">svn 服务启动命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ignore-命令"><span class="nav-number">2.</span> <span class="nav-text">ignore 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略文件夹中某几个文件"><span class="nav-number">2.1.</span> <span class="nav-text">忽略文件夹中某几个文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-a-tag"><span class="nav-number">3.</span> <span class="nav-text">add a tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重定位location"><span class="nav-number">4.</span> <span class="nav-text">重定位location</span></a></li></ol></div>
             
 
           </div>
