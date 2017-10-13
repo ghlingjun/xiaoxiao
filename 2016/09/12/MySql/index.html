@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="xiaoxiao">
 <meta property="og:description" content="创建数据库123drop database p2p_7;create database p2p_7 default character set UTF8;grant all privileges on p2p_7.* to primecocn@&amp;apos;%&amp;apos; identified by &amp;apos;primecocn&amp;apos;; 导出表结构mysqldump -h192.168.3.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-22T00:37:07.000Z">
+<meta property="og:updated_time" content="2017-09-22T15:59:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql 常用操作命令">
 <meta name="twitter:description" content="创建数据库123drop database p2p_7;create database p2p_7 default character set UTF8;grant all privileges on p2p_7.* to primecocn@&amp;apos;%&amp;apos; identified by &amp;apos;primecocn&amp;apos;; 导出表结构mysqldump -h192.168.3.">
@@ -353,6 +353,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql &gt; source p2p_7.sql</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="MySQL-编码设置"><a href="#MySQL-编码设置" class="headerlink" title="MySQL 编码设置"></a>MySQL 编码设置</h3><p>查看 MySQL DB 编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;character%&apos;;</div><div class="line"></div><div class="line">| character_set_client     | utf8                       |</div><div class="line">| character_set_connection | utf8                       |</div><div class="line">| character_set_database   | latin1                     |</div><div class="line">| character_set_filesystem | binary                     |</div><div class="line">| character_set_results    | utf8                       |</div><div class="line">| character_set_server     | latin1                     |</div><div class="line">| character_set_system     | utf8                       |</div><div class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</div></pre></td></tr></table></figure></p>
+<p>使用下面命令设置编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set character_set_database=utf8;</div></pre></td></tr></table></figure></p>
+<p>修改已有数据库编码的命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter database dbname character set utf8;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -383,7 +386,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/xiaoxiao/2016/09/12/如何搭建一个免费博客/" rel="next" title="如何搭建一个免费的博客">
+              <a href="/xiaoxiao/2016/09/12/how-to-build-a-blog/" rel="next" title="如何搭建一个免费的博客">
                 <i class="fa fa-chevron-left"></i> 如何搭建一个免费的博客
               </a>
             
@@ -475,7 +478,7 @@
             
               <a href="/xiaoxiao/archives/">
             
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -488,7 +491,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/xiaoxiao/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -537,7 +540,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出表结构"><span class="nav-number">2.</span> <span class="nav-text">导出表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出数据"><span class="nav-number">3.</span> <span class="nav-text">导出数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出表结构与数据"><span class="nav-number">4.</span> <span class="nav-text">导出表结构与数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入sql脚本"><span class="nav-number">5.</span> <span class="nav-text">导入sql脚本</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出表结构"><span class="nav-number">2.</span> <span class="nav-text">导出表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出数据"><span class="nav-number">3.</span> <span class="nav-text">导出数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出表结构与数据"><span class="nav-number">4.</span> <span class="nav-text">导出表结构与数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入sql脚本"><span class="nav-number">5.</span> <span class="nav-text">导入sql脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL-编码设置"><span class="nav-number">6.</span> <span class="nav-text">MySQL 编码设置</span></a></li></ol></div>
             
 
           </div>
