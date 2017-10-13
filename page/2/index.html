@@ -1299,7 +1299,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2014/12/03/hide-2014-12-03-mantis-install-instructions/">
+    <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2014/11/07/jBPM-overview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ethan">
@@ -1318,7 +1318,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/xiaoxiao/2014/12/03/hide-2014-12-03-mantis-install-instructions/" itemprop="url">Ubuntu 下 Mantis 安装指南</a></h1>
+                <a class="post-title-link" href="/xiaoxiao/2014/11/07/jBPM-overview/" itemprop="url">jBPM 基础</a></h1>
         
 
         <div class="post-meta">
@@ -1330,8 +1330,8 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-03T13:42:00+08:00">
-                2014-12-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-07T09:46:00+08:00">
+                2014-11-07
               </time>
             
 
@@ -1370,38 +1370,14 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
       
         
           
-            <h2 id="第一步，安装-MySql"><a href="#第一步，安装-MySql" class="headerlink" title="第一步，安装 MySql"></a>第一步，安装 MySql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install mysql-server-5.6</div></pre></td></tr></table></figure>
-<p>安装完数据库服务后，创建数据库 mantisdb<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -pyourpasswd</div><div class="line">$ mysql&gt;create database mantisdb;</div><div class="line">$ mysql&gt;grant all privileges on mantisdb.* to mantis@localhost identified by &apos;mantisadmin&apos;;</div><div class="line">$ mysql&gt;FLUSH PRIVILEGES;</div><div class="line">$ mysql&gt;quit</div></pre></td></tr></table></figure></p>
-<h2 id="第二步，安装-Web-服务器"><a href="#第二步，安装-Web-服务器" class="headerlink" title="第二步，安装 Web 服务器"></a>第二步，安装 Web 服务器</h2><p>访问 <a href="http://httpd.apache.org/download.cgi" target="_blank" rel="external">http://httpd.apache.org/download.cgi</a> 下载 Apache web server 安装包，并按照 <a href="http://httpd.apache.org/docs/2.4/install.html" target="_blank" rel="external">http://httpd.apache.org/docs/2.4/install.html</a> 的安装说明进行编译安装。</p>
-<ol>
-<li>解压源码包</li>
-<li>APR and APR-Util：从 Apache APR 下载 APR 和 APR-Util，然后分别解压到 ./httpd-NN/srclib/apr 和 ./httpd-NN/srclib/apr-util</li>
-<li><p>Perl-Compatible Regular Expressions Library (PCRE)：从 <a href="http://www.pcre.org/" target="_blank" rel="external">http://www.pcre.org/</a> 下载源码，编译安装;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure –prefix=/usr/local/pcre</div></pre></td></tr></table></figure>
-</li>
-<li><p>开始编译安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure –prefix=/usr/local/apache2 –with-pcre=/usr/local/pcre</div><div class="line">make</div><div class="line">sudo make install</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="第三步，安装PHP"><a href="#第三步，安装PHP" class="headerlink" title="第三步，安装PHP"></a>第三步，安装PHP</h2><p>下载PHP源码，解压并进入目录执行：<br>./configure –with-mysql –with-apxs2=/usr/local/apache2/bin/apxs<br>可能会遇到如下错误：<br>error: xml2-config not found. Please check your libxml2 installation.<br>解决方法：sudo apt-get install libxml2-dev<br>make<br>sudo make install<br>编辑 /usr/local/apache2/conf/httpd.conf 添加如下配置：<br>AddType application/x-httpd-php .php<br>AddType application/x-httpd-php-source .phps<br>ServerName localhost:80<br>Listen 127.0.0.1:80<br>Listen 192.168.3.127:80<br>然后重启一下 Apache：/usr/local/apache2/bin/apachectl -k restart<br>4、安装 mantisbt<br>解压 mantis 到 /usr/local/apache2/htdocs/mantis 目录；<br>修改权限： sudo chmod –R 755 mantis<br>cp config_inc.php.sample config_inc.php<br>然后进行配置：vi config_inc.php<br>$g_hostname      = ‘localhost’;<br>$g_db_username   = ‘mantis’;<br>$g_db_password   = ‘mantisadmin’;<br>$g_database_name = ‘mantisdb’;<br>$g_db_type       = ‘mysql’;<br>访问 <a href="http://ip/mantis/admin/install.php" target="_blank" rel="external">http://ip/mantis/admin/install.php</a> 进行安装：<br>SYSTEM WARNING: ‘date_default_timezone_get(): It is not safe to rely on the system’s timezone settings. You are <em>required</em> to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone ‘UTC’ for now, but please set date.timezone to select your timezone.’ in ‘/usr/local/apache2/htdocs/mantis/core.php’ line 274<br>如果报以上错误，编辑core.php文件，在文件开始处加一行代码：date_default_timezone_set(‘Asia/Shanghai’）;<br>直接点击页面最下方的“Install/Upgrade Database”按钮。<br>点击最下方的 continue，进入登录界面，输入用户名密码，默认为：<br>administrator root<br>5、汉化<br>sudo vi /usr/local/apache2/htdocs/mantis/config_defaults_inc.php<br>找到代码：$g_default_language                = ‘english’;<br>修改 english 为 chinese_simplified，保存即可。<br>6、配置 email<br>修改 /usr/local/apache2/htdocs/mantis/config_inc.php 中 smtp 服务相关的设置:</p>
-<h1 id="—-Email-Configuration-—"><a href="#—-Email-Configuration-—" class="headerlink" title="— Email Configuration —"></a>— Email Configuration —</h1><p>$g_phpMailer_method             = PHPMAILER_METHOD_SMTP; # or PHPMAILER_METHOD_MAIL, PHPMAILER_METHOD_SENDMAIL<br>$g_smtp_host                    = ‘smtp.exmail.sina.com’; # used with PHPMAILER_METHOD_SMTP<br>$g_smtp_username                = ‘noreplay@primecocn.com’; # used with PHPMAILER_METHOD_SMTP<br>$g_smtp_password                = ‘nr654321’; # used with PHPMAILER_METHOD_SMTP</p>
-<p>#$g_smtp_connection_mode                = ‘ssl’;</p>
-<p>#$g_smtp_port                   = 465;</p>
-<p>$g_administrator_email  = ‘zhanglingjun@primecocn.com’;$g_webmaster_email      = ‘zhanglingjun@primecocn.com’;$g_from_email           = ‘noreplay@primecocn.com’;     # the “From: “ field in emails<br>$g_return_path_email    = ‘noreplay@primecocn.com’; # the return address for bounced mail<br>$g_from_name                    = ‘Mantis Bug Tracker’;</p>
-<p>测试 phpMailer 代码：（将代码保存为 test.html, 然后在命令行执行 php test.html 可测试是否能发送成功）</p>
-<p>&lt;?phprequire ‘class.phpmailer.php’;<br>$mail = new PHPMailer;<br>$mail-&gt;IsSMTP();                       // Set mailer to use SMTP<br>$mail-&gt;Host = ‘smtp.exmail.sina.com’;  // Specify main and backup server<br>$mail-&gt;SMTPAuth = true;                               // Enable SMTP authentication<br>$mail-&gt;Username = ‘noreplay@primecocn.com’;                            // SMTP username<br>$mail-&gt;Password = ‘nr654321’;                           // SMTP password</p>
-<p>$mail-&gt;From = ‘noreplay@primecocn.com’;$mail-&gt;FromName = ‘noreplay’;$mail-&gt;AddAddress(‘chengliu@primecocn.com’, ‘chengliu’);  // Add a recipient<br>$mail-&gt;AddAddress(‘guanhongqi@primecocn.com’);               // Name is optional<br>//$mail-&gt;AddReplyTo(‘noreplay@primecocn.com’, ‘Information’);<br>$mail-&gt;AddCC(‘zhaozhizhong@primecocn.com’);$mail-&gt;AddBCC(‘liuchuanju@primecocn.com’);$mail-&gt;AddBCC(‘zhanglingjun@primecocn.com’);<br>$mail-&gt;WordWrap = 50;                                 // Set word wrap to 50 characters<br>//$mail-&gt;AddAttachment(‘/var/tmp/file.tar.gz’);         // Add attachments<br>//$mail-&gt;AddAttachment(‘/tmp/image.jpg’, ‘new.jpg’);    // Optional name<br>$mail-&gt;IsHTML(true);                                  // Set email format to HTML</p>
-<p>$mail-&gt;Subject = ‘Here is the subject’;$mail-&gt;Body    = ‘This is the HTML message body <b>in bold!</b>‘;$mail-&gt;AltBody = ‘This is the body in plain text for non-HTML mail clients’;<br>if(!$mail-&gt;Send()) {<br>   echo ‘Message could not be sent.’;<br>   echo ‘Mailer Error: ‘ . $mail-&gt;ErrorInfo;<br>   exit;<br>}<br>echo ‘Message has been sent.’;</p>
-<p>7、让管理员控制用户密码</p>
-<p>修改Mantisbt PHP程序，增加一个密码修改框，让管理员可以直接修改用户密码。</p>
-<p>sudo vi mantis/manage_user_edit_page.php<br>找到<!-- Email -->位置，在其下面加入以下代码：<br><!-- Password --></p>
-<tr 1="" <?php="" echo="" helper_alternate_class(="" )="" ?="">&gt;<br>    <td class="category" width="30%"><br>        &lt;?php echo “Password (change only)” ?&gt;:<br>    </td><br>    <td width="70%"><br>        <input type="text" size="16" maxlength="100" name="password" value=""><br>    </td><br></tr>
-
-<p>sudo vi mantis/manage_user_update.php</p>
-<p>找到 $f_user_id = gpc_get_int( ‘user_id’ ); 在其下面加入以下代码：</p>
-<p>$f_pass = gpc_get_string(‘password’);</p>
-<p>sudo vi mantis/manage_user_update.php</p>
-<p>找到该行: $result = db_query( $query );<br>有的版本是：$result = db_query_bound( $query, $query_params );<br>在该行下面加入代码：<br>//Reset the password if specified.<br> if ($f_pass) user_set_password($f_user_id, $f_pass);<br>这样就增加了Password (change only): 一列，以供管理员修改用户的密码（但是前提是管理员增加用户时不要勾选保护一项，否则管理员无法修改该用户密码）</p>
+            <p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
+<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
+<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
+<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
+<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
+<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
 
           
         
@@ -1441,7 +1417,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/xiaoxiao/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/xiaoxiao/">1</a><span class="page-number current">2</span><a class="page-number" href="/xiaoxiao/page/3/">3</a><a class="extend next" rel="next" href="/xiaoxiao/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/xiaoxiao/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/xiaoxiao/">1</a><span class="page-number current">2</span>
   </nav>
 
 
@@ -1490,7 +1466,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
             
               <a href="/xiaoxiao/archives/">
             
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1503,7 +1479,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
             
             <div class="site-state-item site-state-tags">
               <a href="/xiaoxiao/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
