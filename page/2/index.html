@@ -85,6 +85,8 @@
 
 
 
+  <link rel="alternate" href="/xiaoxiao/atom.xml" title="xiaoxiao" type="application/atom+xml" />
+
 
 
 
@@ -234,9 +236,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -336,18 +372,17 @@
       
         
           
-            <h2 id="svn-服务启动命令"><a href="#svn-服务启动命令" class="headerlink" title="svn 服务启动命令"></a>svn 服务启动命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo svnserve -d -r /data/svn</div><div class="line">sudo killall svnserve</div></pre></td></tr></table></figure>
-<h2 id="ignore-命令"><a href="#ignore-命令" class="headerlink" title="ignore 命令"></a>ignore 命令</h2><p>忽略文件夹</p>
-<p><pre><code><br>svn prospect svn:ignore ‘schema’ .<br></code></pre><br>忽略已存在的文件</p>
-<p><pre><code><br>svn export config.properties config.properties-tmp<br>svn rm config.properties<br>svn ci -m ‘remove config.properties’<br>mv config.properties-tmp config.properties<br>svn propset svn:ignore ‘config.properties’ .<br>svn ci - ‘ignore config.properties’<br></code></pre></p>
-<h3 id="忽略文件夹中某几个文件"><a href="#忽略文件夹中某几个文件" class="headerlink" title="忽略文件夹中某几个文件"></a>忽略文件夹中某几个文件</h3><blockquote>
-<p>在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.list</div><div class="line">.iml</div><div class="line">.idea</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div></pre></td></tr></table></figure></p>
-<p>然后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn prospect svn:ignore -F .svnignore .</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="add-a-tag"><a href="#add-a-tag" class="headerlink" title="add a tag"></a>add a tag</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">!/bin/bash</div><div class="line">export VERSION=v1.2.0</div><div class="line">svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/tags/$VERSION</div></pre></td></tr></table></figure>
-<h2 id="重定位location"><a href="#重定位location" class="headerlink" title="重定位location"></a>重定位location</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn relocate url</div></pre></td></tr></table></figure>
-
-          
+          svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve
+ignore 命令忽略文件夹
+svn prospect svn:ignor
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2016/10/15/svn-configs/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -465,29 +500,16 @@
       
         
           
-            <h2 id="研究原因"><a href="#研究原因" class="headerlink" title="研究原因"></a>研究原因</h2><p>为了使用方便，通过配置或者创建了一些 shell 脚本，简化 svn 的常用操作</p>
-<h2 id="配置列表"><a href="#配置列表" class="headerlink" title="配置列表"></a>配置列表</h2><h3 id="1、配置全局忽略文件类型"><a href="#1、配置全局忽略文件类型" class="headerlink" title="1、配置全局忽略文件类型"></a>1、配置全局忽略文件类型</h3><p>编辑 svn 的 config 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi ~/.subversion/config</div></pre></td></tr></table></figure></p>
-<p>如果”.subversion”目录不存在，运行”svn status”命令，虽然此命令会失败，但是会为你创建所需要的文件。</p>
-<p>找到 global-ignores 一行，新增需要忽略的文件：</p>
-<pre><code>
-global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml target
-   *.rej *~ #*# .#* .*.swp .DS_Store .idea *.iml *.lst logs
-</code></pre>
-
-<h3 id="2、添加命令脚本-descriptoin"><a href="#2、添加命令脚本-descriptoin" class="headerlink" title="2、添加命令脚本[^descriptoin]"></a>2、添加命令脚本[^descriptoin]</h3><p>vi svnadd.sh</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn status | grep '?' | awk -F' ' '&#123;print $2&#125;' | xargs svn add</div></pre></td></tr></table></figure>
-<h3 id="3、删除命令脚本"><a href="#3、删除命令脚本" class="headerlink" title="3、删除命令脚本"></a>3、删除命令脚本</h3><p>vi svndel.sh</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn status | grep '!' | awk -F' ' '&#123;print $2&#125;' | xargs svn del --force</div></pre></td></tr></table></figure>
-<h4 id="创建命令别名"><a href="#创建命令别名" class="headerlink" title="创建命令别名"></a>创建命令别名</h4><p>vi ~/.zshrc</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias svndel="sh ~/scripts/svndel.sh"</div><div class="line">alias svnadd="sh ~/scripts/svnadd.sh"</div></pre></td></tr></table></figure>
-<p>执行命令使配置生效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.zshrc</div></pre></td></tr></table></figure>
-<p>配置生效后，进入svn仓库目录，即可通过命令 svnadd 或者 svndel 来添加或者删除文件；</p>
-<p>最后通过命令 svn ci -m “comments” 来提交到服务器</p>
-<hr>
-<p>[^descriptoin]: 首先使用 svn status 命令查看 svn 状态，列出所有改动，打 ? 号的是已经新增的文件但是还未标记加入库；再用 awk ‘{print $2}’ 将抽离出来的文本结果处理，留下每一行的第二段文字，即文件名；最后使用 xargs 这个参数构造命令，将每一行的文本作为参数提供给 svn add，结果就是所有列出的文件都执行了一遍 add 。</p>
-
-          
+          研究原因为了使用方便，通过配置或者创建了一些 shell 脚本，简化 svn 的常用操作
+配置列表1、配置全局忽略文件类型编辑 svn 的 config 文件1vi ~/.subversion/con
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2016/09/21/OSX-svn-commands-config/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -605,9 +627,15 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
       
         
           
-            <p>回想起来，从高中开始就几乎没有全家人在一起过中秋节了，今年可是10几年来第一次！本来想好台词：月是故乡明。然后在下面陪一张现在的星空图……可惜这里阴天，星空图就没有了，但是大家坐在院子里聊天，偶尔不说话时听着四周黑暗角落里各种虫鸣声，也感觉极其美好（如果天气晴朗的话，就会在房顶铺一张席子，或坐或躺聊天，看星星……）（其实我觉得皎洁的月亮固然非常漂亮，但是初一时的漫天繁星更加深邃迷人）</p>
-
-          
+          回想起来，从高中开始就几乎没有全家人在一起过中秋节了，今年可是10几年来第一次！本来想好台词：月是故乡明。然后在下面陪一张现在的星空图……可惜这里阴天，星空图就没有了，但是大家坐在院子里聊天，偶尔不说
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2016/09/15/the-Mid-Autumn-Festival/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -725,23 +753,15 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
       
         
           
-            <h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">drop database p2p_7;</div><div class="line">create database p2p_7 default character set UTF8;</div><div class="line">grant all privileges on p2p_7.* to primecocn@&apos;%&apos; identified by &apos;primecocn&apos;;</div></pre></td></tr></table></figure>
-<h3 id="导出表结构"><a href="#导出表结构" class="headerlink" title="导出表结构"></a>导出表结构</h3><p>mysqldump -h192.168.3.160 –opt –set-gtid-purged=OFF -d eagle_transfer -uprimecocn -p &gt; ddl-eagle_transfer-20160912.sql</p>
-<h3 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h3><p>mysqldump -t -h192.168.3.160 –set-gtid-purged=OFF p2p_7 -uprimecocn -p &gt; data-eagle_transfer_20160919.sql</p>
-<h3 id="导出表结构与数据"><a href="#导出表结构与数据" class="headerlink" title="导出表结构与数据"></a>导出表结构与数据</h3><p>mysqldump -uprimecocn -p –default-character-set=utf8 –set-gtid-purged=OFF eagle_transfer &gt; eagle_transfer20160912.sql</p>
-<h3 id="导入sql脚本"><a href="#导入sql脚本" class="headerlink" title="导入sql脚本"></a>导入sql脚本</h3><ul>
-<li><p>方式一：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -h192.168.3.160 -uprimecocn -p p2p_7 &lt; p2p_7.sql</div></pre></td></tr></table></figure>
-</li>
-<li><p>方式二：先登录数据库，然后执行命令(这种方式将顺序执行脚本，如果数据量大，不建议使用此种方式)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql &gt; source p2p_7.sql</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="MySQL-编码设置"><a href="#MySQL-编码设置" class="headerlink" title="MySQL 编码设置"></a>MySQL 编码设置</h3><p>查看 MySQL DB 编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;character%&apos;;</div><div class="line"></div><div class="line">| character_set_client     | utf8                       |</div><div class="line">| character_set_connection | utf8                       |</div><div class="line">| character_set_database   | latin1                     |</div><div class="line">| character_set_filesystem | binary                     |</div><div class="line">| character_set_results    | utf8                       |</div><div class="line">| character_set_server     | latin1                     |</div><div class="line">| character_set_system     | utf8                       |</div><div class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</div></pre></td></tr></table></figure></p>
-<p>使用下面命令设置编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set character_set_database=utf8;</div></pre></td></tr></table></figure></p>
-<p>修改已有数据库编码的命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter database dbname character set utf8;</div></pre></td></tr></table></figure></p>
-
-          
+          创建数据库123drop database p2p_7;create database p2p_7 default character set UTF8;grant all privileges on
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2016/09/12/MySql/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -859,10 +879,17 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
       
         
           
-            <p><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="external">搭建一个免费的，无限流量的Blog</a></p>
-<p>此博客受此启发</p>
+          搭建一个免费的，无限流量的Blog
+此博客受此启发
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2016/09/12/how-to-build-a-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -980,10 +1007,17 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
       
         
           
-            <p>Hello, world!</p>
-<p>现在台式机正播放速度与激情7，因为已经看过了，感觉无聊，就想试试Github Pages，于是就有了这个 Hello World……</p>
+          Hello, world!
+现在台式机正播放速度与激情7，因为已经看过了，感觉无聊，就想试试Github Pages，于是就有了这个 Hello World……
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2016/09/10/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1101,11 +1135,15 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
       
         
           
-            <h3 id="《那啊那啊神去村》"><a href="#《那啊那啊神去村》" class="headerlink" title="《那啊那啊神去村》"></a>《那啊那啊神去村》</h3><p>环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 2016</p>
-<h3 id="《海街日记》"><a href="#《海街日记》" class="headerlink" title="《海街日记》"></a>《海街日记》</h3><p>让人感觉生活真是美好、温馨！情节非常有代入感，故事可以这样描述真是让人难以想象！整部电影好像没讲什么内容，但是整体又给人非常丰满的感觉，回味无穷…… Wed Sep  7 23:31:41 CST 2016</p>
-<h3 id="《黄昏的清兵卫》"><a href="#《黄昏的清兵卫》" class="headerlink" title="《黄昏的清兵卫》"></a>《黄昏的清兵卫》</h3><p>本来正在 coding，但是电影一开始就被代入，自然的沉入故事中去，专注度就像在做数学难题，不是，就像在解决 bug 一样！ Wed Sep  7 23:39:51 CST 2016</p>
-
-          
+          《那啊那啊神去村》环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 20
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2016/09/09/film-comments/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1223,36 +1261,19 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
       
         
           
-            <h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>做自己喜欢的事情，与喜欢的人一起生活。</p>
-<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>优秀的表达能力。</p>
-<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>暂时没有。</p>
-<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>最近心里有些乱、挣扎。</p>
-<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>没有。</p>
-<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>我没有什么成就。</p>
-<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>拖延症。</p>
-<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>没有。</p>
-<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>浅薄。</p>
-<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>自由。</p>
-<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
-<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>被人骂。</p>
-<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>爱国。</p>
-<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>程序员挺好的。希望自己能尝试画画。</p>
-<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>对外表没有不满。</p>
-<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>从不后悔。</p>
-<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>熟悉的人中没有，不熟悉的人不会费神。</p>
-<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>MAN。</p>
-<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
-<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>独立。</p>
-<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>不说。</p>
-<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>诚实、正直。</p>
-<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>三年前可以给个名字，但是现在不可以给出。</p>
-<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>大海特别深邃壮观，被超大海浪吞没如何？</p>
-<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>每天吃午饭时。</p>
-<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>不知道。</p>
-<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>我希望能重过2012和2013这两年，不知是否可以改变些什么。</p>
-<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
-
-          
+          1.你认为最完美的快乐是怎样的？做自己喜欢的事情，与喜欢的人一起生活。
+2.你最希望拥有哪种才华？优秀的表达能力。
+3.你最恐惧的是什么？暂时没有。
+4.你目前的心境怎样？最近心里有些乱、挣扎。
+5.
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2016/08/06/Proust-Questionnaire/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1370,16 +1391,16 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
       
         
           
-            <p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
-<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
-<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
-<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
-<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
-<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
-<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
-
-          
+          了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.
+Overview这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BP
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/xiaoxiao/2014/11/07/jBPM-overview/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1487,6 +1508,13 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/xiaoxiao/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -1703,6 +1731,323 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/xiaoxiao/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
