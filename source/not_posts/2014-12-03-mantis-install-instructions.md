@@ -1,7 +1,7 @@
 ---
 title: Ubuntu 下 Mantis 安装指南
 date: 2014-12-03 13:42:00
-tags: mantis ubuntu
+tags: [mantis,ubuntu]
 ---
 
 ## 第一步，安装 MySql

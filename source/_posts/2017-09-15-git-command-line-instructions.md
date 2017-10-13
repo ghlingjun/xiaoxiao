@@ -4,7 +4,9 @@ title: git 命令行指引
 date: 2017-09-15 10:09:09
 tags: git
 ---
-
+# 概述
+总结的一些不常用的 git 操作命令
+<!-- more -->
 ## Git 全局配置
 ```
 git config --global user.name "lingjun"

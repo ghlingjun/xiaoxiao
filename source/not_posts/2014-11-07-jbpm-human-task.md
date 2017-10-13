@@ -2,7 +2,7 @@
 layout: default
 title: Human Task 介绍
 date: 2014-11-07 09:48:09
-tag: jbpm task
+tag: [jbpm,task]
 ---
 
 业务流程中很重要的一个功能是 Human Task 管理。流程中不是所有任务都可以自动的执行，有些任务需要有人来参与执行。

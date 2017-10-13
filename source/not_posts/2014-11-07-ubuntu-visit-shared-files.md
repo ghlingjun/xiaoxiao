@@ -2,7 +2,7 @@
 layout: default
 title: ubuntu 下访问 windows 共享文件夹
 date: 2014-11-07 11:16:09
-tag: 共享文件夹 ubuntu
+tag: [共享文件夹,ubuntu]
 ---
 
 1. 执行如下命令：
