@@ -85,8 +85,6 @@
 
 
 
-  <link rel="alternate" href="/xiaoxiao/atom.xml" title="xiaoxiao" type="application/atom+xml" />
-
 
 
 
@@ -438,12 +436,30 @@
 
 
           </div>
+
           
 
 
           
   <div class="comments" id="comments">
     
+
+    <div id="gitment-container" style="display: none;"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+      var gitment = new Gitment({
+        // id: '', // 可选。默认为 location.href
+        owner: 'ghlingjun',
+        repo: 'https://github.com/ghlingjun/xiaoxiao.git',
+        oauth: {
+          client_id: '4233ccd7c69ad46d2c14',
+          client_secret: '1118ac2202681bb735d43ebd594f1269f3d797ce',
+        },
+      })
+      gitment.render('gitment-container')
+    </script>
+
   </div>
 
 
@@ -506,13 +522,6 @@
 
         </nav>
 
-        
-          <div class="feed-link motion-element">
-            <a href="/xiaoxiao/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
         
 
         <div class="links-of-author motion-element">
@@ -592,7 +601,7 @@
   &copy; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ethan</span>
 
@@ -1067,6 +1076,7 @@
   
 
   
+
 
 </body>
 </html>
