@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API. Overview这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.">
+<meta name="description" content="了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API. Overview这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0. 为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowled">
 <meta name="keywords" content="jbpm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jBPM 基础">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2014/11/07/jBPM-overview/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API. Overview这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.">
+<meta property="og:description" content="了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API. Overview这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0. 为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowled">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-13T18:13:00.000Z">
+<meta property="og:updated_time" content="2017-10-16T03:10:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jBPM 基础">
-<meta name="twitter:description" content="了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API. Overview这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.">
+<meta name="twitter:description" content="了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API. Overview这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0. 为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowled">
 
 
 
@@ -100,9 +100,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/xiaoxiao/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -147,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -352,7 +352,8 @@
 
       
         <p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.<br><a id="more"></a><br>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
+<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
 <p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
 <p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
 <h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
@@ -584,7 +585,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
 
 
 
@@ -703,6 +704,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/xiaoxiao/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/xiaoxiao/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
 
   
   <script type="text/javascript" src="/xiaoxiao/js/src/scrollspy.js?v=5.1.3"></script>
