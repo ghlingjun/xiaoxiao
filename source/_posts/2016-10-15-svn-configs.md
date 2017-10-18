@@ -7,7 +7,7 @@ tags: svn
 
 # 概述
 总结的一些不常用的 svn 操作命令
-<!-- more -->
+
 ## svn 服务启动命令
 ```
 sudo svnserve -d -r /data/svn

@@ -6,7 +6,7 @@ tags: git
 ---
 # 概述
 总结的一些不常用的 git 操作命令
-<!-- more -->
+
 ## Git 全局配置
 ```
 git config --global user.name "lingjun"

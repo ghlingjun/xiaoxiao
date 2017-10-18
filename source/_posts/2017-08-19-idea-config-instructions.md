@@ -6,7 +6,7 @@ tags: idea
 ---
 # 概述
 总结的一些 idea 配置方法
-<!-- more -->
+
 1. 隐藏.idea文件夹和.iml等文件（可选）
 
 > 在 File->Settings->Editor->File Types 下的 ”Ignore files and folders” 中添加：.idea;*.iml;
