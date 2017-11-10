@@ -4,15 +4,15 @@ title: git 命令行指引
 date: 2017-09-15 10:09:09
 tags: git
 ---
-# 概述
 总结的一些不常用的 git 操作命令
 
-## Git 全局配置
+Git 全局配置
 ```
 git config --global user.name "lingjun"
 git config --global user.email "lingjun@live.cn"
 ```
-## 创建一个新的仓库
+
+创建一个新的仓库
 ```
 git clone git@code.aliyun.com:lingjun/dolphin.git
 cd dolphin
@@ -21,7 +21,8 @@ git add README.md
 git commit -m "add README"
 git push -u origin master
 ```
-### Existing folder or Git repository
+
+Existing folder or Git repository
 ```
 cd existing_folder
 git init
@@ -30,7 +31,8 @@ git add .
 git commit
 git push -u origin master
 ```
-## Ignore files
+
+Ignore files
 ```
 # in directory: /Users/ethan/workspace/jeecg
 git rm --cached --force src/main/webapp/webpage/content/plug-in/ueditor/jsp/config.properties
@@ -43,30 +45,48 @@ git rm --cached --force src/main/webapp/plug-in/ueditor/jsp/config.properties
 # *.[oa]
 # *~
 ```
-## relocate repository
+
+relocate repository
 ```
 git remote rm origin
 git remote add origin git@code.aliyun.com:lingjun/jee-octopus.git
 ```
-## 切换分支
+
+切换分支
 ```
 git branch -a
 git checkout master_herbinate
 ```
-## Keep your fork synced
-1. See the current configured remote repository for your fork：
-git remote -v
-2. Add remote upstream
-git remote add upstream https://github.com/thinkgem/jeesite.git
-3. Fetch the branches and their respective commits from the upstream repository
-git fetch upstream
-4. 确保当前分支是 master, 如果不是，切换至 master
-git branch -a
-5. Merge the changes from upstream/master into your local master branch
-git merge upstream/master
 
-## Revert file
+Keep your fork synced
+1. See the current configured remote repository for your fork：
+```
+git remote -v
+```
+2. Add remote upstream
+```
+git remote add upstream https://github.com/thinkgem/jeesite.git
+```
+3. Fetch the branches and their respective commits from the upstream repository
+```
+git fetch upstream
+```
+4. 确保当前分支是 master, 如果不是，切换至 master
+```
+git branch -a
+```
+5. Merge the changes from upstream/master into your local master branch
+```
+git merge upstream/master
+```
+
+Revert file
 ```
 git rm --cached -f -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 ```
+
+更多
+
+[git - home](https://git-scm.com/about)
+[git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)

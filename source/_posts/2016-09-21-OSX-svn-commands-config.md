@@ -26,7 +26,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
    *.rej *~ #*# .#* .*.swp .DS_Store .idea *.iml *.lst logs
 </code></pre>
 
-### 2、添加命令脚本[^descriptoin]
+### 2、添加命令脚本
 
 vi svnadd.sh
 
@@ -63,4 +63,4 @@ source ~/.zshrc
 
 *****
 
-[^descriptoin]: 首先使用 svn status 命令查看 svn 状态，列出所有改动，打 ? 号的是已经新增的文件但是还未标记加入库；再用 awk '{print $2}' 将抽离出来的文本结果处理，留下每一行的第二段文字，即文件名；最后使用 xargs 这个参数构造命令，将每一行的文本作为参数提供给 svn add，结果就是所有列出的文件都执行了一遍 add 。
+svnadd.sh 命令解释: 首先使用 svn status 命令列出所有改动，打 ? 号的是已经新增的文件但是还未标记加入库；再用 awk '{print $2}' 将抽离出来的文本结果处理，留下每一行的第二段文字，即文件名；最后使用 xargs 这个参数构造命令，将每一行的文本作为参数提供给 svn add，结果就是所有列出的文件都执行了一遍添加命令。

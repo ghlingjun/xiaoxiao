@@ -1,8 +1,8 @@
 ---
 layout: default
-title: SVN 配置
+title: SVN 使用
 date: 2016-10-15 21:09:09
-tags: svn
+tags: svn,ignore,E155010
 ---
 
 # 概述
@@ -14,28 +14,27 @@ sudo svnserve -d -r /data/svn
 sudo killall svnserve
 ```
 ## ignore 命令
-忽略文件夹
-<pre><code>
+**忽略文件夹**
+```
 svn prospect svn:ignore ‘schema’ .
-</code></pre>
-忽略已存在的文件
-<pre><code>
+```
+**忽略已存在的文件**
+```
 svn export config.properties config.properties-tmp
 svn rm config.properties
 svn ci -m ‘remove config.properties’
 mv config.properties-tmp config.properties
 svn propset svn:ignore ‘config.properties’ .
 svn ci - ‘ignore config.properties’
-</code></pre>
-### 忽略文件夹中某几个文件
-> 在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：
+```
+**忽略文件夹中某几个文件**
+在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：
 ```
 .list
 .iml
 .idea
-</code></pre>
 ```
-> 然后：
+然后执行如下命令：
 ```
 svn prospect svn:ignore -F .svnignore .
 ```
@@ -49,3 +48,9 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
 ```
 svn relocate url
 ```
+## E155010: Commit failed
+"xxx" is scheduled for addition, but is missing 遇到此错误提示时执行下面命令即可：
+```
+svn rm xxx
+```
+这个错误原因是文件被 add 进本地仓库后，又被删除了，提交到服务器时 svn 找不到对应的文件。
