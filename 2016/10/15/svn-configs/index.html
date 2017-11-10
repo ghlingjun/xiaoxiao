@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="svn," />
+  <meta name="keywords" content="svn,ignore,E155010," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="概述总结的一些不常用的 svn 操作命令 svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .忽略已存在的文件 svn export config.properties config.properties-tmpsvn rm c">
-<meta name="keywords" content="svn">
+<meta name="description" content="概述总结的一些不常用的 svn 操作命令 svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹1svn prospect svn:ignore ‘schema’ . 忽略已存在的文件123456svn export config.properties config.properties-tmpsv">
+<meta name="keywords" content="svn,ignore,E155010">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SVN 配置">
+<meta property="og:title" content="SVN 使用">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2016/10/15/svn-configs/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="概述总结的一些不常用的 svn 操作命令 svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .忽略已存在的文件 svn export config.properties config.properties-tmpsvn rm c">
+<meta property="og:description" content="概述总结的一些不常用的 svn 操作命令 svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹1svn prospect svn:ignore ‘schema’ . 忽略已存在的文件123456svn export config.properties config.properties-tmpsv">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-16T03:10:17.000Z">
+<meta property="og:updated_time" content="2017-11-08T05:29:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SVN 配置">
-<meta name="twitter:description" content="概述总结的一些不常用的 svn 操作命令 svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹 svn prospect svn:ignore ‘schema’ .忽略已存在的文件 svn export config.properties config.properties-tmpsvn rm c">
+<meta name="twitter:title" content="SVN 使用">
+<meta name="twitter:description" content="概述总结的一些不常用的 svn 操作命令 svn 服务启动命令12sudo svnserve -d -r /data/svnsudo killall svnserve ignore 命令忽略文件夹1svn prospect svn:ignore ‘schema’ . 忽略已存在的文件123456svn export config.properties config.properties-tmpsv">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>SVN 配置 | xiaoxiao</title>
+  <title>SVN 使用 | xiaoxiao</title>
   
 
 
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SVN 配置</h1>
+          <h1 class="post-title" itemprop="name headline">SVN 使用</h1>
         
 
         <div class="post-meta">
@@ -353,15 +353,14 @@
       
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些不常用的 svn 操作命令</p>
 <h2 id="svn-服务启动命令"><a href="#svn-服务启动命令" class="headerlink" title="svn 服务启动命令"></a>svn 服务启动命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo svnserve -d -r /data/svn</div><div class="line">sudo killall svnserve</div></pre></td></tr></table></figure>
-<h2 id="ignore-命令"><a href="#ignore-命令" class="headerlink" title="ignore 命令"></a>ignore 命令</h2><p>忽略文件夹</p>
-<p><pre><code><br>svn prospect svn:ignore ‘schema’ .<br></code></pre><br>忽略已存在的文件</p>
-<p><pre><code><br>svn export config.properties config.properties-tmp<br>svn rm config.properties<br>svn ci -m ‘remove config.properties’<br>mv config.properties-tmp config.properties<br>svn propset svn:ignore ‘config.properties’ .<br>svn ci - ‘ignore config.properties’<br></code></pre></p>
-<h3 id="忽略文件夹中某几个文件"><a href="#忽略文件夹中某几个文件" class="headerlink" title="忽略文件夹中某几个文件"></a>忽略文件夹中某几个文件</h3><blockquote>
-<p>在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.list</div><div class="line">.iml</div><div class="line">.idea</div><div class="line">&lt;/code&gt;&lt;/pre&gt;</div></pre></td></tr></table></figure></p>
-<p>然后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn prospect svn:ignore -F .svnignore .</div></pre></td></tr></table></figure></p>
-</blockquote>
+<h2 id="ignore-命令"><a href="#ignore-命令" class="headerlink" title="ignore 命令"></a>ignore 命令</h2><p><strong>忽略文件夹</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn prospect svn:ignore ‘schema’ .</div></pre></td></tr></table></figure></p>
+<p><strong>忽略已存在的文件</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">svn export config.properties config.properties-tmp</div><div class="line">svn rm config.properties</div><div class="line">svn ci -m ‘remove config.properties’</div><div class="line">mv config.properties-tmp config.properties</div><div class="line">svn propset svn:ignore ‘config.properties’ .</div><div class="line">svn ci - ‘ignore config.properties’</div></pre></td></tr></table></figure></p>
+<p><strong>忽略文件夹中某几个文件</strong><br>在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.list</div><div class="line">.iml</div><div class="line">.idea</div></pre></td></tr></table></figure></p>
+<p>然后执行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn prospect svn:ignore -F .svnignore .</div></pre></td></tr></table></figure></p>
 <h2 id="add-a-tag"><a href="#add-a-tag" class="headerlink" title="add a tag"></a>add a tag</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">!/bin/bash</div><div class="line">export VERSION=v1.2.0</div><div class="line">svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/tags/$VERSION</div></pre></td></tr></table></figure>
 <h2 id="重定位location"><a href="#重定位location" class="headerlink" title="重定位location"></a>重定位location</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn relocate url</div></pre></td></tr></table></figure>
+<h2 id="E155010-Commit-failed"><a href="#E155010-Commit-failed" class="headerlink" title="E155010: Commit failed"></a>E155010: Commit failed</h2><p>“xxx” is scheduled for addition, but is missing 遇到此错误提示时执行下面命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn rm xxx</div></pre></td></tr></table></figure></p>
+<p>这个错误原因是文件被 add 进本地仓库后，又被删除了，提交到服务器时 svn 找不到对应的文件。</p>
 
       
     </div>
@@ -379,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/xiaoxiao/tags/svn/" rel="tag"># svn</a>
+            <a href="/xiaoxiao/tags/svn-ignore-E155010/" rel="tag"># svn,ignore,E155010</a>
           
         </div>
       
@@ -485,7 +484,7 @@
               
                 <a href="/xiaoxiao/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -498,7 +497,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/xiaoxiao/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -554,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#svn-服务启动命令"><span class="nav-number">1.1.</span> <span class="nav-text">svn 服务启动命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ignore-命令"><span class="nav-number">1.2.</span> <span class="nav-text">ignore 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略文件夹中某几个文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">忽略文件夹中某几个文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-a-tag"><span class="nav-number">1.3.</span> <span class="nav-text">add a tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重定位location"><span class="nav-number">1.4.</span> <span class="nav-text">重定位location</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#svn-服务启动命令"><span class="nav-number">1.1.</span> <span class="nav-text">svn 服务启动命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ignore-命令"><span class="nav-number">1.2.</span> <span class="nav-text">ignore 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-a-tag"><span class="nav-number">1.3.</span> <span class="nav-text">add a tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重定位location"><span class="nav-number">1.4.</span> <span class="nav-text">重定位location</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E155010-Commit-failed"><span class="nav-number">1.5.</span> <span class="nav-text">E155010: Commit failed</span></a></li></ol></li></ol></div>
             
 
           </div>

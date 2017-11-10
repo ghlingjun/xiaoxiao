@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="xiaoxiao">
 <meta property="og:description" content="研究原因为了使用方便，通过配置或者创建了一些 shell 脚本，简化 svn 的常用操作 配置列表1、配置全局忽略文件类型编辑 svn 的 config 文件1vi ~/.subversion/config 如果”.subversion”目录不存在，运行”svn status”命令，虽然此命令会失败，但是会为你创建所需要的文件。 找到 global-ignores 一行，新增需要忽略的文件：  g">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-16T03:10:21.000Z">
+<meta property="og:updated_time" content="2017-10-24T17:04:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac 下 Svn 命令配置">
 <meta name="twitter:description" content="研究原因为了使用方便，通过配置或者创建了一些 shell 脚本，简化 svn 的常用操作 配置列表1、配置全局忽略文件类型编辑 svn 的 config 文件1vi ~/.subversion/config 如果”.subversion”目录不存在，运行”svn status”命令，虽然此命令会失败，但是会为你创建所需要的文件。 找到 global-ignores 一行，新增需要忽略的文件：  g">
@@ -360,7 +360,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
    *.rej *~ #*# .#* .*.swp .DS_Store .idea *.iml *.lst logs
 </code></pre>
 
-<h3 id="2、添加命令脚本-descriptoin"><a href="#2、添加命令脚本-descriptoin" class="headerlink" title="2、添加命令脚本[^descriptoin]"></a>2、添加命令脚本[^descriptoin]</h3><p>vi svnadd.sh</p>
+<h3 id="2、添加命令脚本"><a href="#2、添加命令脚本" class="headerlink" title="2、添加命令脚本"></a>2、添加命令脚本</h3><p>vi svnadd.sh</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn status | grep '?' | awk -F' ' '&#123;print $2&#125;' | xargs svn add</div></pre></td></tr></table></figure>
 <h3 id="3、删除命令脚本"><a href="#3、删除命令脚本" class="headerlink" title="3、删除命令脚本"></a>3、删除命令脚本</h3><p>vi svndel.sh</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn status | grep '!' | awk -F' ' '&#123;print $2&#125;' | xargs svn del --force</div></pre></td></tr></table></figure>
@@ -371,7 +371,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
 <p>配置生效后，进入svn仓库目录，即可通过命令 svnadd 或者 svndel 来添加或者删除文件；</p>
 <p>最后通过命令 svn ci -m “comments” 来提交到服务器</p>
 <hr>
-<p>[^descriptoin]: 首先使用 svn status 命令查看 svn 状态，列出所有改动，打 ? 号的是已经新增的文件但是还未标记加入库；再用 awk ‘{print $2}’ 将抽离出来的文本结果处理，留下每一行的第二段文字，即文件名；最后使用 xargs 这个参数构造命令，将每一行的文本作为参数提供给 svn add，结果就是所有列出的文件都执行了一遍 add 。</p>
+<p>svnadd.sh 命令解释: 首先使用 svn status 命令列出所有改动，打 ? 号的是已经新增的文件但是还未标记加入库；再用 awk ‘{print $2}’ 将抽离出来的文本结果处理，留下每一行的第二段文字，即文件名；最后使用 xargs 这个参数构造命令，将每一行的文本作为参数提供给 svn add，结果就是所有列出的文件都执行了一遍添加命令。</p>
 
       
     </div>
@@ -412,8 +412,8 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/xiaoxiao/2016/10/15/svn-configs/" rel="prev" title="SVN 配置">
-                SVN 配置 <i class="fa fa-chevron-right"></i>
+              <a href="/xiaoxiao/2016/10/15/svn-configs/" rel="prev" title="SVN 使用">
+                SVN 使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -495,7 +495,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
               
                 <a href="/xiaoxiao/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -508,7 +508,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
               
               <div class="site-state-item site-state-tags">
                 <a href="/xiaoxiao/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -564,7 +564,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#研究原因"><span class="nav-number">1.</span> <span class="nav-text">研究原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置列表"><span class="nav-number">2.</span> <span class="nav-text">配置列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、配置全局忽略文件类型"><span class="nav-number">2.1.</span> <span class="nav-text">1、配置全局忽略文件类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、添加命令脚本-descriptoin"><span class="nav-number">2.2.</span> <span class="nav-text">2、添加命令脚本[^descriptoin]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、删除命令脚本"><span class="nav-number">2.3.</span> <span class="nav-text">3、删除命令脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建命令别名"><span class="nav-number">2.3.1.</span> <span class="nav-text">创建命令别名</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#研究原因"><span class="nav-number">1.</span> <span class="nav-text">研究原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置列表"><span class="nav-number">2.</span> <span class="nav-text">配置列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、配置全局忽略文件类型"><span class="nav-number">2.1.</span> <span class="nav-text">1、配置全局忽略文件类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、添加命令脚本"><span class="nav-number">2.2.</span> <span class="nav-text">2、添加命令脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、删除命令脚本"><span class="nav-number">2.3.</span> <span class="nav-text">3、删除命令脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建命令别名"><span class="nav-number">2.3.1.</span> <span class="nav-text">创建命令别名</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

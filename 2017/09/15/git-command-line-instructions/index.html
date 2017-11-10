@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="概述总结的一些不常用的 git 操作命令 Git 全局配置12git config --global user.name &amp;quot;lingjun&amp;quot;git config --global user.email &amp;quot;lingjun@live.cn&amp;quot; 创建一个新的仓库123456git clone git@code.aliyun.com:lingjun/dolphin.g">
+<meta name="description" content="总结的一些不常用的 git 操作命令 Git 全局配置12git config --global user.name &amp;quot;lingjun&amp;quot;git config --global user.email &amp;quot;lingjun@live.cn&amp;quot; 创建一个新的仓库123456git clone git@code.aliyun.com:lingjun/dolphin.git">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git 命令行指引">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2017/09/15/git-command-line-instructions/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="概述总结的一些不常用的 git 操作命令 Git 全局配置12git config --global user.name &amp;quot;lingjun&amp;quot;git config --global user.email &amp;quot;lingjun@live.cn&amp;quot; 创建一个新的仓库123456git clone git@code.aliyun.com:lingjun/dolphin.g">
+<meta property="og:description" content="总结的一些不常用的 git 操作命令 Git 全局配置12git config --global user.name &amp;quot;lingjun&amp;quot;git config --global user.email &amp;quot;lingjun@live.cn&amp;quot; 创建一个新的仓库123456git clone git@code.aliyun.com:lingjun/dolphin.git">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-16T03:11:14.000Z">
+<meta property="og:updated_time" content="2017-10-19T02:31:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 命令行指引">
-<meta name="twitter:description" content="概述总结的一些不常用的 git 操作命令 Git 全局配置12git config --global user.name &amp;quot;lingjun&amp;quot;git config --global user.email &amp;quot;lingjun@live.cn&amp;quot; 创建一个新的仓库123456git clone git@code.aliyun.com:lingjun/dolphin.g">
+<meta name="twitter:description" content="总结的一些不常用的 git 操作命令 Git 全局配置12git config --global user.name &amp;quot;lingjun&amp;quot;git config --global user.email &amp;quot;lingjun@live.cn&amp;quot; 创建一个新的仓库123456git clone git@code.aliyun.com:lingjun/dolphin.git">
 
 
 
@@ -351,21 +351,34 @@
       
 
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些不常用的 git 操作命令</p>
-<h2 id="Git-全局配置"><a href="#Git-全局配置" class="headerlink" title="Git 全局配置"></a>Git 全局配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;lingjun&quot;</div><div class="line">git config --global user.email &quot;lingjun@live.cn&quot;</div></pre></td></tr></table></figure>
-<h2 id="创建一个新的仓库"><a href="#创建一个新的仓库" class="headerlink" title="创建一个新的仓库"></a>创建一个新的仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git clone git@code.aliyun.com:lingjun/dolphin.git</div><div class="line">cd dolphin</div><div class="line">touch README.md</div><div class="line">git add README.md</div><div class="line">git commit -m &quot;add README&quot;</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<h3 id="Existing-folder-or-Git-repository"><a href="#Existing-folder-or-Git-repository" class="headerlink" title="Existing folder or Git repository"></a>Existing folder or Git repository</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd existing_folder</div><div class="line">git init</div><div class="line">git remote add origin git@code.aliyun.com:lingjun/dolphin.git</div><div class="line">git add .</div><div class="line">git commit</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<h2 id="Ignore-files"><a href="#Ignore-files" class="headerlink" title="Ignore files"></a>Ignore files</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># in directory: /Users/ethan/workspace/jeecg</div><div class="line">git rm --cached --force src/main/webapp/webpage/content/plug-in/ueditor/jsp/config.properties</div><div class="line">git rm --cached --force src/main/webapp/plug-in/ueditor/jsp/config.properties</div><div class="line"></div><div class="line"># git ls-files --others --exclude-from=.git/info/exclude</div><div class="line"># Lines that start with &apos;#&apos; are comments.</div><div class="line"># For a project mostly in C, the following would be a good set of</div><div class="line"># exclude patterns (uncomment them if you want to use them):</div><div class="line"># *.[oa]</div><div class="line"># *~</div></pre></td></tr></table></figure>
-<h2 id="relocate-repository"><a href="#relocate-repository" class="headerlink" title="relocate repository"></a>relocate repository</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote add origin git@code.aliyun.com:lingjun/jee-octopus.git</div></pre></td></tr></table></figure>
-<h2 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch -a</div><div class="line">git checkout master_herbinate</div></pre></td></tr></table></figure>
-<h2 id="Keep-your-fork-synced"><a href="#Keep-your-fork-synced" class="headerlink" title="Keep your fork synced"></a>Keep your fork synced</h2><ol>
-<li>See the current configured remote repository for your fork：<br>git remote -v</li>
-<li>Add remote upstream<br>git remote add upstream <a href="https://github.com/thinkgem/jeesite.git" target="_blank" rel="external">https://github.com/thinkgem/jeesite.git</a></li>
-<li>Fetch the branches and their respective commits from the upstream repository<br>git fetch upstream</li>
-<li>确保当前分支是 master, 如果不是，切换至 master<br>git branch -a</li>
-<li>Merge the changes from upstream/master into your local master branch<br>git merge upstream/master</li>
+        <p>总结的一些不常用的 git 操作命令</p>
+<p>Git 全局配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;lingjun&quot;</div><div class="line">git config --global user.email &quot;lingjun@live.cn&quot;</div></pre></td></tr></table></figure></p>
+<p>创建一个新的仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git clone git@code.aliyun.com:lingjun/dolphin.git</div><div class="line">cd dolphin</div><div class="line">touch README.md</div><div class="line">git add README.md</div><div class="line">git commit -m &quot;add README&quot;</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure></p>
+<p>Existing folder or Git repository<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd existing_folder</div><div class="line">git init</div><div class="line">git remote add origin git@code.aliyun.com:lingjun/dolphin.git</div><div class="line">git add .</div><div class="line">git commit</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure></p>
+<p>Ignore files<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># in directory: /Users/ethan/workspace/jeecg</div><div class="line">git rm --cached --force src/main/webapp/webpage/content/plug-in/ueditor/jsp/config.properties</div><div class="line">git rm --cached --force src/main/webapp/plug-in/ueditor/jsp/config.properties</div><div class="line"></div><div class="line"># git ls-files --others --exclude-from=.git/info/exclude</div><div class="line"># Lines that start with &apos;#&apos; are comments.</div><div class="line"># For a project mostly in C, the following would be a good set of</div><div class="line"># exclude patterns (uncomment them if you want to use them):</div><div class="line"># *.[oa]</div><div class="line"># *~</div></pre></td></tr></table></figure></p>
+<p>relocate repository<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote add origin git@code.aliyun.com:lingjun/jee-octopus.git</div></pre></td></tr></table></figure></p>
+<p>切换分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch -a</div><div class="line">git checkout master_herbinate</div></pre></td></tr></table></figure></p>
+<p>Keep your fork synced</p>
+<ol>
+<li><p>See the current configured remote repository for your fork：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote -v</div></pre></td></tr></table></figure>
+</li>
+<li><p>Add remote upstream</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add upstream https://github.com/thinkgem/jeesite.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>Fetch the branches and their respective commits from the upstream repository</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch upstream</div></pre></td></tr></table></figure>
+</li>
+<li><p>确保当前分支是 master, 如果不是，切换至 master</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -a</div></pre></td></tr></table></figure>
+</li>
+<li><p>Merge the changes from upstream/master into your local master branch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git merge upstream/master</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<h2 id="Revert-file"><a href="#Revert-file" class="headerlink" title="Revert file"></a>Revert file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rm --cached -f -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp</div><div class="line">git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp</div></pre></td></tr></table></figure>
+<p>Revert file<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rm --cached -f -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp</div><div class="line">git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp</div></pre></td></tr></table></figure></p>
+<p>更多</p>
+<p><a href="https://git-scm.com/about" target="_blank" rel="external">git - home</a><br><a href="http://rogerdudler.github.io/git-guide/index.zh.html" target="_blank" rel="external">git - 简明指南</a></p>
 
       
     </div>
@@ -460,17 +473,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -489,7 +493,7 @@
               
                 <a href="/xiaoxiao/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -502,7 +506,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/xiaoxiao/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -548,22 +552,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-全局配置"><span class="nav-number">1.1.</span> <span class="nav-text">Git 全局配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个新的仓库"><span class="nav-number">1.2.</span> <span class="nav-text">创建一个新的仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Existing-folder-or-Git-repository"><span class="nav-number">1.2.1.</span> <span class="nav-text">Existing folder or Git repository</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ignore-files"><span class="nav-number">1.3.</span> <span class="nav-text">Ignore files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#relocate-repository"><span class="nav-number">1.4.</span> <span class="nav-text">relocate repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换分支"><span class="nav-number">1.5.</span> <span class="nav-text">切换分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Keep-your-fork-synced"><span class="nav-number">1.6.</span> <span class="nav-text">Keep your fork synced</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Revert-file"><span class="nav-number">1.7.</span> <span class="nav-text">Revert file</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
