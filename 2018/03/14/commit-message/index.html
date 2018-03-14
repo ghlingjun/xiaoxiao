@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="每次提交，Commit message 格式如下：1&amp;lt;type&amp;gt;: &amp;lt;subject&amp;gt;  type type用于说明 commit 的类别，只允许使用下面7个标识。 feat：新功能（feature） fix：修补bug docs：文档（documentation） style： 格式（不影响代码运行的变动） refactor：重构（即不是新增功能，也不是修改bug的代码变">
+<meta name="description" content="每次提交，Commit message 格式如下：1&amp;lt;type&amp;gt;[&amp;lt;scope&amp;gt;]: &amp;lt;subject&amp;gt; 包含三部分：type（必需）、scope（可选）和subject（必需）  type type用于说明 commit 的类别，只允许使用下面7个标识。 feat：新功能（feature） fix：修补bug docs：文档（documentation） st">
 <meta name="keywords" content="git,svn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码提交注释格式">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2018/03/14/commit-message/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="每次提交，Commit message 格式如下：1&amp;lt;type&amp;gt;: &amp;lt;subject&amp;gt;  type type用于说明 commit 的类别，只允许使用下面7个标识。 feat：新功能（feature） fix：修补bug docs：文档（documentation） style： 格式（不影响代码运行的变动） refactor：重构（即不是新增功能，也不是修改bug的代码变">
+<meta property="og:description" content="每次提交，Commit message 格式如下：1&amp;lt;type&amp;gt;[&amp;lt;scope&amp;gt;]: &amp;lt;subject&amp;gt; 包含三部分：type（必需）、scope（可选）和subject（必需）  type type用于说明 commit 的类别，只允许使用下面7个标识。 feat：新功能（feature） fix：修补bug docs：文档（documentation） st">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T02:47:37.412Z">
+<meta property="og:updated_time" content="2018-03-14T09:04:10.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码提交注释格式">
-<meta name="twitter:description" content="每次提交，Commit message 格式如下：1&amp;lt;type&amp;gt;: &amp;lt;subject&amp;gt;  type type用于说明 commit 的类别，只允许使用下面7个标识。 feat：新功能（feature） fix：修补bug docs：文档（documentation） style： 格式（不影响代码运行的变动） refactor：重构（即不是新增功能，也不是修改bug的代码变">
+<meta name="twitter:description" content="每次提交，Commit message 格式如下：1&amp;lt;type&amp;gt;[&amp;lt;scope&amp;gt;]: &amp;lt;subject&amp;gt; 包含三部分：type（必需）、scope（可选）和subject（必需）  type type用于说明 commit 的类别，只允许使用下面7个标识。 feat：新功能（feature） fix：修补bug docs：文档（documentation） st">
 
 
 
@@ -351,7 +351,8 @@
       
 
       
-        <p>每次提交，Commit message 格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;type&gt;: &lt;subject&gt;</div></pre></td></tr></table></figure></p>
+        <p>每次提交，Commit message 格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;type&gt;[&lt;scope&gt;]: &lt;subject&gt;</div></pre></td></tr></table></figure></p>
+<p>包含三部分：type（必需）、scope（可选）和subject（必需）</p>
 <ol>
 <li>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。<ul>
 <li>feat：新功能（feature）</li>
@@ -363,6 +364,7 @@
 <li>chore：构建过程或辅助工具的变动</li>
 </ul>
 </li>
+<li>scope<br> <code>scope</code>用于说明 commit 影响的范围，例如工作流模块、系统管理模块、统计分析模块等，根据项目不同而不同</li>
 <li>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。<ul>
 <li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
 <li>第一个字母小写</li>

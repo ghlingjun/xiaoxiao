@@ -346,7 +346,8 @@
       
         
           
-            <p>每次提交，Commit message 格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;type&gt;: &lt;subject&gt;</div></pre></td></tr></table></figure></p>
+            <p>每次提交，Commit message 格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;type&gt;[&lt;scope&gt;]: &lt;subject&gt;</div></pre></td></tr></table></figure></p>
+<p>包含三部分：type（必需）、scope（可选）和subject（必需）</p>
 <ol>
 <li>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。<ul>
 <li>feat：新功能（feature）</li>
@@ -358,6 +359,7 @@
 <li>chore：构建过程或辅助工具的变动</li>
 </ul>
 </li>
+<li>scope<br> <code>scope</code>用于说明 commit 影响的范围，例如工作流模块、系统管理模块、统计分析模块等，根据项目不同而不同</li>
 <li>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。<ul>
 <li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
 <li>第一个字母小写</li>

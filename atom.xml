@@ -6,7 +6,7 @@
   <link href="/xiaoxiao/atom.xml" rel="self"/>
   
   <link href="https://ghlingjun.github.io/xiaoxiao/"/>
-  <updated>2018-03-14T02:47:37.412Z</updated>
+  <updated>2018-03-14T09:04:10.541Z</updated>
   <id>https://ghlingjun.github.io/xiaoxiao/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://ghlingjun.github.io/xiaoxiao/2018/03/14/commit-message/"/>
     <id>https://ghlingjun.github.io/xiaoxiao/2018/03/14/commit-message/</id>
     <published>2018-03-14T02:42:04.000Z</published>
-    <updated>2018-03-14T02:47:37.412Z</updated>
+    <updated>2018-03-14T09:04:10.541Z</updated>
     
-    <content type="html"><![CDATA[<p>每次提交，Commit message 格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;type&gt;: &lt;subject&gt;</div></pre></td></tr></table></figure></p><ol><li>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。<ul><li>feat：新功能（feature）</li><li>fix：修补bug</li><li>docs：文档（documentation）</li><li>style： 格式（不影响代码运行的变动）</li><li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li><li>test：增加测试</li><li>chore：构建过程或辅助工具的变动</li></ul></li><li>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。<ul><li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li><li>第一个字母小写</li><li>结尾不加句号（.）</li></ul></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>每次提交，Commit message 格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;type&gt;[&lt;scope&gt;]: &lt;subject&gt;</div></pre></td></tr></table></figure></p><p>包含三部分：type（必需）、scope（可选）和subject（必需）</p><ol><li>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。<ul><li>feat：新功能（feature）</li><li>fix：修补bug</li><li>docs：文档（documentation）</li><li>style： 格式（不影响代码运行的变动）</li><li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li><li>test：增加测试</li><li>chore：构建过程或辅助工具的变动</li></ul></li><li>scope<br> <code>scope</code>用于说明 commit 影响的范围，例如工作流模块、系统管理模块、统计分析模块等，根据项目不同而不同</li><li>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。<ul><li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li><li>第一个字母小写</li><li>结尾不加句号（.）</li></ul></li></ol>]]></content>
     
     <summary type="html">
     
@@ -215,7 +215,7 @@
     <link href="https://ghlingjun.github.io/xiaoxiao/2017/08/19/idea-config-instructions/"/>
     <id>https://ghlingjun.github.io/xiaoxiao/2017/08/19/idea-config-instructions/</id>
     <published>2017-08-19T13:09:09.000Z</published>
-    <updated>2017-11-17T15:36:39.000Z</updated>
+    <updated>2018-03-14T02:51:26.526Z</updated>
     
     <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些 idea 配置方法</p><h2 id="隐藏-idea-文件夹和-iml-等文件（可选）"><a href="#隐藏-idea-文件夹和-iml-等文件（可选）" class="headerlink" title="隐藏 .idea 文件夹和 .iml 等文件（可选）"></a>隐藏 .idea 文件夹和 .iml 等文件（可选）</h2><p>在 File -&gt; Settings -&gt; Editor -&gt; File Types 下的 “Ignore files and folders” 中添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.idea;*.iml;</div></pre></td></tr></table></figure></p><h2 id="文件编码设置"><a href="#文件编码设置" class="headerlink" title="文件编码设置"></a>文件编码设置</h2><p>File -&gt; Settings -&gt; Editor -&gt; File Encodings 下设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Global Encoding: UTF-8</div><div class="line">Projectt Encoding: UTF-8</div><div class="line">Default encoding for properties files: UTF-8</div></pre></td></tr></table></figure></p><p>勾选上 Transparent native-to-ascii conversion</p><h2 id="自动导入所有包"><a href="#自动导入所有包" class="headerlink" title="自动导入所有包"></a>自动导入所有包</h2><p>在 Intellij IDEA 一次只能导入单个包，没有像Eclipse快速导入包的快捷键 Ctrl+Shift+O，但是 Intellij IDEA 下有个自动导入包的功能。</p><p>在 File -&gt; Settings -&gt; Editor -&gt; General -&gt; Auto Import 下进行配置:</p><p>Insert imports on paste: 复制代码的时候，对于导入的包是否需要进行询问的一个选项。<br>    ASK(有需要导入的包名时会弹提示框，问你要不要导入)<br>    NONE(有需要导入的包名时不会弹提示框，也不会自动导入)<br>    ALL(有需要导入的包名时会自动导入，不会弹提示框)<br>Show import popup: 当输入的类的声明没被导入时，会弹出一个选择的对话框<br>Optimize imports on fly: 自动优化包导入，移除不需要的包<br>Add unambiguous imports on the fly: 这个就是自动导入功能了，当你输入类名后声明就被自动导入了<br>Exclude from Import and Completion: 这个其实就是你自定义import,可以不用关注，一般来说是用不上的</p><h2 id="设置默认换行符"><a href="#设置默认换行符" class="headerlink" title="设置默认换行符"></a>设置默认换行符</h2><p>打开 File -&gt; Other Settings -&gt; Default Settings -&gt; Editor -&gt; Code Style<br>设置 Line separator (for new files) 为 Unix and OS X(\n)</p><h2 id="生成-javadoc-配置"><a href="#生成-javadoc-配置" class="headerlink" title="生成 javadoc 配置"></a>生成 javadoc 配置</h2><p>打开 Tools -&gt; Gerenate JavaDoc<br>在 Other command line arguments 中输入：-encoding utf-8 -charset utf-8, 避免中文乱码</p><h2 id="设置代码行宽度-Columns"><a href="#设置代码行宽度-Columns" class="headerlink" title="设置代码行宽度(Columns)"></a>设置代码行宽度(Columns)</h2><p>打开 File -&gt; Other Settings -&gt; Default Settings -&gt; Editor -&gt; Code Style<br>修改 Default Options -&gt; Right Margin (Columns) 可以为所有类型的文件设置默认宽度。<br>另外可以在 Code Style 下特定类型文件（例如 Java、Jsp）的 Wrapping tab 下修改该类型文件的代码行宽度。</p><h2 id="自定义-Live-Template"><a href="#自定义-Live-Template" class="headerlink" title="自定义 Live Template"></a>自定义 Live Template</h2><p>Preferences -&gt; Editor -&gt; Live Templates<br>选择 UserDefined, 添加自定义模板以及自己的快捷输入方法</p>]]></content>
     
