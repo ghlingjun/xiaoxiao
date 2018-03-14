@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="注释 ajp 协议 修改 HTTP/1.1（bio） 协议修改 HTTP/1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高； 开启线程池开启线程池；线程池默认数量为 200，可根据服务器性能调整数量；">
+<meta name="description" content="注释 ajp 协议 修改 HTTP/1.1（bio） 协议修改 HTTP/1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高； 1234&amp;lt;Connector executor=&amp;quot;tomcatThreadPool&amp;quot; port=&amp;quot;8080&amp;quot; protoc">
 <meta name="keywords" content="tomcat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tomcat 配置">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2017/10/29/tomcat-config/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="注释 ajp 协议 修改 HTTP/1.1（bio） 协议修改 HTTP/1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高； 开启线程池开启线程池；线程池默认数量为 200，可根据服务器性能调整数量；">
+<meta property="og:description" content="注释 ajp 协议 修改 HTTP/1.1（bio） 协议修改 HTTP/1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高； 1234&amp;lt;Connector executor=&amp;quot;tomcatThreadPool&amp;quot; port=&amp;quot;8080&amp;quot; protoc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-29T13:00:39.000Z">
+<meta property="og:updated_time" content="2017-12-05T10:44:16.012Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat 配置">
-<meta name="twitter:description" content="注释 ajp 协议 修改 HTTP/1.1（bio） 协议修改 HTTP/1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高； 开启线程池开启线程池；线程池默认数量为 200，可根据服务器性能调整数量；">
+<meta name="twitter:description" content="注释 ajp 协议 修改 HTTP/1.1（bio） 协议修改 HTTP/1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高； 1234&amp;lt;Connector executor=&amp;quot;tomcatThreadPool&amp;quot; port=&amp;quot;8080&amp;quot; protoc">
 
 
 
@@ -353,8 +353,15 @@
       
         <ol>
 <li>注释 ajp 协议</li>
-<li>修改 HTTP/1.1（bio） 协议<br>修改 HTTP/1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高；</li>
-<li>开启线程池<br>开启线程池；线程池默认数量为 200，可根据服务器性能调整数量；</li>
+<li><p>修改 HTTP/1.1（bio） 协议<br>修改 HTTP/1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Connector executor=&quot;tomcatThreadPool&quot; port=&quot;8080&quot; protocol=&quot;org.apache.coyote.http11.Http11Nio2Protocol&quot;</div><div class="line">       connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot;</div><div class="line">       enableLookups=&quot;false&quot; maxPostSize=&quot;10485760&quot; URIEncoding=&quot;UTF-8&quot; acceptCount=&quot;100&quot;</div><div class="line">       acceptorThreadCount=&quot;2&quot; disableUploadTimeout=&quot;true&quot; maxConnections=&quot;10000&quot; SSLEnabled=&quot;false&quot;/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>开启线程池<br>开启线程池；线程池默认数量为 200，可根据服务器性能调整数量；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Executor name=&quot;tomcatThreadPool&quot; namePrefix=&quot;catalina-exec-&quot;  maxThreads=&quot;420&quot; minSpareThreads=&quot;4&quot;/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>tomcat 8 以上对 resource 采取了 cache，默认的大小是 10240(10M)，修改其默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Resources cachingAllowed=&quot;true&quot; cacheMaxSize=&quot;102400&quot; /&gt;</div></pre></td></tr></table></figure>
+</li>
 </ol>
 
       
@@ -395,6 +402,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/xiaoxiao/2018/03/14/commit-message/" rel="prev" title="代码提交注释格式">
+                代码提交注释格式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -466,7 +477,7 @@
               
                 <a href="/xiaoxiao/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -479,7 +490,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/xiaoxiao/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -539,7 +550,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

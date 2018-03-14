@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="xiaoxiao">
 <meta property="og:description" content="概述总结的一些 MySql 操作命令 创建用户1CREATE USER &amp;apos;octopus&amp;apos;@&amp;apos;%&amp;apos; IDENTIFIED BY &amp;apos;octopus&amp;apos;; 创建数据库1234drop database testdb;CREATE DATABASE testdb DEFAULT CHARACTER SET utf8;GRANT ALL PRIVI">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-29T15:36:44.000Z">
+<meta property="og:updated_time" content="2017-11-21T07:57:50.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql 常用操作命令">
 <meta name="twitter:description" content="概述总结的一些 MySql 操作命令 创建用户1CREATE USER &amp;apos;octopus&amp;apos;@&amp;apos;%&amp;apos; IDENTIFIED BY &amp;apos;octopus&amp;apos;; 创建数据库1234drop database testdb;CREATE DATABASE testdb DEFAULT CHARACTER SET utf8;GRANT ALL PRIVI">
@@ -369,6 +369,7 @@
 <h2 id="MySQL-编码设置"><a href="#MySQL-编码设置" class="headerlink" title="MySQL 编码设置"></a>MySQL 编码设置</h2><p>查看 MySQL DB 编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">show variables like &apos;character%&apos;;</div><div class="line"></div><div class="line">| character_set_client     | utf8                       |</div><div class="line">| character_set_connection | utf8                       |</div><div class="line">| character_set_database   | latin1                     |</div><div class="line">| character_set_filesystem | binary                     |</div><div class="line">| character_set_results    | utf8                       |</div><div class="line">| character_set_server     | latin1                     |</div><div class="line">| character_set_system     | utf8                       |</div><div class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</div></pre></td></tr></table></figure></p>
 <p>使用下面命令设置编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set character_set_database=utf8;</div></pre></td></tr></table></figure></p>
 <p>修改已有数据库编码的命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter database dbname character set utf8;</div></pre></td></tr></table></figure></p>
+<h2 id="etc-init-d-mysql-ERROR-The-partition-with-var-lib-mysql-is-too-full"><a href="#etc-init-d-mysql-ERROR-The-partition-with-var-lib-mysql-is-too-full" class="headerlink" title="/etc/init.d/mysql: ERROR: The partition with /var/lib/mysql is too full!"></a>/etc/init.d/mysql: ERROR: The partition with /var/lib/mysql is too full!</h2><p>磁盘空间被占满导致无法启动服务，可使用 du -sh ./* 来查看 /var 下的文件大小详情，释放一些空间，再使用启动命令 /etc/init.d/mysql start 启动。</p>
 
       
     </div>
@@ -492,7 +493,7 @@
               
                 <a href="/xiaoxiao/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -505,7 +506,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/xiaoxiao/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -561,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户"><span class="nav-number">1.1.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.2.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入导出"><span class="nav-number">1.3.</span> <span class="nav-text">导入导出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导出表结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">导出表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出数据"><span class="nav-number">1.3.2.</span> <span class="nav-text">导出数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出表结构与数据"><span class="nav-number">1.3.3.</span> <span class="nav-text">导出表结构与数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入sql脚本"><span class="nav-number">1.3.4.</span> <span class="nav-text">导入sql脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-编码设置"><span class="nav-number">1.4.</span> <span class="nav-text">MySQL 编码设置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户"><span class="nav-number">1.1.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.2.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入导出"><span class="nav-number">1.3.</span> <span class="nav-text">导入导出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导出表结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">导出表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出数据"><span class="nav-number">1.3.2.</span> <span class="nav-text">导出数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导出表结构与数据"><span class="nav-number">1.3.3.</span> <span class="nav-text">导出表结构与数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入sql脚本"><span class="nav-number">1.3.4.</span> <span class="nav-text">导入sql脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-编码设置"><span class="nav-number">1.4.</span> <span class="nav-text">MySQL 编码设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#etc-init-d-mysql-ERROR-The-partition-with-var-lib-mysql-is-too-full"><span class="nav-number">1.5.</span> <span class="nav-text">/etc/init.d/mysql: ERROR: The partition with /var/lib/mysql is too full!</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -581,7 +582,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
