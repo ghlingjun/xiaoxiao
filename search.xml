@@ -27,15 +27,15 @@
 </ul>
 <ul>
 <li><p>How to run tests</p>
-<p>  进入要生成代码的项目或者模块目录了下，执行命令：<code>mvn codemother:code-generate</code></p>
-<p>  倘若你的项目是单模块，应该执行如下命令：<code>mvn codemother:code-generat -DtemplatePath=./codemother/template</code>, 这是因为<code>templatePath</code>默认值为<code>../codemother/template</code>, 用于多模块项目。</p>
-<p>  templatePath的值实际依赖于src目录与template的项目路径，可根据实际需要传参数。</p>
+<p>  进入要生成代码的项目或者模块目录下，执行命令：<code>mvn codemother:code-generate</code></p>
+<p>  倘若你的项目是单模块，执行命令：<code>mvn codemother:code-generat -DtemplatePath=./codemother/template</code>, 这是因为<code>templatePath</code>默认值为<code>../codemother/template</code>, 用于多模块项目。</p>
+<p>  templatePath的值实际依赖于src目录与template的项目路径，可以自定义temlate目录位置，可根据实际需要传参数。</p>
 <p>  多模块项目目录结构示例：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── codemother</div><div class="line">│   ├── codemother.properties</div><div class="line">│   ├── dbschema</div><div class="line">│   └── template</div><div class="line">├── README.md</div><div class="line">├── pom.xml</div><div class="line">├── model1</div><div class="line">│   ├── pom.xml</div><div class="line">│   ├── src</div><div class="line">│   │   └── main</div><div class="line">│   │       └── java</div><div class="line">└── model2</div><div class="line">    ├── pom.xml</div><div class="line">    ├── src</div><div class="line">    │   ├── main</div><div class="line">    │   │   ├── java</div><div class="line">    │   │   └── resources</div><div class="line">    │   └── test</div><div class="line">            └── java</div></pre></td></tr></table></figure>
 <p>  假设要在 model1 模块中生成代码，则执行命令：<code>mvn codemother:code-generate</code></p>
 <p>  单模块项目目录结构示例：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── codemother</div><div class="line">│   ├── codemother.properties</div><div class="line">│   ├── dbschema</div><div class="line">│   └── template</div><div class="line">├── pom.xml</div><div class="line">└── src</div><div class="line">    ├── main</div><div class="line">    │   ├── java</div><div class="line">    │   ├── resources</div><div class="line">    │   └── webapp</div><div class="line">    └── test</div><div class="line">        ├── java</div><div class="line">        └── resources</div></pre></td></tr></table></figure>
-<p>  此项目生成代码则需要执行命令：<code>mvn codemother:code-generat -DtemplatePath=./codemother/template</code></p>
+<p>  此项目生成代码则需要执行命令：<br>  <code>mvn codemother:code-generat -DtemplatePath=./codemother/template</code></p>
 </li>
 </ul>
 <h3 id="Schema文件生成方法"><a href="#Schema文件生成方法" class="headerlink" title="Schema文件生成方法"></a>Schema文件生成方法</h3><ul>
