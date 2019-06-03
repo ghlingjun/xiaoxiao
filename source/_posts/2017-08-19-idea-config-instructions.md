@@ -47,3 +47,7 @@ Exclude from Import and Completion: 这个其实就是你自定义import,可以�
 打开 File -> Other Settings -> Default Settings -> Editor -> Code Style
 修改 Default Options -> Right Margin (Columns) 可以为所有类型的文件设置默认宽度。
 另外可以在 Code Style 下特定类型文件（例如 Java、Jsp）的 Wrapping tab 下修改该类型文件的代码行宽度。
+
+## 自定义 Live Template
+Preferences -> Editor -> Live Templates
+选择 UserDefined, 添加自定义模板以及自己的快捷输入方法

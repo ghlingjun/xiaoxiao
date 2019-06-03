@@ -12,6 +12,21 @@ git config --global user.name "lingjun"
 git config --global user.email "lingjun@live.cn"
 ```
 
+git core.autocrlf 配置说明
+基于 git 服务在 linux 服务器，以及应用运行在 linux 服务器上的假设，git 换行符配置如下：
+Windows 系统下开发配置如下，Git 可以在你提交时自动地把行结束符 CRLF 转换成LF，而在签出代码时把LF转换成CRLF
+```
+git config --global core.autocrlf true
+```
+Mac或者Linux下开发，则配置如下，Git 在提交时把 CRLF 转换成 LF，签出时不转换
+```
+git config --global core.autocrlf input
+```
+拒绝提交包含混合换行符的文件
+```
+git config --global core.safecrlf true
+```
+
 创建一个新的仓库
 ```
 git clone git@code.aliyun.com:lingjun/dolphin.git
@@ -84,6 +99,11 @@ Revert file
 ```
 git rm --cached -f -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
+```
+
+导出提交日志
+```
+git log --date=iso --pretty=format:'"%h", "%an", "%ad", "%s"' >> log.csv
 ```
 
 更多
