@@ -29,7 +29,7 @@ $ hexo generate
 $ hexo server
 ```
 
-启动本地服务，默认服务地址是： `http://localhost:4000/`.
+启动本地服务，默认服务地址是： `http://localhost:4000/xiaoxiao`.
 
 | Option           | Description                            |
 | ---------------- | -------------------------------------- |
