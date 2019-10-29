@@ -17,3 +17,21 @@ defaults write com.apple.Maps AppleLanguages '(zh-CN)'
 ```
 sudo spctl --master-disable
 ```
+
+4. 重启程序
+重启菜单栏
+```
+killall -KILL SystemUIServer
+```
+重启Dock
+```
+killall Dock
+```
+重启Finder
+```
+killall Finder
+```
+重启wifi
+```
+
+```

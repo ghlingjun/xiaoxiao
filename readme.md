@@ -23,14 +23,6 @@ $ hexo generate
 | `-d`, `--deploy` | 生成完成后，同时发布         |
 | `-w`, `--watch`  | Watch file changes |
 
-### 发布文章
-
-```
-$ hexo publish [layout] <filename>
-```
-
-发布一篇草稿。
-
 ### 启动服务
 
 ```
@@ -72,3 +64,11 @@ $ hexo --draft
 ```
 
 Displays draft posts (stored in the `source/_drafts` folder).
+
+### 发布文章
+
+```
+$ hexo publish [layout] <filename>
+```
+
+发布一篇草稿。
