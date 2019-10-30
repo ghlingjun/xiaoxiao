@@ -6,7 +6,7 @@
   <link href="/xiaoxiao/atom.xml" rel="self"/>
   
   <link href="https://ghlingjun.github.io/xiaoxiao/"/>
-  <updated>2019-10-29T10:01:04.240Z</updated>
+  <updated>2019-10-30T14:46:01.000Z</updated>
   <id>https://ghlingjun.github.io/xiaoxiao/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>linux服务器初始化</title>
+    <link href="https://ghlingjun.github.io/xiaoxiao/2019/10/30/linux-server-init/"/>
+    <id>https://ghlingjun.github.io/xiaoxiao/2019/10/30/linux-server-init/</id>
+    <published>2019-10-30T14:46:01.000Z</published>
+    <updated>2019-10-30T14:46:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h3><p>查看分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure></p><p>查看磁盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure></p><p>格式化分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/xvde</span><br></pre></td></tr></table></figure></p><p>p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区<br>n # 新建分区——选择p<br>t # 转换分区格式为8e<br>w # 保存新建分区格式。</p><p>格式化磁盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext3 /dev/xvde1 </span><br><span class="line">mount /dev/xvde1 /home</span><br></pre></td></tr></table></figure></p><p>查看挂在结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -TH</span><br></pre></td></tr></table></figure></p><h3 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id # 查看用户信息</span><br><span class="line">passwd # 修改用户密码</span><br></pre></td></tr></table></figure><h3 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h3><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/" target="_blank" rel="noopener">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 查看用户组是否存在</span><br><span class="line">grep shumei /etc/group</span><br><span class="line"># 添加用户组 shumei</span><br><span class="line">groupadd shumei</span><br><span class="line"></span><br><span class="line"># 查看用户 shumei 是否存在</span><br><span class="line">grep shumei /etc/passwd</span><br><span class="line"># 添加用户</span><br><span class="line">useradd -g shumei -d /home/shumei -m shumei</span><br><span class="line"># 查看 shumei 信息</span><br><span class="line">id shumei</span><br><span class="line"># 设置用户密码</span><br><span class="line">passwd shumei</span><br><span class="line"></span><br><span class="line"># 赋给用户 sudo 权限：http://man.linuxde.net/sudo</span><br><span class="line">vi /etc/sudoers</span><br><span class="line"># 仿照现有root的例子就行，加一行（最好用tab作为空白）</span><br><span class="line">shumei  ALL=(ALL)   ALL</span><br></pre></td></tr></table></figure><h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scp ethan@182.106.185.167:/home/shumei/software/jdk-8u25-linux-x64.tar.gz .</span><br><span class="line">scp ethan@182.106.185.167:/home/shumei/software/earth-tomcat.tar .</span><br><span class="line">scp ethan@182.106.185.167:/home/shumei/deploy.sh .</span><br><span class="line"></span><br><span class="line">vi .bashrc</span><br><span class="line">export JAVA_HOME=/home/shumei/software/jdk1.8.0_25</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure><h3 id="安装-MySql-服务"><a href="#安装-MySql-服务" class="headerlink" title="安装 MySql 服务"></a>安装 MySql 服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 查找需要安装的文件名</span><br><span class="line">yum search mysql</span><br><span class="line"># 安装文件 5.1</span><br><span class="line">sudo yum install mysql-server.x86_64 -y</span><br><span class="line"># 5.7</span><br><span class="line">https://www.cnblogs.com/lzj0218/p/5724446.html</span><br><span class="line"></span><br><span class="line"># 修改数据库配置(myspace/my.cnf)</span><br><span class="line">scp /Users/ethan/docs/scripts/config ethan@ip:/home/shumei</span><br><span class="line">sudo cp my.cnf /etc/my.cnf</span><br><span class="line"></span><br><span class="line">sudo /etc/init.d/mysqld start # 启动数据库服务</span><br><span class="line"># 无法启动删除以下文件</span><br><span class="line">sudo rm -rf /var/lib/mysql</span><br><span class="line"></span><br><span class="line">sudo mysql # 登陆 MySql</span><br><span class="line"># 创建用户</span><br><span class="line"># https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/</span><br><span class="line">create user &apos;octopus&apos;@&apos;%&apos; identified by &apos;octopus&apos;;</span><br><span class="line"></span><br><span class="line">create database owl default character set utf8;</span><br><span class="line">grant all privileges on owl.* to octopus@&apos;%&apos; with grant option;</span><br></pre></td></tr></table></figure><h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://www.cnblogs.com/rainy-shurun/p/6192753.html</span><br><span class="line"></span><br><span class="line">nignx 中 autoindex 要配置成 off</span><br><span class="line"></span><br><span class="line">修改 MySQL 默认端口</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;挂载磁盘&quot;&gt;&lt;a href=&quot;#挂载磁盘&quot; class=&quot;headerlink&quot; title=&quot;挂载磁盘&quot;&gt;&lt;/a&gt;挂载磁盘&lt;/h3&gt;&lt;p&gt;查看分区&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;
+      
+    
+    </summary>
+    
+      <category term="tech" scheme="https://ghlingjun.github.io/xiaoxiao/categories/tech/"/>
+    
+    
+      <category term="linux" scheme="https://ghlingjun.github.io/xiaoxiao/tags/linux/"/>
+    
+      <category term="server" scheme="https://ghlingjun.github.io/xiaoxiao/tags/server/"/>
+    
+  </entry>
+  
+  <entry>
     <title>linux 常用命令</title>
     <link href="https://ghlingjun.github.io/xiaoxiao/2019/10/29/linux-commands/"/>
     <id>https://ghlingjun.github.io/xiaoxiao/2019/10/29/linux-commands/</id>
     <published>2019-10-29T09:55:39.000Z</published>
-    <updated>2019-10-29T10:01:04.240Z</updated>
+    <updated>2019-10-30T09:55:39.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h2><h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><p>du -h –max-depth=1<br>du -h -d1</p><h3 id="free-查看内存情况"><a href="#free-查看内存情况" class="headerlink" title="free 查看内存情况"></a>free 查看内存情况</h3><p>free -m</p><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>top</p><h3 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h3><p>vmstat</p><h3 id="挂在硬盘"><a href="#挂在硬盘" class="headerlink" title="挂在硬盘"></a>挂在硬盘</h3><p>blkid -o device<br>mount /dev/xvde1 /home</p><h3 id="重启定时任务"><a href="#重启定时任务" class="headerlink" title="重启定时任务"></a>重启定时任务</h3><p>sudo /etc/init.d/crond restart</p><h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><p>id # 查看用户信息<br>passwd # 修改用户密码</p><h3 id="修改-ssh-服务端口号"><a href="#修改-ssh-服务端口号" class="headerlink" title="修改 ssh 服务端口号"></a>修改 ssh 服务端口号</h3><p>查看端口是否被占用：<br>sudo netstat -anp | grep 10007<br>添加配置：<br>sudo vi /etc/ssh/sshd_config<br>Port 10007<br>重启 ssh 服务：<br>sudo service sshd restart</p><h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><p>curl -Iv www.baidu.com<br>curl -Iv <a href="http://172.17.0.15" target="_blank" rel="noopener">http://172.17.0.15</a><br>curl 129.211.135.212:80</p><h3 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h3><p>telnet 172.17.0.15 80</p><h3 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h3><p>lsb_release -a</p><p>##其他<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">80,8080,443,8443 需要备案</span><br></pre></td></tr></table></figure></p><h3 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h3><p>alias sshdb=”ssh ethan@192.168.1.79”</p><p>export JAVA_HOME=/home/shumei/software/jdk1.8.0_25<br>export CLASSPATH=.:${JAVA_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH</p>]]></content>
     
@@ -485,27 +512,6 @@
     
     
       <category term="svn" scheme="https://ghlingjun.github.io/xiaoxiao/tags/svn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>中秋节</title>
-    <link href="https://ghlingjun.github.io/xiaoxiao/2016/09/15/the-Mid-Autumn-Festival/"/>
-    <id>https://ghlingjun.github.io/xiaoxiao/2016/09/15/the-Mid-Autumn-Festival/</id>
-    <published>2016-09-15T13:09:09.000Z</published>
-    <updated>2017-10-24T17:06:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>回想起来，从高中开始就没有全家人在一起过中秋节了，今年可是10几年来第一次！本来想好台词：月是故乡明。然后在下面陪一张现在的星空图……可惜这里阴天，星空图就没有了，但是大家坐在院子里聊天，偶尔不说话时听着四周黑暗角落里各种虫鸣声，也感觉极其美好（如果天气晴朗的话，就会在房顶铺一张席子，或坐或躺聊天，看星星……）</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;回想起来，从高中开始就没有全家人在一起过中秋节了，今年可是10几年来第一次！本来想好台词：月是故乡明。然后在下面陪一张现在的星空图……可惜这里阴天，星空图就没有了，但是大家坐在院子里聊天，偶尔不说话时听着四周黑暗角落里各种虫鸣声，也感觉极其美好（如果天气晴朗的话，就会在房顶
-      
-    
-    </summary>
-    
     
   </entry>
   
