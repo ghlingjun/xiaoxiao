@@ -9,6 +9,13 @@
 $ cd .../hexo-site
 $ hexo new [layout] <title>
 ```
+Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。
+
+|布局	|路径|
+| ---------------- | ------------------ |
+|post	|source/_posts|
+|page	|source|
+|draft	|source/_drafts|
 
 ### 代码生成
 
@@ -23,6 +30,15 @@ $ hexo generate
 | `-d`, `--deploy` | 生成完成后，同时发布         |
 | `-w`, `--watch`  | Watch file changes |
 
+### 部署网站
+```
+$ hexo deploy
+```
+
+| Option             | Description                |
+| ------------------ | -------------------------- |
+| `-g`, `--generate` | Generate before deployment |
+
 ### 启动服务
 
 ```
@@ -36,18 +52,6 @@ $ hexo server
 | `-p`, `--port`   | Override default port                  |
 | `-s`, `--static` | Only serve static files                |
 | `-l`, `--log`    | Enable logger. Override logger format. |
-
-### 部署
-
-```
-$ hexo deploy
-```
-
-部署你的网站。
-
-| Option             | Description                |
-| ------------------ | -------------------------- |
-| `-g`, `--generate` | Generate before deployment |
 
 ### clean
 
@@ -65,10 +69,7 @@ $ hexo --draft
 
 Displays draft posts (stored in the `source/_drafts` folder).
 
-### 发布文章
-
+### 发布草稿
 ```
 $ hexo publish [layout] <filename>
 ```
-
-发布一篇草稿。

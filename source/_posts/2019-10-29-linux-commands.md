@@ -1,6 +1,9 @@
 ---
 title: linux 常用命令
 date: 2019-10-29 17:55:39
+updated: 2019-10-30 17:55:39
+comments: true
+categories: []
 tags: [linux,du,mount,ssh,curl]
 ---
 

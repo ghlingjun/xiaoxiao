@@ -5,9 +5,9 @@
 # Site
 title: xiaoxiao
 subtitle: 兴趣因你而生
-description:
+description: 生活随笔和工作随笔
 author: Ethan
-language: zh-Hans
+language: zh-CN
 timezone: Asia/Taipei
 
 # URL
@@ -73,7 +73,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: next
+theme: next2
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
