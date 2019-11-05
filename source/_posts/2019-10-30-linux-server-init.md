@@ -1,7 +1,7 @@
 ---
 title: linux服务器初始化
 comments: true
-categories: [tech]
+categories: [技术]
 tags: [linux,server]
 date: 2019-10-30 22:46:01
 updated: 2019-10-30 22:46:01
