@@ -10,7 +10,7 @@ tags: [linux,du,mount,ssh,curl]
 ## 命令介绍
 ### du
 du -h --max-depth=1
-du -h -d1
+du -h -d1 目录
 
 ### free 查看内存情况
 free -m

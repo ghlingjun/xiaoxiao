@@ -68,7 +68,7 @@ tags: [maven,codemother]
 
     进入要生成代码的项目或者模块目录下，执行命令：`mvn codemother:code-generate`
     
-    倘若你的项目是单模块，执行命令：`mvn codemother:code-generat -DtemplatePath=./codemother/template`, 这是因为`templatePath`默认值为`../codemother/template`, 用于多模块项目。
+    倘若你的项目是单模块，执行命令：`mvn codemother:code-generate -DtemplatePath=./codemother/template`, 这是因为`templatePath`默认值为`../codemother/template`, 用于多模块项目。
     
     templatePath的值实际依赖于src目录与template的项目路径，可以自定义temlate目录位置，可根据实际需要传参数。
     
