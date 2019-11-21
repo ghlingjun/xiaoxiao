@@ -1,10 +1,23 @@
+---
+title: hexo commands
+comments: true
+categories:
+  - 技术
+tags: [hexo]
+date: 2019-11-21 20:43:50
+updated: 2019-11-21 20:43:50
+---
 ## Hexo Commands
-
+最常用三个命令：
+```
+$ hexo new [layout] <title>
+$ hexo server
+$ hexo deploy -g
+```
 ### 创建一篇文章
 创建一篇新的文章，如果没有指定`layout`，Hexo 会使用 _config.yml 中配置的`default_layout`，如果标题中包含空格，需要使用双引号将其引起来。
 ```
 # 进入 hexo-site 目录
-$ cd .../hexo-site
 $ hexo new [layout] <title>
 ```
 Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。
@@ -15,16 +28,7 @@ Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类
 |page	|source|
 |draft	|source/_drafts|
 
-### 部署网站
-```
-$ hexo deploy
-```
-| Option             | Description                |
-| ------------------ | -------------------------- |
-| `-g`, `--generate` | Generate before deployment |
-
 ### 启动本地服务
-
 ```
 $ hexo server
 ```
@@ -34,8 +38,15 @@ $ hexo server
 | `-s`, `--static` | Only serve static files                |
 | `-l`, `--log`    | Enable logger. Override logger format. |
 
-### clean
+### 部署网站
+```
+$ hexo deploy
+```
+| Option             | Description                |
+| ------------------ | -------------------------- |
+| `-g`, `--generate` | Generate before deployment |
 
+### clean
 ```
 $ hexo clean
 ```
@@ -43,7 +54,6 @@ $ hexo clean
 Cleans the cache file (`db.json`) and generated files (`public`).
 
 ### 显示所有草稿
-
 ```
 $ hexo --draft
 ```
