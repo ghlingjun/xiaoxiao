@@ -6,7 +6,7 @@
   <link href="/xiaoxiao/atom.xml" rel="self"/>
   
   <link href="https://ghlingjun.github.io/xiaoxiao/"/>
-  <updated>2019-11-20T01:27:06.000Z</updated>
+  <updated>2019-11-21T12:43:50.000Z</updated>
   <id>https://ghlingjun.github.io/xiaoxiao/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo commands</title>
+    <link href="https://ghlingjun.github.io/xiaoxiao/2019/11/21/hexo-commands/"/>
+    <id>https://ghlingjun.github.io/xiaoxiao/2019/11/21/hexo-commands/</id>
+    <published>2019-11-21T12:43:50.000Z</published>
+    <updated>2019-11-21T12:43:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Hexo-Commands"><a href="#Hexo-Commands" class="headerlink" title="Hexo Commands"></a>Hexo Commands</h2><h3 id="创建一篇文章"><a href="#创建一篇文章" class="headerlink" title="创建一篇文章"></a>创建一篇文章</h3><p>创建一篇新的文章，如果没有指定<code>layout</code>，Hexo 会使用 _config.yml 中配置的<code>default_layout</code>，如果标题中包含空格，需要使用双引号将其引起来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 进入 hexo-site 目录</span><br><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure></p><p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p><table><thead><tr><th>布局</th><th>路径</th></tr></thead><tbody><tr><td>post</td><td>source/_posts</td></tr><tr><td>page</td><td>source</td></tr><tr><td>draft</td><td>source/_drafts</td></tr></tbody></table><h3 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td><code>-p</code>, <code>--port</code></td><td>Override default port</td></tr><tr><td><code>-s</code>, <code>--static</code></td><td>Only serve static files</td></tr><tr><td><code>-l</code>, <code>--log</code></td><td>Enable logger. Override logger format.</td></tr></tbody></table><h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td><code>-g</code>, <code>--generate</code></td><td>Generate before deployment</td></tr></tbody></table><h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure><p>Cleans the cache file (<code>db.json</code>) and generated files (<code>public</code>).</p><h3 id="显示所有草稿"><a href="#显示所有草稿" class="headerlink" title="显示所有草稿"></a>显示所有草稿</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --draft</span><br></pre></td></tr></table></figure><p>Displays draft posts (stored in the <code>source/_drafts</code> folder).</p><h3 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo publish [layout] &lt;filename&gt;</span><br></pre></td></tr></table></figure><h3 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>生成静态文件。</p><table><thead><tr><th>可选参数</th><th>描述</th></tr></thead><tbody><tr><td><code>-d</code>, <code>--deploy</code></td><td>生成完成后，同时发布</td></tr><tr><td><code>-w</code>, <code>--watch</code></td><td>Watch file changes</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Hexo-Commands&quot;&gt;&lt;a href=&quot;#Hexo-Commands&quot; class=&quot;headerlink&quot; title=&quot;Hexo Commands&quot;&gt;&lt;/a&gt;Hexo Commands&lt;/h2&gt;&lt;h3 id=&quot;创建一篇文章&quot;&gt;&lt;a href=&quot;#创建一
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="https://ghlingjun.github.io/xiaoxiao/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="hexo" scheme="https://ghlingjun.github.io/xiaoxiao/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>初始化 windows 操作系统</title>
@@ -495,29 +520,6 @@
       <category term="模式" scheme="https://ghlingjun.github.io/xiaoxiao/tags/%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="Schema" scheme="https://ghlingjun.github.io/xiaoxiao/tags/Schema/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>可以用下面的方法让你的大脑就范</title>
-    <link href="https://ghlingjun.github.io/xiaoxiao/2017/04/29/how-to-learn/"/>
-    <id>https://ghlingjun.github.io/xiaoxiao/2017/04/29/how-to-learn/</id>
-    <published>2017-04-29T13:09:09.000Z</published>
-    <updated>2017-10-16T03:10:13.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li><li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li><li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li><li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li><li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li><li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li><li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li><li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;慢一点，你理解的越多，需要记的就越少。&lt;br&gt;遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。&lt;/li&gt;
-&lt;li&gt;勤做练习，自己记笔记。&lt;br&gt;大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效
-      
-    
-    </summary>
-    
     
   </entry>
   

@@ -38,7 +38,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -160,9 +160,34 @@
     <a href="/xiaoxiao/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -206,10 +231,10 @@
       <div class="post-body">
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-              目前共计 38 个标签
+              目前共计 39 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/xiaoxiao/tags/CORS/" style="font-size: 12px; color: #ccc">CORS</a> <a href="/xiaoxiao/tags/E155010/" style="font-size: 12px; color: #ccc">E155010</a> <a href="/xiaoxiao/tags/MySql/" style="font-size: 12px; color: #ccc">MySql</a> <a href="/xiaoxiao/tags/OS/" style="font-size: 12px; color: #ccc">OS</a> <a href="/xiaoxiao/tags/PMP/" style="font-size: 12px; color: #ccc">PMP</a> <a href="/xiaoxiao/tags/Schema/" style="font-size: 12px; color: #ccc">Schema</a> <a href="/xiaoxiao/tags/codemother/" style="font-size: 12px; color: #ccc">codemother</a> <a href="/xiaoxiao/tags/curl/" style="font-size: 12px; color: #ccc">curl</a> <a href="/xiaoxiao/tags/du/" style="font-size: 12px; color: #ccc">du</a> <a href="/xiaoxiao/tags/git/" style="font-size: 21px; color: #6f6f6f">git</a> <a href="/xiaoxiao/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/xiaoxiao/tags/google/" style="font-size: 12px; color: #ccc">google</a> <a href="/xiaoxiao/tags/hosts/" style="font-size: 12px; color: #ccc">hosts</a> <a href="/xiaoxiao/tags/idea/" style="font-size: 12px; color: #ccc">idea</a> <a href="/xiaoxiao/tags/ignore/" style="font-size: 12px; color: #ccc">ignore</a> <a href="/xiaoxiao/tags/jbpm/" style="font-size: 12px; color: #ccc">jbpm</a> <a href="/xiaoxiao/tags/linux/" style="font-size: 21px; color: #6f6f6f">linux</a> <a href="/xiaoxiao/tags/mac/" style="font-size: 12px; color: #ccc">mac</a> <a href="/xiaoxiao/tags/maven/" style="font-size: 12px; color: #ccc">maven</a> <a href="/xiaoxiao/tags/mount/" style="font-size: 12px; color: #ccc">mount</a> <a href="/xiaoxiao/tags/nginx/" style="font-size: 12px; color: #ccc">nginx</a> <a href="/xiaoxiao/tags/server/" style="font-size: 12px; color: #ccc">server</a> <a href="/xiaoxiao/tags/ssh/" style="font-size: 12px; color: #ccc">ssh</a> <a href="/xiaoxiao/tags/svn/" style="font-size: 30px; color: #111">svn</a> <a href="/xiaoxiao/tags/tomcat/" style="font-size: 12px; color: #ccc">tomcat</a> <a href="/xiaoxiao/tags/小窍门/" style="font-size: 12px; color: #ccc">小窍门</a> <a href="/xiaoxiao/tags/模式/" style="font-size: 12px; color: #ccc">模式</a> <a href="/xiaoxiao/tags/翻墙/" style="font-size: 12px; color: #ccc">翻墙</a> <a href="/xiaoxiao/tags/聚会/" style="font-size: 12px; color: #ccc">聚会</a> <a href="/xiaoxiao/tags/跨域/" style="font-size: 12px; color: #ccc">跨域</a>
+              <a href="/xiaoxiao/tags/CORS/" style="font-size: 12px; color: #ccc">CORS</a> <a href="/xiaoxiao/tags/E155010/" style="font-size: 12px; color: #ccc">E155010</a> <a href="/xiaoxiao/tags/MySql/" style="font-size: 12px; color: #ccc">MySql</a> <a href="/xiaoxiao/tags/OS/" style="font-size: 12px; color: #ccc">OS</a> <a href="/xiaoxiao/tags/PMP/" style="font-size: 12px; color: #ccc">PMP</a> <a href="/xiaoxiao/tags/Schema/" style="font-size: 12px; color: #ccc">Schema</a> <a href="/xiaoxiao/tags/codemother/" style="font-size: 12px; color: #ccc">codemother</a> <a href="/xiaoxiao/tags/curl/" style="font-size: 12px; color: #ccc">curl</a> <a href="/xiaoxiao/tags/du/" style="font-size: 12px; color: #ccc">du</a> <a href="/xiaoxiao/tags/git/" style="font-size: 21px; color: #6f6f6f">git</a> <a href="/xiaoxiao/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/xiaoxiao/tags/google/" style="font-size: 12px; color: #ccc">google</a> <a href="/xiaoxiao/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/xiaoxiao/tags/hosts/" style="font-size: 12px; color: #ccc">hosts</a> <a href="/xiaoxiao/tags/idea/" style="font-size: 12px; color: #ccc">idea</a> <a href="/xiaoxiao/tags/ignore/" style="font-size: 12px; color: #ccc">ignore</a> <a href="/xiaoxiao/tags/jbpm/" style="font-size: 12px; color: #ccc">jbpm</a> <a href="/xiaoxiao/tags/linux/" style="font-size: 21px; color: #6f6f6f">linux</a> <a href="/xiaoxiao/tags/mac/" style="font-size: 12px; color: #ccc">mac</a> <a href="/xiaoxiao/tags/maven/" style="font-size: 12px; color: #ccc">maven</a> <a href="/xiaoxiao/tags/mount/" style="font-size: 12px; color: #ccc">mount</a> <a href="/xiaoxiao/tags/nginx/" style="font-size: 12px; color: #ccc">nginx</a> <a href="/xiaoxiao/tags/server/" style="font-size: 12px; color: #ccc">server</a> <a href="/xiaoxiao/tags/ssh/" style="font-size: 12px; color: #ccc">ssh</a> <a href="/xiaoxiao/tags/svn/" style="font-size: 30px; color: #111">svn</a> <a href="/xiaoxiao/tags/tomcat/" style="font-size: 12px; color: #ccc">tomcat</a> <a href="/xiaoxiao/tags/小窍门/" style="font-size: 12px; color: #ccc">小窍门</a> <a href="/xiaoxiao/tags/模式/" style="font-size: 12px; color: #ccc">模式</a> <a href="/xiaoxiao/tags/翻墙/" style="font-size: 12px; color: #ccc">翻墙</a> <a href="/xiaoxiao/tags/聚会/" style="font-size: 12px; color: #ccc">聚会</a> <a href="/xiaoxiao/tags/跨域/" style="font-size: 12px; color: #ccc">跨域</a>
             </div>
           </div>
         
@@ -266,7 +291,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/xiaoxiao/archives">
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -277,7 +302,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/xiaoxiao/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -389,6 +414,8 @@
 
 
 
+
+  <script src="/xiaoxiao/js/local-search.js"></script>
 
 
 
