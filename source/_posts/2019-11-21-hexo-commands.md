@@ -50,14 +50,12 @@ $ hexo deploy
 ```
 $ hexo clean
 ```
-
 Cleans the cache file (`db.json`) and generated files (`public`).
 
 ### 显示所有草稿
 ```
 $ hexo --draft
 ```
-
 Displays draft posts (stored in the `source/_drafts` folder).
 
 ### 发布草稿
@@ -69,7 +67,6 @@ $ hexo publish [layout] <filename>
 ```
 $ hexo generate
 ```
-
 生成静态文件。
 
 | 可选参数             | 描述                 |

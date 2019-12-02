@@ -9,8 +9,9 @@ tags: [linux,du,mount,ssh,curl]
 
 ## 命令介绍
 ### du
+当前目录只进入第一级目录
 du -h --max-depth=1
-du -h -d1 目录
+du -h -d1
 
 ### free 查看内存情况
 free -m

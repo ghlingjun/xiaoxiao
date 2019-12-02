@@ -34,4 +34,20 @@ Default encoding for properties files: UTF-8
 
 ## 自定义 Live Template
 Preferences -> Editor -> Live Templates
-选择 UserDefined, 添加自定义模板以及自己的快捷输入方法
+选择 UserDefined(如果没有则创建创建), 添加自定义模板以及自己的快捷输入方法
+方法注释示例：
+```
+/**
+ * Description: 
+ * Created on $DATE$ $TIME$
+ * 
+ * @author $USER$
+ */
+```
+代码块注释示例：
+```
+/**
+ * Description: 
+ * Added by $USER$ on $DATE$ $TIME$
+ */
+```
