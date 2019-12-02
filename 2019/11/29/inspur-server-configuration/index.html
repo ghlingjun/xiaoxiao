@@ -50,20 +50,19 @@
   };
 </script>
 
-  <meta name="description" content="修改应用的默认语言 123defaults write com.apple.iCal AppleLanguages &amp;apos;(zh-CN)&amp;apos;defaults write com.apple.iCal AppleLanguages &amp;apos;(en-US)&amp;apos;defaults write com.apple.Maps AppleLanguages &amp;apos;(zh-CN)">
-<meta name="keywords" content="mac">
+  <meta name="description" content="创建业务组 创建 VPC 创建 SLB 创建 ECS 配置 SLB  创建用户组及用户[参考]https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/ 123456789101112131415161718# 查看用户组是否存在grep shumei /etc/group# 添加用户组 shumeigroupadd shumei#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac 系统使用的一些经验总结">
-<meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2017/10/18/mac-os-helps/index.html">
+<meta property="og:title" content="浪潮云服务器规划与配置">
+<meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2019/11/29/inspur-server-configuration/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="修改应用的默认语言 123defaults write com.apple.iCal AppleLanguages &amp;apos;(zh-CN)&amp;apos;defaults write com.apple.iCal AppleLanguages &amp;apos;(en-US)&amp;apos;defaults write com.apple.Maps AppleLanguages &amp;apos;(zh-CN)">
+<meta property="og:description" content="创建业务组 创建 VPC 创建 SLB 创建 ECS 配置 SLB  创建用户组及用户[参考]https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/ 123456789101112131415161718# 查看用户组是否存在grep shumei /etc/group# 添加用户组 shumeigroupadd shumei#">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-29T14:44:49.185Z">
+<meta property="og:updated_time" content="2019-11-29T06:18:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac 系统使用的一些经验总结">
-<meta name="twitter:description" content="修改应用的默认语言 123defaults write com.apple.iCal AppleLanguages &amp;apos;(zh-CN)&amp;apos;defaults write com.apple.iCal AppleLanguages &amp;apos;(en-US)&amp;apos;defaults write com.apple.Maps AppleLanguages &amp;apos;(zh-CN)">
+<meta name="twitter:title" content="浪潮云服务器规划与配置">
+<meta name="twitter:description" content="创建业务组 创建 VPC 创建 SLB 创建 ECS 配置 SLB  创建用户组及用户[参考]https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/ 123456789101112131415161718# 查看用户组是否存在grep shumei /etc/group# 添加用户组 shumeigroupadd shumei#">
 
-<link rel="canonical" href="https://ghlingjun.github.io/xiaoxiao/2017/10/18/mac-os-helps/">
+<link rel="canonical" href="https://ghlingjun.github.io/xiaoxiao/2019/11/29/inspur-server-configuration/">
 
 
 <script id="page-configurations">
@@ -77,7 +76,7 @@
   };
 </script>
 
-  <title>Mac 系统使用的一些经验总结 | xiaoxiao</title>
+  <title>浪潮云服务器规划与配置 | xiaoxiao</title>
   
 
 
@@ -211,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2017/10/18/mac-os-helps/">
+    <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2019/11/29/inspur-server-configuration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/xiaoxiao/uploads/avatar.gif">
@@ -224,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Mac 系统使用的一些经验总结
+          浪潮云服务器规划与配置
         </h1>
 
         <div class="post-meta">
@@ -234,15 +233,19 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2017-10-18 21:31:02" itemprop="dateCreated datePublished" datetime="2017-10-18T21:31:02+08:00">2017-10-18</time>
+              <time title="创建时间：2019-11-29 14:18:03" itemprop="dateCreated datePublished" datetime="2019-11-29T14:18:03+08:00">2019-11-29</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-29 22:44:49" itemprop="dateModified" datetime="2019-08-29T22:44:49+08:00">2019-08-29</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/xiaoxiao/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -262,22 +265,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ol>
-<li><p>修改应用的默认语言</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.iCal AppleLanguages &apos;(zh-CN)&apos;</span><br><span class="line">defaults write com.apple.iCal AppleLanguages &apos;(en-US)&apos;</span><br><span class="line">defaults write com.apple.Maps AppleLanguages &apos;(zh-CN)&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>DS_Store文件<br>.DS_Store 文件是 Mac OS 保存文件夹的自定义属性的隐藏文件，如文件的图标位置或背景色，相当于 Windows 系统中的 desktop.ini 文件。</p>
-</li>
-<li><p>允许任何来源的软件安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启程序<br>重启菜单栏</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall -KILL SystemUIServer</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>重启Dock<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall Dock</span><br></pre></td></tr></table></figure></p>
-<p>重启Finder<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall Finder</span><br></pre></td></tr></table></figure></p>
-<p>重启wifi<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+        <ul>
+<li>创建业务组</li>
+<li>创建 VPC</li>
+<li>创建 SLB</li>
+<li>创建 ECS</li>
+<li>配置 SLB</li>
+</ul>
+<h2 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h2><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/" target="_blank" rel="noopener">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 查看用户组是否存在</span><br><span class="line">grep shumei /etc/group</span><br><span class="line"># 添加用户组 shumei</span><br><span class="line">groupadd shumei</span><br><span class="line"></span><br><span class="line"># 查看用户 ethan 是否存在</span><br><span class="line">grep ethan /etc/passwd</span><br><span class="line"># 添加用户，推荐用户名与目录名一致</span><br><span class="line">useradd -g shumei -d /home/shumei -m ethan</span><br><span class="line"># 查看 ethan 信息</span><br><span class="line">id ethan</span><br><span class="line"># 设置用户密码</span><br><span class="line">passwd ethan</span><br><span class="line"></span><br><span class="line"># 赋给用户 sudo 权限：http://man.linuxde.net/sudo</span><br><span class="line">vi /etc/sudoers</span><br><span class="line"># 仿照现有root的例子就行，加一行（最好用tab作为空白）</span><br><span class="line">ethan  ALL=(ALL)   ALL</span><br></pre></td></tr></table></figure>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 /bin/sh，需要将账号的 shell 修改为 /bin/bash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo #SHELL</span><br><span class="line"># usermod -s /bin/bash ethan</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scp -P port jdk-8u25-linux-x64.tar.gz ethan@IP:/path</span><br><span class="line"></span><br><span class="line">vi .bashrc</span><br><span class="line">export JAVA_HOME=/home/ethan/software/jdk1.8.0_25</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+<h2 id="安装-MySql-服务（5-7）"><a href="#安装-MySql-服务（5-7）" class="headerlink" title="安装 MySql 服务（5.7）"></a>安装 MySql 服务（5.7）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># sudo apt-get update</span><br><span class="line"># sudo apt-get install mysql-server</span><br><span class="line">初始化配置</span><br><span class="line"># sudo mysql_secure_installation</span><br><span class="line">检查服务状态</span><br><span class="line"># systemctl status mysql.service</span><br><span class="line"></span><br><span class="line">root 权限登录MySql</span><br><span class="line"># sudo mysql -u root -p</span><br><span class="line">可以修改（也可以不修改） plugin 实现普通用户也能使用 mysql 的 root 用户来登录，同时修改 root 密码</span><br><span class="line">mysql&gt; update user set authentication_string=PASSWORD(&quot;123456&quot;), plugin=&quot;mysql_native_password&quot; where user=&quot;root&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="修改编码配置"><a href="#修改编码配置" class="headerlink" title="修改编码配置"></a>修改编码配置</h3><p>查看编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;character%&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>修改 mysqld.cnf，在文件的[mysqld]中增加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">character-set-server=utf8</span><br></pre></td></tr></table></figure></p>
+<p>修改mysql.cnf文件，在[mysql]中增加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># sudo vi /etc/mysql/conf.d/mysql.cnf</span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure></p>
+<h3 id="大小写敏感设置"><a href="#大小写敏感设置" class="headerlink" title="大小写敏感设置"></a>大小写敏感设置</h3><p>修改 mysqld.cnf，在文件的[mysqld]中增加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># show variables like &apos;lower%&apos;;</span><br><span class="line"># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line"># 表名存储在磁盘是小写的，但是比较的时候是不区分大小写</span><br><span class="line">lower_case_table_names = 1</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改远程登录权限"><a href="#修改远程登录权限" class="headerlink" title="修改远程登录权限"></a>修改远程登录权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line"># 注释 bind-address</span><br></pre></td></tr></table></figure>
+<h3 id="修改-sql-mode"><a href="#修改-sql-mode" class="headerlink" title="修改 sql_mode"></a>修改 sql_mode</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># select @@global.sql_mode</span><br><span class="line"># 重新设置值，添加 sql_mode 配置</span><br><span class="line"># ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br><span class="line"># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
+<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># sudo /etc/init.d/mysql restart</span><br></pre></td></tr></table></figure>
+<h1 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h1><h1 id="https-ghlingjun-github-io-xiaoxiao-2016-09-12-MySql"><a href="#https-ghlingjun-github-io-xiaoxiao-2016-09-12-MySql" class="headerlink" title="https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/"></a><a href="https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/">https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/</a></h1><p>create user ‘octopus’@’%’ identified by ‘octopus’;</p>
+<p>create database owl default character set utf8;<br>grant all privileges on owl.* to octopus@’%’ with grant option;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 安装Nginx</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://www.cnblogs.com/rainy-shurun/p/6192753.html" target="_blank" rel="noopener">http://www.cnblogs.com/rainy-shurun/p/6192753.html</a></p>
+<p>nignx 中 autoindex 要配置成 off<br>```</p>
 
     </div>
 
@@ -293,7 +303,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://ghlingjun.github.io/xiaoxiao/2017/10/18/mac-os-helps/" title="Mac 系统使用的一些经验总结">https://ghlingjun.github.io/xiaoxiao/2017/10/18/mac-os-helps/</a>
+    <a href="https://ghlingjun.github.io/xiaoxiao/2019/11/29/inspur-server-configuration/" title="浪潮云服务器规划与配置">https://ghlingjun.github.io/xiaoxiao/2019/11/29/inspur-server-configuration/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -303,25 +313,19 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/xiaoxiao/tags/mac/" rel="tag"># mac</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/xiaoxiao/2017/10/13/visit-google-by-update-hosts/" rel="next" title="修改 hosts 方式翻墙">
-                  <i class="fa fa-chevron-left"></i> 修改 hosts 方式翻墙
+                <a href="/xiaoxiao/2019/11/21/hexo-commands/" rel="next" title="hexo commands">
+                  <i class="fa fa-chevron-left"></i> hexo commands
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/xiaoxiao/2017/10/29/tomcat-config/" rel="prev" title="Tomcat 配置">
-                  Tomcat 配置 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -360,6 +364,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户组及用户"><span class="nav-number">1.</span> <span class="nav-text">创建用户组及用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-JDK"><span class="nav-number">2.</span> <span class="nav-text">安装 JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-MySql-服务（5-7）"><span class="nav-number">3.</span> <span class="nav-text">安装 MySql 服务（5.7）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改编码配置"><span class="nav-number">3.1.</span> <span class="nav-text">修改编码配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大小写敏感设置"><span class="nav-number">3.2.</span> <span class="nav-text">大小写敏感设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改远程登录权限"><span class="nav-number">3.3.</span> <span class="nav-text">修改远程登录权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-sql-mode"><span class="nav-number">3.4.</span> <span class="nav-text">修改 sql_mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启服务"><span class="nav-number">3.5.</span> <span class="nav-text">重启服务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建用户"><span class="nav-number"></span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#https-ghlingjun-github-io-xiaoxiao-2016-09-12-MySql"><span class="nav-number"></span> <span class="nav-text">https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/</span></a></div>
       </div>
       <!--/noindex-->
 

@@ -209,6 +209,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2019/11/29/inspur-server-configuration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/xiaoxiao/uploads/avatar.gif">
+      <meta itemprop="name" content="Ethan">
+      <meta itemprop="description" content="生活随笔和工作随笔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaoxiao">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/xiaoxiao/2019/11/29/inspur-server-configuration/" class="post-title-link" itemprop="url">浪潮云服务器规划与配置</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-29 14:18:03" itemprop="dateCreated datePublished" datetime="2019-11-29T14:18:03+08:00">2019-11-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/xiaoxiao/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>创建业务组</li>
+<li>创建 VPC</li>
+<li>创建 SLB</li>
+<li>创建 ECS</li>
+<li>配置 SLB</li>
+</ul>
+<h2 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h2><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/" target="_blank" rel="noopener">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 查看用户组是否存在</span><br><span class="line">grep shumei /etc/group</span><br><span class="line"># 添加用户组 shumei</span><br><span class="line">groupadd shumei</span><br><span class="line"></span><br><span class="line"># 查看用户 ethan 是否存在</span><br><span class="line">grep ethan /etc/passwd</span><br><span class="line"># 添加用户，推荐用户名与目录名一致</span><br><span class="line">useradd -g shumei -d /home/shumei -m ethan</span><br><span class="line"># 查看 ethan 信息</span><br><span class="line">id ethan</span><br><span class="line"># 设置用户密码</span><br><span class="line">passwd ethan</span><br><span class="line"></span><br><span class="line"># 赋给用户 sudo 权限：http://man.linuxde.net/sudo</span><br><span class="line">vi /etc/sudoers</span><br><span class="line"># 仿照现有root的例子就行，加一行（最好用tab作为空白）</span><br><span class="line">ethan  ALL=(ALL)   ALL</span><br></pre></td></tr></table></figure>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 /bin/sh，需要将账号的 shell 修改为 /bin/bash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo #SHELL</span><br><span class="line"># usermod -s /bin/bash ethan</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scp -P port jdk-8u25-linux-x64.tar.gz ethan@IP:/path</span><br><span class="line"></span><br><span class="line">vi .bashrc</span><br><span class="line">export JAVA_HOME=/home/ethan/software/jdk1.8.0_25</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+<h2 id="安装-MySql-服务（5-7）"><a href="#安装-MySql-服务（5-7）" class="headerlink" title="安装 MySql 服务（5.7）"></a>安装 MySql 服务（5.7）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># sudo apt-get update</span><br><span class="line"># sudo apt-get install mysql-server</span><br><span class="line">初始化配置</span><br><span class="line"># sudo mysql_secure_installation</span><br><span class="line">检查服务状态</span><br><span class="line"># systemctl status mysql.service</span><br><span class="line"></span><br><span class="line">root 权限登录MySql</span><br><span class="line"># sudo mysql -u root -p</span><br><span class="line">可以修改（也可以不修改） plugin 实现普通用户也能使用 mysql 的 root 用户来登录，同时修改 root 密码</span><br><span class="line">mysql&gt; update user set authentication_string=PASSWORD(&quot;123456&quot;), plugin=&quot;mysql_native_password&quot; where user=&quot;root&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="修改编码配置"><a href="#修改编码配置" class="headerlink" title="修改编码配置"></a>修改编码配置</h3><p>查看编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;character%&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>修改 mysqld.cnf，在文件的[mysqld]中增加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">character-set-server=utf8</span><br></pre></td></tr></table></figure></p>
+<p>修改mysql.cnf文件，在[mysql]中增加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># sudo vi /etc/mysql/conf.d/mysql.cnf</span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure></p>
+<h3 id="大小写敏感设置"><a href="#大小写敏感设置" class="headerlink" title="大小写敏感设置"></a>大小写敏感设置</h3><p>修改 mysqld.cnf，在文件的[mysqld]中增加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># show variables like &apos;lower%&apos;;</span><br><span class="line"># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line"># 表名存储在磁盘是小写的，但是比较的时候是不区分大小写</span><br><span class="line">lower_case_table_names = 1</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改远程登录权限"><a href="#修改远程登录权限" class="headerlink" title="修改远程登录权限"></a>修改远程登录权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line"># 注释 bind-address</span><br></pre></td></tr></table></figure>
+<h3 id="修改-sql-mode"><a href="#修改-sql-mode" class="headerlink" title="修改 sql_mode"></a>修改 sql_mode</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># select @@global.sql_mode</span><br><span class="line"># 重新设置值，添加 sql_mode 配置</span><br><span class="line"># ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br><span class="line"># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
+<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># sudo /etc/init.d/mysql restart</span><br></pre></td></tr></table></figure>
+<h1 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h1><h1 id="https-ghlingjun-github-io-xiaoxiao-2016-09-12-MySql"><a href="#https-ghlingjun-github-io-xiaoxiao-2016-09-12-MySql" class="headerlink" title="https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/"></a><a href="https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/">https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/</a></h1><p>create user ‘octopus’@’%’ identified by ‘octopus’;</p>
+<p>create database owl default character set utf8;<br>grant all privileges on owl.* to octopus@’%’ with grant option;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 安装Nginx</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://www.cnblogs.com/rainy-shurun/p/6192753.html" target="_blank" rel="noopener">http://www.cnblogs.com/rainy-shurun/p/6192753.html</a></p>
+<p>nignx 中 autoindex 要配置成 off<br>```</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2019/11/21/hexo-commands/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -560,7 +651,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/xiaoxiao/2019/10/30/linux-server-init/" class="post-title-link" itemprop="url">linux服务器初始化</a>
+            <a href="/xiaoxiao/2019/10/30/linux-server-init/" class="post-title-link" itemprop="url">电信云服务器规划以及配置</a>
         </h1>
 
         <div class="post-meta">
@@ -572,6 +663,13 @@
 
               <time title="创建时间：2019-10-30 22:46:01" itemprop="dateCreated datePublished" datetime="2019-10-30T22:46:01+08:00">2019-10-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-29 13:46:01" itemprop="dateModified" datetime="2019-11-29T13:46:01+08:00">2019-11-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -595,7 +693,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h3><p>查看分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure></p>
+          <ul>
+<li>创建业务组</li>
+<li>创建 VPC</li>
+<li>创建 SLB</li>
+<li>创建 ECS</li>
+<li>配置 SLB</li>
+</ul>
+<h3 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h3><p>查看分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure></p>
 <p>查看磁盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure></p>
 <p>格式化分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/xvde</span><br></pre></td></tr></table></figure></p>
 <p>p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区<br>n # 新建分区——选择p<br>t # 转换分区格式为8e<br>w # 保存新建分区格式。</p>
@@ -604,7 +709,8 @@
 <h3 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id # 查看用户信息</span><br><span class="line">passwd # 修改用户密码</span><br></pre></td></tr></table></figure>
 <h3 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h3><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/" target="_blank" rel="noopener">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 查看用户组是否存在</span><br><span class="line">grep shumei /etc/group</span><br><span class="line"># 添加用户组 shumei</span><br><span class="line">groupadd shumei</span><br><span class="line"></span><br><span class="line"># 查看用户 shumei 是否存在</span><br><span class="line">grep shumei /etc/passwd</span><br><span class="line"># 添加用户</span><br><span class="line">useradd -g shumei -d /home/shumei -m shumei</span><br><span class="line"># 查看 shumei 信息</span><br><span class="line">id shumei</span><br><span class="line"># 设置用户密码</span><br><span class="line">passwd shumei</span><br><span class="line"></span><br><span class="line"># 赋给用户 sudo 权限：http://man.linuxde.net/sudo</span><br><span class="line">vi /etc/sudoers</span><br><span class="line"># 仿照现有root的例子就行，加一行（最好用tab作为空白）</span><br><span class="line">shumei  ALL=(ALL)   ALL</span><br></pre></td></tr></table></figure>
-<h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scp ethan@182.106.185.167:/home/shumei/software/jdk-8u25-linux-x64.tar.gz .</span><br><span class="line">scp ethan@182.106.185.167:/home/shumei/software/earth-tomcat.tar .</span><br><span class="line">scp ethan@182.106.185.167:/home/shumei/deploy.sh .</span><br><span class="line"></span><br><span class="line">vi .bashrc</span><br><span class="line">export JAVA_HOME=/home/shumei/software/jdk1.8.0_25</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 /bin/sh，需要将账号的 shell 修改为 /bin/bash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo #SHELL</span><br><span class="line"># usermod -s /bin/bash shumei</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path</span><br><span class="line"></span><br><span class="line">vi .bashrc</span><br><span class="line">export JAVA_HOME=/home/shumei/software/jdk1.8.0_25</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
 <h3 id="安装-MySql-服务"><a href="#安装-MySql-服务" class="headerlink" title="安装 MySql 服务"></a>安装 MySql 服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 查找需要安装的文件名</span><br><span class="line">yum search mysql</span><br><span class="line"># 安装文件 5.1</span><br><span class="line">sudo yum install mysql-server.x86_64 -y</span><br><span class="line"># 5.7</span><br><span class="line">https://www.cnblogs.com/lzj0218/p/5724446.html</span><br><span class="line"></span><br><span class="line"># 修改数据库配置(myspace/my.cnf)</span><br><span class="line">scp /Users/ethan/docs/scripts/config ethan@ip:/home/shumei</span><br><span class="line">sudo cp my.cnf /etc/my.cnf</span><br><span class="line"></span><br><span class="line">sudo /etc/init.d/mysqld start # 启动数据库服务</span><br><span class="line"># 无法启动删除以下文件</span><br><span class="line">sudo rm -rf /var/lib/mysql</span><br><span class="line"></span><br><span class="line">sudo mysql # 登陆 MySql</span><br><span class="line"># 创建用户</span><br><span class="line"># https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/</span><br><span class="line">create user &apos;octopus&apos;@&apos;%&apos; identified by &apos;octopus&apos;;</span><br><span class="line"></span><br><span class="line">create database owl default character set utf8;</span><br><span class="line">grant all privileges on owl.* to octopus@&apos;%&apos; with grant option;</span><br></pre></td></tr></table></figure>
 <h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://www.cnblogs.com/rainy-shurun/p/6192753.html</span><br><span class="line"></span><br><span class="line">nignx 中 autoindex 要配置成 off</span><br><span class="line"></span><br><span class="line">修改 MySQL 默认端口</span><br></pre></td></tr></table></figure>
 
@@ -671,7 +777,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h2><h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><p>du -h –max-depth=1<br>du -h -d1 目录</p>
+          <h2 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h2><h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><p>当前目录只进入第一级目录<br>du -h –max-depth=1<br>du -h -d1</p>
 <h3 id="free-查看内存情况"><a href="#free-查看内存情况" class="headerlink" title="free 查看内存情况"></a>free 查看内存情况</h3><p>free -m</p>
 <h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>top</p>
 <h3 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h3><p>vmstat</p>
@@ -827,82 +933,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2018/05/09/frinds-meeting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/xiaoxiao/uploads/avatar.gif">
-      <meta itemprop="name" content="Ethan">
-      <meta itemprop="description" content="生活随笔和工作随笔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xiaoxiao">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/xiaoxiao/2018/05/09/frinds-meeting/" class="post-title-link" itemprop="url">朋友相聚</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-05-09 12:29:57" itemprop="dateCreated datePublished" datetime="2018-05-09T12:29:57+08:00">2018-05-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-30 23:01:41" itemprop="dateModified" datetime="2019-10-30T23:01:41+08:00">2019-10-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/xiaoxiao/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>尊敬的贵宾:您好！2018年11月3中餐为您安排的是海悦新四方酒店二楼四方厅。地址：合肥政务新区祁门路1777号（祁门路与茂荫路交口往南50米，省供销社东侧裙楼）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2018/05/09/codemother/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1010,6 +1040,82 @@
 </ul>
 </li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ghlingjun.github.io/xiaoxiao/xiaoxiao/2018/05/09/frinds-meeting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/xiaoxiao/uploads/avatar.gif">
+      <meta itemprop="name" content="Ethan">
+      <meta itemprop="description" content="生活随笔和工作随笔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaoxiao">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/xiaoxiao/2018/05/09/frinds-meeting/" class="post-title-link" itemprop="url">朋友相聚</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-09 12:29:57" itemprop="dateCreated datePublished" datetime="2018-05-09T12:29:57+08:00">2018-05-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-30 23:01:41" itemprop="dateModified" datetime="2019-10-30T23:01:41+08:00">2019-10-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/xiaoxiao/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>尊敬的贵宾:您好！2018年11月3中餐为您安排的是海悦新四方酒店二楼四方厅。地址：合肥政务新区祁门路1777号（祁门路与茂荫路交口往南50米，省供销社东侧裙楼）</p>
 
       
     </div>
@@ -1692,7 +1798,8 @@
 <p>勾选上 Transparent native-to-ascii conversion</p>
 <h2 id="生成-javadoc-配置"><a href="#生成-javadoc-配置" class="headerlink" title="生成 javadoc 配置"></a>生成 javadoc 配置</h2><p>打开 Tools -&gt; Gerenate JavaDoc<br>在 Other command line arguments 中输入：-encoding utf-8 -charset utf-8, 避免中文乱码</p>
 <h2 id="设置代码行宽度-Columns"><a href="#设置代码行宽度-Columns" class="headerlink" title="设置代码行宽度(Columns)"></a>设置代码行宽度(Columns)</h2><p>打开 File -&gt; Other Settings -&gt; Default Settings -&gt; Editor -&gt; Code Style<br>修改 Default Options -&gt; Right Margin (Columns) 可以为所有类型的文件设置默认宽度。<br>另外可以在 Code Style 下特定类型文件（例如 Java、Jsp）的 Wrapping tab 下修改该类型文件的代码行宽度。</p>
-<h2 id="自定义-Live-Template"><a href="#自定义-Live-Template" class="headerlink" title="自定义 Live Template"></a>自定义 Live Template</h2><p>Preferences -&gt; Editor -&gt; Live Templates<br>选择 UserDefined, 添加自定义模板以及自己的快捷输入方法</p>
+<h2 id="自定义-Live-Template"><a href="#自定义-Live-Template" class="headerlink" title="自定义 Live Template"></a>自定义 Live Template</h2><p>Preferences -&gt; Editor -&gt; Live Templates<br>选择 UserDefined(如果没有则创建创建), 添加自定义模板以及自己的快捷输入方法<br>方法注释示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Description: </span><br><span class="line"> * Created on $DATE$ $TIME$</span><br><span class="line"> * </span><br><span class="line"> * @author $USER$</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<p>代码块注释示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Description: </span><br><span class="line"> * Added by $USER$ on $DATE$ $TIME$</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -2202,7 +2309,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-29 18:02:04" itemprop="dateModified" datetime="2019-10-29T18:02:04+08:00">2019-10-29</time>
+                <time title="修改时间：2019-12-02 10:51:38" itemprop="dateModified" datetime="2019-12-02T10:51:38+08:00">2019-12-02</time>
               </span>
 
           
@@ -2233,9 +2340,6 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; source testdb-20160912.sql</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="MySQL-编码设置"><a href="#MySQL-编码设置" class="headerlink" title="MySQL 编码设置"></a>MySQL 编码设置</h2><p>查看 MySQL DB 编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;character%&apos;;</span><br><span class="line"></span><br><span class="line">| character_set_client     | utf8                       |</span><br><span class="line">| character_set_connection | utf8                       |</span><br><span class="line">| character_set_database   | latin1                     |</span><br><span class="line">| character_set_filesystem | binary                     |</span><br><span class="line">| character_set_results    | utf8                       |</span><br><span class="line">| character_set_server     | latin1                     |</span><br><span class="line">| character_set_system     | utf8                       |</span><br><span class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</span><br></pre></td></tr></table></figure></p>
-<p>使用下面命令设置编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set character_set_database=utf8;</span><br></pre></td></tr></table></figure></p>
-<p>修改已有数据库编码的命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter database dbname character set utf8;</span><br></pre></td></tr></table></figure></p>
 <h2 id="etc-init-d-mysql-ERROR-The-partition-with-var-lib-mysql-is-too-full"><a href="#etc-init-d-mysql-ERROR-The-partition-with-var-lib-mysql-is-too-full" class="headerlink" title="/etc/init.d/mysql: ERROR: The partition with /var/lib/mysql is too full!"></a>/etc/init.d/mysql: ERROR: The partition with /var/lib/mysql is too full!</h2><p>磁盘空间被占满导致无法启动服务，可使用 du -sh ./* 来查看 /var 下的文件大小详情，释放一些空间，再使用启动命令 /etc/init.d/mysql start 启动。</p>
 <h2 id="MySQL-启动慢查询日志"><a href="#MySQL-启动慢查询日志" class="headerlink" title="MySQL 启动慢查询日志"></a>MySQL 启动慢查询日志</h2><p>查看慢查询相关参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;slow_query%&apos;;</span><br></pre></td></tr></table></figure></p>
 <p>方式一：命令设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global slow_query_log=&apos;ON&apos;;</span><br><span class="line">set global long_query_time=1;</span><br></pre></td></tr></table></figure></p>
@@ -2826,7 +2930,7 @@ global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/xiaoxiao/archives">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
