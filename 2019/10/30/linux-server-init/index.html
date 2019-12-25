@@ -50,18 +50,18 @@
   };
 </script>
 
-  <meta name="description" content="创建业务组 创建 VPC 创建 SLB 创建 ECS 配置 SLB  挂载磁盘查看分区1df -h 查看磁盘1fdisk -l 格式化分区1fdisk /dev/xvde p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区n # 新建分区——选择pt # 转换分区格式为8ew # 保存新建分区格式。 格式化磁盘12mkfs.ext3 /dev/xvde1 mount /dev/xvde">
+  <meta name="description" content="挂载磁盘查看分区1df -h 查看磁盘1fdisk -l 格式化分区1fdisk /dev/xvde p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区n # 新建分区——选择pt # 转换分区格式为8ew # 保存新建分区格式。 格式化磁盘12mkfs.ext3 /dev/xvde1 mount /dev/xvde1 /home 查看挂在结果1df -TH 修改 root 密码12id">
 <meta name="keywords" content="linux,server">
 <meta property="og:type" content="article">
 <meta property="og:title" content="电信云服务器规划以及配置">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2019/10/30/linux-server-init/index.html">
 <meta property="og:site_name" content="xiaoxiao">
-<meta property="og:description" content="创建业务组 创建 VPC 创建 SLB 创建 ECS 配置 SLB  挂载磁盘查看分区1df -h 查看磁盘1fdisk -l 格式化分区1fdisk /dev/xvde p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区n # 新建分区——选择pt # 转换分区格式为8ew # 保存新建分区格式。 格式化磁盘12mkfs.ext3 /dev/xvde1 mount /dev/xvde">
+<meta property="og:description" content="挂载磁盘查看分区1df -h 查看磁盘1fdisk -l 格式化分区1fdisk /dev/xvde p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区n # 新建分区——选择pt # 转换分区格式为8ew # 保存新建分区格式。 格式化磁盘12mkfs.ext3 /dev/xvde1 mount /dev/xvde1 /home 查看挂在结果1df -TH 修改 root 密码12id">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-29T05:46:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="电信云服务器规划以及配置">
-<meta name="twitter:description" content="创建业务组 创建 VPC 创建 SLB 创建 ECS 配置 SLB  挂载磁盘查看分区1df -h 查看磁盘1fdisk -l 格式化分区1fdisk /dev/xvde p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区n # 新建分区——选择pt # 转换分区格式为8ew # 保存新建分区格式。 格式化磁盘12mkfs.ext3 /dev/xvde1 mount /dev/xvde">
+<meta name="twitter:description" content="挂载磁盘查看分区1df -h 查看磁盘1fdisk -l 格式化分区1fdisk /dev/xvde p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区n # 新建分区——选择pt # 转换分区格式为8ew # 保存新建分区格式。 格式化磁盘12mkfs.ext3 /dev/xvde1 mount /dev/xvde1 /home 查看挂在结果1df -TH 修改 root 密码12id">
 
 <link rel="canonical" href="https://ghlingjun.github.io/xiaoxiao/2019/10/30/linux-server-init/">
 
@@ -273,14 +273,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li>创建业务组</li>
-<li>创建 VPC</li>
-<li>创建 SLB</li>
-<li>创建 ECS</li>
-<li>配置 SLB</li>
-</ul>
-<h3 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h3><p>查看分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure></p>
+        <h3 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h3><p>查看分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure></p>
 <p>查看磁盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure></p>
 <p>格式化分区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/xvde</span><br></pre></td></tr></table></figure></p>
 <p>p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区<br>n # 新建分区——选择p<br>t # 转换分区格式为8e<br>w # 保存新建分区格式。</p>
