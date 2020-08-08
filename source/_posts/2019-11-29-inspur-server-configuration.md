@@ -12,6 +12,7 @@ updated: 2019-11-29 14:18:03
 - 创建 VPC
 - 创建 SLB
 - 创建 ECS
+- 创建 NAT
 - 配置 SLB
 
 ## 创建用户组及用户
@@ -21,26 +22,26 @@ updated: 2019-11-29 14:18:03
 # 查看用户组是否存在
 grep shumei /etc/group
 # 添加用户组 shumei
-groupadd shumei
+sudo groupadd shumei
 
 # 查看用户 ethan 是否存在
 grep ethan /etc/passwd
 # 添加用户，推荐用户名与目录名一致
-useradd -g shumei -d /home/shumei -m ethan
+sudo useradd -g shumei -d /data/home/ethan -m ethan
 # 查看 ethan 信息
 id ethan
 # 设置用户密码
-passwd ethan
+sudo passwd ethan
 
 # 赋给用户 sudo 权限：http://man.linuxde.net/sudo
-vi /etc/sudoers
+sudo vi /etc/sudoers
 # 仿照现有root的例子就行，加一行（最好用tab作为空白）
 ethan  ALL=(ALL)   ALL
 ```
 Ubuntu 创建的用户为普通账户，默认 shell 为 /bin/sh，需要将账号的 shell 修改为 /bin/bash
 ```
 # echo #SHELL
-# usermod -s /bin/bash ethan
+sudo usermod -s /bin/bash ethan
 ```
 
 ## 安装 JDK
@@ -54,7 +55,7 @@ export CLASSPATH=.:${JAVA_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 ```
 
-## 安装 MySql 服务（5.7）
+## 数据服务器安装 MySql 服务（5.7）
 
 ```
 # sudo apt-get update
@@ -75,15 +76,15 @@ mysql> update user set authentication_string=PASSWORD("123456"), plugin="mysql_n
 ```
 show variables like 'character%';
 ```
-修改 mysqld.cnf，在文件的[mysqld]中增加如下内容：
-```
-# sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
-character-set-server=utf8
-```
 修改mysql.cnf文件，在[mysql]中增加如下内容：
 ```
 # sudo vi /etc/mysql/conf.d/mysql.cnf
 default-character-set=utf8
+```
+修改 mysqld.cnf，在文件的[mysqld]中增加如下内容：
+```
+# sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+character-set-server=utf8
 ```
 
 ### 大小写敏感设置
@@ -110,23 +111,67 @@ lower_case_table_names = 1
 sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
 ```
 
+### 开启Binlog
+```
+# 查看开启状态
+show variables like '%log_bin%';
+# 修改配置文件，添加如下配置
+server-id=1
+log-bin=/var/lib/mysql/mysql-bin
+# server-id :表示单个结点的id,单个节点可以随意写，多个节点不能重复，
+# log-bin指定binlog日志文件的名字为mysql-bin，以及其存储路径
+```
+
 ### 重启服务
 ```
 # sudo /etc/init.d/mysql restart
 ```
 
-# 创建用户
-# https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/
+### 创建用户
+https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/
+```
 create user 'octopus'@'%' identified by 'octopus';
 
 create database owl default character set utf8;
 grant all privileges on owl.* to octopus@'%' with grant option;
+
+grant REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO octopus@'%' with grant option;
+FLUSH PRIVILEGES;
 ```
 
-### 安装Nginx
-
+## 安装 redis
 ```
-http://www.cnblogs.com/rainy-shurun/p/6192753.html
+sudo apt-get update
+sudo apt-get install redis-server
+# 修改远程访问配置，注释 /etc/redis/redis.conf 中 bind 参数
+# 启动redis
+sudo redis-server /etc/redis/redis.conf &
+sudo /etc/init.d/redis-server stop
+# 客户端连接
+redis-cli
+```
 
+## WEB服务器安装Nginx
+```
+sudo apt-get update
+sudo apt-get install nginx
+# 检查服务状态
+sudo systemctl status nginx
+sudo nginx -v
+```
+修改配置文件
+```
+sudo vi /etc/nginx/nginx.conf
+# 添加配置
+send_timeout 200;
+client_max_body_size 200m;
+# websocket on
+map $http_upgrade $connection_upgrade {
+default upgrade;
+'' close;
+}
+```
 nignx 中 autoindex 要配置成 off
-```
+
+## 安装中文字体
+

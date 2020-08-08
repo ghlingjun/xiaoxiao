@@ -12,7 +12,7 @@ timezone: Asia/Taipei
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://ghlingjun.github.io/xiaoxiao
+url: https://osethan.gitee.io/xiaoxiao
 root: /xiaoxiao/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -79,5 +79,6 @@ theme: next2
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/ghlingjun/xiaoxiao.git
-
+  repo: https://gitee.com/osethan/xiaoxiao.git
+  branch: gh-pages
+  
