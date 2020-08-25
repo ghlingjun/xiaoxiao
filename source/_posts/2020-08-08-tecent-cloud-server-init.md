@@ -37,8 +37,8 @@ vi /etc/sudoers
 shumei  ALL=(ALL)   ALL
 Ubuntu 创建的用户为普通账户，默认 shell 为 /bin/sh，需要将账号的 shell 修改为 /bin/bash
 
-# echo #SHELL
-# usermod -s /bin/bash shumei
+echo $SHELL
+usermod -s /bin/bash shumei
 
 export JAVA_HOME=/data/home/shumei/software/jdk1.8.0_221
 export CLASSPATH=.:${JAVA_HOME}/lib
