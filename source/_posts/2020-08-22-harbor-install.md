@@ -26,9 +26,6 @@ no config file: /data/home/ethan/software/harbor/harbor.yml
 Harbor Installation Complete 
 
 Please log out and log in or run the command 'newgrp docker' to use Docker without sudo
-
-Login to your harbor instance:
-docker login -u admin -p 10.46.40.70 -P 10900
  
 # nginx 代理配置
 需要修改 harbor.yml，把https相关的注释，（如果没有注释，http会自动重定向到https,导致多次重定向）然后添加：
@@ -37,6 +34,7 @@ external_url: https://域名.com
 
 修改配置以后执行：
 ```
+sudo docker-compose down
 sudo ./prepare
 sudo docker-compose up -d
 ```
@@ -65,3 +63,25 @@ server {
 ```
 
 docker-compose ps 命令查看启动起来的docker实例
+
+
+Login to your harbor instance:
+docker login -u admin https://domain.com
+docker login -u admin IP
+docker logout https://domain.com
+
+
+
+### Stop Harbor
+sudo docker-compose stop
+### Restart harbor
+sudo docker-compose start
+
+### Reconfigure Harbor
+sudo docker-compose down -v
+vi harbor.yml
+sudo ./prepare
+如果重新配置 Harbor 安装 Notary, Clair, Chart Repository Service, 加上这些模块在命令中：
+sudo ./prepare --with-notary --with-clair --with-chartmuseum
+创新创建和启动 harbor 实例
+sudo docker-compose up -d

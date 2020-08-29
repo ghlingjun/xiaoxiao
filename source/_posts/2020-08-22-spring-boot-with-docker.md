@@ -50,11 +50,11 @@ This command builds an image and tags it as ahshumei/eureka-docker.
 在搭建一些集群软件的时候，组件和组件之间需要进行网络通信，这个时候如果每次重启IP都发生变化会很不方便，因此希望能够将容器的IP固定下来，这也是可以实现的，具体参考下面的方法。
 1.创建自定义网络
 ```
-docker network create --subnet=172.18.0.0/16 gc-network
+docker network create --subnet=172.127.0.0/16 moon-network
 ```
 2.创建Docker容器
 ```
-docker run --name eureka -p 10090:10090 --net=gc-network --ip=172.18.0.90 -t ahshumei/eureka-docker
+docker run --name eureka -p 10090:10090 --net=gc-network --ip=172.127.0.90 -t ahshumei/eureka-docker
 ```
 使用docker inspect container-id可以看到当前容器分配的IP就是固定IP了。
 
