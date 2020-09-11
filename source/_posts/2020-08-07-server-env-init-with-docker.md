@@ -3,7 +3,7 @@ title: 通过 docker 初始化服务器运行环境
 comments: true
 categories:
   - 技术
-tags: []
+tags: [docker]
 date: 2020-08-07 16:07:19
 updated: 2020-08-07 16:07:19
 ---
@@ -69,3 +69,10 @@ docker run -p 10000:10000 --name smnginx -v $PWD/www:/www -v $PWD/conf/nginx.con
 
 参考文档：
 https://www.runoob.com/docker/ubuntu-docker-install.html
+
+## 遇到问题
+重启 docker：
+systemctl restart docker.service
+sudo service docker restart
+docker启动日志：
+/var/log/upstart/docker.log

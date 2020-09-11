@@ -64,13 +64,10 @@ server {
 
 docker-compose ps 命令查看启动起来的docker实例
 
-
 Login to your harbor instance:
 docker login -u admin https://domain.com
 docker login -u admin IP
 docker logout https://domain.com
-
-
 
 ### Stop Harbor
 sudo docker-compose stop

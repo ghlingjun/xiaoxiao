@@ -23,6 +23,7 @@ $ docker push ethan2docker/moon
 ### 发布镜像到 docker 私服
 ### 1.打包
 mvn -U clean package -Dmaven.test.skip=true
+mvn -U clean package -Dmaven.test.skip=true -pl moduleName -am
 
 ### 2.解压文件
 mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
@@ -32,9 +33,11 @@ DOCKER_BUILDKIT=1 docker build -t ethan/镜像名 .
 
 ### 4.创建容器
 指定端口、网络、以及配置文件创建并运行容器
-docker run --name process -p 10100:10100 --net=moon-network --ip=172.127.0.100 -t ethan/镜像名 --spring.profiles.active=cloud
+docker run --name process -v /opt/docker_v/application-cloud.yml:/app/application-cloud.yml -p 10100:10100 --net=moon-network --ip=172.127.0.100 -t ethan/镜像名 --spring.profiles.active=cloud
 指定端口创建并运行容器
 docker run --name process1 -p 10100:10100 -t ethan/镜像名
+将主机 /opt/docker_v/application-cloud.yml 文件挂载到容器的 /app/application-cloud.yml 文件
+-v /opt/docker_v/application-cloud.yml:/app/application-cloud.yml
 
 ### 5.发布镜像
 docker login -u ethan harbor私服IP:端口
