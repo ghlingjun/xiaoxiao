@@ -4,7 +4,7 @@ date: 2018-05-09 12:29:57
 tags: [maven,codemother]
 ---
 
-项目地址:[https://code.aliyun.com/lingjun/codemother-maven-plugin](https://code.aliyun.com/lingjun/codemother-maven-plugin)
+项目地址:[https://gitee.com/osethan/codemother-maven-plugin](https://gitee.com/osethan/codemother-maven-plugin)
 
 ### What is this repository for? ###
 
@@ -58,7 +58,7 @@ tags: [maven,codemother]
             <plugin>
                 <groupId>com.ethanxx</groupId>
                 <artifactId>codemother-maven-plugin</artifactId>
-                <version>${codemother.version}</version>
+                <version>1.1.3</version>
             </plugin>
         </plugins>
     </build>

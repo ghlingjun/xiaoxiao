@@ -1,7 +1,9 @@
 ---
 title: cors problems
 date: 2019-01-23 09:54:57
-tags: [CORS,跨域]
+categories:
+  - 技术
+tags: [跨域]
 ---
 
 Springboot

@@ -43,12 +43,16 @@ services:
 ```
 
 ### 构建
+```
 docker-compose build
+```
 
 ### 启动
+```
 docker-compose up -d
 
 docker-compose ps
+```
 
 The docker-compose run command allows you to run one-off commands for your services. For example, to see what environment variables are available to the web service:
 $ docker-compose run web env
@@ -77,7 +81,14 @@ docker-compose rm --force
 }
 ```
 重启 docker：
+```
 systemctl restart docker.service
 sudo service docker restart
+```
 docker启动日志：
+```
 /var/log/upstart/docker.log
+```
+
+# 参考文档
+Get started with Docker Compose[https://docs.docker.com/compose/gettingstarted/]

@@ -6,13 +6,13 @@ tags: git
 ---
 总结的一些不常用的 git 操作命令
 
-Git 全局配置
+# Git 全局配置
 ```
 git config --global user.name "lingjun"
 git config --global user.email "lingjun@live.cn"
 ```
 
-git core.autocrlf 配置说明
+# git core.autocrlf 配置说明
 基于 git 服务在 linux 服务器，以及应用运行在 linux 服务器上的假设，git 换行符配置如下：
 Windows 系统下开发配置如下，Git 可以在你提交时自动地把行结束符 CRLF 转换成LF，而在签出代码时把LF转换成CRLF
 ```
@@ -27,7 +27,7 @@ git config --global core.autocrlf input
 git config --global core.safecrlf true
 ```
 
-创建一个新的仓库
+# 创建一个新的仓库
 ```
 git clone git@code.aliyun.com:lingjun/dolphin.git
 cd dolphin
@@ -37,7 +37,7 @@ git commit -m "add README"
 git push -u origin master
 ```
 
-Existing folder or Git repository
+# Existing folder or Git repository
 ```
 cd existing_folder
 git init
@@ -47,7 +47,7 @@ git commit
 git push -u origin master
 ```
 
-Ignore files
+# Ignore files
 ```
 # in directory: /Users/ethan/workspace/jeecg
 git rm --cached --force src/main/webapp/webpage/content/plug-in/ueditor/jsp/config.properties
@@ -61,19 +61,23 @@ git rm --cached --force src/main/webapp/plug-in/ueditor/jsp/config.properties
 # *~
 ```
 
-relocate repository
+# relocate repository
+```
+git remote set-url origin url
+```
+或者
 ```
 git remote rm origin
 git remote add origin git@code.aliyun.com:lingjun/jee-octopus.git
 ```
 
-切换分支
+# 切换分支
 ```
 git branch -a
 git checkout master_herbinate
 ```
 
-Keep your fork synced
+# Keep your fork synced
 1. See the current configured remote repository for your fork：
 ```
 git remote -v
@@ -95,13 +99,13 @@ git branch -a
 git merge upstream/master
 ```
 
-Revert file
+# Revert file
 ```
 git rm --cached -f -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 ```
 
-导出提交日志
+# 导出提交日志
 ```
 git log --date=iso --pretty=format:'"%h", "%an", "%ad", "%s"' >> log.csv
 ```

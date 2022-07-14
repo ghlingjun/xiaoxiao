@@ -1,7 +1,8 @@
 ---
 title: 电信云服务器规划以及配置
 comments: true
-categories: [技术]
+categories:
+  - 技术
 tags: [linux,server]
 date: 2019-10-30 22:46:01
 updated: 2019-11-29 13:46:01
@@ -12,15 +13,18 @@ updated: 2019-11-29 13:46:01
 ```
 df -h
 ```
+
 查看磁盘
 ```
 fdisk -l
 ```
+
 格式化分区
 ```
 fdisk /dev/xvde
 ```
 
+按顺序执行以下命令：
 p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区
 n # 新建分区——选择p
 t # 转换分区格式为8e
@@ -31,7 +35,8 @@ w # 保存新建分区格式。
 mkfs.ext3 /dev/xvde1 
 mount /dev/xvde1 /home
 ```
-查看挂在结果
+
+查看挂载结果
 ```
 df -TH
 ```
@@ -66,6 +71,7 @@ vi /etc/sudoers
 # 仿照现有root的例子就行，加一行（最好用tab作为空白）
 shumei  ALL=(ALL)   ALL
 ```
+
 Ubuntu 创建的用户为普通账户，默认 shell 为 /bin/sh，需要将账号的 shell 修改为 /bin/bash
 ```
 # echo #SHELL

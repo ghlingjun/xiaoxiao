@@ -10,10 +10,12 @@ updated: 2020-08-07 16:07:19
 
 使用官方安装脚本自动安装
 安装命令如下：
+```
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+```
 
 如果要使用 Docker 作为非 root 用户，则应考虑使用类似以下方式将用户添加到 docker 组：
-sudo usermod -aG docker ethan
+> sudo usermod -aG docker ethan
 
 # 启动docker
 sudo systemctl start docker

@@ -29,7 +29,7 @@ Default encoding for properties files: UTF-8
 
 ## 设置代码行宽度(Columns)
 打开 File -> Other Settings -> Default Settings -> Editor -> Code Style
-修改 Default Options -> Right Margin (Columns) 可以为所有类型的文件设置默认宽度。
+修改 Default Options -> Right Margin (Columns) 可以为所有类型的文件设置默认宽度，设置为 120。
 另外可以在 Code Style 下特定类型文件（例如 Java、Jsp）的 Wrapping tab 下修改该类型文件的代码行宽度。
 
 ## 自定义 Live Template
@@ -37,17 +37,32 @@ Preferences -> Editor -> Live Templates
 选择 UserDefined(如果没有则创建创建), 添加自定义模板以及自己的快捷输入方法
 方法注释示例：
 ```
-/**
- * Description: 
- * Created on $DATE$ $TIME$
- * 
- * @author $USER$
+**
+ * $notes$
+ *
+ $params$
+ * @return $return$
+ * @author LingJun
+ * @date $DATE$ $TIME$
  */
+ 
+ # note Default value 配置
+ groovyScript("if(\"${_1}\".length() == 2) {return '';} else {def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList();for(i = 0; i < params.size(); i++) {if(i<(params.size()-1)){result+=' * @param ' + params[i] + '\\n'}else{result+=' * @param ' + params[i]}}; return result;}", methodParameters());
 ```
 代码块注释示例：
 ```
-/**
- * Description: 
- * Added by $USER$ on $DATE$ $TIME$
+**
+ * $notes$
+ *
+ * @author LingJun
+ * @date $DATE$ $TIME$
  */
 ```
+注意需要编辑 date，time等变量的值。
+日期的变量值推荐加参数如：date("yyyy/MM/dd")
+
+## 换行符
+使用 Unix 格式，不要使用 Windows 格式。
+
+## 缩进
+禁止使用 tab 缩进，采用 4 个空格缩进。如果使用 tab 缩进，必须在 IDE 中 Use tab character。

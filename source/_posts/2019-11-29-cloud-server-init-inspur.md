@@ -3,7 +3,7 @@ title: 浪潮云服务器规划与配置
 comments: true
 categories:
   - 技术
-tags: []
+tags: [server]
 date: 2019-11-29 14:18:03
 updated: 2019-11-29 14:18:03
 ---
@@ -38,6 +38,7 @@ sudo vi /etc/sudoers
 # 仿照现有root的例子就行，加一行（最好用tab作为空白）
 ethan  ALL=(ALL)   ALL
 ```
+
 Ubuntu 创建的用户为普通账户，默认 shell 为 /bin/sh，需要将账号的 shell 修改为 /bin/bash
 ```
 # echo #SHELL

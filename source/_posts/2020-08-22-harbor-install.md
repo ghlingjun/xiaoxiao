@@ -38,6 +38,7 @@ sudo docker-compose down
 sudo ./prepare
 sudo docker-compose up -d
 ```
+
 nginx 配置
 ```
 upstream harbor {
@@ -69,6 +70,7 @@ docker login -u admin https://domain.com
 docker login -u admin IP
 docker logout https://domain.com
 
+# 相关命令介绍
 ### Stop Harbor
 sudo docker-compose stop
 ### Restart harbor
@@ -82,3 +84,6 @@ sudo ./prepare
 sudo ./prepare --with-notary --with-clair --with-chartmuseum
 创新创建和启动 harbor 实例
 sudo docker-compose up -d
+
+# 参考文档
+Harbor Installation and Configuration[https://goharbor.io/docs/2.0.0/install-config/]

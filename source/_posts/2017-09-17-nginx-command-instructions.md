@@ -32,3 +32,6 @@ For getting the list of all running nginx processes, the `ps` utility may be u
 ps -ax | grep nginx
 ```
 
+# Nginx 配置
+
+[参考]https://www.cnblogs.com/lidabo/p/4169396.html
