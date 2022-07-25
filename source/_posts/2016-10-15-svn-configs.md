@@ -16,16 +16,22 @@ sudo killall svnserve
 ## ignore 命令
 **忽略文件夹**
 ```
-svn prospect svn:ignore ‘schema’ .
+svn propset svn:ignore "
+>schema
+>.back
+>" .
 ```
+注意:写值的时候不要一下将两个引号写完，否则回车会直接执行命令。
+svn:ignore的值每行一个
+
 **忽略已存在的文件**
 ```
 svn export config.properties config.properties-tmp
 svn rm config.properties
-svn ci -m ‘remove config.properties’
+svn ci -m 'remove config.properties'
 mv config.properties-tmp config.properties
-svn propset svn:ignore ‘config.properties’ .
-svn ci - ‘ignore config.properties’
+svn propset svn:ignore 'config.properties' .
+svn ci - 'ignore config.properties'
 ```
 **忽略文件夹中某几个文件**
 在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：
