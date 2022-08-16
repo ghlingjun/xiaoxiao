@@ -1,6 +1,6 @@
 
 base_info:
-  title: 为往圣继绝学
+  title: Hakuna Matata
   author: Ethan
   url: https://ghlingjun.github.io/xiaoxiao
 
@@ -9,10 +9,10 @@ style:
   primary_color: "#663300"
 
   # Avatar (You can use local image or image external link)
-  avatar: /images/avatar.svg
+  avatar: /images/malu.png
 
   # Favicon (You can use local image or image external link)
-  favicon: /images/logo.svg
+  favicon: /images/favicon.ico
 
   # Article image align position, value: left | center
   article_img_align: left

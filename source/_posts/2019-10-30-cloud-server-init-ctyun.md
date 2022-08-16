@@ -32,7 +32,7 @@ w # 保存新建分区格式。
 
 格式化磁盘
 ```
-mkfs.ext3 /dev/xvde1 
+mkfs -t ext4 /dev/xvde1 
 mount /dev/xvde1 /home
 ```
 

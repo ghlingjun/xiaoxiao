@@ -9,6 +9,7 @@ updated: 2021-04-19 13:37:42
 ---
 
 # 被勒索病毒攻击
+
 To recover your lost databases and avoid leaking it: visit http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser https://www.torproject.org/projects/torbrowser.html
 
 # 解决过程
