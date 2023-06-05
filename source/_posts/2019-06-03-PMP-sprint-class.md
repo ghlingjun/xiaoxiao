@@ -3,7 +3,7 @@ title: 随笔
 date: 2019-06-03 20:57:36
 categories:
   - 生活
-tags: []
+tags: [life]
 ---
 
 # PMP 考试冲刺课

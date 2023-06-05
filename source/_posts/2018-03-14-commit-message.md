@@ -1,6 +1,8 @@
 ---
 title: 代码提交注释格式
 date: 2018-03-14 10:42:04
+categories:
+  - 技术
 tags: [git,svn]
 ---
 

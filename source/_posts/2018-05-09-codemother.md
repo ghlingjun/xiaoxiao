@@ -1,6 +1,8 @@
 ---
 title: Maven 插件 codemother 使用说明
 date: 2018-05-09 12:29:57
+categories:
+  - 技术
 tags: [maven,codemother]
 ---
 
@@ -49,7 +51,7 @@ tags: [maven,codemother]
     controllerBasePackage=com.primeco.log.ctl.base
     ```
 * 配置maven依赖
-    
+  
     在项目或者模块pom.xml中配置插件依赖：
     ```
     <!--codemother 插件-->

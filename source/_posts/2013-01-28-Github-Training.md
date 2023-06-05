@@ -3,6 +3,9 @@ layout: default
 title: Github 入门
 date: 2013-01-28 07:34:42
 tags: github
+categories:
+  - 技术
+tags: [git]
 ---
 
 # 创建一个Repo

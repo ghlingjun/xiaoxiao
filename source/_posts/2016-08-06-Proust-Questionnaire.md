@@ -2,6 +2,9 @@
 layout: default
 title: 普鲁斯特问卷
 date: 2016-08-06 21:09:09
+categories:
+  - 生活
+tags: [life]
 ---
 
 #### 1.你认为最完美的快乐是怎样的？

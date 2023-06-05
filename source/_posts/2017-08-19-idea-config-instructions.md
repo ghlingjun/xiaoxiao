@@ -3,7 +3,9 @@ layout: default
 title: Idea 常用配置
 date: 2017-08-19 21:09:09
 updated: 2019-11-21 18:35:10
-tags: idea
+categories:
+  - 技术
+tags: [idea]
 ---
 # 概述
 总结的一些 idea 配置方法

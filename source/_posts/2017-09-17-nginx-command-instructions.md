@@ -1,7 +1,9 @@
 ---
 title: Nginx Command Instructions
 date: 2017-09-17 22:19:40
-tags: nginx
+categories:
+  - 技术
+tags: [nginx]
 ---
 # 概述
 Nginx (engine x) 是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器。Nginx 是由伊戈尔·赛索耶夫为俄罗斯访问量第二的 Rambler.ru 站点开发的，第一个公开版本 0.1.0 发布于 2004 年 10 月 4 日。

@@ -2,6 +2,9 @@
 title: jBPM 基础
 date: 2014-11-07 09:46:00
 tags: jbpm
+categories:
+  - 技术
+tags: [jbpm]
 ---
 了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.
 

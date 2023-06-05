@@ -3,7 +3,7 @@ title: Proust Questionnaire
 comments: false
 categories:
   - 生活
-tags: []
+tags: [life]
 date: 2019-11-15 22:35:10
 updated: 2019-11-15 22:35:10
 ---

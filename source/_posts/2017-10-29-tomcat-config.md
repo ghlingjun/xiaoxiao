@@ -1,7 +1,9 @@
 ---
 title: Tomcat 配置
 date: 2017-10-29 20:50:15
-tags: tomcat
+categories:
+  - 技术
+tags: [tomcat]
 ---
 
 1. 注释 ajp 协议

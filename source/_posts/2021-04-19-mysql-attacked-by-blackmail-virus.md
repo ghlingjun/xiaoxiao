@@ -3,7 +3,7 @@ title: 记 MySql 数据库被勒索病毒攻击
 comments: true
 categories:
   - 技术
-tags: [mysql,binlog]
+tags: [mysql]
 date: 2021-04-19 13:37:42
 updated: 2021-04-19 13:37:42
 ---
@@ -26,11 +26,27 @@ To recover your lost databases and avoid leaking it: visit http://o42xfh5kao7mrt
 ### 1. 查看binlog信息
 show variables like '%log_bin%';
 
-备份 binlog 文件，防止日志文件丢失，binlog 文件目录为 /usr/local/mysql/var。
-备份后，查询日志，确认数据被删除时间：
-/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime="2021-04-16 17:46:14" /home/shumei/sqllog/mysql-bin.000089 > /home/shumei/sqllog/log89.sql
+备份 binlog 文件，防止日志文件丢失，binlog 文件目录可能为：/usr/local/mysql/var，具体位置查询方式有两种：
+1. 查询 MySql 配置文件 my.cnf，查看 binlog 路径配置项
+2. 通过 sql 命令查询
+```
+# 查询当前主日志
+show master status; 
+# 查询日志名为 binlog.000002 的相关信息，其中含日志路径
+show binlog events in 'binlog.000002';
+```
 
-查询到日志如下：
+日志文件备份后，查询日志，确认数据被删除时间。先使用 mysqlbinlog 命令导出指定时间之后的日志信息：
+```
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime="2021-04-16 17:46:14" /home/shumei/sqllog/mysql-bin.000089 > /home/shumei/sqllog/log89.sql
+```
+
+若不知道 mysqlbinlog 命令位置，可通过 find 命令查找：
+```
+find / -name mysqlbinlog
+```
+
+输入日志后，查看日志内容如下：
 ```
 # at 3809968
 #210416 17:46:19 server id 1  end_log_pos 3810094 	Query	thread_id=27527	exec_time=0	error_code=0

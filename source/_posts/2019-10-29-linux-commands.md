@@ -5,7 +5,7 @@ updated: 2019-10-30 17:55:39
 comments: true
 categories:
   - 技术
-tags: [linux,du,mount,ssh,curl]
+tags: [linux]
 ---
 
 ## 命令介绍

@@ -1,7 +1,9 @@
 ---
 title: Mac 系统使用的一些经验总结
 date: 2017-10-18 21:31:02
-tags: mac
+categories:
+  - 技术
+tags:[mac]
 ---
 1. 修改应用的默认语言
 ```

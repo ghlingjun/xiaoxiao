@@ -2,7 +2,9 @@
 layout: default
 title: 共享模式词汇的威力
 date: 2017-04-30 21:09:09
-tags: [模式,Schema]
+categories:
+  - 技术
+tags: [schema]
 ---
 
 ### 共享模式词汇“威力强大”

@@ -2,7 +2,9 @@
 layout: default
 title: Mac 下 Svn 命令配置
 date: 2016-09-21 21:09:09
-tags: svn
+categories:
+  - 技术
+tags: [svn]
 ---
 
 ## 研究原因

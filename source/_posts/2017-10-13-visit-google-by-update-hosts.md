@@ -1,7 +1,9 @@
 ---
 title: 修改 hosts 方式翻墙
 date: 2017-10-13 11:01:09
-tags: [hosts,翻墙,google]
+categories:
+  - 技术
+tags: [hosts,google]
 ---
 
 # 问题
