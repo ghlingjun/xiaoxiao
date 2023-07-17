@@ -21,7 +21,7 @@ export PATH=${KETTLE}:$PATH
 
 # 经验
 
-## 类型转换
+## SQL
 
 - 日期转换
 
@@ -41,9 +41,13 @@ a.update_time >= DATE_ADD(now(), INTERVAL -1 MONTH)
 a.update_time >= DATE_ADD(now(), INTERVAL -1 YEAR)
 ```
 
+
+
 ## 设定变量
 
+转换命名参数就是在转换内部定义的变量，作用范围是在转换内部。在转换的空白处双击左键，在转换属性中能看到“命名参数”。
 
+引用：可以在表输入SQL语句中使用${变量名} 或者 %%变量名%%
 
 # 作业执行
 
@@ -51,7 +55,7 @@ a.update_time >= DATE_ADD(now(), INTERVAL -1 YEAR)
 
 ```shell
 pan.sh -file tr1.ktr
-pan.sh -file tr1.ktr -param:payedDate=202304
+pan.sh -file tr1.ktr -param:year=2023 -param:month=5
 ```
 
 - 执行作业
@@ -65,52 +69,41 @@ kitchen.sh -file jobname2.kjb -param:input=/kettle -param:output=/kettle
 
 ```shell
 #!/bin/bash
-JAVA_HOME=/home/shumei/software/jdk1.8.0_171
-KETTLE_HOME="/home/shumei/software/data-integration"
+# 环境变量
+JAVA_HOME=/home/shumei/soft/jdk1.8.0_171
+KETTLE_HOME="/home/shumei/soft/data-integration"
 export CLASSPATH=.:${JAVA_HOME}/lib
 export PATH=${JAVA_HOME}/bin::$PATH
-
+# 公共变量
 DATE_STR=`date +%Y%m%d`;
 BASE_DIR='/home/shumei/kettle'
-
-SCRIPT_DIR='/kettle/1015dca/pro'
-SHELL_NAME=dca
-
+# 局部变量
+v_script_dir='/kettle/1015dca/pro'
+v_shell_name=dca1m
+v_result="执行成功"
+# 脚本名称
 JOB01_NAME=tr1.ktr
 JOB02_NAME=tr2.ktr
 
-# X 企业名录入共享库
-echo ---------------------------
-echo $(date +"%Y-%m-%d %H:%M:%S")-start
-${KETTLE_HOME}/pan.sh -file ${BASE_DIR}${SCRIPT_DIR}/${JOB01_NAME} -level=Basic >> ${BASE_DIR}/logs/${SHELL_NAME}.${DATE_STR}
-pan_return=$?   # 捕捉 pan 命令返回值
+# X 企业名录入库
+v_date_str=$(date +"%Y-%m-%d %H:%M:%S")
+${KETTLE_HOME}/pan.sh -file ${BASE_DIR}${v_script_dir}/${v_job01_name} -level=Basic >> ${BASE_DIR}/logs/${v_shell_name}.${DATE_STR}
+pan_return=$?
 if [ $pan_return -eq 0 ]; then
-    echo "执行成功"
+    v_result="执行成功"
 elif [ $pan_return -eq 1 ]; then
-    echo "执行失败"
+    v_result="执行失败"
 else
-    echo "执行取消"
+    v_result="执行取消"
 fi
-echo $(date +"%Y-%m-%d %H:%M:%S")-stop
+echo $v_result
+if [ $pan_return -ne 0 ]; then
+    echo "Task X 企业名录入库-$v_result ${v_date_str}" | mail -s "Subject: Task Failed" ethan@ahshumei.com
+fi
+echo ${v_date_str}-X 企业名录入库 start
+echo -e $(date +"%Y-%m-%d %H:%M:%S")-X 企业名录入库 end\n
 
 sleep 2
 
-# Y 企业名录入共享库
-echo ---------------------------
-echo $(date +"%Y-%m-%d %H:%M:%S")-start
-${KETTLE_HOME}/pan.sh -file ${BASE_DIR}${SCRIPT_DIR}/${JOB02_NAME} -level=Basic >> ${BASE_DIR}/logs/${SHELL_NAME}.${DATE_STR}
-pan_return=$?
-if [ $pan_return -eq 0 ]; then
-    echo "执行成功"
-elif [ $pan_return -eq 1 ]; then
-    echo "执行失败"
-else
-    echo "执行取消"
-fi
-echo $(date +"%Y-%m-%d %H:%M:%S")-stop
-
-# m h  dom mon dow   command
-# 每月 1 日同步企业名录至共享库
-# 0 1 1 * * sh /home/shumei/kettle/kettle/shell/dca.sh >> /home/shumei/kettle/logs/crontab.log
 ```
 

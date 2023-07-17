@@ -96,15 +96,40 @@ stat /etc/my.cnf
 last -t 20220410000000
 ```
 
-## 其他
-```
-80,8080,443,8443 需要备案
-```
 ### 环境变量配置
-```
+```shell
 alias sshdb="ssh ethan@192.168.1.79"
 
 export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
 export CLASSPATH=.:${JAVA_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 ```
+
+## 日期时间函数
+
+```shell
+# 取日期 yyyy-mm-dd
+date +%F
+# 取上个月月份（两位数字符串）
+date -d "2023-06-06 -1 month" +%m
+# 取上个月月份（数字）
+month=`date -d "2023-06-06 -1 month" +%m`
+$((month))
+# 取上一年年份
+date -d "2023-06-06 -1 year" +%Y
+
+v_date=`date +%F`
+# 取上个月字符串
+`date -d "$v_date -1 month" +%Y%m`
+
+v_date_now=`date +"%F %T"`
+# 取前 15 分钟的时间
+v_date_time=`date -d "-15 minute $v_date_now" +"%F %T"`
+```
+
+## 其他
+
+```
+80,8080,443,8443 需要备案
+```
+
