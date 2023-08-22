@@ -41,6 +41,13 @@ a.update_time >= DATE_ADD(now(), INTERVAL -1 MONTH)
 a.update_time >= DATE_ADD(now(), INTERVAL -1 YEAR)
 ```
 
+- 类型转换
+
+```sql
+# 把字段 id 的类型转换为字符串 char
+CAST(id as CHAR) AS CODE
+```
+
 
 
 ## 设定变量

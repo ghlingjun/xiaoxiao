@@ -106,22 +106,29 @@ Also, note that as of version 1.8, `@EncryptablePropertySource` supports YAML fi
 ```yaml
 jasypt:
   encryptor:
+    algorithm: PBEWITHHMACSHA512ANDAES_256
+    saltGeneratorClassName: org.jasypt.salt.RandomSaltGenerator
+    ivGeneratorClassName: org.jasypt.iv.RandomIvGenerator
     property:
       prefix: "DC@["
       suffix: "]"
 ```
 
-配置中的 prefix 和 suffix 是**自定义**的密码串标识。其中还有一个必须的参数`jasypt.encryptor.password`，用于加密。但为了安全需要通过命令行方式传入，不能放入配置文件中。启动命令示例：
+配置中的 prefix 和 suffix 是**自定义**的密码串标识。其中还有一个必须的参数`jasypt.encryptor.password`，用于加密。但为了安全需要通过命令行方式传入，不能放入配置文件中（~测试环境为了方便可以临时使用，但不能提交到代码仓库~）。启动命令示例：
 
 ```yaml
-java -Djasypt.encryptor.password=B2B36A2BECD039215094CCF3FA43AEE1 -jar xx.jar
+java -Djasypt.encryptor.password=自己的加密秘钥 -jar xx.jar
 ```
 
-其中`B2B36A2BECD039215094CCF3FA43AEE1`是自定义密码字符串，推荐 32 为 md5 码。
+其中`自己的加密秘钥`是自定义密码字符串，推荐 32 为 md5 码。**测试环境和生产环境不要用同一个秘钥**。
+
+如果使用 idea ，运行程序前需要在 Run/Debug configuration 中的 VM option 中加入下面参数：
+
+`-Djasypt.encryptor.password=测试环境秘钥`
 
 ### 3. 敏感信息加密
 
-编写加密测试类如下：
+编写加密测试类如下：（**==加密方法推荐使用附 1 中的脚本==**）
 
 ```java
 package com.ahshumei.common.utils;
@@ -233,3 +240,26 @@ public class StringEncryptorTest extends BaseTest {
 ### 5. 总结
 
 jasypt 开源库为 Spring 项目提供了一种加解密能力来保护项目中的敏感信息，通过以上 4 步简单的配置即可使用，我们不需要去了解复杂加解密机制即可使用。并且 jasypt 不仅能集成到 Spring 中，还能集成到 Apache、Hibernate、SpringSecurity 等框架中。
+
+# 附 1：其他加密字符串生成方法
+
+除了上面通过测试方法生成加密字符串外，还有以下两种更方便的方式：
+
+## 1 Java 命令行
+
+Jasypt提供了一个类专门用于加密解密，提供了main方法，调用如下：
+
+```shell
+java -cp ./jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI password=自己的加密秘钥 algorithm=PBEWithMD5AndTripleDES input=要加密的字符串
+```
+
+## 2 脚本
+
+Jasypt为我们提供了脚本，可以直接用于加密解密，从 http://www.jasypt.org/download.html 可以下载（会引导到 github 项目中下载）。下载（jasypt-1.9.3-dist.zip）解压后的文件中有一个 bin 目录，其中有加密、解密的脚本。
+
+脚本的使用方法与 java 命令一样，脚本本质上是封装了调用 java 类的工具。使用方法如下（参数含义参看[官网文档](http://www.jasypt.org/cli.html)）：
+
+```shell
+sh encrypt.sh password=自己的加密秘钥 algorithm=PBEWITHHMACSHA512ANDAES_256 saltGeneratorClassName=org.jasypt.salt.RandomSaltGenerator ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator input=要加密的字符串
+```
+
