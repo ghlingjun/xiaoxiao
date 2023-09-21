@@ -2,7 +2,7 @@
 title: Ubuntu 安装 SFTP 服务
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [sftp]
 date: 2021-11-23 15:44:47
 updated: 2021-11-23 15:44:47

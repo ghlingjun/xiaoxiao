@@ -2,7 +2,7 @@
 title: 腾讯云服务器部署
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [server]
 date: 2020-08-08 10:58:28
 updated: 2020-08-08 10:58:28

@@ -2,7 +2,7 @@
 title: jasypt spring boot
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [jasypt]
 date: 2023-07-14 18:34:53
 updated: 2023-07-14 18:34:53

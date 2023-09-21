@@ -2,7 +2,7 @@
 title: Ubuntu Server 安装
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [ubuntu]
 date: 2021-03-29 16:54:42
 updated: 2021-03-29 16:54:42

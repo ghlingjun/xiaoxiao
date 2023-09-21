@@ -2,7 +2,7 @@
 title: hexo commands
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [hexo]
 date: 2019-11-21 20:43:50
 updated: 2019-11-21 20:43:50

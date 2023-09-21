@@ -2,7 +2,7 @@
 title: 通过 docker 初始化服务器运行环境
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [docker]
 date: 2020-08-07 16:07:19
 updated: 2020-08-07 16:07:19

@@ -2,7 +2,7 @@
 title: cors problems
 date: 2019-01-23 09:54:57
 categories:
-  - 技术
+  - tech
 tags: [跨域]
 ---
 

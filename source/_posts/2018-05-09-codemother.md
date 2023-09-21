@@ -2,7 +2,7 @@
 title: Maven 插件 codemother 使用说明
 date: 2018-05-09 12:29:57
 categories:
-  - 技术
+  - tech
 tags: [maven,codemother]
 ---
 

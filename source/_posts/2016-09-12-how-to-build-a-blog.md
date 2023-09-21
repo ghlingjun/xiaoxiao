@@ -3,7 +3,7 @@ layout: default
 title: 如何搭建一个免费的博客
 date: 2016-09-12 21:09:09
 categories:
-  - 技术
+  - tech
 tags: [blog]
 ---
 

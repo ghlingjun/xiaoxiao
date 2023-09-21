@@ -2,7 +2,7 @@
 title: 迁移 mysql 数据目录
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [mysql]
 date: 2023-05-25 08:59:25
 updated: 2023-05-25 08:59:25

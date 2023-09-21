@@ -2,7 +2,7 @@
 title: 记 MySql 数据库被勒索病毒攻击
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [mysql]
 date: 2021-04-19 13:37:42
 updated: 2021-04-19 13:37:42

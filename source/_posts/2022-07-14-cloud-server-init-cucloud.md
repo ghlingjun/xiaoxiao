@@ -2,7 +2,7 @@
 title: 联通云服务器初始化
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [server]
 date: 2022-07-14 13:43:55
 updated: 2022-07-14 13:43:55

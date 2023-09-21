@@ -2,7 +2,7 @@
 title: 发送 crontab 定时任务执行结果到指定邮箱
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [crontab,mail]
 date: 2023-05-27 20:32:14
 updated: 2023-07-18 20:32:14

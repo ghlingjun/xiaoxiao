@@ -3,7 +3,7 @@ layout: default
 title: SVN 使用
 date: 2016-10-15 21:09:09
 categories:
-  - 技术
+  - tech
 tags: [svn]
 ---
 
@@ -44,7 +44,7 @@ svn ci - 'ignore config.properties'
 ```
 然后执行如下命令：
 ```
-svn prospect svn:ignore -F .svnignore .
+svn propset svn:ignore -F .svnignore .
 ```
 ## add a tag
 ```

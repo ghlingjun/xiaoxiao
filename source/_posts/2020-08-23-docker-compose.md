@@ -2,7 +2,7 @@
 title: docker compose 服务编排
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [docker]
 date: 2020-08-23 22:07:06
 updated: 2020-08-23 22:07:06

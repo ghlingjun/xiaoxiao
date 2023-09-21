@@ -2,7 +2,7 @@
 title: kettle experiences
 comments: true
 categories:
-  - 技术
+  - tech
 tags: [kettle]
 date: 2023-05-23 11:56:35
 updated: 2023-05-23 11:56:35
