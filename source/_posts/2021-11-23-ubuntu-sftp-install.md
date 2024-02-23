@@ -7,17 +7,22 @@ tags: [sftp]
 date: 2021-11-23 15:44:47
 updated: 2021-11-23 15:44:47
 ---
-
 # 目标
+
 在 Ubuntu 系统上开通 sftp 文件服务，允许指定用户上传及下载文件。但是这些用户只能使用 sftp 传输文件，不能使用 SSH 终端访问服务器，并且 sftp 不能访问系统文件。系统管理员则既能使用 sftp 传输文件，也能使用 SSH 远程管理服务器。
 以下是将允许 sftp 用户组内的用户使用 sftp，但不允许使用 SSH Shell，且该组用户不能访问系统文件。
 
 # 安装步骤
+
 ## 查看是否已安装 sftp
+
+```shell
 dpkg --get-selections | grep ssh
+```
 
 ## 新建 sftp 用户组
-```
+
+```shell
 # 查看用户组是否存在
 grep sftp /etc/group
 # 添加用户组 sftp
@@ -25,7 +30,8 @@ groupadd sftp
 ```
 
 ## 新建 sftp 用户
-```
+
+```shell
 # 查看用户 sftp 是否存在
 grep sftp /etc/passwd
 # 添加用户
@@ -36,10 +42,12 @@ useradd -g sftp -m sftp
 sudo usermod -G sftp -s /bin/false sftp
 
 ## 创建并设置 sftp 用户目录
+
 准备“监狱”的根目录及共享目录，“监狱”的根目录必须满足以下要求：
 所有者为 root，其他任何用户都不能拥有写入权限。
 因此，为了让 sftp 用户能够上传文件，还必须在“监狱”根目录下再创建一个普通用户能够写入的共享文件目录。
-```
+
+```shell
 sudo mkdir /home/sftp
 sudo mkdir /home/sftp/shared
 sudo chown shumei:sftp /home/sftp/shared
@@ -47,6 +55,7 @@ sudo chmod 770 /home/sftp/shared
 ```
 
 ## 修改SSH配置文件
+
 ```
 vi  /etc/ssh/sshd_config
 注释内容：
@@ -70,9 +79,27 @@ ForceCommand internal-sftp -d shared
 如果需要进一步了解细节，可以使用“man sshd_config”命令。这样设置之后，SSH用户组可以访问SSH，并且不受其他限制；而SFTP用户组仅能使用SFTP进行访问，而且被关进监狱目录。
 
 ## 设置 sftp 端口
-sudo vim /etc/ssh/sshd_config
-搜索以端口22开头的行。通常，该行使用井号(＃)注释掉。 删除哈希号，然后输入新的SSH端口号：
-Port 2222
+
+`sudo vim /etc/ssh/sshd_config`
+
+搜索以端口22开头的行。通常，该行使用井号(＃)注释掉。 删除哈希号，然后输入新的SSH端口号： Port 2222
+
 编辑配置文件时要非常小心。 错误的配置可能会阻止SSH服务启动。
-完成后，保存文件并重新启动SSH服务以使更改生效：
-sudo systemctl restart ssh
+
+完成后，保存文件并重新启动SSH服务以使更改生效： `sudo systemctl restart ssh`
+
+# 常用命令
+
+访问 sftp 服务：
+
+```shell
+sftp -P 2222 sftp@127.0.0.1
+
+# 上传一个文件
+put local_file remote_file
+put /home/user/test.txt /test/test_upload.txt
+
+# 下载一个文件
+get remote_file local_file
+get /test/test.txt ~/Downloads/download.txt
+```
