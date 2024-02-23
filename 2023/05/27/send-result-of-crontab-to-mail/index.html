@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>发送 crontab 定时任务执行结果到指定邮箱 | xiaoxiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下： 1 安装配置环境1.1 安装 mailutils12bash sudo apt install mailutils  配置过程需要选择配置类型，选择 No configuration。 安装日志中有 postfix 的配置说明：  Postfix was not set up.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发送 crontab 定时任务执行结果到指定邮箱">
+<meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/index.html">
+<meta property="og:site_name" content="xiaoxiao">
+<meta property="og:description" content="在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下： 1 安装配置环境1.1 安装 mailutils12bash sudo apt install mailutils  配置过程需要选择配置类型，选择 No configuration。 安装日志中有 postfix 的配置说明：  Postfix was not set up.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-27T12:32:14.000Z">
+<meta property="article:modified_time" content="2023-07-18T12:32:14.000Z">
+<meta property="article:author" content="Ethan">
+<meta property="article:tag" content="crontab">
+<meta property="article:tag" content="mail">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="xiaoxiao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/xiaoxiao/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/xiaoxiao/" id="logo">xiaoxiao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/xiaoxiao/">Home</a>
+        
+          <a class="main-nav-link" href="/xiaoxiao/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ghlingjun.github.io/xiaoxiao"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-send-result-of-crontab-to-mail" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/" class="article-date">
+  <time datetime="2023-05-27T12:32:14.000Z" itemprop="datePublished">2023-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      发送 crontab 定时任务执行结果到指定邮箱
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下：</p>
+<h1 id="1-安装配置环境"><a href="#1-安装配置环境" class="headerlink" title="1 安装配置环境"></a>1 安装配置环境</h1><h2 id="1-1-安装-mailutils"><a href="#1-1-安装-mailutils" class="headerlink" title="1.1 安装 mailutils"></a>1.1 安装 mailutils</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash </span><br><span class="line">sudo apt install mailutils</span><br></pre></td></tr></table></figure>
+
+<p>配置过程需要选择配置类型，选择 <code>No configuration</code>。</p>
+<p>安装日志中有 postfix 的配置说明：</p>
+<blockquote>
+<p>Postfix was not set up.  Start with<br>  cp &#x2F;usr&#x2F;share&#x2F;postfix&#x2F;main.cf.debian &#x2F;etc&#x2F;postfix&#x2F;main.cf<br>.  If you need to make changes, edit<br>&#x2F;etc&#x2F;postfix&#x2F;main.cf (and others) as needed.  To view Postfix configuration<br>values, see postconf(1).</p>
+</blockquote>
+<blockquote>
+<p>After modifying main.cf, be sure to run ‘&#x2F;etc&#x2F;init.d&#x2F;postfix reload’.</p>
+</blockquote>
+<p>mailutils 提供用于 crontab 发送邮件的环境。安装好后需要配置两个文件：<code>/etc/ssmtp/ssmtp.conf /etc/ssmtp/revaliases</code></p>
+<h2 id="1-2-修改配置"><a href="#1-2-修改配置" class="headerlink" title="1.2 修改配置"></a>1.2 修改配置</h2><h3 id="修改-ssmtp-配置文件"><a href="#修改-ssmtp-配置文件" class="headerlink" title="修改 ssmtp 配置文件"></a>修改 ssmtp 配置文件</h3><p>设置发送邮箱、SMTP服务器和端口等：</p>
+<p><code>vi /etc/ssmtp/ssmtp.conf</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Config file <span class="keyword">for</span> sSMTP sendmail</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># The person who gets all mail for userids &lt; 1000</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Make this empty to <span class="built_in">disable</span> rewriting.</span></span><br><span class="line">root=your_email@163.com</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">The place <span class="built_in">where</span> the mail goes. The actual machine name is required no</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">MX records are consulted. Commonly mailhosts are named mail.domain.com</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">mailhub=smtp.aliyun.com:465</span></span><br><span class="line">mailhub=smtp.163.com:465</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">The full hostname</span></span><br><span class="line">hostname=ubuntu</span><br><span class="line">UseTLS=Yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Are <span class="built_in">users</span> allowed to <span class="built_in">set</span> their own From: address?</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">YES - Allow the user to specify their own From: address</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">NO - Use the system generated From: address</span></span><br><span class="line">FromLineOverride=NO</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">邮箱名</span></span><br><span class="line">AuthUser=your_email@163.com</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">授权码</span></span><br><span class="line">AuthPass=authpassasdfasdf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其中授权码 AuthPass 需要登录邮箱客户端获取。</p>
+<h3 id="修改配置文件-revaliases"><a href="#修改配置文件-revaliases" class="headerlink" title="修改配置文件 revaliases"></a>修改配置文件 revaliases</h3><p><code>vi /etc/ssmtp/revaliases</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sSMTP aliases</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Format:       local_account:outgoing_address:mailhub</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Example: root:your_login@your.domain:mailhub.your.domain[:port]</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">where</span> [:port] is an optional port number that defaults to 25.</span></span><br><span class="line">shumei:your_email@163.com:smtp.163.com:465</span><br></pre></td></tr></table></figure>
+
+<p>至此邮件发送的环境已搭建完成。下面是编写脚本测试发送邮件。</p>
+<h1 id="2-测试邮件发送"><a href="#2-测试邮件发送" class="headerlink" title="2 测试邮件发送"></a>2 测试邮件发送</h1><h2 id="2-1-编写任务脚本"><a href="#2-1-编写任务脚本" class="headerlink" title="2.1 编写任务脚本"></a>2.1 编写任务脚本</h2><p>在脚本中判断任务是否执行成功，如果失败则发送邮件。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">bash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行任务</span></span><br><span class="line">some_command</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">判断任务执行结果</span></span><br><span class="line">if [ $? -ne 0 ]; then</span><br><span class="line">    # 发送邮件,邮件内容为任务输出</span><br><span class="line">    echo &quot;Subject: Task Failed&quot; | mail -s &quot;Task Failed&quot; $MAIL </span><br><span class="line">fi </span><br></pre></td></tr></table></figure>
+
+<p>- <code>some_command</code> 替换为要执行的命令<br>- <code>$?</code> 用于获取上一条命令的返回值,如果不等于 0 表示失败<br>- <code>mail</code> 命令用于发送邮件<br>- <code>-s</code> 指定邮件主题<br>- <code>$MAIL</code> 为预先配置的接收邮箱环境变量</p>
+<p>完成后为任务脚本添加可执行权限:<code>chmod +x script.sh</code></p>
+<h2 id="2-2-添加定时任务"><a href="#2-2-添加定时任务" class="headerlink" title="2.2 添加定时任务"></a>2.2 添加定时任务</h2><p>在 crontab 文件中添加定时任务，例如:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/5 * * * * /path/to/script.sh   # 每5分钟执行一次</span><br></pre></td></tr></table></figure>
+
+<p>当定时任务执行失败时，会发送一封邮件通知到您指定的邮箱，实现了只在任务失败时发送邮件的效果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/" data-id="clsyi47p3004oook87c9ehr15" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/crontab/" rel="tag">crontab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/mail/" rel="tag">mail</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/xiaoxiao/2023/07/14/jasypt-spring-boot/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          jasypt spring boot
+        
+      </div>
+    </a>
+  
+  
+    <a href="/xiaoxiao/2023/05/25/migrate-mysql-data-directory/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">迁移 mysql 数据目录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/tech/">tech</a></li><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/%E7%94%9F%E6%B4%BB/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/brew/" rel="tag">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/codemother/" rel="tag">codemother</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/dns/" rel="tag">dns</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/google/" rel="tag">google</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/harbor/" rel="tag">harbor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/hosts/" rel="tag">hosts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/idea/" rel="tag">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/jasypt/" rel="tag">jasypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/jbpm/" rel="tag">jbpm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/kettle/" rel="tag">kettle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mail/" rel="tag">mail</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/music/" rel="tag">music</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/schema/" rel="tag">schema</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/server/" rel="tag">server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/sftp/" rel="tag">sftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/systemd/" rel="tag">systemd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/tomcat/" rel="tag">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/%E5%B0%8F%E7%AA%8D%E9%97%A8/" rel="tag">小窍门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/xiaoxiao/tags/OS/" style="font-size: 10px;">OS</a> <a href="/xiaoxiao/tags/blog/" style="font-size: 10px;">blog</a> <a href="/xiaoxiao/tags/brew/" style="font-size: 10px;">brew</a> <a href="/xiaoxiao/tags/codemother/" style="font-size: 10px;">codemother</a> <a href="/xiaoxiao/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/xiaoxiao/tags/dns/" style="font-size: 10px;">dns</a> <a href="/xiaoxiao/tags/docker/" style="font-size: 18px;">docker</a> <a href="/xiaoxiao/tags/git/" style="font-size: 14px;">git</a> <a href="/xiaoxiao/tags/google/" style="font-size: 10px;">google</a> <a href="/xiaoxiao/tags/harbor/" style="font-size: 10px;">harbor</a> <a href="/xiaoxiao/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/xiaoxiao/tags/hosts/" style="font-size: 10px;">hosts</a> <a href="/xiaoxiao/tags/idea/" style="font-size: 10px;">idea</a> <a href="/xiaoxiao/tags/jasypt/" style="font-size: 10px;">jasypt</a> <a href="/xiaoxiao/tags/jbpm/" style="font-size: 10px;">jbpm</a> <a href="/xiaoxiao/tags/kettle/" style="font-size: 10px;">kettle</a> <a href="/xiaoxiao/tags/life/" style="font-size: 20px;">life</a> <a href="/xiaoxiao/tags/linux/" style="font-size: 10px;">linux</a> <a href="/xiaoxiao/tags/mac/" style="font-size: 12px;">mac</a> <a href="/xiaoxiao/tags/mail/" style="font-size: 10px;">mail</a> <a href="/xiaoxiao/tags/maven/" style="font-size: 10px;">maven</a> <a href="/xiaoxiao/tags/music/" style="font-size: 10px;">music</a> <a href="/xiaoxiao/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/xiaoxiao/tags/nginx/" style="font-size: 12px;">nginx</a> <a href="/xiaoxiao/tags/schema/" style="font-size: 10px;">schema</a> <a href="/xiaoxiao/tags/server/" style="font-size: 16px;">server</a> <a href="/xiaoxiao/tags/sftp/" style="font-size: 10px;">sftp</a> <a href="/xiaoxiao/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/xiaoxiao/tags/svn/" style="font-size: 14px;">svn</a> <a href="/xiaoxiao/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/xiaoxiao/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/xiaoxiao/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/xiaoxiao/tags/%E5%B0%8F%E7%AA%8D%E9%97%A8/" style="font-size: 10px;">小窍门</a> <a href="/xiaoxiao/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/09/">九月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2013/01/">一月 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/">防止域名被恶意解析</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/09/21/use-systemd-manage-application/">为应用创建守护进程</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/07/14/jasypt-spring-boot/">jasypt spring boot</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/">发送 crontab 定时任务执行结果到指定邮箱</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/05/25/migrate-mysql-data-directory/">迁移 mysql 数据目录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Ethan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/xiaoxiao/" class="mobile-nav-link">Home</a>
+  
+    <a href="/xiaoxiao/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/xiaoxiao/fancybox/jquery.fancybox.css">
+
+  
+<script src="/xiaoxiao/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/xiaoxiao/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>xiaoxiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="生活随笔和工作随笔">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xiaoxiao">
+<meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/index.html">
+<meta property="og:site_name" content="xiaoxiao">
+<meta property="og:description" content="生活随笔和工作随笔">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Ethan">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="xiaoxiao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/xiaoxiao/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/xiaoxiao/" id="logo">xiaoxiao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/xiaoxiao/">Home</a>
+        
+          <a class="main-nav-link" href="/xiaoxiao/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ghlingjun.github.io/xiaoxiao"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-prevent-domain-names-from-being-maliciously-resolved" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/" class="article-date">
+  <time datetime="2024-02-23T10:17:51.000Z" itemprop="datePublished">2024-02-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/">防止域名被恶意解析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="恶意域名解析的原理"><a href="#恶意域名解析的原理" class="headerlink" title="恶意域名解析的原理"></a>恶意域名解析的原理</h1><p>假如公网 IP 暴露，那么别人可以随意用一个域名解析到公网 IP，如果解析的域名未备案，那会有安全风险。那如何防止呢？下面是 Nignx 的解决办法：</p>
+<p>如果 ip 对应的80（或者443）端口在 nginx 里没有指定默认资源，默认会以 conf.d 目录下的顺序第一的配置文件指向的资源为准，也就是用 80 或者 443 各排第一个的配置文件为默认资源。这时候如果用一个不相关的域名解析到 IP上，就会阴差阳错的关联到 conf.d 目录下 80 或者 443 各排第一位的配置文件对应的资源上。</p>
+<p>防解析的解决方法也很简单，就是指定 80 和 443 端口的默认资源，让他们只返回 403 报错，默认资源没法显示有效内容，域名就没法解析成功。</p>
+<h1 id="80-端口反代配置"><a href="#80-端口反代配置" class="headerlink" title="80 端口反代配置"></a>80 端口反代配置</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span> default;</span><br><span class="line">    <span class="attribute">server_name</span>  _;</span><br><span class="line">    <span class="attribute">return</span> <span class="number">403</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="443-端口反代配置"><a href="#443-端口反代配置" class="headerlink" title="443 端口反代配置"></a>443 端口反代配置</h1><p>443 端口防范配置则需要配置 ssl 证书，否则所有 https 请求都会失败，下面是颁发自签名证书和配置过程。</p>
+<h2 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">首先，进入你想创建证书和私钥的目录，例如：</span></span><br><span class="line">cd /home/certs/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建服务器私钥，命令会让你输入一个口令：</span></span><br><span class="line">openssl genrsa -des3 -out server.key 2048</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建签名请求的证书，最后两步密码留空（CSR）：</span></span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在加载 SSL 支持的 Nginx 并使用上述私钥时除去必须的口令：</span></span><br><span class="line">cp server.key server.key.org</span><br><span class="line">openssl rsa -in server.key.org -out server.key</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">最后标记证书使用上述私钥和 CSR：</span></span><br><span class="line">openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h2><p>在 nginx 目录下的 conf 目录内创建 403.conf：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 防止域名被恶意解析</span></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span> default;</span><br><span class="line">    <span class="attribute">server_name</span>  <span class="number">403</span>.abc.com;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">return</span> <span class="number">403</span>;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> ~/.well-known/acme-challenge/ &#123;</span><br><span class="line">        <span class="attribute">root</span> /usr/share/nginx/html/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">443</span> ssl default;</span><br><span class="line">    <span class="attribute">server_name</span>  <span class="number">403</span>.abc.com;</span><br><span class="line">    <span class="attribute">ssl_certificate</span>      /etc/nginx/cert/server.crt;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span>  /etc/nginx/cert/server.key;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    <span class="comment">#表示使用的加密套件的类型。</span></span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>; <span class="comment">#表示使用的TLS协议的类型。</span></span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">return</span> <span class="number">403</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重启nginx，未报错，说明配置成功。</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://ip/">http://ip</a> 返回 403，说明 80 端口的防解析配置成功！</p>
+<p>访问 <a target="_blank" rel="noopener" href="https://ip/">https://ip</a> 返回 403，说明 443 端口的防解析配置成功！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/" data-id="clsyi47ph006uook8ded11dtd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/dns/" rel="tag">dns</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/nginx/" rel="tag">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-use-systemd-manage-application" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2023/09/21/use-systemd-manage-application/" class="article-date">
+  <time datetime="2023-09-21T14:34:53.000Z" itemprop="datePublished">2023-09-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/xiaoxiao/2023/09/21/use-systemd-manage-application/">为应用创建守护进程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=moon data center service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
+</blockquote>
+<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
+<blockquote>
+<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2023/09/21/use-systemd-manage-application/" data-id="clsyi47p4004rook85ds6dao8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/systemd/" rel="tag">systemd</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jasypt-spring-boot" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2023/07/14/jasypt-spring-boot/" class="article-date">
+  <time datetime="2023-07-14T10:34:53.000Z" itemprop="datePublished">2023-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/xiaoxiao/2023/07/14/jasypt-spring-boot/">jasypt spring boot</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文介绍如何将 jasypt 集成进 spring boot 项目中，用于解决用户、密码等敏感信息在代码中明文存储的问题。</p>
+<h1 id="什么是-jasypt-spring-boot"><a href="#什么是-jasypt-spring-boot" class="headerlink" title="什么是 jasypt spring boot"></a>什么是 jasypt spring boot</h1><p><strong><a target="_blank" rel="noopener" href="http://www.jasypt.org/">Jasypt</a></strong>  is a java library which allows the developer to add basic encryption capabilities to his&#x2F;her projects with minimum effort, and without the need of having deep knowledge on how cryptography works.</p>
+<p>Jasypt 的特点请参看：<a target="_blank" rel="noopener" href="http://www.jasypt.org/features.html">http://www.jasypt.org/features.html</a></p>
+<h1 id="集成方法"><a href="#集成方法" class="headerlink" title="集成方法"></a>集成方法</h1><p><strong><a target="_blank" rel="noopener" href="https://github.com/ulisesbocchio/jasypt-spring-boot">开源项目文档</a></strong> 中介绍了三种集成方式，本文仅详细介绍第一种详细集成方式（本文只做参考，应以开源项目文档未准）。</p>
+<h2 id="三种集成方式"><a href="#三种集成方式" class="headerlink" title="三种集成方式"></a>三种集成方式</h2><h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><p>如果项目使用<code>@SpringBootApplication</code> 或者 <code>@EnableAutoConfiguration</code>，直接添加 jar 依赖即可。加密的配置项会在整个 Spring 项目中生效（This means any system property, environment property, command line argument, application.properties, application-*.properties, yaml properties, and any other property sources can contain encrypted properties）。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.ulisesbocchio<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jasypt-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><p>如何项目中不使用自动配置注解 <code>@SpringBootApplication</code> 或<code>@EnableAutoConfiguration</code> ，那么添加如下依赖到项目中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.ulisesbocchio<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jasypt-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再添加 <code>@EnableEncryptableProperties</code> 到你的 Configuration class. 示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableEncryptableProperties</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyApplication</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样加密配置项就会在整个 Spring 项目中生效（This means any system property, environment property, command line argument, application.properties, yaml properties, and any other custom property sources can contain encrypted properties）。</p>
+<h3 id="第三种"><a href="#第三种" class="headerlink" title="第三种"></a>第三种</h3><p>如果项目中不使用自动装配注解 <code>@SpringBootApplication</code> or <code>@EnableAutoConfiguration</code> ，并且你也不想在整个 Spring 项目中启用加密配置，有第三种配置方式可以满足。首先添加下面依赖到项目中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.ulisesbocchio<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jasypt-spring-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在你的配置文件中根据需要添加注解<code>@EncryptablePropertySource</code>，就像添加 Spring 的注解<code>@PropertySource</code>一样，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EncryptablePropertySource(name = &quot;EncryptedProperties&quot;, value = &quot;classpath:encrypted.properties&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyApplication</span> &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还有一个注解<code>@EncryptablePropertySources</code>，用于添加一组<code>@EncryptablePropertySource</code>注解，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EncryptablePropertySources(&#123;@EncryptablePropertySource(&quot;classpath:encrypted.properties&quot;),</span></span><br><span class="line"><span class="meta">                             @EncryptablePropertySource(&quot;classpath:encrypted2.properties&quot;)&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyApplication</span> &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Also, note that as of version 1.8, <code>@EncryptablePropertySource</code> supports YAML files.</p>
+<h2 id="集成详细步骤"><a href="#集成详细步骤" class="headerlink" title="集成详细步骤"></a>集成详细步骤</h2><h3 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h3><p>第一步添加依赖略，参看上面<strong>三种集成方式</strong>的第一种。</p>
+<h3 id="2-添加加密配置项"><a href="#2-添加加密配置项" class="headerlink" title="2. 添加加密配置项"></a>2. 添加加密配置项</h3><p>在 application.yml 配置文件中添加如下配置项：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jasypt:</span></span><br><span class="line">  <span class="attr">encryptor:</span></span><br><span class="line">    <span class="attr">algorithm:</span> <span class="string">PBEWITHHMACSHA512ANDAES_256</span></span><br><span class="line">    <span class="attr">saltGeneratorClassName:</span> <span class="string">org.jasypt.salt.RandomSaltGenerator</span></span><br><span class="line">    <span class="attr">ivGeneratorClassName:</span> <span class="string">org.jasypt.iv.RandomIvGenerator</span></span><br><span class="line">    <span class="attr">property:</span></span><br><span class="line">      <span class="attr">prefix:</span> <span class="string">&quot;DC@[&quot;</span></span><br><span class="line">      <span class="attr">suffix:</span> <span class="string">&quot;]&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>配置中的 prefix 和 suffix 是<strong>自定义</strong>的密码串标识。其中还有一个必须的参数<code>jasypt.encryptor.password</code>，用于加密。但为了安全需要通过命令行方式传入，不能放入配置文件中（<del>测试环境为了方便可以临时使用，但不能提交到代码仓库</del>）。启动命令示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">java</span> <span class="string">-Djasypt.encryptor.password=自己的加密秘钥</span> <span class="string">-jar</span> <span class="string">xx.jar</span></span><br></pre></td></tr></table></figure>
+
+<p>其中<code>自己的加密秘钥</code>是自定义密码字符串，推荐 32 为 md5 码。<strong>测试环境和生产环境不要用同一个秘钥</strong>。</p>
+<p>如果使用 idea ，运行程序前需要在 Run&#x2F;Debug configuration 中的 VM option 中加入下面参数：</p>
+<p><code>-Djasypt.encryptor.password=测试环境秘钥</code></p>
+<h3 id="3-敏感信息加密"><a href="#3-敏感信息加密" class="headerlink" title="3. 敏感信息加密"></a>3. 敏感信息加密</h3><p>编写加密测试类如下：（**&#x3D;&#x3D;加密方法推荐使用附 1 中的脚本&#x3D;&#x3D;**）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.ahshumei.common.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.ahshumei.BaseTest;</span><br><span class="line"><span class="keyword">import</span> org.jasypt.encryption.StringEncryptor;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对称加密算法测试类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ethan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@datetime</span> 2023/7/14 14:01</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringEncryptorTest</span> <span class="keyword">extends</span> <span class="title class_">BaseTest</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(getClass());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    StringEncryptor stringEncryptor;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对称加密测试方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span> ethan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@datetime</span> 2023/7/14 13:57</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">encryptTest</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">usernameEnc</span> <span class="operator">=</span> stringEncryptor.encrypt(<span class="string">&quot;empower&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">passwordEnc</span> <span class="operator">=</span> stringEncryptor.encrypt(<span class="string">&quot;teststr&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(usernameEnc);</span><br><span class="line">        System.out.println(passwordEnc);</span><br><span class="line">        logger.info(<span class="string">&quot;test username encrypt is &#123;&#125;ª&quot;</span>, usernameEnc);</span><br><span class="line">        logger.info(<span class="string">&quot;test password encrypt is &#123;&#125;&quot;</span>, passwordEnc);</span><br><span class="line"></span><br><span class="line">        logger.info(<span class="string">&quot;test username is &#123;&#125;&quot;</span>, stringEncryptor.decrypt(usernameEnc));</span><br><span class="line">        logger.info(<span class="string">&quot;test password is &#123;&#125;&quot;</span>, stringEncryptor.decrypt(passwordEnc));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-配置加密项"><a href="#4-配置加密项" class="headerlink" title="4. 配置加密项"></a>4. 配置加密项</h3><p>将需要加密的配置项明文通过上一步测试方式进行加密，然后将加密后密文配置进配置文件中，示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line">    <span class="attr">driverClassName:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">druid:</span></span><br><span class="line">      <span class="comment"># 主库数据源</span></span><br><span class="line">      <span class="attr">master:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://10.10.1.7:3306/moon</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">DC@[4Y2s7d6D8rVQ3NAS/oWT+08QZT3dLcqN95i8YDtujnY6eFYshKGHDdniy7R5vyymª]</span></span><br><span class="line">        <span class="attr">password:</span> <span class="string">DC@[xImPkGcaY6qMK3vctVxkpKRg1KgxEG4hhMlgSQwiJhdueooHFGSUEccZFezeD2ig]</span></span><br></pre></td></tr></table></figure>
+
+<p><code>DC@[]</code>占位符是上面配置文件中自定义配置的。</p>
+<p>读取配置项测试类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.ahshumei.common.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.ahshumei.BaseTest;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对称加密算法测试类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ethan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@datetime</span> 2023/7/14 14:01</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringEncryptorTest</span> <span class="keyword">extends</span> <span class="title class_">BaseTest</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(getClass());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;spring.datasource.druid.master.username&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;spring.datasource.druid.master.password&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试读取加密配置项方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@author</span> ethan</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@datetime</span> 2023/7/14 18:13</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">decodeTest</span><span class="params">()</span> &#123;</span><br><span class="line">        logger.info(username);</span><br><span class="line">        logger.info(password);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>jasypt 开源库为 Spring 项目提供了一种加解密能力来保护项目中的敏感信息，通过以上 4 步简单的配置即可使用，我们不需要去了解复杂加解密机制即可使用。并且 jasypt 不仅能集成到 Spring 中，还能集成到 Apache、Hibernate、SpringSecurity 等框架中。</p>
+<h1 id="附-1：其他加密字符串生成方法"><a href="#附-1：其他加密字符串生成方法" class="headerlink" title="附 1：其他加密字符串生成方法"></a>附 1：其他加密字符串生成方法</h1><p>除了上面通过测试方法生成加密字符串外，还有以下两种更方便的方式：</p>
+<h2 id="1-Java-命令行"><a href="#1-Java-命令行" class="headerlink" title="1 Java 命令行"></a>1 Java 命令行</h2><p>Jasypt提供了一个类专门用于加密解密，提供了main方法，调用如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp ./jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI password=自己的加密秘钥 algorithm=PBEWithMD5AndTripleDES input=要加密的字符串</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-脚本"><a href="#2-脚本" class="headerlink" title="2 脚本"></a>2 脚本</h2><p>Jasypt为我们提供了脚本，可以直接用于加密解密，从 <a target="_blank" rel="noopener" href="http://www.jasypt.org/download.html">http://www.jasypt.org/download.html</a> 可以下载（会引导到 github 项目中下载）。下载（jasypt-1.9.3-dist.zip）解压后的文件中有一个 bin 目录，其中有加密、解密的脚本。</p>
+<p>脚本的使用方法与 java 命令一样，脚本本质上是封装了调用 java 类的工具。使用方法如下（参数含义参看<a target="_blank" rel="noopener" href="http://www.jasypt.org/cli.html">官网文档</a>）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh encrypt.sh password=自己的加密秘钥 algorithm=PBEWITHHMACSHA512ANDAES_256 saltGeneratorClassName=org.jasypt.salt.RandomSaltGenerator ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator input=要加密的字符串</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2023/07/14/jasypt-spring-boot/" data-id="clsyi47p3004look84mi33dbd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/jasypt/" rel="tag">jasypt</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-send-result-of-crontab-to-mail" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/" class="article-date">
+  <time datetime="2023-05-27T12:32:14.000Z" itemprop="datePublished">2023-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/">发送 crontab 定时任务执行结果到指定邮箱</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下：</p>
+<h1 id="1-安装配置环境"><a href="#1-安装配置环境" class="headerlink" title="1 安装配置环境"></a>1 安装配置环境</h1><h2 id="1-1-安装-mailutils"><a href="#1-1-安装-mailutils" class="headerlink" title="1.1 安装 mailutils"></a>1.1 安装 mailutils</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash </span><br><span class="line">sudo apt install mailutils</span><br></pre></td></tr></table></figure>
+
+<p>配置过程需要选择配置类型，选择 <code>No configuration</code>。</p>
+<p>安装日志中有 postfix 的配置说明：</p>
+<blockquote>
+<p>Postfix was not set up.  Start with<br>  cp &#x2F;usr&#x2F;share&#x2F;postfix&#x2F;main.cf.debian &#x2F;etc&#x2F;postfix&#x2F;main.cf<br>.  If you need to make changes, edit<br>&#x2F;etc&#x2F;postfix&#x2F;main.cf (and others) as needed.  To view Postfix configuration<br>values, see postconf(1).</p>
+</blockquote>
+<blockquote>
+<p>After modifying main.cf, be sure to run ‘&#x2F;etc&#x2F;init.d&#x2F;postfix reload’.</p>
+</blockquote>
+<p>mailutils 提供用于 crontab 发送邮件的环境。安装好后需要配置两个文件：<code>/etc/ssmtp/ssmtp.conf /etc/ssmtp/revaliases</code></p>
+<h2 id="1-2-修改配置"><a href="#1-2-修改配置" class="headerlink" title="1.2 修改配置"></a>1.2 修改配置</h2><h3 id="修改-ssmtp-配置文件"><a href="#修改-ssmtp-配置文件" class="headerlink" title="修改 ssmtp 配置文件"></a>修改 ssmtp 配置文件</h3><p>设置发送邮箱、SMTP服务器和端口等：</p>
+<p><code>vi /etc/ssmtp/ssmtp.conf</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Config file <span class="keyword">for</span> sSMTP sendmail</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># The person who gets all mail for userids &lt; 1000</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Make this empty to <span class="built_in">disable</span> rewriting.</span></span><br><span class="line">root=your_email@163.com</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">The place <span class="built_in">where</span> the mail goes. The actual machine name is required no</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">MX records are consulted. Commonly mailhosts are named mail.domain.com</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">mailhub=smtp.aliyun.com:465</span></span><br><span class="line">mailhub=smtp.163.com:465</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">The full hostname</span></span><br><span class="line">hostname=ubuntu</span><br><span class="line">UseTLS=Yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Are <span class="built_in">users</span> allowed to <span class="built_in">set</span> their own From: address?</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">YES - Allow the user to specify their own From: address</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">NO - Use the system generated From: address</span></span><br><span class="line">FromLineOverride=NO</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">邮箱名</span></span><br><span class="line">AuthUser=your_email@163.com</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">授权码</span></span><br><span class="line">AuthPass=authpassasdfasdf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其中授权码 AuthPass 需要登录邮箱客户端获取。</p>
+<h3 id="修改配置文件-revaliases"><a href="#修改配置文件-revaliases" class="headerlink" title="修改配置文件 revaliases"></a>修改配置文件 revaliases</h3><p><code>vi /etc/ssmtp/revaliases</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sSMTP aliases</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Format:       local_account:outgoing_address:mailhub</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Example: root:your_login@your.domain:mailhub.your.domain[:port]</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">where</span> [:port] is an optional port number that defaults to 25.</span></span><br><span class="line">shumei:your_email@163.com:smtp.163.com:465</span><br></pre></td></tr></table></figure>
+
+<p>至此邮件发送的环境已搭建完成。下面是编写脚本测试发送邮件。</p>
+<h1 id="2-测试邮件发送"><a href="#2-测试邮件发送" class="headerlink" title="2 测试邮件发送"></a>2 测试邮件发送</h1><h2 id="2-1-编写任务脚本"><a href="#2-1-编写任务脚本" class="headerlink" title="2.1 编写任务脚本"></a>2.1 编写任务脚本</h2><p>在脚本中判断任务是否执行成功，如果失败则发送邮件。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">bash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行任务</span></span><br><span class="line">some_command</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">判断任务执行结果</span></span><br><span class="line">if [ $? -ne 0 ]; then</span><br><span class="line">    # 发送邮件,邮件内容为任务输出</span><br><span class="line">    echo &quot;Subject: Task Failed&quot; | mail -s &quot;Task Failed&quot; $MAIL </span><br><span class="line">fi </span><br></pre></td></tr></table></figure>
+
+<p>- <code>some_command</code> 替换为要执行的命令<br>- <code>$?</code> 用于获取上一条命令的返回值,如果不等于 0 表示失败<br>- <code>mail</code> 命令用于发送邮件<br>- <code>-s</code> 指定邮件主题<br>- <code>$MAIL</code> 为预先配置的接收邮箱环境变量</p>
+<p>完成后为任务脚本添加可执行权限:<code>chmod +x script.sh</code></p>
+<h2 id="2-2-添加定时任务"><a href="#2-2-添加定时任务" class="headerlink" title="2.2 添加定时任务"></a>2.2 添加定时任务</h2><p>在 crontab 文件中添加定时任务，例如:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/5 * * * * /path/to/script.sh   # 每5分钟执行一次</span><br></pre></td></tr></table></figure>
+
+<p>当定时任务执行失败时，会发送一封邮件通知到您指定的邮箱，实现了只在任务失败时发送邮件的效果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/" data-id="clsyi47p3004oook87c9ehr15" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/crontab/" rel="tag">crontab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/mail/" rel="tag">mail</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-migrate-mysql-data-directory" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2023/05/25/migrate-mysql-data-directory/" class="article-date">
+  <time datetime="2023-05-25T00:59:25.000Z" itemprop="datePublished">2023-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/xiaoxiao/2023/05/25/migrate-mysql-data-directory/">迁移 mysql 数据目录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 CentOS 中迁移 MySQL 的数据目录 &#x2F;var&#x2F;lib&#x2F;mysql 到其他磁盘可以按以下步骤进行:</p>
+<ol>
+<li>停止MySQL服务</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysqld stop</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>新建目标数据目录，假设新的数据目录为 &#x2F;home&#x2F;mysql&#x2F;data，创建该目录：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /home/mysql/data</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>将原数据目录中的内容复制到新目录</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -r /var/lib/mysql /home/mysql/data</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>修改新数据目录权限</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R mysql:mysql /home/mysql/data/mysql</span><br><span class="line">sudo chmod -R 755 /home/mysql/data/mysql</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改 MySQL 配置编辑MySQL配置文件 &#x2F;etc&#x2F;my.cnf，在 [mysqld] 部分添加：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">log-bin = /home/mysql/data/mysql/hfgc-5-bin</span><br><span class="line">log_bin_index = /home/mysql/data/mysql/hfgc-5-bin.index</span><br><span class="line">datadir=/home/mysql/data/mysql</span><br><span class="line">socket=/home/mysql/data/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
+
+<p>将 datadir、log-bin 等相关项的值修改为新的数据目录路径。</p>
+<ol start="6">
+<li>重新启动MySQL服务</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysqld start</span><br></pre></td></tr></table></figure>
+
+<p> MySQL会自动使用新的 datadir 路径启动。</p>
+<ol start="7">
+<li>检查 MySQL 是否正常运行进入 MySQL 命令行,检查数据库、表等是否正常：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line">use test; </span><br><span class="line"><span class="keyword">show</span> tables;</span><br></pre></td></tr></table></figure>
+
+<p>确认无异常后说明迁移成功。</p>
+<ol start="8">
+<li>删除原数据目录（可选）确认迁移成功后可以删除原数据目录 &#x2F;var&#x2F;lib&#x2F;mysql。</li>
+</ol>
+<p>以上步骤通过修改配置、复制数据并修改权限的方式完成 MySQL 数据目录的迁移。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2023/05/25/migrate-mysql-data-directory/" data-id="clsyi47p2004iook84ltycnyg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-kettle-experiences" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2023/05/23/kettle-experiences/" class="article-date">
+  <time datetime="2023-05-23T03:56:35.000Z" itemprop="datePublished">2023-05-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/xiaoxiao/2023/05/23/kettle-experiences/">kettle experiences</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol>
+<li>解压 pdi-ce 压缩包</li>
+<li>放入 mysql 驱动至 lib 文件夹下</li>
+<li>配置环境变量 .profile</li>
+</ol>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export KETTLE=/home/shumei/soft/data-integration</span><br><span class="line">export PATH=$&#123;KETTLE&#125;:$PATH</span><br></pre></td></tr></table></figure>
+
+<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ul>
+<li>日期转换</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">date_format(a.start_date, <span class="string">&#x27;%Y/%m/%d 00:00:00.000&#x27;</span>) <span class="keyword">as</span> start_date</span><br><span class="line">date_format(create_time, <span class="string">&#x27;%Y/%m/%d %T.%f&#x27;</span>) <span class="keyword">as</span> data_create_time</span><br><span class="line">date_format(a.payedDate, <span class="string">&#x27;%Y/%m&#x27;</span>) <span class="keyword">as</span> payedDate</span><br><span class="line">date_format(DATE_ADD(now(), <span class="type">INTERVAL</span> <span class="number">-1</span> <span class="keyword">MONTH</span>), <span class="string">&#x27;%Y%m&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>日期计算</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a.update_time <span class="operator">&gt;=</span> DATE_ADD(now(), <span class="type">INTERVAL</span> <span class="number">-15</span> <span class="keyword">MINUTE</span>)</span><br><span class="line">a.update_time <span class="operator">&gt;=</span> DATE_ADD(now(), <span class="type">INTERVAL</span> <span class="number">-3</span> <span class="keyword">DAY</span>)</span><br><span class="line">a.update_time <span class="operator">&gt;=</span> DATE_ADD(now(), <span class="type">INTERVAL</span> <span class="number">-1</span> <span class="keyword">MONTH</span>)</span><br><span class="line">a.update_time <span class="operator">&gt;=</span> DATE_ADD(now(), <span class="type">INTERVAL</span> <span class="number">-1</span> <span class="keyword">YEAR</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>类型转换</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 把字段 id 的类型转换为字符串 <span class="type">char</span></span><br><span class="line"><span class="built_in">CAST</span>(id <span class="keyword">as</span> <span class="type">CHAR</span>) <span class="keyword">AS</span> CODE</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="设定变量"><a href="#设定变量" class="headerlink" title="设定变量"></a>设定变量</h2><p>转换命名参数就是在转换内部定义的变量，作用范围是在转换内部。在转换的空白处双击左键，在转换属性中能看到“命名参数”。</p>
+<p>引用：可以在表输入SQL语句中使用${变量名} 或者 %%变量名%%</p>
+<h1 id="作业执行"><a href="#作业执行" class="headerlink" title="作业执行"></a>作业执行</h1><ul>
+<li>执行转换</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pan.sh -file tr1.ktr</span><br><span class="line">pan.sh -file tr1.ktr -param:year=2023 -param:month=5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行作业</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kitchen.sh -file jobname1.kjb</span><br><span class="line">kitchen.sh -file jobname2.kjb -param:input=/kettle -param:output=/kettle</span><br></pre></td></tr></table></figure>
+
+<h1 id="定时任务脚本"><a href="#定时任务脚本" class="headerlink" title="定时任务脚本"></a>定时任务脚本</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">环境变量</span></span><br><span class="line">JAVA_HOME=/home/shumei/soft/jdk1.8.0_171</span><br><span class="line">KETTLE_HOME=&quot;/home/shumei/soft/data-integration&quot;</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin::$PATH</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">公共变量</span></span><br><span class="line">DATE_STR=`date +%Y%m%d`;</span><br><span class="line">BASE_DIR=&#x27;/home/shumei/kettle&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">局部变量</span></span><br><span class="line">v_script_dir=&#x27;/kettle/1015dca/pro&#x27;</span><br><span class="line">v_shell_name=dca1m</span><br><span class="line">v_result=&quot;执行成功&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">脚本名称</span></span><br><span class="line">JOB01_NAME=tr1.ktr</span><br><span class="line">JOB02_NAME=tr2.ktr</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">X 企业名录入库</span></span><br><span class="line">v_date_str=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">&#123;KETTLE_HOME&#125;/pan.sh -file <span class="variable">$&#123;BASE_DIR&#125;</span><span class="variable">$&#123;v_script_dir&#125;</span>/<span class="variable">$&#123;v_job01_name&#125;</span> -level=Basic &gt;&gt; <span class="variable">$&#123;BASE_DIR&#125;</span>/logs/<span class="variable">$&#123;v_shell_name&#125;</span>.<span class="variable">$&#123;DATE_STR&#125;</span></span></span><br><span class="line">pan_return=$?</span><br><span class="line">if [ $pan_return -eq 0 ]; then</span><br><span class="line">    v_result=&quot;执行成功&quot;</span><br><span class="line">elif [ $pan_return -eq 1 ]; then</span><br><span class="line">    v_result=&quot;执行失败&quot;</span><br><span class="line">else</span><br><span class="line">    v_result=&quot;执行取消&quot;</span><br><span class="line">fi</span><br><span class="line">echo $v_result</span><br><span class="line">if [ $pan_return -ne 0 ]; then</span><br><span class="line">    echo &quot;Task X 企业名录入库-$v_result $&#123;v_date_str&#125;&quot; | mail -s &quot;Subject: Task Failed&quot; ethan@ahshumei.com</span><br><span class="line">fi</span><br><span class="line">echo $&#123;v_date_str&#125;-X 企业名录入库 start</span><br><span class="line">echo -e $(date +&quot;%Y-%m-%d %H:%M:%S&quot;)-X 企业名录入库 end\n</span><br><span class="line"></span><br><span class="line">sleep 2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2023/05/23/kettle-experiences/" data-id="clsyi47p1004fook88pmh2081" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/kettle/" rel="tag">kettle</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cloud-server-init-cucloud" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2022/07/14/cloud-server-init-cucloud/" class="article-date">
+  <time datetime="2022-07-14T05:43:55.000Z" itemprop="datePublished">2022-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/xiaoxiao/2022/07/14/cloud-server-init-cucloud/">联通云服务器初始化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
+<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
+<p>查看挂载结果<br>df -TH</p>
+<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
+<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
+<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 查看用户组是否存在</span><br><span class="line">grep shumei /etc/group</span><br><span class="line"># 添加用户组 shumei</span><br><span class="line">groupadd shumei</span><br><span class="line"></span><br><span class="line"># 查看用户 shumei 是否存在</span><br><span class="line">grep shumei /etc/passwd</span><br><span class="line"># 添加用户</span><br><span class="line">useradd -g shumei -d /home/shumei -m shumei</span><br><span class="line"># 查看 shumei 信息</span><br><span class="line">id shumei</span><br><span class="line"># 设置用户密码</span><br><span class="line">passwd shumei</span><br><span class="line"></span><br><span class="line"># 赋给用户 sudo 权限：http://man.linuxde.net/sudo</span><br><span class="line">vi /etc/sudoers</span><br><span class="line"># 仿照现有root的例子就行，加一行（最好用tab作为空白）</span><br><span class="line">shumei  ALL=(ALL:ALL)   ALL</span><br></pre></td></tr></table></figure>
+
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo $SHELL 可查看当前使用的 shell</span><br><span class="line">usermod -s /bin/bash shumei</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path</span><br><span class="line"></span><br><span class="line">vi .profile</span><br><span class="line">export JAVA_HOME=/home/shumei/software/jdk1.8.0_25</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br><span class="line"></span><br><span class="line"># 使配置生效</span><br><span class="line">source .profile</span><br><span class="line"></span><br><span class="line"># 检查配置是否成功</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[参考]<a target="_blank" rel="noopener" href="https://www.yuque.com/ethan09/cnlf1x/tvef26">https://www.yuque.com/ethan09/cnlf1x/tvef26</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/keys/nginx_signing.key</span><br><span class="line">sudo apt-key add nginx_signing.key</span><br><span class="line"></span><br><span class="line">sudo vi /etc/apt/sources.list.d/nginx.list</span><br><span class="line"># 添加如下内容</span><br><span class="line">deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx</span><br><span class="line">deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 安装</span><br><span class="line">sudo apt install redis-server</span><br><span class="line"></span><br><span class="line">查看是否启动</span><br><span class="line"># redis-cli</span><br><span class="line">以上命令将打开以下终端：</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2022/07/14/cloud-server-init-cucloud/" data-id="clsyi47p1004book8ejupaz8o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/server/" rel="tag">server</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/xiaoxiao/page/2/">2</a><a class="page-number" href="/xiaoxiao/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/xiaoxiao/page/8/">8</a><a class="extend next" rel="next" href="/xiaoxiao/page/2/">__(&#39;next&#39;) &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/tech/">tech</a></li><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/%E7%94%9F%E6%B4%BB/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/brew/" rel="tag">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/codemother/" rel="tag">codemother</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/dns/" rel="tag">dns</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/google/" rel="tag">google</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/harbor/" rel="tag">harbor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/hosts/" rel="tag">hosts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/idea/" rel="tag">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/jasypt/" rel="tag">jasypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/jbpm/" rel="tag">jbpm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/kettle/" rel="tag">kettle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mail/" rel="tag">mail</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/music/" rel="tag">music</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/schema/" rel="tag">schema</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/server/" rel="tag">server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/sftp/" rel="tag">sftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/systemd/" rel="tag">systemd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/tomcat/" rel="tag">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/%E5%B0%8F%E7%AA%8D%E9%97%A8/" rel="tag">小窍门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/xiaoxiao/tags/OS/" style="font-size: 10px;">OS</a> <a href="/xiaoxiao/tags/blog/" style="font-size: 10px;">blog</a> <a href="/xiaoxiao/tags/brew/" style="font-size: 10px;">brew</a> <a href="/xiaoxiao/tags/codemother/" style="font-size: 10px;">codemother</a> <a href="/xiaoxiao/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/xiaoxiao/tags/dns/" style="font-size: 10px;">dns</a> <a href="/xiaoxiao/tags/docker/" style="font-size: 18px;">docker</a> <a href="/xiaoxiao/tags/git/" style="font-size: 14px;">git</a> <a href="/xiaoxiao/tags/google/" style="font-size: 10px;">google</a> <a href="/xiaoxiao/tags/harbor/" style="font-size: 10px;">harbor</a> <a href="/xiaoxiao/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/xiaoxiao/tags/hosts/" style="font-size: 10px;">hosts</a> <a href="/xiaoxiao/tags/idea/" style="font-size: 10px;">idea</a> <a href="/xiaoxiao/tags/jasypt/" style="font-size: 10px;">jasypt</a> <a href="/xiaoxiao/tags/jbpm/" style="font-size: 10px;">jbpm</a> <a href="/xiaoxiao/tags/kettle/" style="font-size: 10px;">kettle</a> <a href="/xiaoxiao/tags/life/" style="font-size: 20px;">life</a> <a href="/xiaoxiao/tags/linux/" style="font-size: 10px;">linux</a> <a href="/xiaoxiao/tags/mac/" style="font-size: 12px;">mac</a> <a href="/xiaoxiao/tags/mail/" style="font-size: 10px;">mail</a> <a href="/xiaoxiao/tags/maven/" style="font-size: 10px;">maven</a> <a href="/xiaoxiao/tags/music/" style="font-size: 10px;">music</a> <a href="/xiaoxiao/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/xiaoxiao/tags/nginx/" style="font-size: 12px;">nginx</a> <a href="/xiaoxiao/tags/schema/" style="font-size: 10px;">schema</a> <a href="/xiaoxiao/tags/server/" style="font-size: 16px;">server</a> <a href="/xiaoxiao/tags/sftp/" style="font-size: 10px;">sftp</a> <a href="/xiaoxiao/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/xiaoxiao/tags/svn/" style="font-size: 14px;">svn</a> <a href="/xiaoxiao/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/xiaoxiao/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/xiaoxiao/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/xiaoxiao/tags/%E5%B0%8F%E7%AA%8D%E9%97%A8/" style="font-size: 10px;">小窍门</a> <a href="/xiaoxiao/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/09/">九月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2013/01/">一月 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/">防止域名被恶意解析</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/09/21/use-systemd-manage-application/">为应用创建守护进程</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/07/14/jasypt-spring-boot/">jasypt spring boot</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/">发送 crontab 定时任务执行结果到指定邮箱</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/05/25/migrate-mysql-data-directory/">迁移 mysql 数据目录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Ethan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/xiaoxiao/" class="mobile-nav-link">Home</a>
+  
+    <a href="/xiaoxiao/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/xiaoxiao/fancybox/jquery.fancybox.css">
+
+  
+<script src="/xiaoxiao/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/xiaoxiao/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>联通云服务器初始化 | xiaoxiao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="挂载并格式化磁盘查看磁盘fdisk -l 格式化磁盘sudo mkfs.ext4 &#x2F;dev&#x2F;vdbmount &#x2F;dev&#x2F;vdb &#x2F;home 查看挂载结果df -TH 修改 root 密码id # 查看用户信息passwd # 修改用户密码 修改 ssh 默认端口sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config修">
+<meta property="og:type" content="article">
+<meta property="og:title" content="联通云服务器初始化">
+<meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/2022/07/14/cloud-server-init-cucloud/index.html">
+<meta property="og:site_name" content="xiaoxiao">
+<meta property="og:description" content="挂载并格式化磁盘查看磁盘fdisk -l 格式化磁盘sudo mkfs.ext4 &#x2F;dev&#x2F;vdbmount &#x2F;dev&#x2F;vdb &#x2F;home 查看挂载结果df -TH 修改 root 密码id # 查看用户信息passwd # 修改用户密码 修改 ssh 默认端口sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config修">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-14T05:43:55.000Z">
+<meta property="article:modified_time" content="2022-07-14T05:43:55.000Z">
+<meta property="article:author" content="Ethan">
+<meta property="article:tag" content="server">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="xiaoxiao" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/xiaoxiao/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/xiaoxiao/" id="logo">xiaoxiao</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/xiaoxiao/">Home</a>
+        
+          <a class="main-nav-link" href="/xiaoxiao/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ghlingjun.github.io/xiaoxiao"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cloud-server-init-cucloud" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/xiaoxiao/2022/07/14/cloud-server-init-cucloud/" class="article-date">
+  <time datetime="2022-07-14T05:43:55.000Z" itemprop="datePublished">2022-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/xiaoxiao/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      联通云服务器初始化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
+<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
+<p>查看挂载结果<br>df -TH</p>
+<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
+<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
+<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 查看用户组是否存在</span><br><span class="line">grep shumei /etc/group</span><br><span class="line"># 添加用户组 shumei</span><br><span class="line">groupadd shumei</span><br><span class="line"></span><br><span class="line"># 查看用户 shumei 是否存在</span><br><span class="line">grep shumei /etc/passwd</span><br><span class="line"># 添加用户</span><br><span class="line">useradd -g shumei -d /home/shumei -m shumei</span><br><span class="line"># 查看 shumei 信息</span><br><span class="line">id shumei</span><br><span class="line"># 设置用户密码</span><br><span class="line">passwd shumei</span><br><span class="line"></span><br><span class="line"># 赋给用户 sudo 权限：http://man.linuxde.net/sudo</span><br><span class="line">vi /etc/sudoers</span><br><span class="line"># 仿照现有root的例子就行，加一行（最好用tab作为空白）</span><br><span class="line">shumei  ALL=(ALL:ALL)   ALL</span><br></pre></td></tr></table></figure>
+
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo $SHELL 可查看当前使用的 shell</span><br><span class="line">usermod -s /bin/bash shumei</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path</span><br><span class="line"></span><br><span class="line">vi .profile</span><br><span class="line">export JAVA_HOME=/home/shumei/software/jdk1.8.0_25</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br><span class="line"></span><br><span class="line"># 使配置生效</span><br><span class="line">source .profile</span><br><span class="line"></span><br><span class="line"># 检查配置是否成功</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[参考]<a target="_blank" rel="noopener" href="https://www.yuque.com/ethan09/cnlf1x/tvef26">https://www.yuque.com/ethan09/cnlf1x/tvef26</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/keys/nginx_signing.key</span><br><span class="line">sudo apt-key add nginx_signing.key</span><br><span class="line"></span><br><span class="line">sudo vi /etc/apt/sources.list.d/nginx.list</span><br><span class="line"># 添加如下内容</span><br><span class="line">deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx</span><br><span class="line">deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 安装</span><br><span class="line">sudo apt install redis-server</span><br><span class="line"></span><br><span class="line">查看是否启动</span><br><span class="line"># redis-cli</span><br><span class="line">以上命令将打开以下终端：</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ghlingjun.github.io/xiaoxiao/2022/07/14/cloud-server-init-cucloud/" data-id="clsyi47p1004book8ejupaz8o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/xiaoxiao/tags/server/" rel="tag">server</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/xiaoxiao/2023/05/23/kettle-experiences/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          kettle experiences
+        
+      </div>
+    </a>
+  
+  
+    <a href="/xiaoxiao/2021/11/23/ubuntu-sftp-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ubuntu 安装 SFTP 服务</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/tech/">tech</a></li><li class="category-list-item"><a class="category-list-link" href="/xiaoxiao/categories/%E7%94%9F%E6%B4%BB/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/brew/" rel="tag">brew</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/codemother/" rel="tag">codemother</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/crontab/" rel="tag">crontab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/dns/" rel="tag">dns</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/google/" rel="tag">google</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/harbor/" rel="tag">harbor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/hosts/" rel="tag">hosts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/idea/" rel="tag">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/jasypt/" rel="tag">jasypt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/jbpm/" rel="tag">jbpm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/kettle/" rel="tag">kettle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mac/" rel="tag">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mail/" rel="tag">mail</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/music/" rel="tag">music</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/schema/" rel="tag">schema</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/server/" rel="tag">server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/sftp/" rel="tag">sftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/systemd/" rel="tag">systemd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/tomcat/" rel="tag">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/%E5%B0%8F%E7%AA%8D%E9%97%A8/" rel="tag">小窍门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/xiaoxiao/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/xiaoxiao/tags/OS/" style="font-size: 10px;">OS</a> <a href="/xiaoxiao/tags/blog/" style="font-size: 10px;">blog</a> <a href="/xiaoxiao/tags/brew/" style="font-size: 10px;">brew</a> <a href="/xiaoxiao/tags/codemother/" style="font-size: 10px;">codemother</a> <a href="/xiaoxiao/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/xiaoxiao/tags/dns/" style="font-size: 10px;">dns</a> <a href="/xiaoxiao/tags/docker/" style="font-size: 18px;">docker</a> <a href="/xiaoxiao/tags/git/" style="font-size: 14px;">git</a> <a href="/xiaoxiao/tags/google/" style="font-size: 10px;">google</a> <a href="/xiaoxiao/tags/harbor/" style="font-size: 10px;">harbor</a> <a href="/xiaoxiao/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/xiaoxiao/tags/hosts/" style="font-size: 10px;">hosts</a> <a href="/xiaoxiao/tags/idea/" style="font-size: 10px;">idea</a> <a href="/xiaoxiao/tags/jasypt/" style="font-size: 10px;">jasypt</a> <a href="/xiaoxiao/tags/jbpm/" style="font-size: 10px;">jbpm</a> <a href="/xiaoxiao/tags/kettle/" style="font-size: 10px;">kettle</a> <a href="/xiaoxiao/tags/life/" style="font-size: 20px;">life</a> <a href="/xiaoxiao/tags/linux/" style="font-size: 10px;">linux</a> <a href="/xiaoxiao/tags/mac/" style="font-size: 12px;">mac</a> <a href="/xiaoxiao/tags/mail/" style="font-size: 10px;">mail</a> <a href="/xiaoxiao/tags/maven/" style="font-size: 10px;">maven</a> <a href="/xiaoxiao/tags/music/" style="font-size: 10px;">music</a> <a href="/xiaoxiao/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/xiaoxiao/tags/nginx/" style="font-size: 12px;">nginx</a> <a href="/xiaoxiao/tags/schema/" style="font-size: 10px;">schema</a> <a href="/xiaoxiao/tags/server/" style="font-size: 16px;">server</a> <a href="/xiaoxiao/tags/sftp/" style="font-size: 10px;">sftp</a> <a href="/xiaoxiao/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/xiaoxiao/tags/svn/" style="font-size: 14px;">svn</a> <a href="/xiaoxiao/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/xiaoxiao/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/xiaoxiao/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/xiaoxiao/tags/%E5%B0%8F%E7%AA%8D%E9%97%A8/" style="font-size: 10px;">小窍门</a> <a href="/xiaoxiao/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 10px;">跨域</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/09/">九月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2014/11/">十一月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/xiaoxiao/archives/2013/01/">一月 2013</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/">防止域名被恶意解析</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/09/21/use-systemd-manage-application/">为应用创建守护进程</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/07/14/jasypt-spring-boot/">jasypt spring boot</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/">发送 crontab 定时任务执行结果到指定邮箱</a>
+          </li>
+        
+          <li>
+            <a href="/xiaoxiao/2023/05/25/migrate-mysql-data-directory/">迁移 mysql 数据目录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Ethan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/xiaoxiao/" class="mobile-nav-link">Home</a>
+  
+    <a href="/xiaoxiao/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/xiaoxiao/fancybox/jquery.fancybox.css">
+
+  
+<script src="/xiaoxiao/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/xiaoxiao/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
