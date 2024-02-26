@@ -145,6 +145,20 @@ $ git branch -d mybranch
       </tags>
   </entry>
   <entry>
+    <title>电影日记</title>
+    <url>/xiaoxiao/2016/09/09/film-comments/</url>
+    <content><![CDATA[<h3 id="《那啊那啊神去村》"><a href="#《那啊那啊神去村》" class="headerlink" title="《那啊那啊神去村》"></a>《那啊那啊神去村》</h3><p>环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 2016</p>
+<h3 id="《海街日记》"><a href="#《海街日记》" class="headerlink" title="《海街日记》"></a>《海街日记》</h3><p>让人感觉生活真是美好、温馨！情节非常有代入感，故事可以这样描述真是让人难以想象！整部电影好像没讲什么内容，但是整体又给人非常丰满的感觉，回味无穷…… Wed Sep  7 23:31:41 CST 2016</p>
+<h3 id="《黄昏的清兵卫》"><a href="#《黄昏的清兵卫》" class="headerlink" title="《黄昏的清兵卫》"></a>《黄昏的清兵卫》</h3><p>本来正在 coding，但是电影一开始就被代入，自然的沉入故事中去，专注度就像在做数学难题，不是，就像在解决 bug 一样！ Wed Sep  7 23:39:51 CST 2016</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>普鲁斯特问卷</title>
     <url>/xiaoxiao/2016/08/06/Proust-Questionnaire/</url>
     <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>做自己喜欢的事情，与喜欢的人一起生活。</p>
@@ -184,20 +198,6 @@ $ git branch -d mybranch
       </tags>
   </entry>
   <entry>
-    <title>电影日记</title>
-    <url>/xiaoxiao/2016/09/09/film-comments/</url>
-    <content><![CDATA[<h3 id="《那啊那啊神去村》"><a href="#《那啊那啊神去村》" class="headerlink" title="《那啊那啊神去村》"></a>《那啊那啊神去村》</h3><p>环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 2016</p>
-<h3 id="《海街日记》"><a href="#《海街日记》" class="headerlink" title="《海街日记》"></a>《海街日记》</h3><p>让人感觉生活真是美好、温馨！情节非常有代入感，故事可以这样描述真是让人难以想象！整部电影好像没讲什么内容，但是整体又给人非常丰满的感觉，回味无穷…… Wed Sep  7 23:31:41 CST 2016</p>
-<h3 id="《黄昏的清兵卫》"><a href="#《黄昏的清兵卫》" class="headerlink" title="《黄昏的清兵卫》"></a>《黄昏的清兵卫》</h3><p>本来正在 coding，但是电影一开始就被代入，自然的沉入故事中去，专注度就像在做数学难题，不是，就像在解决 bug 一样！ Wed Sep  7 23:39:51 CST 2016</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/xiaoxiao/2016/09/10/hello-world/</url>
     <content><![CDATA[<p>Hello, world!</p>
@@ -208,19 +208,6 @@ $ git branch -d mybranch
       </categories>
       <tags>
         <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何搭建一个免费的博客</title>
-    <url>/xiaoxiao/2016/09/12/how-to-build-a-blog/</url>
-    <content><![CDATA[<p><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog</a></p>
-<p>此博客受此启发</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -295,6 +282,19 @@ set @@global.sql_mode = &#39;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_D
       </categories>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何搭建一个免费的博客</title>
+    <url>/xiaoxiao/2016/09/12/how-to-build-a-blog/</url>
+    <content><![CDATA[<p><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog</a></p>
+<p>此博客受此启发</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -815,18 +815,6 @@ defaults write com.apple.Maps AppleLanguages &#39;(zh-CN)&#39;
       </tags>
   </entry>
   <entry>
-    <title>朋友相聚</title>
-    <url>/xiaoxiao/2018/05/09/frinds-meeting/</url>
-    <content><![CDATA[<p>尊敬的贵宾:您好！2018年11月3中餐为您安排的是海悦新四方酒店二楼四方厅。地址：合肥政务新区祁门路1777号（祁门路与茂荫路交口往南50米，省供销社东侧裙楼）</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Maven 插件 codemother 使用说明</title>
     <url>/xiaoxiao/2018/05/09/codemother/</url>
     <content><![CDATA[<p>项目地址:<a href="https://gitee.com/osethan/codemother-maven-plugin">https://gitee.com/osethan/codemother-maven-plugin</a></p>
@@ -991,6 +979,18 @@ controllerBasePackage=com.primeco.log.ctl.base
       <tags>
         <tag>maven</tag>
         <tag>codemother</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>朋友相聚</title>
+    <url>/xiaoxiao/2018/05/09/frinds-meeting/</url>
+    <content><![CDATA[<p>尊敬的贵宾:您好！2018年11月3中餐为您安排的是海悦新四方酒店二楼四方厅。地址：合肥政务新区祁门路1777号（祁门路与茂荫路交口往南50米，省供销社东侧裙楼）</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -2135,6 +2135,171 @@ get /test/test.txt ~/Downloads/download.txt
       </tags>
   </entry>
   <entry>
+    <title>联通云服务器初始化</title>
+    <url>/xiaoxiao/2022/07/14/cloud-server-init-cucloud/</url>
+    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
+<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
+<p>查看挂载结果<br>df -TH</p>
+<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
+<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
+<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<pre><code># 查看用户组是否存在
+grep shumei /etc/group
+# 添加用户组 shumei
+groupadd shumei
+
+# 查看用户 shumei 是否存在
+grep shumei /etc/passwd
+# 添加用户
+useradd -g shumei -d /home/shumei -m shumei
+# 查看 shumei 信息
+id shumei
+# 设置用户密码
+passwd shumei
+
+# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
+vi /etc/sudoers
+# 仿照现有root的例子就行，加一行（最好用tab作为空白）
+shumei  ALL=(ALL:ALL)   ALL
+</code></pre>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code># echo $SHELL 可查看当前使用的 shell
+usermod -s /bin/bash shumei
+</code></pre>
+<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
+
+vi .profile
+export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+
+# 使配置生效
+source .profile
+
+# 检查配置是否成功
+java -version
+</code></pre>
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[参考]<a href="https://www.yuque.com/ethan09/cnlf1x/tvef26">https://www.yuque.com/ethan09/cnlf1x/tvef26</a></p>
+<pre><code>wget http://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
+
+sudo vi /etc/apt/sources.list.d/nginx.list
+# 添加如下内容
+deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx
+deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx
+
+sudo apt-get update
+sudo apt-get install nginx
+</code></pre>
+<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
+sudo apt install redis-server
+
+查看是否启动
+# redis-cli
+以上命令将打开以下终端：
+redis 127.0.0.1:6379&gt;
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kettle experiences</title>
+    <url>/xiaoxiao/2023/05/23/kettle-experiences/</url>
+    <content><![CDATA[<h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol>
+<li>解压 pdi-ce 压缩包</li>
+<li>放入 mysql 驱动至 lib 文件夹下</li>
+<li>配置环境变量 .profile</li>
+</ol>
+<pre><code class="shell">export KETTLE=/home/shumei/soft/data-integration
+export PATH=$&#123;KETTLE&#125;:$PATH
+</code></pre>
+<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ul>
+<li>日期转换</li>
+</ul>
+<pre><code class="sql">date_format(a.start_date, &#39;%Y/%m/%d 00:00:00.000&#39;) as start_date
+date_format(create_time, &#39;%Y/%m/%d %T.%f&#39;) as data_create_time
+date_format(a.payedDate, &#39;%Y/%m&#39;) as payedDate
+date_format(DATE_ADD(now(), INTERVAL -1 MONTH), &#39;%Y%m&#39;);
+</code></pre>
+<ul>
+<li>日期计算</li>
+</ul>
+<pre><code class="sql">a.update_time &gt;= DATE_ADD(now(), INTERVAL -15 MINUTE)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -3 DAY)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 MONTH)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 YEAR)
+</code></pre>
+<ul>
+<li>类型转换</li>
+</ul>
+<pre><code class="sql"># 把字段 id 的类型转换为字符串 char
+CAST(id as CHAR) AS CODE
+</code></pre>
+<h2 id="设定变量"><a href="#设定变量" class="headerlink" title="设定变量"></a>设定变量</h2><p>转换命名参数就是在转换内部定义的变量，作用范围是在转换内部。在转换的空白处双击左键，在转换属性中能看到“命名参数”。</p>
+<p>引用：可以在表输入SQL语句中使用${变量名} 或者 %%变量名%%</p>
+<h1 id="作业执行"><a href="#作业执行" class="headerlink" title="作业执行"></a>作业执行</h1><ul>
+<li>执行转换</li>
+</ul>
+<pre><code class="shell">pan.sh -file tr1.ktr
+pan.sh -file tr1.ktr -param:year=2023 -param:month=5
+</code></pre>
+<ul>
+<li>执行作业</li>
+</ul>
+<pre><code class="shell">kitchen.sh -file jobname1.kjb
+kitchen.sh -file jobname2.kjb -param:input=/kettle -param:output=/kettle
+</code></pre>
+<h1 id="定时任务脚本"><a href="#定时任务脚本" class="headerlink" title="定时任务脚本"></a>定时任务脚本</h1><pre><code class="shell">#!/bin/bash
+# 环境变量
+JAVA_HOME=/home/shumei/soft/jdk1.8.0_171
+KETTLE_HOME=&quot;/home/shumei/soft/data-integration&quot;
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin::$PATH
+# 公共变量
+DATE_STR=`date +%Y%m%d`;
+BASE_DIR=&#39;/home/shumei/kettle&#39;
+# 局部变量
+v_script_dir=&#39;/kettle/1015dca/pro&#39;
+v_shell_name=dca1m
+v_result=&quot;执行成功&quot;
+# 脚本名称
+JOB01_NAME=tr1.ktr
+JOB02_NAME=tr2.ktr
+
+# X 企业名录入库
+v_date_str=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)
+$&#123;KETTLE_HOME&#125;/pan.sh -file $&#123;BASE_DIR&#125;$&#123;v_script_dir&#125;/$&#123;v_job01_name&#125; -level=Basic &gt;&gt; $&#123;BASE_DIR&#125;/logs/$&#123;v_shell_name&#125;.$&#123;DATE_STR&#125;
+pan_return=$?
+if [ $pan_return -eq 0 ]; then
+    v_result=&quot;执行成功&quot;
+elif [ $pan_return -eq 1 ]; then
+    v_result=&quot;执行失败&quot;
+else
+    v_result=&quot;执行取消&quot;
+fi
+echo $v_result
+if [ $pan_return -ne 0 ]; then
+    echo &quot;Task X 企业名录入库-$v_result $&#123;v_date_str&#125;&quot; | mail -s &quot;Subject: Task Failed&quot; ethan@ahshumei.com
+fi
+echo $&#123;v_date_str&#125;-X 企业名录入库 start
+echo -e $(date +&quot;%Y-%m-%d %H:%M:%S&quot;)-X 企业名录入库 end\n
+
+sleep 2
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>kettle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>迁移 mysql 数据目录</title>
     <url>/xiaoxiao/2023/05/25/migrate-mysql-data-directory/</url>
     <content><![CDATA[<p>在 CentOS 中迁移 MySQL 的数据目录 &#x2F;var&#x2F;lib&#x2F;mysql 到其他磁盘可以按以下步骤进行:</p>
@@ -2558,171 +2723,6 @@ server &#123;
       <tags>
         <tag>nginx</tag>
         <tag>dns</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>联通云服务器初始化</title>
-    <url>/xiaoxiao/2022/07/14/cloud-server-init-cucloud/</url>
-    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
-<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
-<p>查看挂载结果<br>df -TH</p>
-<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
-<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
-<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
-<pre><code># 查看用户组是否存在
-grep shumei /etc/group
-# 添加用户组 shumei
-groupadd shumei
-
-# 查看用户 shumei 是否存在
-grep shumei /etc/passwd
-# 添加用户
-useradd -g shumei -d /home/shumei -m shumei
-# 查看 shumei 信息
-id shumei
-# 设置用户密码
-passwd shumei
-
-# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
-vi /etc/sudoers
-# 仿照现有root的例子就行，加一行（最好用tab作为空白）
-shumei  ALL=(ALL:ALL)   ALL
-</code></pre>
-<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
-<pre><code># echo $SHELL 可查看当前使用的 shell
-usermod -s /bin/bash shumei
-</code></pre>
-<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
-
-vi .profile
-export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
-export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
-export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
-
-# 使配置生效
-source .profile
-
-# 检查配置是否成功
-java -version
-</code></pre>
-<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[参考]<a href="https://www.yuque.com/ethan09/cnlf1x/tvef26">https://www.yuque.com/ethan09/cnlf1x/tvef26</a></p>
-<pre><code>wget http://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
-
-sudo vi /etc/apt/sources.list.d/nginx.list
-# 添加如下内容
-deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx
-deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx
-
-sudo apt-get update
-sudo apt-get install nginx
-</code></pre>
-<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
-sudo apt install redis-server
-
-查看是否启动
-# redis-cli
-以上命令将打开以下终端：
-redis 127.0.0.1:6379&gt;
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kettle experiences</title>
-    <url>/xiaoxiao/2023/05/23/kettle-experiences/</url>
-    <content><![CDATA[<h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol>
-<li>解压 pdi-ce 压缩包</li>
-<li>放入 mysql 驱动至 lib 文件夹下</li>
-<li>配置环境变量 .profile</li>
-</ol>
-<pre><code class="shell">export KETTLE=/home/shumei/soft/data-integration
-export PATH=$&#123;KETTLE&#125;:$PATH
-</code></pre>
-<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ul>
-<li>日期转换</li>
-</ul>
-<pre><code class="sql">date_format(a.start_date, &#39;%Y/%m/%d 00:00:00.000&#39;) as start_date
-date_format(create_time, &#39;%Y/%m/%d %T.%f&#39;) as data_create_time
-date_format(a.payedDate, &#39;%Y/%m&#39;) as payedDate
-date_format(DATE_ADD(now(), INTERVAL -1 MONTH), &#39;%Y%m&#39;);
-</code></pre>
-<ul>
-<li>日期计算</li>
-</ul>
-<pre><code class="sql">a.update_time &gt;= DATE_ADD(now(), INTERVAL -15 MINUTE)
-a.update_time &gt;= DATE_ADD(now(), INTERVAL -3 DAY)
-a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 MONTH)
-a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 YEAR)
-</code></pre>
-<ul>
-<li>类型转换</li>
-</ul>
-<pre><code class="sql"># 把字段 id 的类型转换为字符串 char
-CAST(id as CHAR) AS CODE
-</code></pre>
-<h2 id="设定变量"><a href="#设定变量" class="headerlink" title="设定变量"></a>设定变量</h2><p>转换命名参数就是在转换内部定义的变量，作用范围是在转换内部。在转换的空白处双击左键，在转换属性中能看到“命名参数”。</p>
-<p>引用：可以在表输入SQL语句中使用${变量名} 或者 %%变量名%%</p>
-<h1 id="作业执行"><a href="#作业执行" class="headerlink" title="作业执行"></a>作业执行</h1><ul>
-<li>执行转换</li>
-</ul>
-<pre><code class="shell">pan.sh -file tr1.ktr
-pan.sh -file tr1.ktr -param:year=2023 -param:month=5
-</code></pre>
-<ul>
-<li>执行作业</li>
-</ul>
-<pre><code class="shell">kitchen.sh -file jobname1.kjb
-kitchen.sh -file jobname2.kjb -param:input=/kettle -param:output=/kettle
-</code></pre>
-<h1 id="定时任务脚本"><a href="#定时任务脚本" class="headerlink" title="定时任务脚本"></a>定时任务脚本</h1><pre><code class="shell">#!/bin/bash
-# 环境变量
-JAVA_HOME=/home/shumei/soft/jdk1.8.0_171
-KETTLE_HOME=&quot;/home/shumei/soft/data-integration&quot;
-export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
-export PATH=$&#123;JAVA_HOME&#125;/bin::$PATH
-# 公共变量
-DATE_STR=`date +%Y%m%d`;
-BASE_DIR=&#39;/home/shumei/kettle&#39;
-# 局部变量
-v_script_dir=&#39;/kettle/1015dca/pro&#39;
-v_shell_name=dca1m
-v_result=&quot;执行成功&quot;
-# 脚本名称
-JOB01_NAME=tr1.ktr
-JOB02_NAME=tr2.ktr
-
-# X 企业名录入库
-v_date_str=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)
-$&#123;KETTLE_HOME&#125;/pan.sh -file $&#123;BASE_DIR&#125;$&#123;v_script_dir&#125;/$&#123;v_job01_name&#125; -level=Basic &gt;&gt; $&#123;BASE_DIR&#125;/logs/$&#123;v_shell_name&#125;.$&#123;DATE_STR&#125;
-pan_return=$?
-if [ $pan_return -eq 0 ]; then
-    v_result=&quot;执行成功&quot;
-elif [ $pan_return -eq 1 ]; then
-    v_result=&quot;执行失败&quot;
-else
-    v_result=&quot;执行取消&quot;
-fi
-echo $v_result
-if [ $pan_return -ne 0 ]; then
-    echo &quot;Task X 企业名录入库-$v_result $&#123;v_date_str&#125;&quot; | mail -s &quot;Subject: Task Failed&quot; ethan@ahshumei.com
-fi
-echo $&#123;v_date_str&#125;-X 企业名录入库 start
-echo -e $(date +&quot;%Y-%m-%d %H:%M:%S&quot;)-X 企业名录入库 end\n
-
-sleep 2
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>kettle</tag>
       </tags>
   </entry>
 </search>
