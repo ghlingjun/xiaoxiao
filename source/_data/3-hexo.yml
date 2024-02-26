@@ -11,21 +11,21 @@ blog_path: /xiaoxiao
 link:
   theme: color # 链接样式，color: 彩色图标  white: 黑白图标
   items:
-    rss: /atom.xml
-    github: https://github.com/ghlingjun
-#    facebook: https://www.facebook.com/faker.tops
-    twitter:
-    linkedin:
-#    instagram: https://www.facebook.com/faker.tops
-#    reddit: https://www.reddit.com/user/yelog/
-#    weibo: http://weibo.com/u/2307534817
-#    jianshu: https://www.jianshu.com/u/ff56736de7cf
-#    zhihu: https://www.zhihu.com/people/jaytp/activities
-    csdn:
-#    oschina: https://my.oschina.net/yelog
-    juejin:
+    #    rss: /atom.xml
+    #    github: https://github.com/ghlingjun
+    #    facebook: https://www.facebook.com/faker.tops
+    #    twitter:
+    #    linkedin:
+    #    instagram: https://www.facebook.com/faker.tops
+    #    reddit: https://www.reddit.com/user/yelog/
+    #    weibo: http://weibo.com/u/2307534817
+    #    jianshu: https://www.jianshu.com/u/ff56736de7cf
+    #    zhihu: https://www.zhihu.com/people/jaytp/activities
+    #    csdn:
+    #    oschina: https://my.oschina.net/yelog
+    #    juejin:
     email: ethan89@aliyun.com
-    qq: 304686125
+#    qq: 304686125
 #    kugou: https://www.kugou.com/
 #    neteasemusic: https://music.163.com/#/user/home?id=88151013
 
@@ -67,22 +67,22 @@ shortcutKey: true
 # 左下角自定义菜单
 menu:
   about:  # '关于' 按钮
-    on: true # 是否显示
+    on: false # 是否显示
     url: /about  # 跳转链接
     type: 1 # 跳转类型 1：站内异步跳转 2：当前页面跳转 3：打开新的tab页
   friend: # '友链' 按钮
     on: true # 是否展示
   menus: # 添加的其他菜单写在 menus 下，如下三个菜单：动态菜单1、动态菜单2、动态菜单3
-#    相册:
-#      on: false
-#      url: /photo
-#      type: 1  # 跳转类型 1：站内异步跳转
-#    叶落阁:
-#      on: false
-#      url: http://yelog.org/
-#      type: 2  # 跳转类型 2：当前页面跳转
+    #    相册:
+    #      on: false
+    #      url: /photo
+    #      type: 1  # 跳转类型 1：站内异步跳转
+    #    叶落阁:
+    #      on: false
+    #      url: http://yelog.org/
+    #      type: 2  # 跳转类型 2：当前页面跳转
     github:
-      on: false
+      on: true
       url: https://github.com/ghlingjun
       type: 3  # 跳转类型 3：打开新的tab页
 
@@ -100,7 +100,7 @@ miit:
   url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
 
 
-reward: false
+reward: true
 # true 开启打赏功能
 
 searchAll: false
@@ -227,7 +227,7 @@ mermaid:
 
 # 友情链接
 friends:
-#  叶落阁: http://yelog.org/
+  羽青: https://www.jianshu.com/u/210052204bc2
 
 ##########评论设置#############
 comment:
@@ -244,11 +244,11 @@ disqus:
 
 
 gitalk:
-  githubID: yelog
-  repo: yelog.github.io
-  ClientID:
-  ClientSecret:
-  adminUser: yelog
+  githubID: ghlingjun
+  repo: ghlingjun.github.io
+  ClientID: c65c4fd21883249f3016
+  ClientSecret: 8e99752832aebc4e0e5197c85e586eaa27123063
+  adminUser: ghlingjun
   distractionFreeMode: true
   language: zh-CN
   perPage: 10
@@ -265,10 +265,10 @@ gitalk:
 
 
 gitment:
-  owner: yelog
-  repo: yelog.github.io
-  client_id:
-  client_secret:
+  owner: ghlingjun
+  repo: ghlingjun.github.io
+  client_id: c65c4fd21883249f3016
+  client_secret: 8e99752832aebc4e0e5197c85e586eaa27123063
   # gitment : 通过github issue实现的评论系统
   # 开源地址 : https://github.com/imsun/gitment
   # 使用说明 :
