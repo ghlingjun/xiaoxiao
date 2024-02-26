@@ -2,18 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>docker compose 服务编排 | xiaoxiao</title>
+  <title>docker compose 服务编排 | Hakuna Matata</title>
   <meta name="keywords" content=" docker ">
-  <meta name="description" content="docker compose 服务编排 | xiaoxiao">
+  <meta name="description" content="docker compose 服务编排 | Hakuna Matata">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="404">
 <meta property="og:url" content="https://ghlingjun.github.io/xiaoxiao/404/index.html">
-<meta property="og:site_name" content="xiaoxiao">
+<meta property="og:site_name" content="Hakuna Matata">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="1969-12-31T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-08-24T08:27:25.615Z">
-<meta property="article:author" content="Ethan">
+<meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
 
@@ -41,7 +41,7 @@
 
 <script src="/xiaoxiao/js/iconfont.js?v=1.1.0" ></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/xiaoxiao/atom.xml" title="xiaoxiao" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/xiaoxiao/atom.xml" title="Hakuna Matata" type="application/atom+xml">
 </head>
 <div style="display: none">
   <input class="theme_disqus_on" value="false">
@@ -63,7 +63,7 @@
          src="/xiaoxiao/img/malu.png"/>
 </a>
 <div class="author">
-    <span>Ethan</span>
+    <span>John Doe</span>
 </div>
 
 <div class="icon">
@@ -93,14 +93,6 @@
         
     
         
-    
-        
-    
-        
-    
-        
-    
-        
             <a title="email"
                href="mailto:ethan89@aliyun.com"
                target="_blank">
@@ -127,6 +119,8 @@
 </div>
 
 
+
+    <a class="more-menus">更多菜单</a>
 
 
 
@@ -189,16 +183,14 @@
     <div class="menus">
         
             
+                <a class="dynamic-menu "
+                   target="_blank"
+                        
+                   href="https://github.com/ghlingjun">github</a>
+        
     </div>
     <div>
         
-            <a class="about  hasFriend  site_url"
-               
-               href="/about">关于</a>
-        
-        <a style="width: 50%"
-                
-                                           class="friends">友链</a>
         
     </div>
 </div>
@@ -998,6 +990,10 @@ sudo service docker restart
 </article>
 
 
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
 
 
 
@@ -1023,6 +1019,24 @@ sudo service docker restart
     </div>
 </div>
 
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/xiaoxiao/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/xiaoxiao/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
 </body>
 <script src="/xiaoxiao/js/jquery.pjax.js?v=1.1.0" ></script>
 
@@ -1036,6 +1050,14 @@ sudo service docker restart
         
 
         /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
         
 
         /*高亮代码块行号*/
@@ -1054,6 +1076,11 @@ sudo service docker restart
     }
 
     /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
     
 
 </script>
@@ -1145,6 +1172,16 @@ sudo service docker restart
 
 
 
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/ghlingjun">github</a>
+    
+</div>
 
 
 </html>

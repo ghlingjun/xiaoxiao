@@ -105,25 +105,6 @@ $ git branch -d mybranch
       </tags>
   </entry>
   <entry>
-    <title>jBPM 基础</title>
-    <url>/xiaoxiao/2014/11/07/jBPM-overview/</url>
-    <content><![CDATA[<p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
-<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
-<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
-<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
-<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
-<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
-<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>jbpm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows 下快捷启动应用程序的一个方法</title>
     <url>/xiaoxiao/2013/11/21/windows-quick-start-app/</url>
     <content><![CDATA[<p>这里介绍一个小窍门给 windows 用户——可以很快捷方便的启动自己常用的软件程序！</p>
@@ -142,6 +123,25 @@ $ git branch -d mybranch
       </categories>
       <tags>
         <tag>小窍门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jBPM 基础</title>
+    <url>/xiaoxiao/2014/11/07/jBPM-overview/</url>
+    <content><![CDATA[<p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
+<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
+<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
+<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
+<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
+<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>jbpm</tag>
       </tags>
   </entry>
   <entry>
@@ -208,6 +208,19 @@ $ git branch -d mybranch
       </categories>
       <tags>
         <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何搭建一个免费的博客</title>
+    <url>/xiaoxiao/2016/09/12/how-to-build-a-blog/</url>
+    <content><![CDATA[<p><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog</a></p>
+<p>此博客受此启发</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -282,19 +295,6 @@ set @@global.sql_mode = &#39;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_D
       </categories>
       <tags>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何搭建一个免费的博客</title>
-    <url>/xiaoxiao/2016/09/12/how-to-build-a-blog/</url>
-    <content><![CDATA[<p><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog</a></p>
-<p>此博客受此启发</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -397,6 +397,27 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
       </tags>
   </entry>
   <entry>
+    <title>可以用下面的方法让你的大脑就范</title>
+    <url>/xiaoxiao/2017/04/29/how-to-learn/</url>
+    <content><![CDATA[<ol>
+<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
+<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
+<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
+<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
+<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
+<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
+<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
+<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>共享模式词汇的威力</title>
     <url>/xiaoxiao/2017/04/30/why-learn-schemas/</url>
     <content><![CDATA[<h3 id="共享模式词汇“威力强大”"><a href="#共享模式词汇“威力强大”" class="headerlink" title="共享模式词汇“威力强大”"></a>共享模式词汇“威力强大”</h3><p>当你使用模式名称和其他开发人员或者开发团队沟通时，你们之间交流的不只是模式名称，而是一整套模式背后所象征的质量、特性、约束。</p>
@@ -413,18 +434,36 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
       </tags>
   </entry>
   <entry>
-    <title>可以用下面的方法让你的大脑就范</title>
-    <url>/xiaoxiao/2017/04/29/how-to-learn/</url>
-    <content><![CDATA[<ol>
-<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
-<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
-<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
-<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
-<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
-<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
-<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
-<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
-</ol>
+    <title>普鲁斯特问卷</title>
+    <url>/xiaoxiao/2017/08/06/Proust-Questionnaire/</url>
+    <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>和喜欢的人在一起。</p>
+<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>画画。</p>
+<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>迷茫。</p>
+<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>还算平静。</p>
+<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>小小。</p>
+<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>不知道。</p>
+<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>老做傻事。</p>
+<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>惠州。</p>
+<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>不知道。</p>
+<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>健康。</p>
+<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
+<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>痛苦都差不多。</p>
+<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>不知道。</p>
+<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>工程师。</p>
+<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>身高。</p>
+<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>在能够爱你时没有更好的去爱你。</p>
+<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>没有。</p>
+<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>落落大方。</p>
+<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
+<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>落落大方。</p>
+<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>失恋。</p>
+<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>比我好的特点。</p>
+<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>小小。</p>
+<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>考虑还早。</p>
+<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>上班路上听故事广播时。</p>
+<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>家人能住在一起。</p>
+<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>不知道。</p>
+<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
 ]]></content>
       <categories>
         <category>生活</category>
@@ -494,45 +533,6 @@ Default encoding for properties files: UTF-8
       </categories>
       <tags>
         <tag>idea</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>普鲁斯特问卷</title>
-    <url>/xiaoxiao/2017/08/06/Proust-Questionnaire/</url>
-    <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>和喜欢的人在一起。</p>
-<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>画画。</p>
-<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>迷茫。</p>
-<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>还算平静。</p>
-<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>小小。</p>
-<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>不知道。</p>
-<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>老做傻事。</p>
-<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>惠州。</p>
-<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>不知道。</p>
-<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>健康。</p>
-<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
-<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>痛苦都差不多。</p>
-<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>不知道。</p>
-<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>工程师。</p>
-<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>身高。</p>
-<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>在能够爱你时没有更好的去爱你。</p>
-<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>没有。</p>
-<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>落落大方。</p>
-<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
-<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>落落大方。</p>
-<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>失恋。</p>
-<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>比我好的特点。</p>
-<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>小小。</p>
-<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>考虑还早。</p>
-<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>上班路上听故事广播时。</p>
-<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>家人能住在一起。</p>
-<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>不知道。</p>
-<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -1048,6 +1048,85 @@ public class CorsFilter implements Filter &#123;
       </tags>
   </entry>
   <entry>
+    <title>linux 常用命令</title>
+    <url>/xiaoxiao/2019/10/29/linux-commands/</url>
+    <content><![CDATA[<h2 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h2><h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><p>当前目录只进入第一级目录</p>
+<pre><code>du -h --max-depth=1
+du -h -d1
+</code></pre>
+<h3 id="free-查看内存情况"><a href="#free-查看内存情况" class="headerlink" title="free 查看内存情况"></a>free 查看内存情况</h3><pre><code>free -m
+</code></pre>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><pre><code>top
+</code></pre>
+<h3 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h3><pre><code>vmstat
+</code></pre>
+<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h3><pre><code>tree -d -L 3
+</code></pre>
+<h3 id="挂在硬盘"><a href="#挂在硬盘" class="headerlink" title="挂在硬盘"></a>挂在硬盘</h3><pre><code>blkid -o device
+mount /dev/xvde1 /home
+</code></pre>
+<h3 id="重启定时任务"><a href="#重启定时任务" class="headerlink" title="重启定时任务"></a>重启定时任务</h3><pre><code>sudo /etc/init.d/crond restart
+</code></pre>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><pre><code>id # 查看用户信息
+passwd # 修改用户密码
+</code></pre>
+<h3 id="修改-ssh-服务端口号"><a href="#修改-ssh-服务端口号" class="headerlink" title="修改 ssh 服务端口号"></a>修改 ssh 服务端口号</h3><p>查看端口是否被占用：</p>
+<pre><code>sudo netstat -anp | grep 10007
+</code></pre>
+<p>添加配置：</p>
+<pre><code>sudo vi /etc/ssh/sshd_config
+</code></pre>
+<p>修改 Port 值：<br>Port 10007</p>
+<p>重启 ssh 服务：</p>
+<pre><code>sudo service sshd restart
+</code></pre>
+<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><pre><code>curl -Iv www.baidu.com
+curl -Iv http://172.17.0.15
+curl 129.211.135.212:80
+</code></pre>
+<h3 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h3><pre><code>telnet 172.17.0.15 80
+</code></pre>
+<h3 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h3><pre><code>lsb_release -a
+</code></pre>
+<h3 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h3><pre><code>stat /etc/my.cnf
+</code></pre>
+<h3 id="查看指定时间之前的登陆记录"><a href="#查看指定时间之前的登陆记录" class="headerlink" title="查看指定时间之前的登陆记录"></a>查看指定时间之前的登陆记录</h3><pre><code>last -t 20220410000000
+</code></pre>
+<h3 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h3><pre><code class="shell">alias sshdb=&quot;ssh ethan@192.168.1.79&quot;
+
+export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+</code></pre>
+<h2 id="日期时间函数"><a href="#日期时间函数" class="headerlink" title="日期时间函数"></a>日期时间函数</h2><pre><code class="shell"># 取日期 yyyy-mm-dd
+date +%F
+# 取上个月月份（两位数字符串）
+date -d &quot;2023-06-06 -1 month&quot; +%m
+# 取上个月月份（数字）
+month=`date -d &quot;2023-06-06 -1 month&quot; +%m`
+$((month))
+# 取上一年年份
+date -d &quot;2023-06-06 -1 year&quot; +%Y
+
+v_date=`date +%F`
+# 取上个月字符串
+`date -d &quot;$v_date -1 month&quot; +%Y%m`
+
+v_date_now=`date +&quot;%F %T&quot;`
+# 取前 15 分钟的时间
+v_date_time=`date -d &quot;-15 minute $v_date_now&quot; +&quot;%F %T&quot;`
+</code></pre>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><pre><code>80,8080,443,8443 需要备案
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>电信云服务器规划以及配置</title>
     <url>/xiaoxiao/2019/10/30/cloud-server-init-ctyun/</url>
     <content><![CDATA[<h3 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h3><p>查看分区</p>
@@ -1136,85 +1215,6 @@ nignx 中 autoindex 要配置成 off
       </categories>
       <tags>
         <tag>server</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux 常用命令</title>
-    <url>/xiaoxiao/2019/10/29/linux-commands/</url>
-    <content><![CDATA[<h2 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h2><h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><p>当前目录只进入第一级目录</p>
-<pre><code>du -h --max-depth=1
-du -h -d1
-</code></pre>
-<h3 id="free-查看内存情况"><a href="#free-查看内存情况" class="headerlink" title="free 查看内存情况"></a>free 查看内存情况</h3><pre><code>free -m
-</code></pre>
-<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><pre><code>top
-</code></pre>
-<h3 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h3><pre><code>vmstat
-</code></pre>
-<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h3><pre><code>tree -d -L 3
-</code></pre>
-<h3 id="挂在硬盘"><a href="#挂在硬盘" class="headerlink" title="挂在硬盘"></a>挂在硬盘</h3><pre><code>blkid -o device
-mount /dev/xvde1 /home
-</code></pre>
-<h3 id="重启定时任务"><a href="#重启定时任务" class="headerlink" title="重启定时任务"></a>重启定时任务</h3><pre><code>sudo /etc/init.d/crond restart
-</code></pre>
-<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><pre><code>id # 查看用户信息
-passwd # 修改用户密码
-</code></pre>
-<h3 id="修改-ssh-服务端口号"><a href="#修改-ssh-服务端口号" class="headerlink" title="修改 ssh 服务端口号"></a>修改 ssh 服务端口号</h3><p>查看端口是否被占用：</p>
-<pre><code>sudo netstat -anp | grep 10007
-</code></pre>
-<p>添加配置：</p>
-<pre><code>sudo vi /etc/ssh/sshd_config
-</code></pre>
-<p>修改 Port 值：<br>Port 10007</p>
-<p>重启 ssh 服务：</p>
-<pre><code>sudo service sshd restart
-</code></pre>
-<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><pre><code>curl -Iv www.baidu.com
-curl -Iv http://172.17.0.15
-curl 129.211.135.212:80
-</code></pre>
-<h3 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h3><pre><code>telnet 172.17.0.15 80
-</code></pre>
-<h3 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h3><pre><code>lsb_release -a
-</code></pre>
-<h3 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h3><pre><code>stat /etc/my.cnf
-</code></pre>
-<h3 id="查看指定时间之前的登陆记录"><a href="#查看指定时间之前的登陆记录" class="headerlink" title="查看指定时间之前的登陆记录"></a>查看指定时间之前的登陆记录</h3><pre><code>last -t 20220410000000
-</code></pre>
-<h3 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h3><pre><code class="shell">alias sshdb=&quot;ssh ethan@192.168.1.79&quot;
-
-export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
-export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
-export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
-</code></pre>
-<h2 id="日期时间函数"><a href="#日期时间函数" class="headerlink" title="日期时间函数"></a>日期时间函数</h2><pre><code class="shell"># 取日期 yyyy-mm-dd
-date +%F
-# 取上个月月份（两位数字符串）
-date -d &quot;2023-06-06 -1 month&quot; +%m
-# 取上个月月份（数字）
-month=`date -d &quot;2023-06-06 -1 month&quot; +%m`
-$((month))
-# 取上一年年份
-date -d &quot;2023-06-06 -1 year&quot; +%Y
-
-v_date=`date +%F`
-# 取上个月字符串
-`date -d &quot;$v_date -1 month&quot; +%Y%m`
-
-v_date_now=`date +&quot;%F %T&quot;`
-# 取前 15 分钟的时间
-v_date_time=`date -d &quot;-15 minute $v_date_now&quot; +&quot;%F %T&quot;`
-</code></pre>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><pre><code>80,8080,443,8443 需要备案
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2135,171 +2135,6 @@ get /test/test.txt ~/Downloads/download.txt
       </tags>
   </entry>
   <entry>
-    <title>联通云服务器初始化</title>
-    <url>/xiaoxiao/2022/07/14/cloud-server-init-cucloud/</url>
-    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
-<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
-<p>查看挂载结果<br>df -TH</p>
-<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
-<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
-<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
-<pre><code># 查看用户组是否存在
-grep shumei /etc/group
-# 添加用户组 shumei
-groupadd shumei
-
-# 查看用户 shumei 是否存在
-grep shumei /etc/passwd
-# 添加用户
-useradd -g shumei -d /home/shumei -m shumei
-# 查看 shumei 信息
-id shumei
-# 设置用户密码
-passwd shumei
-
-# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
-vi /etc/sudoers
-# 仿照现有root的例子就行，加一行（最好用tab作为空白）
-shumei  ALL=(ALL:ALL)   ALL
-</code></pre>
-<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
-<pre><code># echo $SHELL 可查看当前使用的 shell
-usermod -s /bin/bash shumei
-</code></pre>
-<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
-
-vi .profile
-export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
-export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
-export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
-
-# 使配置生效
-source .profile
-
-# 检查配置是否成功
-java -version
-</code></pre>
-<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[参考]<a href="https://www.yuque.com/ethan09/cnlf1x/tvef26">https://www.yuque.com/ethan09/cnlf1x/tvef26</a></p>
-<pre><code>wget http://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
-
-sudo vi /etc/apt/sources.list.d/nginx.list
-# 添加如下内容
-deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx
-deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx
-
-sudo apt-get update
-sudo apt-get install nginx
-</code></pre>
-<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
-sudo apt install redis-server
-
-查看是否启动
-# redis-cli
-以上命令将打开以下终端：
-redis 127.0.0.1:6379&gt;
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kettle experiences</title>
-    <url>/xiaoxiao/2023/05/23/kettle-experiences/</url>
-    <content><![CDATA[<h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol>
-<li>解压 pdi-ce 压缩包</li>
-<li>放入 mysql 驱动至 lib 文件夹下</li>
-<li>配置环境变量 .profile</li>
-</ol>
-<pre><code class="shell">export KETTLE=/home/shumei/soft/data-integration
-export PATH=$&#123;KETTLE&#125;:$PATH
-</code></pre>
-<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ul>
-<li>日期转换</li>
-</ul>
-<pre><code class="sql">date_format(a.start_date, &#39;%Y/%m/%d 00:00:00.000&#39;) as start_date
-date_format(create_time, &#39;%Y/%m/%d %T.%f&#39;) as data_create_time
-date_format(a.payedDate, &#39;%Y/%m&#39;) as payedDate
-date_format(DATE_ADD(now(), INTERVAL -1 MONTH), &#39;%Y%m&#39;);
-</code></pre>
-<ul>
-<li>日期计算</li>
-</ul>
-<pre><code class="sql">a.update_time &gt;= DATE_ADD(now(), INTERVAL -15 MINUTE)
-a.update_time &gt;= DATE_ADD(now(), INTERVAL -3 DAY)
-a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 MONTH)
-a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 YEAR)
-</code></pre>
-<ul>
-<li>类型转换</li>
-</ul>
-<pre><code class="sql"># 把字段 id 的类型转换为字符串 char
-CAST(id as CHAR) AS CODE
-</code></pre>
-<h2 id="设定变量"><a href="#设定变量" class="headerlink" title="设定变量"></a>设定变量</h2><p>转换命名参数就是在转换内部定义的变量，作用范围是在转换内部。在转换的空白处双击左键，在转换属性中能看到“命名参数”。</p>
-<p>引用：可以在表输入SQL语句中使用${变量名} 或者 %%变量名%%</p>
-<h1 id="作业执行"><a href="#作业执行" class="headerlink" title="作业执行"></a>作业执行</h1><ul>
-<li>执行转换</li>
-</ul>
-<pre><code class="shell">pan.sh -file tr1.ktr
-pan.sh -file tr1.ktr -param:year=2023 -param:month=5
-</code></pre>
-<ul>
-<li>执行作业</li>
-</ul>
-<pre><code class="shell">kitchen.sh -file jobname1.kjb
-kitchen.sh -file jobname2.kjb -param:input=/kettle -param:output=/kettle
-</code></pre>
-<h1 id="定时任务脚本"><a href="#定时任务脚本" class="headerlink" title="定时任务脚本"></a>定时任务脚本</h1><pre><code class="shell">#!/bin/bash
-# 环境变量
-JAVA_HOME=/home/shumei/soft/jdk1.8.0_171
-KETTLE_HOME=&quot;/home/shumei/soft/data-integration&quot;
-export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
-export PATH=$&#123;JAVA_HOME&#125;/bin::$PATH
-# 公共变量
-DATE_STR=`date +%Y%m%d`;
-BASE_DIR=&#39;/home/shumei/kettle&#39;
-# 局部变量
-v_script_dir=&#39;/kettle/1015dca/pro&#39;
-v_shell_name=dca1m
-v_result=&quot;执行成功&quot;
-# 脚本名称
-JOB01_NAME=tr1.ktr
-JOB02_NAME=tr2.ktr
-
-# X 企业名录入库
-v_date_str=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)
-$&#123;KETTLE_HOME&#125;/pan.sh -file $&#123;BASE_DIR&#125;$&#123;v_script_dir&#125;/$&#123;v_job01_name&#125; -level=Basic &gt;&gt; $&#123;BASE_DIR&#125;/logs/$&#123;v_shell_name&#125;.$&#123;DATE_STR&#125;
-pan_return=$?
-if [ $pan_return -eq 0 ]; then
-    v_result=&quot;执行成功&quot;
-elif [ $pan_return -eq 1 ]; then
-    v_result=&quot;执行失败&quot;
-else
-    v_result=&quot;执行取消&quot;
-fi
-echo $v_result
-if [ $pan_return -ne 0 ]; then
-    echo &quot;Task X 企业名录入库-$v_result $&#123;v_date_str&#125;&quot; | mail -s &quot;Subject: Task Failed&quot; ethan@ahshumei.com
-fi
-echo $&#123;v_date_str&#125;-X 企业名录入库 start
-echo -e $(date +&quot;%Y-%m-%d %H:%M:%S&quot;)-X 企业名录入库 end\n
-
-sleep 2
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>kettle</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>迁移 mysql 数据目录</title>
     <url>/xiaoxiao/2023/05/25/migrate-mysql-data-directory/</url>
     <content><![CDATA[<p>在 CentOS 中迁移 MySQL 的数据目录 &#x2F;var&#x2F;lib&#x2F;mysql 到其他磁盘可以按以下步骤进行:</p>
@@ -2723,6 +2558,171 @@ server &#123;
       <tags>
         <tag>nginx</tag>
         <tag>dns</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>联通云服务器初始化</title>
+    <url>/xiaoxiao/2022/07/14/cloud-server-init-cucloud/</url>
+    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
+<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
+<p>查看挂载结果<br>df -TH</p>
+<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
+<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
+<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<pre><code># 查看用户组是否存在
+grep shumei /etc/group
+# 添加用户组 shumei
+groupadd shumei
+
+# 查看用户 shumei 是否存在
+grep shumei /etc/passwd
+# 添加用户
+useradd -g shumei -d /home/shumei -m shumei
+# 查看 shumei 信息
+id shumei
+# 设置用户密码
+passwd shumei
+
+# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
+vi /etc/sudoers
+# 仿照现有root的例子就行，加一行（最好用tab作为空白）
+shumei  ALL=(ALL:ALL)   ALL
+</code></pre>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code># echo $SHELL 可查看当前使用的 shell
+usermod -s /bin/bash shumei
+</code></pre>
+<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
+
+vi .profile
+export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+
+# 使配置生效
+source .profile
+
+# 检查配置是否成功
+java -version
+</code></pre>
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[参考]<a href="https://www.yuque.com/ethan09/cnlf1x/tvef26">https://www.yuque.com/ethan09/cnlf1x/tvef26</a></p>
+<pre><code>wget http://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
+
+sudo vi /etc/apt/sources.list.d/nginx.list
+# 添加如下内容
+deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx
+deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx
+
+sudo apt-get update
+sudo apt-get install nginx
+</code></pre>
+<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
+sudo apt install redis-server
+
+查看是否启动
+# redis-cli
+以上命令将打开以下终端：
+redis 127.0.0.1:6379&gt;
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kettle experiences</title>
+    <url>/xiaoxiao/2023/05/23/kettle-experiences/</url>
+    <content><![CDATA[<h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol>
+<li>解压 pdi-ce 压缩包</li>
+<li>放入 mysql 驱动至 lib 文件夹下</li>
+<li>配置环境变量 .profile</li>
+</ol>
+<pre><code class="shell">export KETTLE=/home/shumei/soft/data-integration
+export PATH=$&#123;KETTLE&#125;:$PATH
+</code></pre>
+<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ul>
+<li>日期转换</li>
+</ul>
+<pre><code class="sql">date_format(a.start_date, &#39;%Y/%m/%d 00:00:00.000&#39;) as start_date
+date_format(create_time, &#39;%Y/%m/%d %T.%f&#39;) as data_create_time
+date_format(a.payedDate, &#39;%Y/%m&#39;) as payedDate
+date_format(DATE_ADD(now(), INTERVAL -1 MONTH), &#39;%Y%m&#39;);
+</code></pre>
+<ul>
+<li>日期计算</li>
+</ul>
+<pre><code class="sql">a.update_time &gt;= DATE_ADD(now(), INTERVAL -15 MINUTE)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -3 DAY)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 MONTH)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 YEAR)
+</code></pre>
+<ul>
+<li>类型转换</li>
+</ul>
+<pre><code class="sql"># 把字段 id 的类型转换为字符串 char
+CAST(id as CHAR) AS CODE
+</code></pre>
+<h2 id="设定变量"><a href="#设定变量" class="headerlink" title="设定变量"></a>设定变量</h2><p>转换命名参数就是在转换内部定义的变量，作用范围是在转换内部。在转换的空白处双击左键，在转换属性中能看到“命名参数”。</p>
+<p>引用：可以在表输入SQL语句中使用${变量名} 或者 %%变量名%%</p>
+<h1 id="作业执行"><a href="#作业执行" class="headerlink" title="作业执行"></a>作业执行</h1><ul>
+<li>执行转换</li>
+</ul>
+<pre><code class="shell">pan.sh -file tr1.ktr
+pan.sh -file tr1.ktr -param:year=2023 -param:month=5
+</code></pre>
+<ul>
+<li>执行作业</li>
+</ul>
+<pre><code class="shell">kitchen.sh -file jobname1.kjb
+kitchen.sh -file jobname2.kjb -param:input=/kettle -param:output=/kettle
+</code></pre>
+<h1 id="定时任务脚本"><a href="#定时任务脚本" class="headerlink" title="定时任务脚本"></a>定时任务脚本</h1><pre><code class="shell">#!/bin/bash
+# 环境变量
+JAVA_HOME=/home/shumei/soft/jdk1.8.0_171
+KETTLE_HOME=&quot;/home/shumei/soft/data-integration&quot;
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin::$PATH
+# 公共变量
+DATE_STR=`date +%Y%m%d`;
+BASE_DIR=&#39;/home/shumei/kettle&#39;
+# 局部变量
+v_script_dir=&#39;/kettle/1015dca/pro&#39;
+v_shell_name=dca1m
+v_result=&quot;执行成功&quot;
+# 脚本名称
+JOB01_NAME=tr1.ktr
+JOB02_NAME=tr2.ktr
+
+# X 企业名录入库
+v_date_str=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)
+$&#123;KETTLE_HOME&#125;/pan.sh -file $&#123;BASE_DIR&#125;$&#123;v_script_dir&#125;/$&#123;v_job01_name&#125; -level=Basic &gt;&gt; $&#123;BASE_DIR&#125;/logs/$&#123;v_shell_name&#125;.$&#123;DATE_STR&#125;
+pan_return=$?
+if [ $pan_return -eq 0 ]; then
+    v_result=&quot;执行成功&quot;
+elif [ $pan_return -eq 1 ]; then
+    v_result=&quot;执行失败&quot;
+else
+    v_result=&quot;执行取消&quot;
+fi
+echo $v_result
+if [ $pan_return -ne 0 ]; then
+    echo &quot;Task X 企业名录入库-$v_result $&#123;v_date_str&#125;&quot; | mail -s &quot;Subject: Task Failed&quot; ethan@ahshumei.com
+fi
+echo $&#123;v_date_str&#125;-X 企业名录入库 start
+echo -e $(date +&quot;%Y-%m-%d %H:%M:%S&quot;)-X 企业名录入库 end\n
+
+sleep 2
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>kettle</tag>
       </tags>
   </entry>
 </search>
