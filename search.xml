@@ -184,11 +184,10 @@ $ git branch -d mybranch
       </tags>
   </entry>
   <entry>
-    <title>电影日记</title>
-    <url>/xiaoxiao/2016/09/09/film-comments/</url>
-    <content><![CDATA[<h3 id="《那啊那啊神去村》"><a href="#《那啊那啊神去村》" class="headerlink" title="《那啊那啊神去村》"></a>《那啊那啊神去村》</h3><p>环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 2016</p>
-<h3 id="《海街日记》"><a href="#《海街日记》" class="headerlink" title="《海街日记》"></a>《海街日记》</h3><p>让人感觉生活真是美好、温馨！情节非常有代入感，故事可以这样描述真是让人难以想象！整部电影好像没讲什么内容，但是整体又给人非常丰满的感觉，回味无穷…… Wed Sep  7 23:31:41 CST 2016</p>
-<h3 id="《黄昏的清兵卫》"><a href="#《黄昏的清兵卫》" class="headerlink" title="《黄昏的清兵卫》"></a>《黄昏的清兵卫》</h3><p>本来正在 coding，但是电影一开始就被代入，自然的沉入故事中去，专注度就像在做数学难题，不是，就像在解决 bug 一样！ Wed Sep  7 23:39:51 CST 2016</p>
+    <title>Hello World</title>
+    <url>/xiaoxiao/2016/09/10/hello-world/</url>
+    <content><![CDATA[<p>Hello, world!</p>
+<p>现在台式机正播放速度与激情7，因为已经看过了，感觉无聊，就想试试Github Pages，于是就有了这个 Hello World……</p>
 ]]></content>
       <categories>
         <category>生活</category>
@@ -198,10 +197,11 @@ $ git branch -d mybranch
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/xiaoxiao/2016/09/10/hello-world/</url>
-    <content><![CDATA[<p>Hello, world!</p>
-<p>现在台式机正播放速度与激情7，因为已经看过了，感觉无聊，就想试试Github Pages，于是就有了这个 Hello World……</p>
+    <title>电影日记</title>
+    <url>/xiaoxiao/2016/09/09/film-comments/</url>
+    <content><![CDATA[<h3 id="《那啊那啊神去村》"><a href="#《那啊那啊神去村》" class="headerlink" title="《那啊那啊神去村》"></a>《那啊那啊神去村》</h3><p>环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 2016</p>
+<h3 id="《海街日记》"><a href="#《海街日记》" class="headerlink" title="《海街日记》"></a>《海街日记》</h3><p>让人感觉生活真是美好、温馨！情节非常有代入感，故事可以这样描述真是让人难以想象！整部电影好像没讲什么内容，但是整体又给人非常丰满的感觉，回味无穷…… Wed Sep  7 23:31:41 CST 2016</p>
+<h3 id="《黄昏的清兵卫》"><a href="#《黄昏的清兵卫》" class="headerlink" title="《黄昏的清兵卫》"></a>《黄昏的清兵卫》</h3><p>本来正在 coding，但是电影一开始就被代入，自然的沉入故事中去，专注度就像在做数学难题，不是，就像在解决 bug 一样！ Wed Sep  7 23:39:51 CST 2016</p>
 ]]></content>
       <categories>
         <category>生活</category>
@@ -349,6 +349,27 @@ alias svnadd=&quot;sh ~/scripts/svnadd.sh&quot;
       </tags>
   </entry>
   <entry>
+    <title>可以用下面的方法让你的大脑就范</title>
+    <url>/xiaoxiao/2017/04/29/how-to-learn/</url>
+    <content><![CDATA[<ol>
+<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
+<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
+<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
+<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
+<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
+<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
+<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
+<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SVN 使用</title>
     <url>/xiaoxiao/2016/10/15/svn-configs/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些不常用的 svn 操作命令</p>
@@ -394,27 +415,6 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
       </categories>
       <tags>
         <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>可以用下面的方法让你的大脑就范</title>
-    <url>/xiaoxiao/2017/04/29/how-to-learn/</url>
-    <content><![CDATA[<ol>
-<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
-<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
-<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
-<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
-<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
-<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
-<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
-<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -776,6 +776,45 @@ defaults write com.apple.Maps AppleLanguages &#39;(zh-CN)&#39;
       </tags>
   </entry>
   <entry>
+    <title>代码提交注释格式</title>
+    <url>/xiaoxiao/2018/03/14/commit-message/</url>
+    <content><![CDATA[<p>每次提交，Commit message 格式如下：</p>
+<pre><code>&lt;type&gt; #&lt;subject&gt;
+</code></pre>
+<p>包含两部分：type 和 subject</p>
+<ol>
+<li><p>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。</p>
+<ul>
+<li>feat：新功能（feature）</li>
+<li>fix：修补bug</li>
+<li>docs：文档（documentation）</li>
+<li>style： 格式（不影响代码运行的变动）</li>
+<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
+<li>test：增加测试</li>
+<li>chore：构建过程或辅助工具的变动</li>
+</ul>
+</li>
+<li><p>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。</p>
+<ul>
+<li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
+<li>第一个字母小写</li>
+<li>结尾不加句号（.）</li>
+</ul>
+</li>
+</ol>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>云效代码提交说明规则配置</p>
+<pre><code>^(fix|feat|docs|style|refactor|test|chore) #|^Merge
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Maven 插件 codemother 使用说明</title>
     <url>/xiaoxiao/2018/05/09/codemother/</url>
     <content><![CDATA[<p>项目地址:<a href="https://gitee.com/osethan/codemother-maven-plugin">https://gitee.com/osethan/codemother-maven-plugin</a></p>
@@ -943,45 +982,6 @@ controllerBasePackage=com.primeco.log.ctl.base
       </tags>
   </entry>
   <entry>
-    <title>代码提交注释格式</title>
-    <url>/xiaoxiao/2018/03/14/commit-message/</url>
-    <content><![CDATA[<p>每次提交，Commit message 格式如下：</p>
-<pre><code>&lt;type&gt; #&lt;subject&gt;
-</code></pre>
-<p>包含两部分：type 和 subject</p>
-<ol>
-<li><p>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。</p>
-<ul>
-<li>feat：新功能（feature）</li>
-<li>fix：修补bug</li>
-<li>docs：文档（documentation）</li>
-<li>style： 格式（不影响代码运行的变动）</li>
-<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
-<li>test：增加测试</li>
-<li>chore：构建过程或辅助工具的变动</li>
-</ul>
-</li>
-<li><p>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。</p>
-<ul>
-<li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
-<li>第一个字母小写</li>
-<li>结尾不加句号（.）</li>
-</ul>
-</li>
-</ol>
-<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>云效代码提交说明规则配置</p>
-<pre><code>^(fix|feat|docs|style|refactor|test|chore) #|^Merge
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>朋友相聚</title>
     <url>/xiaoxiao/2018/05/09/frinds-meeting/</url>
     <content><![CDATA[<p>尊敬的贵宾:您好！2018年11月3中餐为您安排的是海悦新四方酒店二楼四方厅。地址：合肥政务新区祁门路1777号（祁门路与茂荫路交口往南50米，省供销社东侧裙楼）</p>
@@ -1127,45 +1127,6 @@ v_date_time=`date -d &quot;-15 minute $v_date_now&quot; +&quot;%F %T&quot;`
       </tags>
   </entry>
   <entry>
-    <title>Proust Questionnaire</title>
-    <url>/xiaoxiao/2019/11/15/Proust-Questionnaire/</url>
-    <content><![CDATA[<p>1.你认为最完美的快乐是怎样的？<br>和家人在一起生活。</p>
-<p>2.你最希望拥有哪种才华？<br>画画。</p>
-<p>3.你最恐惧的是什么？<br>迷茫。</p>
-<p>4.你目前的心境怎样？<br>平和。</p>
-<p>5.还在世的人中你最钦佩的是谁？<br>无。</p>
-<p>6.你认为自己最伟大的成就是什么？<br>不知道。</p>
-<p>7.你自己的哪个特点让你最觉得痛恨？<br>无。</p>
-<p>8.你最喜欢的旅行是哪一次？<br>黄山。</p>
-<p>9.你最痛恨别人的什么特点？<br>无。</p>
-<p>10.你最珍惜的财产是什么？<br>家。</p>
-<p>11.你最奢侈的是什么？<br>无。</p>
-<p>12.你认为程度最浅的痛苦是什么？<br>没有痛苦。</p>
-<p>13.你认为哪种美德是被过高的评估的？<br>不知道。</p>
-<p>14.你最喜欢的职业是什么？<br>软件开发。</p>
-<p>15.你对自己的外表哪一点不满意？<br>身高。</p>
-<p>16.你最后悔的事情是什么？<br>无。</p>
-<p>17.还在世的人中你最鄙视的是谁？<br>没有。</p>
-<p>18.你最喜欢男性身上的什么品质？<br>落落大方。</p>
-<p>19.你使用过的最多的单词或者是词语是什么？<br>好的。</p>
-<p>20.你最喜欢女性身上的什么品质？<br>落落大方。</p>
-<p>21.你最伤痛的事是什么？<br>失恋。</p>
-<p>22.你最看重朋友的什么特点？<br>可靠。</p>
-<p>23.你这一生中最爱的人或东西是什么？<br>路飞。</p>
-<p>24.你希望以什么样的方式死去？<br>平静的不痛苦的。</p>
-<p>25.何时何地让你感觉到最快乐？<br>休息在家。</p>
-<p>26.如果你可以改变你的家庭一件事，那会是什么？<br>多付出。</p>
-<p>27.如果你能选择的话，你希望让什么重现？<br>不知道。</p>
-<p>28.你的座右铭是什么？<br>无。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>电信云服务器规划以及配置</title>
     <url>/xiaoxiao/2019/10/30/cloud-server-init-ctyun/</url>
     <content><![CDATA[<h3 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h3><p>查看分区</p>
@@ -1254,6 +1215,45 @@ nignx 中 autoindex 要配置成 off
       </categories>
       <tags>
         <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Proust Questionnaire</title>
+    <url>/xiaoxiao/2019/11/15/Proust-Questionnaire/</url>
+    <content><![CDATA[<p>1.你认为最完美的快乐是怎样的？<br>和家人在一起生活。</p>
+<p>2.你最希望拥有哪种才华？<br>画画。</p>
+<p>3.你最恐惧的是什么？<br>迷茫。</p>
+<p>4.你目前的心境怎样？<br>平和。</p>
+<p>5.还在世的人中你最钦佩的是谁？<br>无。</p>
+<p>6.你认为自己最伟大的成就是什么？<br>不知道。</p>
+<p>7.你自己的哪个特点让你最觉得痛恨？<br>无。</p>
+<p>8.你最喜欢的旅行是哪一次？<br>黄山。</p>
+<p>9.你最痛恨别人的什么特点？<br>无。</p>
+<p>10.你最珍惜的财产是什么？<br>家。</p>
+<p>11.你最奢侈的是什么？<br>无。</p>
+<p>12.你认为程度最浅的痛苦是什么？<br>没有痛苦。</p>
+<p>13.你认为哪种美德是被过高的评估的？<br>不知道。</p>
+<p>14.你最喜欢的职业是什么？<br>软件开发。</p>
+<p>15.你对自己的外表哪一点不满意？<br>身高。</p>
+<p>16.你最后悔的事情是什么？<br>无。</p>
+<p>17.还在世的人中你最鄙视的是谁？<br>没有。</p>
+<p>18.你最喜欢男性身上的什么品质？<br>落落大方。</p>
+<p>19.你使用过的最多的单词或者是词语是什么？<br>好的。</p>
+<p>20.你最喜欢女性身上的什么品质？<br>落落大方。</p>
+<p>21.你最伤痛的事是什么？<br>失恋。</p>
+<p>22.你最看重朋友的什么特点？<br>可靠。</p>
+<p>23.你这一生中最爱的人或东西是什么？<br>路飞。</p>
+<p>24.你希望以什么样的方式死去？<br>平静的不痛苦的。</p>
+<p>25.何时何地让你感觉到最快乐？<br>休息在家。</p>
+<p>26.如果你可以改变你的家庭一件事，那会是什么？<br>多付出。</p>
+<p>27.如果你能选择的话，你希望让什么重现？<br>不知道。</p>
+<p>28.你的座右铭是什么？<br>无。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -1742,6 +1742,64 @@ data_volume: /home/shumei/soft/harbor/data
       </tags>
   </entry>
   <entry>
+    <title>spring-boot-with-docker</title>
+    <url>/xiaoxiao/2020/08/22/spring-boot-with-docker/</url>
+    <content><![CDATA[<p>Docker is a Linux container management toolkit with a “social” aspect, allowing users to publish container images and consume those published by others. A Docker image is a recipe for running a containerized process, and in this guide we will build one for a simple Spring boot application.</p>
+<h1 id="Containerize-It"><a href="#Containerize-It" class="headerlink" title="Containerize It"></a>Containerize It</h1><p>Docker has a simple “Dockerfile” file format that it uses to specify the “layers” of an image. So let’s go ahead and create a Dockerfile in our Spring Boot project:</p>
+<p>Dockerfile</p>
+<pre><code>FROM openjdk:8-jdk-alpine
+RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
+USER ethan:ahshumei
+ARG JAR_FILE=target/*.jar
+COPY $&#123;JAR_FILE&#125; app.jar
+ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
+</code></pre>
+<p>Also, there is a clean separation between dependencies and application resources in a Spring Boot fat jar file, and we can use that fact to improve performance. The key is to create layers in the container filesystem. The layers are cached both at build time and at runtime (in most runtimes) so we want the most frequently changing resources, usually the class and static resources in the application itself, to be layered after the more slowly changing resources. Thus we will use a slightly different implementation of the Dockerfile:</p>
+<pre><code>FROM openjdk:8-jdk-alpine
+MAINTAINER ethan@ahshumei.com
+RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
+USER ethan:ahshumei
+ARG DEPENDENCY=target/dependency
+COPY $&#123;DEPENDENCY&#125;/BOOT-INF/lib /app/lib
+COPY $&#123;DEPENDENCY&#125;/META-INF /app/META-INF
+COPY $&#123;DEPENDENCY&#125;/BOOT-INF/classes /app
+ENTRYPOINT [&quot;java&quot;,&quot;-cp&quot;,&quot;app:app/lib/*&quot;,&quot;com.ahshumei.EurekaApplication&quot;]
+</code></pre>
+<p>This Dockerfile has a DEPENDENCY parameter pointing to a directory where we have unpacked the fat jar. From a Maven build:</p>
+<pre><code>$ mkdir -p target/dependency &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
+</code></pre>
+<p>运行以下命令创建镜像（如果用的是Maven的话）：</p>
+<pre><code>$ docker build -t ahshumei/eureka-docker .
+</code></pre>
+<p>This command builds an image and tags it as ahshumei&#x2F;eureka-docker.</p>
+<h1 id="创建自定义网络并设置固定IP"><a href="#创建自定义网络并设置固定IP" class="headerlink" title="创建自定义网络并设置固定IP"></a>创建自定义网络并设置固定IP</h1><p>在搭建一些集群软件的时候，组件和组件之间需要进行网络通信，这个时候如果每次重启IP都发生变化会很不方便，因此希望能够将容器的IP固定下来，这也是可以实现的，具体参考下面的方法。<br>1.创建自定义网络</p>
+<pre><code>docker network create --subnet=172.127.0.0/16 moon-network
+</code></pre>
+<p>2.创建Docker容器</p>
+<pre><code>docker run --name eureka -p 10090:10090 --net=gc-network --ip=172.127.0.90 -t ahshumei/eureka-docker
+</code></pre>
+<p>使用docker inspect container-id可以看到当前容器分配的IP就是固定IP了。</p>
+<h1 id="Build-a-Docker-Image-with-Maven"><a href="#Build-a-Docker-Image-with-Maven" class="headerlink" title="Build a Docker Image with Maven"></a>Build a Docker Image with Maven</h1><p>To get started quickly, you can run the Spring Boot image generator without even changing your pom.xml (and remember the Dockerfile if it is still there is ignored):</p>
+<pre><code>$ ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=springio/gs-spring-boot-docker
+</code></pre>
+<p>To push to a Docker registry you will need to have permission to push, which you won’t have by default. Change the image prefix to your own Dockerhub ID, and docker login to make sure you are authenticated before you run Docker.</p>
+<h1 id="Using-Spring-Profiles"><a href="#Using-Spring-Profiles" class="headerlink" title="Using Spring Profiles"></a>Using Spring Profiles</h1><p>Running your freshly minted Docker image with Spring profiles is as easy as passing an environment variable to the Docker run command</p>
+<pre><code>$ docker run -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -p 10900:10900 -t ahshumei/eureka-docker
+</code></pre>
+<h1 id="Debugging-the-application-in-a-Docker-container"><a href="#Debugging-the-application-in-a-Docker-container" class="headerlink" title="Debugging the application in a Docker container"></a>Debugging the application in a Docker container</h1><p>To debug the application JPDA Transport can be used. So we’ll treat the container like a remote server. To enable this feature pass a java agent settings in JAVA_OPTS variable and map agent’s port to localhost during a container run. With the Docker for Mac there is limitation due to that we can’t access container by IP without black magic usage.</p>
+<pre><code>$ docker run -e &quot;JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n&quot; -p 10900:10900 -t ahshumei/eureka-docker
+</code></pre>
+<p><a href="https://spring.io/guides/gs/spring-boot-docker/">https://spring.io/guides/gs/spring-boot-docker/</a></p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker compose 服务编排</title>
     <url>/xiaoxiao/2020/08/23/docker-compose/</url>
     <content><![CDATA[<p>安装 docker-compose</p>
@@ -1808,64 +1866,6 @@ sudo service docker restart
       </categories>
       <tags>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>spring-boot-with-docker</title>
-    <url>/xiaoxiao/2020/08/22/spring-boot-with-docker/</url>
-    <content><![CDATA[<p>Docker is a Linux container management toolkit with a “social” aspect, allowing users to publish container images and consume those published by others. A Docker image is a recipe for running a containerized process, and in this guide we will build one for a simple Spring boot application.</p>
-<h1 id="Containerize-It"><a href="#Containerize-It" class="headerlink" title="Containerize It"></a>Containerize It</h1><p>Docker has a simple “Dockerfile” file format that it uses to specify the “layers” of an image. So let’s go ahead and create a Dockerfile in our Spring Boot project:</p>
-<p>Dockerfile</p>
-<pre><code>FROM openjdk:8-jdk-alpine
-RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
-USER ethan:ahshumei
-ARG JAR_FILE=target/*.jar
-COPY $&#123;JAR_FILE&#125; app.jar
-ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
-</code></pre>
-<p>Also, there is a clean separation between dependencies and application resources in a Spring Boot fat jar file, and we can use that fact to improve performance. The key is to create layers in the container filesystem. The layers are cached both at build time and at runtime (in most runtimes) so we want the most frequently changing resources, usually the class and static resources in the application itself, to be layered after the more slowly changing resources. Thus we will use a slightly different implementation of the Dockerfile:</p>
-<pre><code>FROM openjdk:8-jdk-alpine
-MAINTAINER ethan@ahshumei.com
-RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
-USER ethan:ahshumei
-ARG DEPENDENCY=target/dependency
-COPY $&#123;DEPENDENCY&#125;/BOOT-INF/lib /app/lib
-COPY $&#123;DEPENDENCY&#125;/META-INF /app/META-INF
-COPY $&#123;DEPENDENCY&#125;/BOOT-INF/classes /app
-ENTRYPOINT [&quot;java&quot;,&quot;-cp&quot;,&quot;app:app/lib/*&quot;,&quot;com.ahshumei.EurekaApplication&quot;]
-</code></pre>
-<p>This Dockerfile has a DEPENDENCY parameter pointing to a directory where we have unpacked the fat jar. From a Maven build:</p>
-<pre><code>$ mkdir -p target/dependency &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
-</code></pre>
-<p>运行以下命令创建镜像（如果用的是Maven的话）：</p>
-<pre><code>$ docker build -t ahshumei/eureka-docker .
-</code></pre>
-<p>This command builds an image and tags it as ahshumei&#x2F;eureka-docker.</p>
-<h1 id="创建自定义网络并设置固定IP"><a href="#创建自定义网络并设置固定IP" class="headerlink" title="创建自定义网络并设置固定IP"></a>创建自定义网络并设置固定IP</h1><p>在搭建一些集群软件的时候，组件和组件之间需要进行网络通信，这个时候如果每次重启IP都发生变化会很不方便，因此希望能够将容器的IP固定下来，这也是可以实现的，具体参考下面的方法。<br>1.创建自定义网络</p>
-<pre><code>docker network create --subnet=172.127.0.0/16 moon-network
-</code></pre>
-<p>2.创建Docker容器</p>
-<pre><code>docker run --name eureka -p 10090:10090 --net=gc-network --ip=172.127.0.90 -t ahshumei/eureka-docker
-</code></pre>
-<p>使用docker inspect container-id可以看到当前容器分配的IP就是固定IP了。</p>
-<h1 id="Build-a-Docker-Image-with-Maven"><a href="#Build-a-Docker-Image-with-Maven" class="headerlink" title="Build a Docker Image with Maven"></a>Build a Docker Image with Maven</h1><p>To get started quickly, you can run the Spring Boot image generator without even changing your pom.xml (and remember the Dockerfile if it is still there is ignored):</p>
-<pre><code>$ ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=springio/gs-spring-boot-docker
-</code></pre>
-<p>To push to a Docker registry you will need to have permission to push, which you won’t have by default. Change the image prefix to your own Dockerhub ID, and docker login to make sure you are authenticated before you run Docker.</p>
-<h1 id="Using-Spring-Profiles"><a href="#Using-Spring-Profiles" class="headerlink" title="Using Spring Profiles"></a>Using Spring Profiles</h1><p>Running your freshly minted Docker image with Spring profiles is as easy as passing an environment variable to the Docker run command</p>
-<pre><code>$ docker run -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -p 10900:10900 -t ahshumei/eureka-docker
-</code></pre>
-<h1 id="Debugging-the-application-in-a-Docker-container"><a href="#Debugging-the-application-in-a-Docker-container" class="headerlink" title="Debugging the application in a Docker container"></a>Debugging the application in a Docker container</h1><p>To debug the application JPDA Transport can be used. So we’ll treat the container like a remote server. To enable this feature pass a java agent settings in JAVA_OPTS variable and map agent’s port to localhost during a container run. With the Docker for Mac there is limitation due to that we can’t access container by IP without black magic usage.</p>
-<pre><code>$ docker run -e &quot;JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n&quot; -p 10900:10900 -t ahshumei/eureka-docker
-</code></pre>
-<p><a href="https://spring.io/guides/gs/spring-boot-docker/">https://spring.io/guides/gs/spring-boot-docker/</a></p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -2360,6 +2360,87 @@ show tables;
       </tags>
   </entry>
   <entry>
+    <title>发送 crontab 定时任务执行结果到指定邮箱</title>
+    <url>/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/</url>
+    <content><![CDATA[<p>在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下：</p>
+<h1 id="1-安装配置环境"><a href="#1-安装配置环境" class="headerlink" title="1 安装配置环境"></a>1 安装配置环境</h1><h2 id="1-1-安装-mailutils"><a href="#1-1-安装-mailutils" class="headerlink" title="1.1 安装 mailutils"></a>1.1 安装 mailutils</h2><pre><code class="shell">bash 
+sudo apt install mailutils
+</code></pre>
+<p>配置过程需要选择配置类型，选择 <code>No configuration</code>。</p>
+<p>安装日志中有 postfix 的配置说明：</p>
+<blockquote>
+<p>Postfix was not set up.  Start with<br>  cp &#x2F;usr&#x2F;share&#x2F;postfix&#x2F;main.cf.debian &#x2F;etc&#x2F;postfix&#x2F;main.cf<br>.  If you need to make changes, edit<br>&#x2F;etc&#x2F;postfix&#x2F;main.cf (and others) as needed.  To view Postfix configuration<br>values, see postconf(1).</p>
+</blockquote>
+<blockquote>
+<p>After modifying main.cf, be sure to run ‘&#x2F;etc&#x2F;init.d&#x2F;postfix reload’.</p>
+</blockquote>
+<p>mailutils 提供用于 crontab 发送邮件的环境。安装好后需要配置两个文件：<code>/etc/ssmtp/ssmtp.conf /etc/ssmtp/revaliases</code></p>
+<h2 id="1-2-修改配置"><a href="#1-2-修改配置" class="headerlink" title="1.2 修改配置"></a>1.2 修改配置</h2><h3 id="修改-ssmtp-配置文件"><a href="#修改-ssmtp-配置文件" class="headerlink" title="修改 ssmtp 配置文件"></a>修改 ssmtp 配置文件</h3><p>设置发送邮箱、SMTP服务器和端口等：</p>
+<p><code>vi /etc/ssmtp/ssmtp.conf</code></p>
+<pre><code class="shell"># Config file for sSMTP sendmail
+#
+# The person who gets all mail for userids &lt; 1000
+# Make this empty to disable rewriting.
+root=your_email@163.com
+
+# The place where the mail goes. The actual machine name is required no
+# MX records are consulted. Commonly mailhosts are named mail.domain.com
+#mailhub=smtp.aliyun.com:465
+mailhub=smtp.163.com:465
+
+# The full hostname
+hostname=ubuntu
+UseTLS=Yes
+# Are users allowed to set their own From: address?
+# YES - Allow the user to specify their own From: address
+# NO - Use the system generated From: address
+FromLineOverride=NO
+
+#邮箱名
+AuthUser=your_email@163.com
+#授权码
+AuthPass=authpassasdfasdf
+</code></pre>
+<p>其中授权码 AuthPass 需要登录邮箱客户端获取。</p>
+<h3 id="修改配置文件-revaliases"><a href="#修改配置文件-revaliases" class="headerlink" title="修改配置文件 revaliases"></a>修改配置文件 revaliases</h3><p><code>vi /etc/ssmtp/revaliases</code></p>
+<pre><code class="shell"># sSMTP aliases
+#
+# Format:       local_account:outgoing_address:mailhub
+#
+# Example: root:your_login@your.domain:mailhub.your.domain[:port]
+# where [:port] is an optional port number that defaults to 25.
+shumei:your_email@163.com:smtp.163.com:465
+</code></pre>
+<p>至此邮件发送的环境已搭建完成。下面是编写脚本测试发送邮件。</p>
+<h1 id="2-测试邮件发送"><a href="#2-测试邮件发送" class="headerlink" title="2 测试邮件发送"></a>2 测试邮件发送</h1><h2 id="2-1-编写任务脚本"><a href="#2-1-编写任务脚本" class="headerlink" title="2.1 编写任务脚本"></a>2.1 编写任务脚本</h2><p>在脚本中判断任务是否执行成功，如果失败则发送邮件。例如：</p>
+<pre><code class="shell">bash
+#!/bin/bash
+
+# 执行任务
+some_command
+
+# 判断任务执行结果
+if [ $? -ne 0 ]; then
+    # 发送邮件,邮件内容为任务输出
+    echo &quot;Subject: Task Failed&quot; | mail -s &quot;Task Failed&quot; $MAIL 
+fi 
+</code></pre>
+<p>- <code>some_command</code> 替换为要执行的命令<br>- <code>$?</code> 用于获取上一条命令的返回值,如果不等于 0 表示失败<br>- <code>mail</code> 命令用于发送邮件<br>- <code>-s</code> 指定邮件主题<br>- <code>$MAIL</code> 为预先配置的接收邮箱环境变量</p>
+<p>完成后为任务脚本添加可执行权限:<code>chmod +x script.sh</code></p>
+<h2 id="2-2-添加定时任务"><a href="#2-2-添加定时任务" class="headerlink" title="2.2 添加定时任务"></a>2.2 添加定时任务</h2><p>在 crontab 文件中添加定时任务，例如:</p>
+<pre><code class="shell">*/5 * * * * /path/to/script.sh   # 每5分钟执行一次
+</code></pre>
+<p>当定时任务执行失败时，会发送一封邮件通知到您指定的邮箱，实现了只在任务失败时发送邮件的效果。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>crontab</tag>
+        <tag>mail</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jasypt spring boot</title>
     <url>/xiaoxiao/2023/07/14/jasypt-spring-boot/</url>
     <content><![CDATA[<p>本文介绍如何将 jasypt 集成进 spring boot 项目中，用于解决用户、密码等敏感信息在代码中明文存储的问题。</p>
@@ -2539,87 +2620,6 @@ public class StringEncryptorTest extends BaseTest &#123;
       </categories>
       <tags>
         <tag>jasypt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>发送 crontab 定时任务执行结果到指定邮箱</title>
-    <url>/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/</url>
-    <content><![CDATA[<p>在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下：</p>
-<h1 id="1-安装配置环境"><a href="#1-安装配置环境" class="headerlink" title="1 安装配置环境"></a>1 安装配置环境</h1><h2 id="1-1-安装-mailutils"><a href="#1-1-安装-mailutils" class="headerlink" title="1.1 安装 mailutils"></a>1.1 安装 mailutils</h2><pre><code class="shell">bash 
-sudo apt install mailutils
-</code></pre>
-<p>配置过程需要选择配置类型，选择 <code>No configuration</code>。</p>
-<p>安装日志中有 postfix 的配置说明：</p>
-<blockquote>
-<p>Postfix was not set up.  Start with<br>  cp &#x2F;usr&#x2F;share&#x2F;postfix&#x2F;main.cf.debian &#x2F;etc&#x2F;postfix&#x2F;main.cf<br>.  If you need to make changes, edit<br>&#x2F;etc&#x2F;postfix&#x2F;main.cf (and others) as needed.  To view Postfix configuration<br>values, see postconf(1).</p>
-</blockquote>
-<blockquote>
-<p>After modifying main.cf, be sure to run ‘&#x2F;etc&#x2F;init.d&#x2F;postfix reload’.</p>
-</blockquote>
-<p>mailutils 提供用于 crontab 发送邮件的环境。安装好后需要配置两个文件：<code>/etc/ssmtp/ssmtp.conf /etc/ssmtp/revaliases</code></p>
-<h2 id="1-2-修改配置"><a href="#1-2-修改配置" class="headerlink" title="1.2 修改配置"></a>1.2 修改配置</h2><h3 id="修改-ssmtp-配置文件"><a href="#修改-ssmtp-配置文件" class="headerlink" title="修改 ssmtp 配置文件"></a>修改 ssmtp 配置文件</h3><p>设置发送邮箱、SMTP服务器和端口等：</p>
-<p><code>vi /etc/ssmtp/ssmtp.conf</code></p>
-<pre><code class="shell"># Config file for sSMTP sendmail
-#
-# The person who gets all mail for userids &lt; 1000
-# Make this empty to disable rewriting.
-root=your_email@163.com
-
-# The place where the mail goes. The actual machine name is required no
-# MX records are consulted. Commonly mailhosts are named mail.domain.com
-#mailhub=smtp.aliyun.com:465
-mailhub=smtp.163.com:465
-
-# The full hostname
-hostname=ubuntu
-UseTLS=Yes
-# Are users allowed to set their own From: address?
-# YES - Allow the user to specify their own From: address
-# NO - Use the system generated From: address
-FromLineOverride=NO
-
-#邮箱名
-AuthUser=your_email@163.com
-#授权码
-AuthPass=authpassasdfasdf
-</code></pre>
-<p>其中授权码 AuthPass 需要登录邮箱客户端获取。</p>
-<h3 id="修改配置文件-revaliases"><a href="#修改配置文件-revaliases" class="headerlink" title="修改配置文件 revaliases"></a>修改配置文件 revaliases</h3><p><code>vi /etc/ssmtp/revaliases</code></p>
-<pre><code class="shell"># sSMTP aliases
-#
-# Format:       local_account:outgoing_address:mailhub
-#
-# Example: root:your_login@your.domain:mailhub.your.domain[:port]
-# where [:port] is an optional port number that defaults to 25.
-shumei:your_email@163.com:smtp.163.com:465
-</code></pre>
-<p>至此邮件发送的环境已搭建完成。下面是编写脚本测试发送邮件。</p>
-<h1 id="2-测试邮件发送"><a href="#2-测试邮件发送" class="headerlink" title="2 测试邮件发送"></a>2 测试邮件发送</h1><h2 id="2-1-编写任务脚本"><a href="#2-1-编写任务脚本" class="headerlink" title="2.1 编写任务脚本"></a>2.1 编写任务脚本</h2><p>在脚本中判断任务是否执行成功，如果失败则发送邮件。例如：</p>
-<pre><code class="shell">bash
-#!/bin/bash
-
-# 执行任务
-some_command
-
-# 判断任务执行结果
-if [ $? -ne 0 ]; then
-    # 发送邮件,邮件内容为任务输出
-    echo &quot;Subject: Task Failed&quot; | mail -s &quot;Task Failed&quot; $MAIL 
-fi 
-</code></pre>
-<p>- <code>some_command</code> 替换为要执行的命令<br>- <code>$?</code> 用于获取上一条命令的返回值,如果不等于 0 表示失败<br>- <code>mail</code> 命令用于发送邮件<br>- <code>-s</code> 指定邮件主题<br>- <code>$MAIL</code> 为预先配置的接收邮箱环境变量</p>
-<p>完成后为任务脚本添加可执行权限:<code>chmod +x script.sh</code></p>
-<h2 id="2-2-添加定时任务"><a href="#2-2-添加定时任务" class="headerlink" title="2.2 添加定时任务"></a>2.2 添加定时任务</h2><p>在 crontab 文件中添加定时任务，例如:</p>
-<pre><code class="shell">*/5 * * * * /path/to/script.sh   # 每5分钟执行一次
-</code></pre>
-<p>当定时任务执行失败时，会发送一封邮件通知到您指定的邮箱，实现了只在任务失败时发送邮件的效果。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>crontab</tag>
-        <tag>mail</tag>
       </tags>
   </entry>
   <entry>
