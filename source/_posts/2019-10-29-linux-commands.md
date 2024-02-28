@@ -4,7 +4,7 @@ date: 2019-10-29 17:55:39
 updated: 2019-10-30 17:55:39
 comments: true
 categories:
-  - tech
+  - 运维
 tags: [linux]
 ---
 

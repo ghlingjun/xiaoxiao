@@ -2,8 +2,10 @@
 title: hexo commands
 comments: true
 categories:
-  - tech
-tags: [hexo]
+  - 工具
+    - hexo
+tags: 
+  - hexo
 date: 2019-11-21 20:43:50
 updated: 2019-11-21 20:43:50
 ---

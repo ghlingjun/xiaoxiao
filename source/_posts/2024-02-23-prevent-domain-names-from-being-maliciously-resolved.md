@@ -2,7 +2,7 @@
 title: 防止域名被恶意解析
 comments: true
 categories:
-  - tech
+  - 运维
 tags: [nginx, dns]
 date: 2024-02-23 18:17:51
 updated: 2024-02-23 18:17:51

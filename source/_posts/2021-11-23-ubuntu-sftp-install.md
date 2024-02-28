@@ -2,7 +2,7 @@
 title: Ubuntu 安装 SFTP 服务
 comments: true
 categories:
-  - tech
+  - 运维
 tags: [sftp]
 date: 2021-11-23 15:44:47
 updated: 2021-11-23 15:44:47
@@ -103,3 +103,74 @@ put /home/user/test.txt /test/test_upload.txt
 get remote_file local_file
 get /test/test.txt ~/Downloads/download.txt
 ```
+
+# 使用 SSH 密钥对来访问 sftp 服务
+
+首先为 sftp 用户创建 SSH 密钥对，然后将公钥添加到 sftp 用户的 SSH 允许列表中。这样 sftp 用户就可以使用 SSH 密钥对来访问 sftp 服务了。
+
+## 第一步查看已存在的密钥对
+ 
+先检查是否已存在 SSH 密钥，SSH 密钥对一般存放在本地用户的根目录下。已存在本地公钥，你可以跳过生成 SSH 密钥。
+
+ED25519 算法
+```shell
+cat ~/.ssh/id_ed25519.pub
+```
+
+RSA 算法
+```shell
+cat ~/.ssh/id_rsa.pub
+```
+
+如果返回一长串以 ssh-ed25519 或 ssh-rsa 开头的字符串, 说明已存在本地公钥，你可以跳过生成 SSH 密钥。如果不存在，参考第二步生成 SSH 密钥对。
+
+## 第二步生成 SSH 密钥对
+
+SSH 加密算法类型有 ED25519、RSA 等。
+
+ED25519 是一种基于椭圆曲线密码学的数字签名算法，属于 EdDSA 签名方案的一部分。它使用 SHA-512/256 散列函数和 Curve25519 椭圆曲线。由于其数学特性，ED25519 被认为是目前最安全、加解密速度最快的密钥类型之一。它的密钥长度比 RSA 小很多，因此具有更好的性能。然而，由于它的新颖性和复杂性，一些旧的软件或系统可能不支持 ED25519。
+
+RSA 是一种广泛使用的公钥加密算法，既可以用于数据加密，也可以用于数字签名。RSA 的安全性基于大质数的难以分解性质。然而，随着计算机技术的发展，RSA 的安全性可能会受到威胁。RSA 密钥的长度通常比 ED25519 长，因此加解密速度相对较慢。但是，由于 RSA 的广泛使用和支持，它仍然是最兼容的密钥类型之一。
+
+推荐使用 ED25519 算法生成 SSH 密钥对：
+
+```shell
+# 注释会出现在.pub文件中，一般可使用邮箱作为注释内容，或者使用用户名作为注释内容
+ssh-keygen -t ed25519 -C "<注释内容>"
+```
+
+基于 RSA 算法，生成密钥对命令如下：
+
+```shell
+ssh-keygen -t rsa -C "<注释内容>"
+```
+
+> 警告：密钥用于鉴权，请谨慎保管。公钥文件以 .pub 扩展名结尾，可以公开给其他人，而没有 .pub 扩展名的私钥文件不要泄露给任何人！
+
+## 第三步复制公钥
+
+查看公钥，然后复制到剪贴板
+
+```shell
+# ED25519 算法
+cat ~/.ssh/id_ed25519.pub
+# 如果使用 RSA 算法生成密钥对，使用以下命令
+cat ~/.ssh/id_rsa.pub
+```
+
+## 第四步添加公钥
+
+将公钥添加到 sftp 用户的 SSH 允许列表中：
+
+```shell
+# 添加公钥
+vi /home/sftp/.ssh/authorized_keys
+```
+
+## 测试确认
+
+测试确认是否可以使用 SSH 密钥对来访问 sftp 服务：
+```shell
+sftp -P 2222 sftpuser@ip
+```
+如果登陆成功，说明可以使用 SSH 密钥对来访问 sftp 服务了。
