@@ -145,20 +145,6 @@ $ git branch -d mybranch
       </tags>
   </entry>
   <entry>
-    <title>电影日记</title>
-    <url>/xiaoxiao/2016/09/09/film-comments/</url>
-    <content><![CDATA[<h3 id="《那啊那啊神去村》"><a href="#《那啊那啊神去村》" class="headerlink" title="《那啊那啊神去村》"></a>《那啊那啊神去村》</h3><p>环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 2016</p>
-<h3 id="《海街日记》"><a href="#《海街日记》" class="headerlink" title="《海街日记》"></a>《海街日记》</h3><p>让人感觉生活真是美好、温馨！情节非常有代入感，故事可以这样描述真是让人难以想象！整部电影好像没讲什么内容，但是整体又给人非常丰满的感觉，回味无穷…… Wed Sep  7 23:31:41 CST 2016</p>
-<h3 id="《黄昏的清兵卫》"><a href="#《黄昏的清兵卫》" class="headerlink" title="《黄昏的清兵卫》"></a>《黄昏的清兵卫》</h3><p>本来正在 coding，但是电影一开始就被代入，自然的沉入故事中去，专注度就像在做数学难题，不是，就像在解决 bug 一样！ Wed Sep  7 23:39:51 CST 2016</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>普鲁斯特问卷</title>
     <url>/xiaoxiao/2016/08/06/Proust-Questionnaire/</url>
     <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>做自己喜欢的事情，与喜欢的人一起生活。</p>
@@ -189,6 +175,20 @@ $ git branch -d mybranch
 <h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>不知道。</p>
 <h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>我希望能重过2012和2013这两年，不知是否可以改变些什么。</p>
 <h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电影日记</title>
+    <url>/xiaoxiao/2016/09/09/film-comments/</url>
+    <content><![CDATA[<h3 id="《那啊那啊神去村》"><a href="#《那啊那啊神去村》" class="headerlink" title="《那啊那啊神去村》"></a>《那啊那啊神去村》</h3><p>环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 2016</p>
+<h3 id="《海街日记》"><a href="#《海街日记》" class="headerlink" title="《海街日记》"></a>《海街日记》</h3><p>让人感觉生活真是美好、温馨！情节非常有代入感，故事可以这样描述真是让人难以想象！整部电影好像没讲什么内容，但是整体又给人非常丰满的感觉，回味无穷…… Wed Sep  7 23:31:41 CST 2016</p>
+<h3 id="《黄昏的清兵卫》"><a href="#《黄昏的清兵卫》" class="headerlink" title="《黄昏的清兵卫》"></a>《黄昏的清兵卫》</h3><p>本来正在 coding，但是电影一开始就被代入，自然的沉入故事中去，专注度就像在做数学难题，不是，就像在解决 bug 一样！ Wed Sep  7 23:39:51 CST 2016</p>
 ]]></content>
       <categories>
         <category>生活</category>
@@ -1120,7 +1120,7 @@ v_date_time=`date -d &quot;-15 minute $v_date_now&quot; +&quot;%F %T&quot;`
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>linux</tag>
@@ -1257,27 +1257,6 @@ nignx 中 autoindex 要配置成 off
       </tags>
   </entry>
   <entry>
-    <title>初始化 windows 操作系统</title>
-    <url>/xiaoxiao/2019/11/18/windows-os-init/</url>
-    <content><![CDATA[<ul>
-<li>激活操作系统</li>
-<li>新建个人账户，登录并禁用 administrator 用户</li>
-<li>安装 360 浏览器</li>
-<li>安装 360 安全卫士（主要用于驱动、系统更新）</li>
-<li>安装 WPS、微信、QQ</li>
-<li>安装 JDK，配置环境变量</li>
-<li>安装 git</li>
-<li>安装 intellij idea</li>
-</ul>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>OS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo commands</title>
     <url>/xiaoxiao/2019/11/21/hexo-commands/</url>
     <content><![CDATA[<h2 id="Hexo-Commands"><a href="#Hexo-Commands" class="headerlink" title="Hexo Commands"></a>Hexo Commands</h2><p>最常用三个命令：</p>
@@ -1375,10 +1354,31 @@ $ hexo new [layout] &lt;title&gt;
 </tbody></table>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具 - hexo</category>
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初始化 windows 操作系统</title>
+    <url>/xiaoxiao/2019/11/18/windows-os-init/</url>
+    <content><![CDATA[<ul>
+<li>激活操作系统</li>
+<li>新建个人账户，登录并禁用 administrator 用户</li>
+<li>安装 360 浏览器</li>
+<li>安装 360 安全卫士（主要用于驱动、系统更新）</li>
+<li>安装 WPS、微信、QQ</li>
+<li>安装 JDK，配置环境变量</li>
+<li>安装 git</li>
+<li>安装 intellij idea</li>
+</ul>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
       </tags>
   </entry>
   <entry>
@@ -1925,6 +1925,101 @@ mvn -U clean package -Dmaven.test.skip=true -pl 模块名称 -am
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu 安装 SFTP 服务</title>
+    <url>/xiaoxiao/2021/11/23/ubuntu-sftp-install/</url>
+    <content><![CDATA[<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>在 Ubuntu 系统上开通 sftp 文件服务，允许指定用户上传及下载文件。但是这些用户只能使用 sftp 传输文件，不能使用 SSH 终端访问服务器，并且 sftp 不能访问系统文件。系统管理员则既能使用 sftp 传输文件，也能使用 SSH 远程管理服务器。<br>以下是将允许 sftp 用户组内的用户使用 sftp，但不允许使用 SSH Shell，且该组用户不能访问系统文件。</p>
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="查看是否已安装-sftp"><a href="#查看是否已安装-sftp" class="headerlink" title="查看是否已安装 sftp"></a>查看是否已安装 sftp</h2><pre><code class="shell">dpkg --get-selections | grep ssh
+</code></pre>
+<h2 id="新建-sftp-用户组"><a href="#新建-sftp-用户组" class="headerlink" title="新建 sftp 用户组"></a>新建 sftp 用户组</h2><pre><code class="shell"># 查看用户组是否存在
+grep sftp /etc/group
+# 添加用户组 sftp
+groupadd sftp
+</code></pre>
+<h2 id="新建-sftp-用户"><a href="#新建-sftp-用户" class="headerlink" title="新建 sftp 用户"></a>新建 sftp 用户</h2><pre><code class="shell"># 查看用户 sftp 是否存在
+grep sftp /etc/passwd
+# 添加用户
+useradd -g sftp -m sftp
+</code></pre>
+<p>将 sftp 从所有其他用户组中移除并加入到 sftp 组，并且关闭其 Shell 访问：<br>sudo usermod -G sftp -s &#x2F;bin&#x2F;false sftp</p>
+<h2 id="创建并设置-sftp-用户目录"><a href="#创建并设置-sftp-用户目录" class="headerlink" title="创建并设置 sftp 用户目录"></a>创建并设置 sftp 用户目录</h2><p>准备“监狱”的根目录及共享目录，“监狱”的根目录必须满足以下要求：<br>所有者为 root，其他任何用户都不能拥有写入权限。<br>因此，为了让 sftp 用户能够上传文件，还必须在“监狱”根目录下再创建一个普通用户能够写入的共享文件目录。</p>
+<pre><code class="shell">sudo mkdir /home/sftp
+sudo mkdir /home/sftp/shared
+sudo chown shumei:sftp /home/sftp/shared
+sudo chmod 770 /home/sftp/shared
+</code></pre>
+<h2 id="修改SSH配置文件"><a href="#修改SSH配置文件" class="headerlink" title="修改SSH配置文件"></a>修改SSH配置文件</h2><pre><code>vi  /etc/ssh/sshd_config
+注释内容：
+#Subsystem      sftp    /usr/libexec/openssh/sftp-server
+在文件的最后，添加以下内容：
+Subsystem       sftp    internal-sftp
+AllowGroups shumei sftp
+Match Group sftp
+ChrootDirectory /home/sftp
+AllowTcpForwarding no
+X11Forwarding no
+ForceCommand internal-sftp -d shared
+</code></pre>
+<p>这些内容的意思是：<br>只允许 shumei 及 sftp 通过SSH访问系统；<br>针对 sftp 用户，额外增加一些设置：<br>将“&#x2F;home&#x2F;sftp”设置为该组用户的系统根目录（因此它们将不能访问该目录之外的其他系统文件）；<br>禁止 TCP Forwarding 和X11 Forwarding；<br>强制该组用户仅仅使用 SFTP，“-d shared”默认用户登陆后自动进入 shared 目录。<br>如果需要进一步了解细节，可以使用“man sshd_config”命令。这样设置之后，SSH用户组可以访问SSH，并且不受其他限制；而SFTP用户组仅能使用SFTP进行访问，而且被关进监狱目录。</p>
+<h2 id="设置-sftp-端口"><a href="#设置-sftp-端口" class="headerlink" title="设置 sftp 端口"></a>设置 sftp 端口</h2><p><code>sudo vim /etc/ssh/sshd_config</code></p>
+<p>搜索以端口22开头的行。通常，该行使用井号(＃)注释掉。 删除哈希号，然后输入新的SSH端口号： Port 2222</p>
+<p>编辑配置文件时要非常小心。 错误的配置可能会阻止SSH服务启动。</p>
+<p>完成后，保存文件并重新启动SSH服务以使更改生效： <code>sudo systemctl restart ssh</code></p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>访问 sftp 服务：</p>
+<pre><code class="shell">sftp -P 2222 sftp@127.0.0.1
+
+# 上传一个文件
+put local_file remote_file
+put /home/user/test.txt /test/test_upload.txt
+
+# 下载一个文件
+get remote_file local_file
+get /test/test.txt ~/Downloads/download.txt
+</code></pre>
+<h1 id="使用-SSH-密钥对来访问-sftp-服务"><a href="#使用-SSH-密钥对来访问-sftp-服务" class="headerlink" title="使用 SSH 密钥对来访问 sftp 服务"></a>使用 SSH 密钥对来访问 sftp 服务</h1><p>首先为 sftp 用户创建 SSH 密钥对，然后将公钥添加到 sftp 用户的 SSH 允许列表中。这样 sftp 用户就可以使用 SSH 密钥对来访问 sftp 服务了。</p>
+<h2 id="第一步查看已存在的密钥对"><a href="#第一步查看已存在的密钥对" class="headerlink" title="第一步查看已存在的密钥对"></a>第一步查看已存在的密钥对</h2><p>先检查是否已存在 SSH 密钥，SSH 密钥对一般存放在本地用户的根目录下。已存在本地公钥，你可以跳过生成 SSH 密钥。</p>
+<p>ED25519 算法</p>
+<pre><code class="shell">cat ~/.ssh/id_ed25519.pub
+</code></pre>
+<p>RSA 算法</p>
+<pre><code class="shell">cat ~/.ssh/id_rsa.pub
+</code></pre>
+<p>如果返回一长串以 ssh-ed25519 或 ssh-rsa 开头的字符串, 说明已存在本地公钥，你可以跳过生成 SSH 密钥。如果不存在，参考第二步生成 SSH 密钥对。</p>
+<h2 id="第二步生成-SSH-密钥对"><a href="#第二步生成-SSH-密钥对" class="headerlink" title="第二步生成 SSH 密钥对"></a>第二步生成 SSH 密钥对</h2><p>SSH 加密算法类型有 ED25519、RSA 等。</p>
+<p>ED25519 是一种基于椭圆曲线密码学的数字签名算法，属于 EdDSA 签名方案的一部分。它使用 SHA-512&#x2F;256 散列函数和 Curve25519 椭圆曲线。由于其数学特性，ED25519 被认为是目前最安全、加解密速度最快的密钥类型之一。它的密钥长度比 RSA 小很多，因此具有更好的性能。然而，由于它的新颖性和复杂性，一些旧的软件或系统可能不支持 ED25519。</p>
+<p>RSA 是一种广泛使用的公钥加密算法，既可以用于数据加密，也可以用于数字签名。RSA 的安全性基于大质数的难以分解性质。然而，随着计算机技术的发展，RSA 的安全性可能会受到威胁。RSA 密钥的长度通常比 ED25519 长，因此加解密速度相对较慢。但是，由于 RSA 的广泛使用和支持，它仍然是最兼容的密钥类型之一。</p>
+<p>推荐使用 ED25519 算法生成 SSH 密钥对：</p>
+<pre><code class="shell"># 注释会出现在.pub文件中，一般可使用邮箱作为注释内容，或者使用用户名作为注释内容
+ssh-keygen -t ed25519 -C &quot;&lt;注释内容&gt;&quot;
+</code></pre>
+<p>基于 RSA 算法，生成密钥对命令如下：</p>
+<pre><code class="shell">ssh-keygen -t rsa -C &quot;&lt;注释内容&gt;&quot;
+</code></pre>
+<blockquote>
+<p>警告：密钥用于鉴权，请谨慎保管。公钥文件以 .pub 扩展名结尾，可以公开给其他人，而没有 .pub 扩展名的私钥文件不要泄露给任何人！</p>
+</blockquote>
+<h2 id="第三步复制公钥"><a href="#第三步复制公钥" class="headerlink" title="第三步复制公钥"></a>第三步复制公钥</h2><p>查看公钥，然后复制到剪贴板</p>
+<pre><code class="shell"># ED25519 算法
+cat ~/.ssh/id_ed25519.pub
+# 如果使用 RSA 算法生成密钥对，使用以下命令
+cat ~/.ssh/id_rsa.pub
+</code></pre>
+<h2 id="第四步添加公钥"><a href="#第四步添加公钥" class="headerlink" title="第四步添加公钥"></a>第四步添加公钥</h2><p>将公钥添加到 sftp 用户的 SSH 允许列表中：</p>
+<pre><code class="shell"># 添加公钥
+vi /home/sftp/.ssh/authorized_keys
+</code></pre>
+<h2 id="测试确认"><a href="#测试确认" class="headerlink" title="测试确认"></a>测试确认</h2><p>测试确认是否可以使用 SSH 密钥对来访问 sftp 服务：</p>
+<pre><code class="shell">sftp -P 2222 sftpuser@ip
+</code></pre>
+<p>如果登陆成功，说明可以使用 SSH 密钥对来访问 sftp 服务了。</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>sftp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu Server 安装</title>
     <url>/xiaoxiao/2021/03/29/install-Ubuntu-Server/</url>
     <content><![CDATA[<h1 id="下载系统-ISO-文件"><a href="#下载系统-ISO-文件" class="headerlink" title="下载系统 ISO 文件"></a>下载系统 ISO 文件</h1><p><a href="https://cn.ubuntu.com/download">https://cn.ubuntu.com/download</a><br>Ubuntu Server 20.04.2 LTS</p>
@@ -2073,65 +2168,6 @@ INSERT INTO `WARNING` (`id`, `warning`, `website`, `token`) VALUES (1, &#39;To r
       </categories>
       <tags>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu 安装 SFTP 服务</title>
-    <url>/xiaoxiao/2021/11/23/ubuntu-sftp-install/</url>
-    <content><![CDATA[<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>在 Ubuntu 系统上开通 sftp 文件服务，允许指定用户上传及下载文件。但是这些用户只能使用 sftp 传输文件，不能使用 SSH 终端访问服务器，并且 sftp 不能访问系统文件。系统管理员则既能使用 sftp 传输文件，也能使用 SSH 远程管理服务器。<br>以下是将允许 sftp 用户组内的用户使用 sftp，但不允许使用 SSH Shell，且该组用户不能访问系统文件。</p>
-<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="查看是否已安装-sftp"><a href="#查看是否已安装-sftp" class="headerlink" title="查看是否已安装 sftp"></a>查看是否已安装 sftp</h2><pre><code class="shell">dpkg --get-selections | grep ssh
-</code></pre>
-<h2 id="新建-sftp-用户组"><a href="#新建-sftp-用户组" class="headerlink" title="新建 sftp 用户组"></a>新建 sftp 用户组</h2><pre><code class="shell"># 查看用户组是否存在
-grep sftp /etc/group
-# 添加用户组 sftp
-groupadd sftp
-</code></pre>
-<h2 id="新建-sftp-用户"><a href="#新建-sftp-用户" class="headerlink" title="新建 sftp 用户"></a>新建 sftp 用户</h2><pre><code class="shell"># 查看用户 sftp 是否存在
-grep sftp /etc/passwd
-# 添加用户
-useradd -g sftp -m sftp
-</code></pre>
-<p>将 sftp 从所有其他用户组中移除并加入到 sftp 组，并且关闭其 Shell 访问：<br>sudo usermod -G sftp -s &#x2F;bin&#x2F;false sftp</p>
-<h2 id="创建并设置-sftp-用户目录"><a href="#创建并设置-sftp-用户目录" class="headerlink" title="创建并设置 sftp 用户目录"></a>创建并设置 sftp 用户目录</h2><p>准备“监狱”的根目录及共享目录，“监狱”的根目录必须满足以下要求：<br>所有者为 root，其他任何用户都不能拥有写入权限。<br>因此，为了让 sftp 用户能够上传文件，还必须在“监狱”根目录下再创建一个普通用户能够写入的共享文件目录。</p>
-<pre><code class="shell">sudo mkdir /home/sftp
-sudo mkdir /home/sftp/shared
-sudo chown shumei:sftp /home/sftp/shared
-sudo chmod 770 /home/sftp/shared
-</code></pre>
-<h2 id="修改SSH配置文件"><a href="#修改SSH配置文件" class="headerlink" title="修改SSH配置文件"></a>修改SSH配置文件</h2><pre><code>vi  /etc/ssh/sshd_config
-注释内容：
-#Subsystem      sftp    /usr/libexec/openssh/sftp-server
-在文件的最后，添加以下内容：
-Subsystem       sftp    internal-sftp
-AllowGroups shumei sftp
-Match Group sftp
-ChrootDirectory /home/sftp
-AllowTcpForwarding no
-X11Forwarding no
-ForceCommand internal-sftp -d shared
-</code></pre>
-<p>这些内容的意思是：<br>只允许 shumei 及 sftp 通过SSH访问系统；<br>针对 sftp 用户，额外增加一些设置：<br>将“&#x2F;home&#x2F;sftp”设置为该组用户的系统根目录（因此它们将不能访问该目录之外的其他系统文件）；<br>禁止 TCP Forwarding 和X11 Forwarding；<br>强制该组用户仅仅使用 SFTP，“-d shared”默认用户登陆后自动进入 shared 目录。<br>如果需要进一步了解细节，可以使用“man sshd_config”命令。这样设置之后，SSH用户组可以访问SSH，并且不受其他限制；而SFTP用户组仅能使用SFTP进行访问，而且被关进监狱目录。</p>
-<h2 id="设置-sftp-端口"><a href="#设置-sftp-端口" class="headerlink" title="设置 sftp 端口"></a>设置 sftp 端口</h2><p><code>sudo vim /etc/ssh/sshd_config</code></p>
-<p>搜索以端口22开头的行。通常，该行使用井号(＃)注释掉。 删除哈希号，然后输入新的SSH端口号： Port 2222</p>
-<p>编辑配置文件时要非常小心。 错误的配置可能会阻止SSH服务启动。</p>
-<p>完成后，保存文件并重新启动SSH服务以使更改生效： <code>sudo systemctl restart ssh</code></p>
-<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>访问 sftp 服务：</p>
-<pre><code class="shell">sftp -P 2222 sftp@127.0.0.1
-
-# 上传一个文件
-put local_file remote_file
-put /home/user/test.txt /test/test_upload.txt
-
-# 下载一个文件
-get remote_file local_file
-get /test/test.txt ~/Downloads/download.txt
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>sftp</tag>
       </tags>
   </entry>
   <entry>
@@ -2623,38 +2659,6 @@ public class StringEncryptorTest extends BaseTest &#123;
       </tags>
   </entry>
   <entry>
-    <title>为应用创建守护进程</title>
-    <url>/xiaoxiao/2023/09/21/use-systemd-manage-application/</url>
-    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
-<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
-<pre><code class="text">[Unit]
-Description=moon data center service
-
-[Service]
-ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<blockquote>
-<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
-</blockquote>
-<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
-<blockquote>
-<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
-</blockquote>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>systemd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>防止域名被恶意解析</title>
     <url>/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/</url>
     <content><![CDATA[<h1 id="恶意域名解析的原理"><a href="#恶意域名解析的原理" class="headerlink" title="恶意域名解析的原理"></a>恶意域名解析的原理</h1><p>假如公网 IP 暴露，那么别人可以随意用一个域名解析到公网 IP，如果解析的域名未备案，那会有安全风险。那如何防止呢？下面是 Nignx 的解决办法：</p>
@@ -2718,11 +2722,43 @@ server &#123;
 <p>访问 <a href="https://ip/">https://ip</a> 返回 403，说明 443 端口的防解析配置成功！</p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>nginx</tag>
         <tag>dns</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为应用创建守护进程</title>
+    <url>/xiaoxiao/2023/09/21/use-systemd-manage-application/</url>
+    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
+<pre><code class="text">[Unit]
+Description=moon data center service
+
+[Service]
+ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<blockquote>
+<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
+</blockquote>
+<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
+<blockquote>
+<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>systemd</tag>
       </tags>
   </entry>
 </search>
