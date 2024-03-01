@@ -15,6 +15,23 @@ Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类
 |page	|source|
 |draft	|source/_drafts|
 
+下面是一个 front matter 的示例：
+```yaml
+---
+title: hexo commands
+comments: true
+categories:
+  - 工具
+  - hexo
+tags:
+  - hexo
+date: 2019-11-21 20:43:50
+updated: 2019-11-21 20:43:50
+---
+```
+categories 示例中表示“工具”为父分类，“hexo”为子类，并不是和“工具”同级，而是子类。
+tags 示例中表示“hexo”为标签。标签也可以多个，没有级别。
+
 ### 部署网站
 ```
 $ hexo deploy

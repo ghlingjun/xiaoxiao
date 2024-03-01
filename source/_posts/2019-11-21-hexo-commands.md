@@ -3,12 +3,13 @@ title: hexo commands
 comments: true
 categories:
   - 工具
-    - hexo
+  - hexo
 tags: 
   - hexo
 date: 2019-11-21 20:43:50
 updated: 2019-11-21 20:43:50
 ---
+
 ## Hexo Commands
 最常用三个命令：
 ```
