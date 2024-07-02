@@ -126,25 +126,6 @@ $ git branch -d mybranch
       </tags>
   </entry>
   <entry>
-    <title>jBPM 基础</title>
-    <url>/xiaoxiao/2014/11/07/jBPM-overview/</url>
-    <content><![CDATA[<p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
-<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
-<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
-<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
-<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
-<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
-<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>jbpm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>普鲁斯特问卷</title>
     <url>/xiaoxiao/2016/08/06/Proust-Questionnaire/</url>
     <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>做自己喜欢的事情，与喜欢的人一起生活。</p>
@@ -181,6 +162,25 @@ $ git branch -d mybranch
       </categories>
       <tags>
         <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jBPM 基础</title>
+    <url>/xiaoxiao/2014/11/07/jBPM-overview/</url>
+    <content><![CDATA[<p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
+<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
+<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
+<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
+<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
+<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>jbpm</tag>
       </tags>
   </entry>
   <entry>
@@ -349,6 +349,43 @@ alias svnadd=&quot;sh ~/scripts/svnadd.sh&quot;
       </tags>
   </entry>
   <entry>
+    <title>可以用下面的方法让你的大脑就范</title>
+    <url>/xiaoxiao/2017/04/29/how-to-learn/</url>
+    <content><![CDATA[<ol>
+<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
+<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
+<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
+<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
+<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
+<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
+<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
+<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>共享模式词汇的威力</title>
+    <url>/xiaoxiao/2017/04/30/why-learn-schemas/</url>
+    <content><![CDATA[<h3 id="共享模式词汇“威力强大”"><a href="#共享模式词汇“威力强大”" class="headerlink" title="共享模式词汇“威力强大”"></a>共享模式词汇“威力强大”</h3><p>当你使用模式名称和其他开发人员或者开发团队沟通时，你们之间交流的不只是模式名称，而是一整套模式背后所象征的质量、特性、约束。</p>
+<h3 id="模式能让你用更少的词汇做更充分的沟通"><a href="#模式能让你用更少的词汇做更充分的沟通" class="headerlink" title="模式能让你用更少的词汇做更充分的沟通"></a>模式能让你用更少的词汇做更充分的沟通</h3><p>当你用模式描述的时候，其他开发人员便很容易地知道你对设计的想法。</p>
+<h3 id="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"><a href="#将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面" class="headerlink" title="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"></a>将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面</h3><p>使用模式谈论软件系统，可以让你保持在设计层次，不会被压低到对象与类这种琐碎的事情。</p>
+<h3 id="共享词汇可帮你的开发团队快速充电"><a href="#共享词汇可帮你的开发团队快速充电" class="headerlink" title="共享词汇可帮你的开发团队快速充电"></a>共享词汇可帮你的开发团队快速充电</h3><p>对于设计模式有深入了解的团队，彼此之间对于设计的看法不容易产生误解。</p>
+<h3 id="共享词汇能帮助初级开发人员迅速成长"><a href="#共享词汇能帮助初级开发人员迅速成长" class="headerlink" title="共享词汇能帮助初级开发人员迅速成长"></a>共享词汇能帮助初级开发人员迅速成长</h3><p>初级开发人员向有经验的开发人员看齐。当高级开发人员使用设计模式，初级开发人员也会跟着学。把你的组织建立成一个模式使用者的社区。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>schema</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SVN 使用</title>
     <url>/xiaoxiao/2016/10/15/svn-configs/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些不常用的 svn 操作命令</p>
@@ -394,82 +431,6 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
       </categories>
       <tags>
         <tag>svn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>可以用下面的方法让你的大脑就范</title>
-    <url>/xiaoxiao/2017/04/29/how-to-learn/</url>
-    <content><![CDATA[<ol>
-<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
-<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
-<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
-<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
-<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
-<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
-<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
-<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>共享模式词汇的威力</title>
-    <url>/xiaoxiao/2017/04/30/why-learn-schemas/</url>
-    <content><![CDATA[<h3 id="共享模式词汇“威力强大”"><a href="#共享模式词汇“威力强大”" class="headerlink" title="共享模式词汇“威力强大”"></a>共享模式词汇“威力强大”</h3><p>当你使用模式名称和其他开发人员或者开发团队沟通时，你们之间交流的不只是模式名称，而是一整套模式背后所象征的质量、特性、约束。</p>
-<h3 id="模式能让你用更少的词汇做更充分的沟通"><a href="#模式能让你用更少的词汇做更充分的沟通" class="headerlink" title="模式能让你用更少的词汇做更充分的沟通"></a>模式能让你用更少的词汇做更充分的沟通</h3><p>当你用模式描述的时候，其他开发人员便很容易地知道你对设计的想法。</p>
-<h3 id="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"><a href="#将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面" class="headerlink" title="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"></a>将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面</h3><p>使用模式谈论软件系统，可以让你保持在设计层次，不会被压低到对象与类这种琐碎的事情。</p>
-<h3 id="共享词汇可帮你的开发团队快速充电"><a href="#共享词汇可帮你的开发团队快速充电" class="headerlink" title="共享词汇可帮你的开发团队快速充电"></a>共享词汇可帮你的开发团队快速充电</h3><p>对于设计模式有深入了解的团队，彼此之间对于设计的看法不容易产生误解。</p>
-<h3 id="共享词汇能帮助初级开发人员迅速成长"><a href="#共享词汇能帮助初级开发人员迅速成长" class="headerlink" title="共享词汇能帮助初级开发人员迅速成长"></a>共享词汇能帮助初级开发人员迅速成长</h3><p>初级开发人员向有经验的开发人员看齐。当高级开发人员使用设计模式，初级开发人员也会跟着学。把你的组织建立成一个模式使用者的社区。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>schema</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>普鲁斯特问卷</title>
-    <url>/xiaoxiao/2017/08/06/Proust-Questionnaire/</url>
-    <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>和喜欢的人在一起。</p>
-<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>画画。</p>
-<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>迷茫。</p>
-<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>还算平静。</p>
-<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>小小。</p>
-<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>不知道。</p>
-<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>老做傻事。</p>
-<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>惠州。</p>
-<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>不知道。</p>
-<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>健康。</p>
-<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
-<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>痛苦都差不多。</p>
-<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>不知道。</p>
-<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>工程师。</p>
-<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>身高。</p>
-<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>在能够爱你时没有更好的去爱你。</p>
-<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>没有。</p>
-<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>落落大方。</p>
-<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
-<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>落落大方。</p>
-<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>失恋。</p>
-<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>比我好的特点。</p>
-<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>小小。</p>
-<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>考虑还早。</p>
-<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>上班路上听故事广播时。</p>
-<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>家人能住在一起。</p>
-<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>不知道。</p>
-<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -533,6 +494,45 @@ Default encoding for properties files: UTF-8
       </categories>
       <tags>
         <tag>idea</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>普鲁斯特问卷</title>
+    <url>/xiaoxiao/2017/08/06/Proust-Questionnaire/</url>
+    <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>和喜欢的人在一起。</p>
+<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>画画。</p>
+<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>迷茫。</p>
+<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>还算平静。</p>
+<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>小小。</p>
+<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>不知道。</p>
+<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>老做傻事。</p>
+<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>惠州。</p>
+<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>不知道。</p>
+<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>健康。</p>
+<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
+<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>痛苦都差不多。</p>
+<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>不知道。</p>
+<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>工程师。</p>
+<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>身高。</p>
+<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>在能够爱你时没有更好的去爱你。</p>
+<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>没有。</p>
+<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>落落大方。</p>
+<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
+<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>落落大方。</p>
+<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>失恋。</p>
+<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>比我好的特点。</p>
+<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>小小。</p>
+<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>考虑还早。</p>
+<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>上班路上听故事广播时。</p>
+<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>家人能住在一起。</p>
+<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>不知道。</p>
+<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -1257,6 +1257,27 @@ nignx 中 autoindex 要配置成 off
       </tags>
   </entry>
   <entry>
+    <title>初始化 windows 操作系统</title>
+    <url>/xiaoxiao/2019/11/18/windows-os-init/</url>
+    <content><![CDATA[<ul>
+<li>激活操作系统</li>
+<li>新建个人账户，登录并禁用 administrator 用户</li>
+<li>安装 360 浏览器</li>
+<li>安装 360 安全卫士（主要用于驱动、系统更新）</li>
+<li>安装 WPS、微信、QQ</li>
+<li>安装 JDK，配置环境变量</li>
+<li>安装 git</li>
+<li>安装 intellij idea</li>
+</ul>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo commands</title>
     <url>/xiaoxiao/2019/11/21/hexo-commands/</url>
     <content><![CDATA[<h2 id="Hexo-Commands"><a href="#Hexo-Commands" class="headerlink" title="Hexo Commands"></a>Hexo Commands</h2><p>最常用三个命令：</p>
@@ -1354,31 +1375,11 @@ $ hexo new [layout] &lt;title&gt;
 </tbody></table>
 ]]></content>
       <categories>
-        <category>工具 - hexo</category>
+        <category>工具</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>初始化 windows 操作系统</title>
-    <url>/xiaoxiao/2019/11/18/windows-os-init/</url>
-    <content><![CDATA[<ul>
-<li>激活操作系统</li>
-<li>新建个人账户，登录并禁用 administrator 用户</li>
-<li>安装 360 浏览器</li>
-<li>安装 360 安全卫士（主要用于驱动、系统更新）</li>
-<li>安装 WPS、微信、QQ</li>
-<li>安装 JDK，配置环境变量</li>
-<li>安装 git</li>
-<li>安装 intellij idea</li>
-</ul>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>OS</tag>
       </tags>
   </entry>
   <entry>
@@ -1869,6 +1870,101 @@ sudo service docker restart
       </tags>
   </entry>
   <entry>
+    <title>记 MySql 数据库被勒索病毒攻击</title>
+    <url>/xiaoxiao/2021/04/19/mysql-attacked-by-blackmail-virus/</url>
+    <content><![CDATA[<h1 id="被勒索病毒攻击"><a href="#被勒索病毒攻击" class="headerlink" title="被勒索病毒攻击"></a>被勒索病毒攻击</h1><p>To recover your lost databases and avoid leaking it: visit <a href="http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion/">http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion</a> and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser <a href="https://www.torproject.org/projects/torbrowser.html">https://www.torproject.org/projects/torbrowser.html</a></p>
+<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><h2 id="1-第一时间修改密码"><a href="#1-第一时间修改密码" class="headerlink" title="1. 第一时间修改密码"></a>1. 第一时间修改密码</h2><ol>
+<li>修改服务器密码</li>
+<li>修改数据库密码</li>
+<li>修改数据库访问端口</li>
+</ol>
+<h2 id="2-确认数据恢复条件"><a href="#2-确认数据恢复条件" class="headerlink" title="2. 确认数据恢复条件"></a>2. 确认数据恢复条件</h2><p>数据恢复需要具备两个条件：</p>
+<ol>
+<li>有历史数据库备份文件；</li>
+<li>MySql服务开启了 binlog；<br>若条件具备，才可进行数据恢复。</li>
+</ol>
+<h2 id="3-恢复方法"><a href="#3-恢复方法" class="headerlink" title="3. 恢复方法"></a>3. 恢复方法</h2><h3 id="1-查看binlog信息"><a href="#1-查看binlog信息" class="headerlink" title="1. 查看binlog信息"></a>1. 查看binlog信息</h3><p>show variables like ‘%log_bin%’;</p>
+<p>备份 binlog 文件，防止日志文件丢失，binlog 文件目录可能为：&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;var，具体位置查询方式有两种：</p>
+<ol>
+<li>查询 MySql 配置文件 my.cnf，查看 binlog 路径配置项</li>
+<li>通过 sql 命令查询</li>
+</ol>
+<pre><code># 查询当前主日志
+show master status; 
+# 查询日志名为 binlog.000002 的相关信息，其中含日志路径
+show binlog events in &#39;binlog.000002&#39;;
+</code></pre>
+<p>日志文件备份后，查询日志，确认数据被删除时间。先使用 mysqlbinlog 命令导出指定时间之后的日志信息：</p>
+<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 &gt; /home/shumei/sqllog/log89.sql
+</code></pre>
+<p>若不知道 mysqlbinlog 命令位置，可通过 find 命令查找：</p>
+<pre><code>find / -name mysqlbinlog
+</code></pre>
+<p>输入日志后，查看日志内容如下：</p>
+<pre><code># at 3809968
+#210416 17:46:19 server id 1  end_log_pos 3810094 	Query	thread_id=27527	exec_time=0	error_code=0
+use `emerge`/*!*/;
+SET TIMESTAMP=1618566379/*!*/;
+SET @@session.sql_mode=0/*!*/;
+CREATE TABLE whiteeyes (name VARCHAR(255), code VARCHAR(255))
+/*!*/;
+# at 3810094
+#210416 17:46:19 server id 1  end_log_pos 3810207 	Query	thread_id=27527	exec_time=0	error_code=0
+SET TIMESTAMP=1618566379/*!*/;
+DROP TABLE `whiteeyes` /* generated by server */
+/*!*/;
+# at 3810207
+#210416 17:48:59 server id 1  end_log_pos 3810294 	Query	thread_id=27529	exec_time=0	error_code=0
+SET TIMESTAMP=1618566539/*!*/;
+DROP DATABASE `emerge`
+/*!*/;
+# at 3810294
+#210416 17:49:01 server id 1  end_log_pos 3810448 	Query	thread_id=27530	exec_time=0	error_code=0
+SET TIMESTAMP=1618566541/*!*/;
+SET @@session.sql_mode=524288/*!*/;
+CREATE DATABASE IF NOT EXISTS `emerge` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci
+/*!*/;
+# at 3810448
+#210416 17:49:02 server id 1  end_log_pos 3810736 	Query	thread_id=27530	exec_time=0	error_code=0
+use `emerge`/*!*/;
+SET TIMESTAMP=1618566542/*!*/;
+CREATE TABLE `WARNING`( `id` int(11) NOT NULL, `warning` text COLLATE utf8_unicode_ci, `website` text COLLATE utf8_unicode_ci, `token` text COLLATE utf8_unicode_ci) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+/*!*/;
+# at 3810736
+#210416 17:49:03 server id 1  end_log_pos 3810806 	Query	thread_id=27530	exec_time=0	error_code=0
+SET TIMESTAMP=1618566543/*!*/;
+BEGIN
+/*!*/;
+# at 3810806
+#210416 17:49:03 server id 1  end_log_pos 3811614 	Query	thread_id=27530	exec_time=0	error_code=0
+SET TIMESTAMP=1618566543/*!*/;
+INSERT INTO `WARNING` (`id`, `warning`, `website`, `token`) VALUES (1, &#39;To recover your lost databases and avoid leaking it: visit http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser https://www.torproject.org/projects/torbrowser.html&#39;, &#39;http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion&#39;, &#39;e620354e995a068f&#39;)
+</code></pre>
+<p>确定数据库被删除时间为：210416 17:48:59，并根据日志推断需要恢复数据的时间点。</p>
+<h3 id="2-根据推断确认恢复内容"><a href="#2-根据推断确认恢复内容" class="headerlink" title="2. 根据推断确认恢复内容"></a>2. 根据推断确认恢复内容</h3><p>导出日志内容：</p>
+<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000086 &gt; /home/shumei/sqllog/mysql_restore_86.sql
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000087 &gt; /home/shumei/sqllog/mysql_restore_87.sql
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge /home/shumei/sqllog/mysql-bin.000088 &gt; /home/shumei/sqllog/mysql_restore_88.sql
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --stop-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 &gt; /home/shumei/sqllog/mysql_restore_89.sql
+</code></pre>
+<p>start-datetime 为拥有的最新数据库备份时间；<br>stop-datetime 为数据库被攻击时间；<br>日志导出后进行查看、确认，确定没问题可进行下一步数据恢复。</p>
+<h3 id="3-恢复操作"><a href="#3-恢复操作" class="headerlink" title="3. 恢复操作"></a>3. 恢复操作</h3><ol>
+<li>导入历史数据库备份。</li>
+<li>通过 binlog 恢复备份时间至被攻击时间段内的数据。</li>
+</ol>
+<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000087 | mysql -u root -p********
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge /home/shumei/sqllog/mysql-bin.000088 | mysql -u root -p********
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --stop-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 | mysql -u root -p********
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>发布 docker 镜像</title>
     <url>/xiaoxiao/2020/08/29/docker-push-image/</url>
     <content><![CDATA[<h2 id="发布镜像到-docker-私服"><a href="#发布镜像到-docker-私服" class="headerlink" title="发布镜像到 docker 私服"></a>发布镜像到 docker 私服</h2><p>Dockerfile 示例：</p>
@@ -1909,19 +2005,6 @@ mvn -U clean package -Dmaven.test.skip=true -pl 模块名称 -am
       </categories>
       <tags>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Eye of The Tiger</title>
-    <url>/xiaoxiao/2020/09/18/Eye-of-The-Tiger/</url>
-    <content><![CDATA[<p>Eye of the Tiger 是 Survivor 乐队在 1982 年应西尔维斯特史泰龙为电影《洛奇3》创作的主题曲。</p>
-<p>Risin’ up<br>back on the street<br>did my time took my chances<br>went the distance<br>now i’m back on my feet<br>just a man and and his will to survive<br>so many times<br>it happens too fast<br>you trade your passion for glory<br>don’t lose your grip on the dreams of the past<br>you must fight just to keep them alive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Face to face<br>out in the heat<br>hangin’ tough<br>stayin’ hungry<br>they stack the odds<br>still we take to the street<br>for the kill with the will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Risin’ up<br>straight to the top<br>had the guts<br>got the glory<br>went the distance<br>now i’m not gonna stop<br>just a man and his will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>music</tag>
       </tags>
   </entry>
   <entry>
@@ -2020,157 +2103,6 @@ vi /home/sftp/.ssh/authorized_keys
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu Server 安装</title>
-    <url>/xiaoxiao/2021/03/29/install-Ubuntu-Server/</url>
-    <content><![CDATA[<h1 id="下载系统-ISO-文件"><a href="#下载系统-ISO-文件" class="headerlink" title="下载系统 ISO 文件"></a>下载系统 ISO 文件</h1><p><a href="https://cn.ubuntu.com/download">https://cn.ubuntu.com/download</a><br>Ubuntu Server 20.04.2 LTS</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol>
-<li>将 ISO 文件解压至 USB Disk 根目录</li>
-<li>启动电脑时，进入手动选择模式（通常是 F12、F10、F2）</li>
-<li>安装系统</li>
-</ol>
-<h1 id="配置静态IP"><a href="#配置静态IP" class="headerlink" title="配置静态IP"></a>配置静态IP</h1><p>查看IP</p>
-<pre><code>ip addr
-</code></pre>
-<p>修改配置文件</p>
-<pre><code>vi /etc/netplan/00-installer-config.yaml
-
-# This is the network config written by &#39;subiquity&#39;
-network:
-  ethernets:
-    enp2s0:
-      dhcp4: no
-      addresses: [10.10.1.11/24]
-      gateway4: 10.10.1.1
-      nameservers:
-              addresses: [10.10.1.1]
-  version: 2
-​
-</code></pre>
-<h1 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h1><pre><code>修改配置文件
-vi .profile
-​
-# 添加下面一行代码到最后
-TZ=&#39;Asia/Shanghai&#39;; export TZ
-</code></pre>
-<h1 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h1><p>备份 sources.list<br>cd &#x2F;etc&#x2F;apt<br>sudo cp sources.list sources.list.bak</p>
-<p>编辑 sources.list<br>添加如下内容：</p>
-<pre><code># 阿里源
-deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
-​```
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>记 MySql 数据库被勒索病毒攻击</title>
-    <url>/xiaoxiao/2021/04/19/mysql-attacked-by-blackmail-virus/</url>
-    <content><![CDATA[<h1 id="被勒索病毒攻击"><a href="#被勒索病毒攻击" class="headerlink" title="被勒索病毒攻击"></a>被勒索病毒攻击</h1><p>To recover your lost databases and avoid leaking it: visit <a href="http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion/">http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion</a> and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser <a href="https://www.torproject.org/projects/torbrowser.html">https://www.torproject.org/projects/torbrowser.html</a></p>
-<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><h2 id="1-第一时间修改密码"><a href="#1-第一时间修改密码" class="headerlink" title="1. 第一时间修改密码"></a>1. 第一时间修改密码</h2><ol>
-<li>修改服务器密码</li>
-<li>修改数据库密码</li>
-<li>修改数据库访问端口</li>
-</ol>
-<h2 id="2-确认数据恢复条件"><a href="#2-确认数据恢复条件" class="headerlink" title="2. 确认数据恢复条件"></a>2. 确认数据恢复条件</h2><p>数据恢复需要具备两个条件：</p>
-<ol>
-<li>有历史数据库备份文件；</li>
-<li>MySql服务开启了 binlog；<br>若条件具备，才可进行数据恢复。</li>
-</ol>
-<h2 id="3-恢复方法"><a href="#3-恢复方法" class="headerlink" title="3. 恢复方法"></a>3. 恢复方法</h2><h3 id="1-查看binlog信息"><a href="#1-查看binlog信息" class="headerlink" title="1. 查看binlog信息"></a>1. 查看binlog信息</h3><p>show variables like ‘%log_bin%’;</p>
-<p>备份 binlog 文件，防止日志文件丢失，binlog 文件目录可能为：&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;var，具体位置查询方式有两种：</p>
-<ol>
-<li>查询 MySql 配置文件 my.cnf，查看 binlog 路径配置项</li>
-<li>通过 sql 命令查询</li>
-</ol>
-<pre><code># 查询当前主日志
-show master status; 
-# 查询日志名为 binlog.000002 的相关信息，其中含日志路径
-show binlog events in &#39;binlog.000002&#39;;
-</code></pre>
-<p>日志文件备份后，查询日志，确认数据被删除时间。先使用 mysqlbinlog 命令导出指定时间之后的日志信息：</p>
-<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 &gt; /home/shumei/sqllog/log89.sql
-</code></pre>
-<p>若不知道 mysqlbinlog 命令位置，可通过 find 命令查找：</p>
-<pre><code>find / -name mysqlbinlog
-</code></pre>
-<p>输入日志后，查看日志内容如下：</p>
-<pre><code># at 3809968
-#210416 17:46:19 server id 1  end_log_pos 3810094 	Query	thread_id=27527	exec_time=0	error_code=0
-use `emerge`/*!*/;
-SET TIMESTAMP=1618566379/*!*/;
-SET @@session.sql_mode=0/*!*/;
-CREATE TABLE whiteeyes (name VARCHAR(255), code VARCHAR(255))
-/*!*/;
-# at 3810094
-#210416 17:46:19 server id 1  end_log_pos 3810207 	Query	thread_id=27527	exec_time=0	error_code=0
-SET TIMESTAMP=1618566379/*!*/;
-DROP TABLE `whiteeyes` /* generated by server */
-/*!*/;
-# at 3810207
-#210416 17:48:59 server id 1  end_log_pos 3810294 	Query	thread_id=27529	exec_time=0	error_code=0
-SET TIMESTAMP=1618566539/*!*/;
-DROP DATABASE `emerge`
-/*!*/;
-# at 3810294
-#210416 17:49:01 server id 1  end_log_pos 3810448 	Query	thread_id=27530	exec_time=0	error_code=0
-SET TIMESTAMP=1618566541/*!*/;
-SET @@session.sql_mode=524288/*!*/;
-CREATE DATABASE IF NOT EXISTS `emerge` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci
-/*!*/;
-# at 3810448
-#210416 17:49:02 server id 1  end_log_pos 3810736 	Query	thread_id=27530	exec_time=0	error_code=0
-use `emerge`/*!*/;
-SET TIMESTAMP=1618566542/*!*/;
-CREATE TABLE `WARNING`( `id` int(11) NOT NULL, `warning` text COLLATE utf8_unicode_ci, `website` text COLLATE utf8_unicode_ci, `token` text COLLATE utf8_unicode_ci) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
-/*!*/;
-# at 3810736
-#210416 17:49:03 server id 1  end_log_pos 3810806 	Query	thread_id=27530	exec_time=0	error_code=0
-SET TIMESTAMP=1618566543/*!*/;
-BEGIN
-/*!*/;
-# at 3810806
-#210416 17:49:03 server id 1  end_log_pos 3811614 	Query	thread_id=27530	exec_time=0	error_code=0
-SET TIMESTAMP=1618566543/*!*/;
-INSERT INTO `WARNING` (`id`, `warning`, `website`, `token`) VALUES (1, &#39;To recover your lost databases and avoid leaking it: visit http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser https://www.torproject.org/projects/torbrowser.html&#39;, &#39;http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion&#39;, &#39;e620354e995a068f&#39;)
-</code></pre>
-<p>确定数据库被删除时间为：210416 17:48:59，并根据日志推断需要恢复数据的时间点。</p>
-<h3 id="2-根据推断确认恢复内容"><a href="#2-根据推断确认恢复内容" class="headerlink" title="2. 根据推断确认恢复内容"></a>2. 根据推断确认恢复内容</h3><p>导出日志内容：</p>
-<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000086 &gt; /home/shumei/sqllog/mysql_restore_86.sql
-/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000087 &gt; /home/shumei/sqllog/mysql_restore_87.sql
-/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge /home/shumei/sqllog/mysql-bin.000088 &gt; /home/shumei/sqllog/mysql_restore_88.sql
-/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --stop-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 &gt; /home/shumei/sqllog/mysql_restore_89.sql
-</code></pre>
-<p>start-datetime 为拥有的最新数据库备份时间；<br>stop-datetime 为数据库被攻击时间；<br>日志导出后进行查看、确认，确定没问题可进行下一步数据恢复。</p>
-<h3 id="3-恢复操作"><a href="#3-恢复操作" class="headerlink" title="3. 恢复操作"></a>3. 恢复操作</h3><ol>
-<li>导入历史数据库备份。</li>
-<li>通过 binlog 恢复备份时间至被攻击时间段内的数据。</li>
-</ol>
-<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000087 | mysql -u root -p********
-/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge /home/shumei/sqllog/mysql-bin.000088 | mysql -u root -p********
-/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --stop-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 | mysql -u root -p********
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>联通云服务器初始化</title>
     <url>/xiaoxiao/2022/07/14/cloud-server-init-cucloud/</url>
     <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
@@ -2215,7 +2147,7 @@ source .profile
 # 检查配置是否成功
 java -version
 </code></pre>
-<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[参考]<a href="https://www.yuque.com/ethan09/cnlf1x/tvef26">https://www.yuque.com/ethan09/cnlf1x/tvef26</a></p>
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[以下仅示例，具体请参考官网文档]<a href="https://nginx.org/en/linux_packages.html#Ubuntu">https://nginx.org/en/linux_packages.html#Ubuntu</a></p>
 <pre><code>wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
 
@@ -2333,6 +2265,19 @@ sleep 2
       </categories>
       <tags>
         <tag>kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eye of The Tiger</title>
+    <url>/xiaoxiao/2020/09/18/Eye-of-The-Tiger/</url>
+    <content><![CDATA[<p>Eye of the Tiger 是 Survivor 乐队在 1982 年应西尔维斯特史泰龙为电影《洛奇3》创作的主题曲。</p>
+<p>Risin’ up<br>back on the street<br>did my time took my chances<br>went the distance<br>now i’m back on my feet<br>just a man and and his will to survive<br>so many times<br>it happens too fast<br>you trade your passion for glory<br>don’t lose your grip on the dreams of the past<br>you must fight just to keep them alive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Face to face<br>out in the heat<br>hangin’ tough<br>stayin’ hungry<br>they stack the odds<br>still we take to the street<br>for the kill with the will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Risin’ up<br>straight to the top<br>had the guts<br>got the glory<br>went the distance<br>now i’m not gonna stop<br>just a man and his will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>music</tag>
       </tags>
   </entry>
   <entry>
@@ -2659,6 +2604,238 @@ public class StringEncryptorTest extends BaseTest &#123;
       </tags>
   </entry>
   <entry>
+    <title>记一次 ssh 版本升级步骤</title>
+    <url>/xiaoxiao/2024/07/02/ssh-update/</url>
+    <content><![CDATA[<h1 id="验证-ssh-依赖软件版本"><a href="#验证-ssh-依赖软件版本" class="headerlink" title="验证 ssh 依赖软件版本"></a>验证 ssh 依赖软件版本</h1><p>首先查看 openSSH 的安装说明，确定 openssl、zlib 的最低版本要求。例如 openssh-9.7p1 的要求如下：</p>
+<pre><code class="text">A working installation of zlib:
+Zlib 1.1.4 or 1.2.1.2 or greater (earlier 1.2.x versions have problems):
+https://zlib.net/
+
+libcrypto from either of LibreSSL or OpenSSL.  Building without libcrypto
+is supported but severely restricts the available ciphers and algorithms.
+ - LibreSSL (https://www.libressl.org/) 3.1.0 or greater
+ - OpenSSL (https://www.openssl.org) 1.1.1 or greater
+
+LibreSSL/OpenSSL should be compiled as a position-independent library
+(i.e. -fPIC, eg by configuring OpenSSL as &quot;./config [options] -fPIC&quot;
+or LibreSSL as &quot;CFLAGS=-fPIC ./configure&quot;) otherwise OpenSSH will not
+be able to link with it.  If you must use a non-position-independent
+libcrypto, then you may need to configure OpenSSH --without-pie.
+
+If you build either from source, running the OpenSSL self-test (&quot;make
+tests&quot;) or the LibreSSL equivalent (&quot;make check&quot;) and ensuring that all
+tests pass is strongly recommended.
+
+NB. If you operating system supports /dev/random, you should configure
+libcrypto (LibreSSL/OpenSSL) to use it. OpenSSH relies on libcrypto&#39;s
+direct support of /dev/random, or failing that, either prngd or egd.
+</code></pre>
+<p>从 openSSH 的安装说明中，可以得知，libcrypto 的最低版本要求是 LibreSSL 3.1.0 或 OpenSSL 1.1.1 或更高版本。<br>查看服务器上的 openssl 和 zlib 版本：</p>
+<pre><code class="shell">openssl version
+OpenSSL 1.1.1v  1 Aug 2023
+
+find /usr/ -name zlib.pc
+/usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc
+/usr/local/lib/pkgconfig/zlib.pc
+/usr/local/zlib/lib/pkgconfig/zlib.pc
+
+cat /usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc
+prefix=/usr
+exec_prefix=$&#123;prefix&#125;
+libdir=$&#123;prefix&#125;/lib/x86_64-linux-gnu
+sharedlibdir=$&#123;libdir&#125;
+includedir=$&#123;prefix&#125;/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.11
+
+Requires:
+Libs: -L$&#123;libdir&#125; -L$&#123;sharedlibdir&#125; -lz
+Cflags: -I$&#123;includedir&#125;
+</code></pre>
+<p>检查是否有 gcc 编译器：</p>
+<pre><code class="shell">gcc --version
+# 如果没有的话安装
+apt-get install build-essential
+</code></pre>
+<h1 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h1><p>openssh-9.7p1.tar.gz 下载<br><a href="https://mirrors.aliyun.com/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz">https://mirrors.aliyun.com/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz</a><br>openssl-1.1.1w.tar.gz 下载<br><a href="https://www.openssl.org/source/old/1.1.1/openssl-1.1.1w.tar.gz">https://www.openssl.org/source/old/1.1.1/openssl-1.1.1w.tar.gz</a><br>zlib 最新版本下载<br><a href="https://zlib.net/current/zlib.tar.gz">https://zlib.net/current/zlib.tar.gz</a></p>
+<pre><code class="shell"># 上传到服务器
+scp openssh-9.7p1.tar.gz ethan@ip:/home/ethan/soft/
+</code></pre>
+<h1 id="安装-openSSH"><a href="#安装-openSSH" class="headerlink" title="安装 openSSH"></a>安装 openSSH</h1><h2 id="备份-openSSH"><a href="#备份-openSSH" class="headerlink" title="备份 openSSH"></a>备份 openSSH</h2><pre><code class="shell">mkdir ~/backup/ssh/bak240328
+ls /etc/ssh
+sudo mv /etc/ssh/* ~/backup/ssh/bak240328
+
+mkdir ~/backup/ssh/pamd240328
+ls /etc/pam.d/sshd
+sudo mv /etc/pam.d/sshd* ~/backup/ssh/pamd240328
+
+mkdir ~/backup/ssh/etcinitdbak240328
+ls /etc/init.d/ssh*
+sudo mv /etc/init.d/ssh* ~/backup/ssh/etcinitdbak240328/
+
+ls /usr/bin/ssh*
+sudo mv /usr/bin/ssh* ~/backup/ssh/
+
+# 停止 openSSH 服务
+sudo systemctl sshd.service stop
+</code></pre>
+<h2 id="卸载-openSSH"><a href="#卸载-openSSH" class="headerlink" title="卸载 openSSH"></a>卸载 openSSH</h2><pre><code class="shell">sudo apt-get remove openssh-server openssh-client -y
+# or
+sudo apt purge --remove &quot;openssh*&quot;
+</code></pre>
+<h2 id="安装-openSSH-1"><a href="#安装-openSSH-1" class="headerlink" title="安装 openSSH"></a>安装 openSSH</h2><pre><code class="shell">tar -xvzf openssh-9.7p1.tar.gz
+cd openssh-9.7p1
+# 编译配置
+./configure --prefix=/usr/local/openssh --sysconfdir=/etc/ssh  --with-ssl-dir=/usr/local/openssl --with-zlib-dir=/usr/local/zlib --without-openssl-header-check
+# 编译
+make
+# 安装
+sudo make install
+
+sudo ln -s /usr/local/openssh/bin/ssh /usr/local/bin/ssh
+ssh -V
+</code></pre>
+<h2 id="将-openSSH-注册为服务"><a href="#将-openSSH-注册为服务" class="headerlink" title="将 openSSH 注册为服务"></a>将 openSSH 注册为服务</h2><pre><code class="shell">sudo vi /etc/systemd/system/sshd.service
+# /usr/lib/systemd/system/sshd.service
+
+# 添加以下内容：
+[Unit]
+Description=OpenSSH server
+Documentation=man:sshd(8) man:sshd_config(5)
+#After=network.target sshd-keygen.service
+#Wants=sshd-keygen.service
+After=network.target
+
+[Service]
+#Type=notify
+#EnvironmentFile=/etc/sysconfig/sshd
+#ExecStart=/usr/local/openssh/sbin/sshd -D $OPTIONS
+ExecStart=/usr/local/openssh/sbin/sshd
+#ExecReload=/bin/kill -HUP $MAINPID
+#KillMode=process
+#Restart=on-failure
+#RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<h2 id="重载-Systemctl-并设置为自启动"><a href="#重载-Systemctl-并设置为自启动" class="headerlink" title="重载 Systemctl, 并设置为自启动"></a>重载 Systemctl, 并设置为自启动</h2><pre><code class="shell">sudo systemctl enable sshd
+sudo systemctl daemon-reload
+sudo systemctl start sshd.service
+</code></pre>
+<h2 id="检查服务状态"><a href="#检查服务状态" class="headerlink" title="检查服务状态"></a>检查服务状态</h2><pre><code class="shell">systemctl status sshd
+netstat -anpt | grep 22
+</code></pre>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><pre><code class="shell"># 手动启动 openSSH
+sudo /usr/local/openssh/sbin/sshd
+
+# 测试 scp 命令
+scp zlib.tar.gz ethan@ip:/home/ethan/
+</code></pre>
+<h2 id="注册服务失败"><a href="#注册服务失败" class="headerlink" title="注册服务失败"></a>注册服务失败</h2><p>主要原因是 sshd.service 或者 ssh.service 冲突导致，主要查看以下两个目录：</p>
+<pre><code class="shell">ls /etc/systemd/system/ssh*
+ls /usr/lib/systemd/system/ssh*
+</code></pre>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/INSTALL">https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/INSTALL</a><br><a href="https://www.cnblogs.com/tangllty/p/18054446">https://www.cnblogs.com/tangllty/p/18054446</a><br><a href="https://blog.csdn.net/chsh4587/article/details/136328617">https://blog.csdn.net/chsh4587/article/details/136328617</a></p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu Server 安装</title>
+    <url>/xiaoxiao/2021/03/29/install-Ubuntu-Server/</url>
+    <content><![CDATA[<h1 id="下载系统-ISO-文件"><a href="#下载系统-ISO-文件" class="headerlink" title="下载系统 ISO 文件"></a>下载系统 ISO 文件</h1><p><a href="https://cn.ubuntu.com/download">https://cn.ubuntu.com/download</a><br>Ubuntu Server 20.04.2 LTS</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol>
+<li>将 ISO 文件解压至 USB Disk 根目录</li>
+<li>启动电脑时，进入手动选择模式（通常是 F12、F10、F2）</li>
+<li>安装系统</li>
+</ol>
+<h1 id="配置静态IP"><a href="#配置静态IP" class="headerlink" title="配置静态IP"></a>配置静态IP</h1><p>查看IP</p>
+<pre><code>ip addr
+</code></pre>
+<p>修改配置文件</p>
+<pre><code>vi /etc/netplan/00-installer-config.yaml
+
+# This is the network config written by &#39;subiquity&#39;
+network:
+  ethernets:
+    enp2s0:
+      dhcp4: no
+      addresses: [10.10.1.11/24]
+      gateway4: 10.10.1.1
+      nameservers:
+              addresses: [10.10.1.1]
+  version: 2
+​
+</code></pre>
+<h1 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h1><pre><code>修改配置文件
+vi .profile
+​
+# 添加下面一行代码到最后
+TZ=&#39;Asia/Shanghai&#39;; export TZ
+</code></pre>
+<h1 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h1><p>备份 sources.list<br>cd &#x2F;etc&#x2F;apt<br>sudo cp sources.list sources.list.bak</p>
+<p>编辑 sources.list<br>添加如下内容：</p>
+<pre><code># 阿里源
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+​```
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为应用创建守护进程</title>
+    <url>/xiaoxiao/2023/09/21/use-systemd-manage-application/</url>
+    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
+<pre><code class="text">[Unit]
+Description=moon data center service
+
+[Service]
+ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<blockquote>
+<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
+</blockquote>
+<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
+<blockquote>
+<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>systemd</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>防止域名被恶意解析</title>
     <url>/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/</url>
     <content><![CDATA[<h1 id="恶意域名解析的原理"><a href="#恶意域名解析的原理" class="headerlink" title="恶意域名解析的原理"></a>恶意域名解析的原理</h1><p>假如公网 IP 暴露，那么别人可以随意用一个域名解析到公网 IP，如果解析的域名未备案，那会有安全风险。那如何防止呢？下面是 Nignx 的解决办法：</p>
@@ -2727,38 +2904,6 @@ server &#123;
       <tags>
         <tag>nginx</tag>
         <tag>dns</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>为应用创建守护进程</title>
-    <url>/xiaoxiao/2023/09/21/use-systemd-manage-application/</url>
-    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
-<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
-<pre><code class="text">[Unit]
-Description=moon data center service
-
-[Service]
-ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<blockquote>
-<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
-</blockquote>
-<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
-<blockquote>
-<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
-</blockquote>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>systemd</tag>
       </tags>
   </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://ghlingjun.github.io/xiaoxiao/atom.xml" rel="self"/>
   
   <link href="https://ghlingjun.github.io/xiaoxiao/"/>
-  <updated>2024-02-23T10:17:51.000Z</updated>
+  <updated>2024-07-02T03:10:54.000Z</updated>
   <id>https://ghlingjun.github.io/xiaoxiao/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次 ssh 版本升级步骤</title>
+    <link href="https://ghlingjun.github.io/xiaoxiao/2024/07/02/ssh-update/"/>
+    <id>https://ghlingjun.github.io/xiaoxiao/2024/07/02/ssh-update/</id>
+    <published>2024-07-02T03:10:54.000Z</published>
+    <updated>2024-07-02T03:10:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="验证-ssh-依赖软件版本"><a href="#验证-ssh-依赖软件版本" class="headerlink" title="验证 ssh 依赖软件版本"></a>验证 ssh 依赖软件版本</h1><p>首先查看 openSSH 的安装说明，确定 openssl、zlib 的最低版本要求。例如 openssh-9.7p1 的要求如下：</p><pre><code class="text">A working installation of zlib:Zlib 1.1.4 or 1.2.1.2 or greater (earlier 1.2.x versions have problems):https://zlib.net/libcrypto from either of LibreSSL or OpenSSL.  Building without libcryptois supported but severely restricts the available ciphers and algorithms. - LibreSSL (https://www.libressl.org/) 3.1.0 or greater - OpenSSL (https://www.openssl.org) 1.1.1 or greaterLibreSSL/OpenSSL should be compiled as a position-independent library(i.e. -fPIC, eg by configuring OpenSSL as &quot;./config [options] -fPIC&quot;or LibreSSL as &quot;CFLAGS=-fPIC ./configure&quot;) otherwise OpenSSH will notbe able to link with it.  If you must use a non-position-independentlibcrypto, then you may need to configure OpenSSH --without-pie.If you build either from source, running the OpenSSL self-test (&quot;maketests&quot;) or the LibreSSL equivalent (&quot;make check&quot;) and ensuring that alltests pass is strongly recommended.NB. If you operating system supports /dev/random, you should configurelibcrypto (LibreSSL/OpenSSL) to use it. OpenSSH relies on libcrypto&#39;sdirect support of /dev/random, or failing that, either prngd or egd.</code></pre><p>从 openSSH 的安装说明中，可以得知，libcrypto 的最低版本要求是 LibreSSL 3.1.0 或 OpenSSL 1.1.1 或更高版本。<br>查看服务器上的 openssl 和 zlib 版本：</p><pre><code class="shell">openssl versionOpenSSL 1.1.1v  1 Aug 2023find /usr/ -name zlib.pc/usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc/usr/local/lib/pkgconfig/zlib.pc/usr/local/zlib/lib/pkgconfig/zlib.pccat /usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pcprefix=/usrexec_prefix=$&#123;prefix&#125;libdir=$&#123;prefix&#125;/lib/x86_64-linux-gnusharedlibdir=$&#123;libdir&#125;includedir=$&#123;prefix&#125;/includeName: zlibDescription: zlib compression libraryVersion: 1.2.11Requires:Libs: -L$&#123;libdir&#125; -L$&#123;sharedlibdir&#125; -lzCflags: -I$&#123;includedir&#125;</code></pre><p>检查是否有 gcc 编译器：</p><pre><code class="shell">gcc --version# 如果没有的话安装apt-get install build-essential</code></pre><h1 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h1><p>openssh-9.7p1.tar.gz 下载<br><a href="https://mirrors.aliyun.com/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz">https://mirrors.aliyun.com/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz</a><br>openssl-1.1.1w.tar.gz 下载<br><a href="https://www.openssl.org/source/old/1.1.1/openssl-1.1.1w.tar.gz">https://www.openssl.org/source/old/1.1.1/openssl-1.1.1w.tar.gz</a><br>zlib 最新版本下载<br><a href="https://zlib.net/current/zlib.tar.gz">https://zlib.net/current/zlib.tar.gz</a></p><pre><code class="shell"># 上传到服务器scp openssh-9.7p1.tar.gz ethan@ip:/home/ethan/soft/</code></pre><h1 id="安装-openSSH"><a href="#安装-openSSH" class="headerlink" title="安装 openSSH"></a>安装 openSSH</h1><h2 id="备份-openSSH"><a href="#备份-openSSH" class="headerlink" title="备份 openSSH"></a>备份 openSSH</h2><pre><code class="shell">mkdir ~/backup/ssh/bak240328ls /etc/sshsudo mv /etc/ssh/* ~/backup/ssh/bak240328mkdir ~/backup/ssh/pamd240328ls /etc/pam.d/sshdsudo mv /etc/pam.d/sshd* ~/backup/ssh/pamd240328mkdir ~/backup/ssh/etcinitdbak240328ls /etc/init.d/ssh*sudo mv /etc/init.d/ssh* ~/backup/ssh/etcinitdbak240328/ls /usr/bin/ssh*sudo mv /usr/bin/ssh* ~/backup/ssh/# 停止 openSSH 服务sudo systemctl sshd.service stop</code></pre><h2 id="卸载-openSSH"><a href="#卸载-openSSH" class="headerlink" title="卸载 openSSH"></a>卸载 openSSH</h2><pre><code class="shell">sudo apt-get remove openssh-server openssh-client -y# orsudo apt purge --remove &quot;openssh*&quot;</code></pre><h2 id="安装-openSSH-1"><a href="#安装-openSSH-1" class="headerlink" title="安装 openSSH"></a>安装 openSSH</h2><pre><code class="shell">tar -xvzf openssh-9.7p1.tar.gzcd openssh-9.7p1# 编译配置./configure --prefix=/usr/local/openssh --sysconfdir=/etc/ssh  --with-ssl-dir=/usr/local/openssl --with-zlib-dir=/usr/local/zlib --without-openssl-header-check# 编译make# 安装sudo make installsudo ln -s /usr/local/openssh/bin/ssh /usr/local/bin/sshssh -V</code></pre><h2 id="将-openSSH-注册为服务"><a href="#将-openSSH-注册为服务" class="headerlink" title="将 openSSH 注册为服务"></a>将 openSSH 注册为服务</h2><pre><code class="shell">sudo vi /etc/systemd/system/sshd.service# /usr/lib/systemd/system/sshd.service# 添加以下内容：[Unit]Description=OpenSSH serverDocumentation=man:sshd(8) man:sshd_config(5)#After=network.target sshd-keygen.service#Wants=sshd-keygen.serviceAfter=network.target[Service]#Type=notify#EnvironmentFile=/etc/sysconfig/sshd#ExecStart=/usr/local/openssh/sbin/sshd -D $OPTIONSExecStart=/usr/local/openssh/sbin/sshd#ExecReload=/bin/kill -HUP $MAINPID#KillMode=process#Restart=on-failure#RestartSec=42s[Install]WantedBy=multi-user.target</code></pre><h2 id="重载-Systemctl-并设置为自启动"><a href="#重载-Systemctl-并设置为自启动" class="headerlink" title="重载 Systemctl, 并设置为自启动"></a>重载 Systemctl, 并设置为自启动</h2><pre><code class="shell">sudo systemctl enable sshdsudo systemctl daemon-reloadsudo systemctl start sshd.service</code></pre><h2 id="检查服务状态"><a href="#检查服务状态" class="headerlink" title="检查服务状态"></a>检查服务状态</h2><pre><code class="shell">systemctl status sshdnetstat -anpt | grep 22</code></pre><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><pre><code class="shell"># 手动启动 openSSHsudo /usr/local/openssh/sbin/sshd# 测试 scp 命令scp zlib.tar.gz ethan@ip:/home/ethan/</code></pre><h2 id="注册服务失败"><a href="#注册服务失败" class="headerlink" title="注册服务失败"></a>注册服务失败</h2><p>主要原因是 sshd.service 或者 ssh.service 冲突导致，主要查看以下两个目录：</p><pre><code class="shell">ls /etc/systemd/system/ssh*ls /usr/lib/systemd/system/ssh*</code></pre><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/INSTALL">https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/INSTALL</a><br><a href="https://www.cnblogs.com/tangllty/p/18054446">https://www.cnblogs.com/tangllty/p/18054446</a><br><a href="https://blog.csdn.net/chsh4587/article/details/136328617">https://blog.csdn.net/chsh4587/article/details/136328617</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;验证-ssh-依赖软件版本&quot;&gt;&lt;a href=&quot;#验证-ssh-依赖软件版本&quot; class=&quot;headerlink&quot; title=&quot;验证 ssh 依赖软件版本&quot;&gt;&lt;/a&gt;验证 ssh 依赖软件版本&lt;/h1&gt;&lt;p&gt;首先查看 openSSH 的安装说明，确定 open</summary>
+      
+    
+    
+    
+    <category term="运维" scheme="https://ghlingjun.github.io/xiaoxiao/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+    <category term="ssh" scheme="https://ghlingjun.github.io/xiaoxiao/tags/ssh/"/>
+    
+  </entry>
   
   <entry>
     <title>防止域名被恶意解析</title>
@@ -180,7 +204,7 @@
     <published>2022-07-14T05:43:55.000Z</published>
     <updated>2022-07-14T05:43:55.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p><p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p><p>查看挂载结果<br>df -TH</p><h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p><h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p><h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p><pre><code># 查看用户组是否存在grep shumei /etc/group# 添加用户组 shumeigroupadd shumei# 查看用户 shumei 是否存在grep shumei /etc/passwd# 添加用户useradd -g shumei -d /home/shumei -m shumei# 查看 shumei 信息id shumei# 设置用户密码passwd shumei# 赋给用户 sudo 权限：http://man.linuxde.net/sudovi /etc/sudoers# 仿照现有root的例子就行，加一行（最好用tab作为空白）shumei  ALL=(ALL:ALL)   ALL</code></pre><p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p><pre><code># echo $SHELL 可查看当前使用的 shellusermod -s /bin/bash shumei</code></pre><h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/pathvi .profileexport JAVA_HOME=/home/shumei/software/jdk1.8.0_25export CLASSPATH=.:$&#123;JAVA_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:$PATH# 使配置生效source .profile# 检查配置是否成功java -version</code></pre><h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[参考]<a href="https://www.yuque.com/ethan09/cnlf1x/tvef26">https://www.yuque.com/ethan09/cnlf1x/tvef26</a></p><pre><code>wget http://nginx.org/keys/nginx_signing.keysudo apt-key add nginx_signing.keysudo vi /etc/apt/sources.list.d/nginx.list# 添加如下内容deb http://nginx.org/packages/mainline/ubuntu/ xenial nginxdeb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginxsudo apt-get updatesudo apt-get install nginx</code></pre><h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装sudo apt install redis-server查看是否启动# redis-cli以上命令将打开以下终端：redis 127.0.0.1:6379&gt;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p><p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p><p>查看挂载结果<br>df -TH</p><h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p><h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p><h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p><pre><code># 查看用户组是否存在grep shumei /etc/group# 添加用户组 shumeigroupadd shumei# 查看用户 shumei 是否存在grep shumei /etc/passwd# 添加用户useradd -g shumei -d /home/shumei -m shumei# 查看 shumei 信息id shumei# 设置用户密码passwd shumei# 赋给用户 sudo 权限：http://man.linuxde.net/sudovi /etc/sudoers# 仿照现有root的例子就行，加一行（最好用tab作为空白）shumei  ALL=(ALL:ALL)   ALL</code></pre><p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p><pre><code># echo $SHELL 可查看当前使用的 shellusermod -s /bin/bash shumei</code></pre><h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/pathvi .profileexport JAVA_HOME=/home/shumei/software/jdk1.8.0_25export CLASSPATH=.:$&#123;JAVA_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:$PATH# 使配置生效source .profile# 检查配置是否成功java -version</code></pre><h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[以下仅示例，具体请参考官网文档]<a href="https://nginx.org/en/linux_packages.html#Ubuntu">https://nginx.org/en/linux_packages.html#Ubuntu</a></p><pre><code>wget http://nginx.org/keys/nginx_signing.keysudo apt-key add nginx_signing.keysudo vi /etc/apt/sources.list.d/nginx.list# 添加如下内容deb http://nginx.org/packages/mainline/ubuntu/ xenial nginxdeb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginxsudo apt-get updatesudo apt-get install nginx</code></pre><h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装sudo apt install redis-server查看是否启动# redis-cli以上命令将打开以下终端：redis 127.0.0.1:6379&gt;</code></pre>]]></content>
     
     
       
@@ -503,31 +527,6 @@
     
     
     <category term="server" scheme="https://ghlingjun.github.io/xiaoxiao/tags/server/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo commands</title>
-    <link href="https://ghlingjun.github.io/xiaoxiao/2019/11/21/hexo-commands/"/>
-    <id>https://ghlingjun.github.io/xiaoxiao/2019/11/21/hexo-commands/</id>
-    <published>2019-11-21T12:43:50.000Z</published>
-    <updated>2019-11-21T12:43:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Hexo-Commands"><a href="#Hexo-Commands" class="headerlink" title="Hexo Commands"></a>Hexo Commands</h2><p>最常用三个命令：</p><pre><code>$ hexo new [layout] &lt;title&gt;$ hexo server$ hexo deploy -g</code></pre><h3 id="创建一篇文章"><a href="#创建一篇文章" class="headerlink" title="创建一篇文章"></a>创建一篇文章</h3><p>创建一篇新的文章，如果没有指定<code>layout</code>，Hexo 会使用 _config.yml 中配置的<code>default_layout</code>，如果标题中包含空格，需要使用双引号将其引起来。</p><pre><code># 进入 hexo-site 目录$ hexo new [layout] &lt;title&gt;</code></pre><p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source&#x2F;_posts 文件夹。</p><table><thead><tr><th>布局</th><th>路径</th></tr></thead><tbody><tr><td>post</td><td>source&#x2F;_posts</td></tr><tr><td>page</td><td>source</td></tr><tr><td>draft</td><td>source&#x2F;_drafts</td></tr></tbody></table><h3 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h3><pre><code>$ hexo server</code></pre><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td><code>-p</code>, <code>--port</code></td><td>Override default port</td></tr><tr><td><code>-s</code>, <code>--static</code></td><td>Only serve static files</td></tr><tr><td><code>-l</code>, <code>--log</code></td><td>Enable logger. Override logger format.</td></tr></tbody></table><h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><pre><code>$ hexo deploy</code></pre><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td><code>-g</code>, <code>--generate</code></td><td>Generate before deployment</td></tr></tbody></table><h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><pre><code>$ hexo clean</code></pre><p>Cleans the cache file (<code>db.json</code>) and generated files (<code>public</code>).</p><h3 id="显示所有草稿"><a href="#显示所有草稿" class="headerlink" title="显示所有草稿"></a>显示所有草稿</h3><pre><code>$ hexo --draft</code></pre><p>Displays draft posts (stored in the <code>source/_drafts</code> folder).</p><h3 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h3><pre><code>$ hexo publish [layout] &lt;filename&gt;</code></pre><h3 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h3><pre><code>$ hexo generate</code></pre><p>生成静态文件。</p><table><thead><tr><th>可选参数</th><th>描述</th></tr></thead><tbody><tr><td><code>-d</code>, <code>--deploy</code></td><td>生成完成后，同时发布</td></tr><tr><td><code>-w</code>, <code>--watch</code></td><td>Watch file changes</td></tr></tbody></table>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Hexo-Commands&quot;&gt;&lt;a href=&quot;#Hexo-Commands&quot; class=&quot;headerlink&quot; title=&quot;Hexo Commands&quot;&gt;&lt;/a&gt;Hexo Commands&lt;/h2&gt;&lt;p&gt;最常用三个命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ </summary>
-      
-    
-    
-    
-    <category term="工具 - hexo" scheme="https://ghlingjun.github.io/xiaoxiao/categories/%E5%B7%A5%E5%85%B7-hexo/"/>
-    
-    
-    <category term="hexo" scheme="https://ghlingjun.github.io/xiaoxiao/tags/hexo/"/>
     
   </entry>
   
