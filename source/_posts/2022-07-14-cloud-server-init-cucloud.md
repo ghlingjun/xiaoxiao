@@ -76,7 +76,7 @@ java -version
 ```
 
 # 安装 Nginx
-[参考]https://www.yuque.com/ethan09/cnlf1x/tvef26
+[以下仅示例，具体请参考官网文档]https://nginx.org/en/linux_packages.html#Ubuntu
 ```
 wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key

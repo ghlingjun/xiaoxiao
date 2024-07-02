@@ -6,14 +6,14 @@
 # 进入 hexo-site 目录
 $ cd .../hexo-site
 $ hexo new [layout] <title>
+> npx hexo new "My New Post"
 ```
 Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。
-
-|布局	|路径|
-| ---------------- | ------------------ |
-|post	|source/_posts|
-|page	|source|
-|draft	|source/_drafts|
+| 布局  | 路径           |
+| ----- | -------------- |
+| post  | source/_posts  |
+| page  | source         |
+| draft | source/_drafts |
 
 下面是一个 front matter 的示例：
 ```yaml
@@ -36,50 +36,45 @@ tags 示例中表示“hexo”为标签。标签也可以多个，没有级别�
 ```
 $ hexo deploy
 ```
-| Option             | Description                |
-| ------------------ | -------------------------- |
+| Option              | Description                |
+| ------------------- | -------------------------- |
 | `-g`, `--generate` | Generate before deployment |
 
 ### 启动本地服务
-
 ```
 $ hexo server
 ```
-| Option           | Description                            |
-| ---------------- | -------------------------------------- |
+| Option            | Description                            |
+| ----------------- | -------------------------------------- |
 | `-p`, `--port`   | Override default port                  |
 | `-s`, `--static` | Only serve static files                |
 | `-l`, `--log`    | Enable logger. Override logger format. |
 
 ### clean
-
 ```
 $ hexo clean
 ```
-
 Cleans the cache file (`db.json`) and generated files (`public`).
 
 ### 显示所有草稿
-
 ```
 $ hexo --draft
 ```
-
 Displays draft posts (stored in the `source/_drafts` folder).
 
 ### 发布草稿
 ```
 $ hexo publish [layout] <filename>
 ```
-
 ### 代码生成
 ```
 $ hexo generate
 ```
-
 生成静态文件。
+| 可选参数          | 描述                 |
+| ----------------- | -------------------- |
+| `-d`, `--deploy` | 生成完成后，同时发布 |
+| `-w`, `--watch`  | Watch file changes   |
 
-| 可选参数             | 描述                 |
-| ---------------- | ------------------ |
-| `-d`, `--deploy` | 生成完成后，同时发布         |
-| `-w`, `--watch`  | Watch file changes |
+### 其他
+参考文档：https://hexo.io/docs/commands.html
