@@ -36,19 +36,19 @@ tags 示例中表示“hexo”为标签。标签也可以多个，没有级别�
 ```
 $ hexo deploy
 ```
-| Option              | Description                |
-| ------------------- | -------------------------- |
-| `-g`, `--generate` | Generate before deployment |
+| Option             | Description                |
+|--------------------| -------------------------- |
+| `-g`, `--generate` | Generate before deployment |
 
 ### 启动本地服务
 ```
 $ hexo server
 ```
-| Option            | Description                            |
-| ----------------- | -------------------------------------- |
-| `-p`, `--port`   | Override default port                  |
-| `-s`, `--static` | Only serve static files                |
-| `-l`, `--log`    | Enable logger. Override logger format. |
+| Option           | Description                            |
+|------------------| -------------------------------------- |
+| `-p`, `--port`   | Override default port                  |
+| `-s`, `--static` | Only serve static files                |
+| `-l`, `--log`    | Enable logger. Override logger format. |
 
 ### clean
 ```
@@ -60,7 +60,7 @@ Cleans the cache file (`db.json`) and generated files (`public`).
 ```
 $ hexo --draft
 ```
-Displays draft posts (stored in the `source/_drafts` folder).
+Displays draft posts (stored in the `source/_drafts` folder).
 
 ### 发布草稿
 ```
@@ -73,8 +73,8 @@ $ hexo generate
 生成静态文件。
 | 可选参数          | 描述                 |
 | ----------------- | -------------------- |
-| `-d`, `--deploy` | 生成完成后，同时发布 |
-| `-w`, `--watch`  | Watch file changes   |
+| `-d`, `--deploy` | 生成完成后，同时发布 |
+| `-w`, `--watch`  | Watch file changes   |
 
 ### 其他
 参考文档：https://hexo.io/docs/commands.html

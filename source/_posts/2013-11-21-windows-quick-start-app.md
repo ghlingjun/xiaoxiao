@@ -3,7 +3,7 @@ layout: default
 title: Windows 下快捷启动应用程序的一个方法
 date: 2013-11-21 06:06:42
 categories:
-  - life
+  - 工具
 tags: [小窍门]
 ---
 
@@ -19,6 +19,6 @@ tags: [小窍门]
 这个方法好吗？
 
 <font style="color: gray; font-size: 10px;">不重要的内容:</font>
-<span style="color: gray; font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;因为虚拟的系统比较卡，之前都是在 Windows 下编写修改代码，Ubuntu 系统只是提供 ROR（Ruby On Rails）环境用。前两天在 Ubuntu 下调试公司的 OA 系统时，在虚拟机中安装了 Sublime Text 用于编写代码。当创建 Sublime Text 的软链接时，突然想到其实在 Windows 下快捷方式也相当于软链接，所以启动程序也可以直接运行命令的方式启动。
-&nbsp;&nbsp;&nbsp;&nbsp;我的电脑桌面一向就只有一个回收站图标，非常干净，这个是个人喜好，然后每次打开程序都必须从开始菜单打开，但是现在就像在Ubuntu下打开程序一样，非常爽快 :-)
+<span style="color: gray; font-size: 10px;">因为虚拟的系统比较卡，之前都是在 Windows 下编写修改代码，Ubuntu 系统只是提供 ROR（Ruby On Rails）环境用。前两天在 Ubuntu 下调试公司的 OA 系统时，在虚拟机中安装了 Sublime Text 用于编写代码。当创建 Sublime Text 的软链接时，突然想到其实在 Windows 下快捷方式也相当于软链接，所以启动程序也可以直接运行命令的方式启动。
+我的电脑桌面一向就只有一个回收站图标，非常干净，这个是个人喜好，然后每次打开程序都必须从开始菜单打开，但是现在就像在Ubuntu下打开程序一样，非常爽快 :-)
 </span>
