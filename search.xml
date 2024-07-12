@@ -116,13 +116,32 @@ $ git branch -d mybranch
 </ol>
 <p>完成上面三步后，即可快速打开应用程序，例如：按下快捷键 Win+R，输入 chrome，然后按下 Enter 键即可打开谷歌浏览器……</p>
 <p>这个方法好吗？</p>
-<p><font style="color: gray; font-size: 10px;">不重要的内容:</font><br><span style="color: gray; font-size: 10px;">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因为虚拟的系统比较卡，之前都是在 Windows 下编写修改代码，Ubuntu 系统只是提供 ROR（Ruby On Rails）环境用。前两天在 Ubuntu 下调试公司的 OA 系统时，在虚拟机中安装了 Sublime Text 用于编写代码。当创建 Sublime Text 的软链接时，突然想到其实在 Windows 下快捷方式也相当于软链接，所以启动程序也可以直接运行命令的方式启动。<br>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;我的电脑桌面一向就只有一个回收站图标，非常干净，这个是个人喜好，然后每次打开程序都必须从开始菜单打开，但是现在就像在Ubuntu下打开程序一样，非常爽快 :-)<br></span></p>
+<p><font style="color: gray; font-size: 10px;">不重要的内容:</font><br><span style="color: gray; font-size: 10px;">因为虚拟的系统比较卡，之前都是在 Windows 下编写修改代码，Ubuntu 系统只是提供 ROR（Ruby On Rails）环境用。前两天在 Ubuntu 下调试公司的 OA 系统时，在虚拟机中安装了 Sublime Text 用于编写代码。当创建 Sublime Text 的软链接时，突然想到其实在 Windows 下快捷方式也相当于软链接，所以启动程序也可以直接运行命令的方式启动。<br>我的电脑桌面一向就只有一个回收站图标，非常干净，这个是个人喜好，然后每次打开程序都必须从开始菜单打开，但是现在就像在Ubuntu下打开程序一样，非常爽快 :-)<br></span></p>
 ]]></content>
       <categories>
-        <category>life</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>小窍门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jBPM 基础</title>
+    <url>/xiaoxiao/2014/11/07/jBPM-overview/</url>
+    <content><![CDATA[<p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
+<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
+<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
+<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
+<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
+<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>jbpm</tag>
       </tags>
   </entry>
   <entry>
@@ -162,25 +181,6 @@ $ git branch -d mybranch
       </categories>
       <tags>
         <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jBPM 基础</title>
-    <url>/xiaoxiao/2014/11/07/jBPM-overview/</url>
-    <content><![CDATA[<p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
-<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
-<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
-<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
-<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
-<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
-<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>jbpm</tag>
       </tags>
   </entry>
   <entry>
@@ -349,43 +349,6 @@ alias svnadd=&quot;sh ~/scripts/svnadd.sh&quot;
       </tags>
   </entry>
   <entry>
-    <title>可以用下面的方法让你的大脑就范</title>
-    <url>/xiaoxiao/2017/04/29/how-to-learn/</url>
-    <content><![CDATA[<ol>
-<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
-<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
-<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
-<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
-<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
-<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
-<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
-<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>共享模式词汇的威力</title>
-    <url>/xiaoxiao/2017/04/30/why-learn-schemas/</url>
-    <content><![CDATA[<h3 id="共享模式词汇“威力强大”"><a href="#共享模式词汇“威力强大”" class="headerlink" title="共享模式词汇“威力强大”"></a>共享模式词汇“威力强大”</h3><p>当你使用模式名称和其他开发人员或者开发团队沟通时，你们之间交流的不只是模式名称，而是一整套模式背后所象征的质量、特性、约束。</p>
-<h3 id="模式能让你用更少的词汇做更充分的沟通"><a href="#模式能让你用更少的词汇做更充分的沟通" class="headerlink" title="模式能让你用更少的词汇做更充分的沟通"></a>模式能让你用更少的词汇做更充分的沟通</h3><p>当你用模式描述的时候，其他开发人员便很容易地知道你对设计的想法。</p>
-<h3 id="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"><a href="#将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面" class="headerlink" title="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"></a>将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面</h3><p>使用模式谈论软件系统，可以让你保持在设计层次，不会被压低到对象与类这种琐碎的事情。</p>
-<h3 id="共享词汇可帮你的开发团队快速充电"><a href="#共享词汇可帮你的开发团队快速充电" class="headerlink" title="共享词汇可帮你的开发团队快速充电"></a>共享词汇可帮你的开发团队快速充电</h3><p>对于设计模式有深入了解的团队，彼此之间对于设计的看法不容易产生误解。</p>
-<h3 id="共享词汇能帮助初级开发人员迅速成长"><a href="#共享词汇能帮助初级开发人员迅速成长" class="headerlink" title="共享词汇能帮助初级开发人员迅速成长"></a>共享词汇能帮助初级开发人员迅速成长</h3><p>初级开发人员向有经验的开发人员看齐。当高级开发人员使用设计模式，初级开发人员也会跟着学。把你的组织建立成一个模式使用者的社区。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>schema</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SVN 使用</title>
     <url>/xiaoxiao/2016/10/15/svn-configs/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些不常用的 svn 操作命令</p>
@@ -431,6 +394,82 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
       </categories>
       <tags>
         <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可以用下面的方法让你的大脑就范</title>
+    <url>/xiaoxiao/2017/04/29/how-to-learn/</url>
+    <content><![CDATA[<ol>
+<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
+<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
+<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
+<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
+<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
+<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
+<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
+<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>共享模式词汇的威力</title>
+    <url>/xiaoxiao/2017/04/30/why-learn-schemas/</url>
+    <content><![CDATA[<h3 id="共享模式词汇“威力强大”"><a href="#共享模式词汇“威力强大”" class="headerlink" title="共享模式词汇“威力强大”"></a>共享模式词汇“威力强大”</h3><p>当你使用模式名称和其他开发人员或者开发团队沟通时，你们之间交流的不只是模式名称，而是一整套模式背后所象征的质量、特性、约束。</p>
+<h3 id="模式能让你用更少的词汇做更充分的沟通"><a href="#模式能让你用更少的词汇做更充分的沟通" class="headerlink" title="模式能让你用更少的词汇做更充分的沟通"></a>模式能让你用更少的词汇做更充分的沟通</h3><p>当你用模式描述的时候，其他开发人员便很容易地知道你对设计的想法。</p>
+<h3 id="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"><a href="#将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面" class="headerlink" title="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"></a>将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面</h3><p>使用模式谈论软件系统，可以让你保持在设计层次，不会被压低到对象与类这种琐碎的事情。</p>
+<h3 id="共享词汇可帮你的开发团队快速充电"><a href="#共享词汇可帮你的开发团队快速充电" class="headerlink" title="共享词汇可帮你的开发团队快速充电"></a>共享词汇可帮你的开发团队快速充电</h3><p>对于设计模式有深入了解的团队，彼此之间对于设计的看法不容易产生误解。</p>
+<h3 id="共享词汇能帮助初级开发人员迅速成长"><a href="#共享词汇能帮助初级开发人员迅速成长" class="headerlink" title="共享词汇能帮助初级开发人员迅速成长"></a>共享词汇能帮助初级开发人员迅速成长</h3><p>初级开发人员向有经验的开发人员看齐。当高级开发人员使用设计模式，初级开发人员也会跟着学。把你的组织建立成一个模式使用者的社区。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>schema</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>普鲁斯特问卷</title>
+    <url>/xiaoxiao/2017/08/06/Proust-Questionnaire/</url>
+    <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>和喜欢的人在一起。</p>
+<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>画画。</p>
+<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>迷茫。</p>
+<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>还算平静。</p>
+<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>小小。</p>
+<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>不知道。</p>
+<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>老做傻事。</p>
+<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>惠州。</p>
+<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>不知道。</p>
+<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>健康。</p>
+<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
+<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>痛苦都差不多。</p>
+<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>不知道。</p>
+<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>工程师。</p>
+<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>身高。</p>
+<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>在能够爱你时没有更好的去爱你。</p>
+<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>没有。</p>
+<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>落落大方。</p>
+<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
+<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>落落大方。</p>
+<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>失恋。</p>
+<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>比我好的特点。</p>
+<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>小小。</p>
+<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>考虑还早。</p>
+<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>上班路上听故事广播时。</p>
+<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>家人能住在一起。</p>
+<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>不知道。</p>
+<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -494,45 +533,6 @@ Default encoding for properties files: UTF-8
       </categories>
       <tags>
         <tag>idea</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>普鲁斯特问卷</title>
-    <url>/xiaoxiao/2017/08/06/Proust-Questionnaire/</url>
-    <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>和喜欢的人在一起。</p>
-<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>画画。</p>
-<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>迷茫。</p>
-<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>还算平静。</p>
-<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>小小。</p>
-<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>不知道。</p>
-<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>老做傻事。</p>
-<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>惠州。</p>
-<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>不知道。</p>
-<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>健康。</p>
-<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
-<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>痛苦都差不多。</p>
-<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>不知道。</p>
-<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>工程师。</p>
-<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>身高。</p>
-<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>在能够爱你时没有更好的去爱你。</p>
-<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>没有。</p>
-<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>落落大方。</p>
-<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
-<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>落落大方。</p>
-<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>失恋。</p>
-<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>比我好的特点。</p>
-<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>小小。</p>
-<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>考虑还早。</p>
-<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>上班路上听故事广播时。</p>
-<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>家人能住在一起。</p>
-<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>不知道。</p>
-<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -1870,6 +1870,118 @@ sudo service docker restart
       </tags>
   </entry>
   <entry>
+    <title>发布 docker 镜像</title>
+    <url>/xiaoxiao/2020/08/29/docker-push-image/</url>
+    <content><![CDATA[<h2 id="发布镜像到-docker-私服"><a href="#发布镜像到-docker-私服" class="headerlink" title="发布镜像到 docker 私服"></a>发布镜像到 docker 私服</h2><p>Dockerfile 示例：</p>
+<pre><code># syntax=docker/dockerfile:experimental
+FROM openjdk:8-jdk-alpine as build
+WORKDIR /workspace/app
+COPY target/bootstrap-1.0.0-SNAPSHOT.jar app.jar
+RUN mkdir -p target/dependency &amp;&amp; (cp app.jar target) &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
+
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
+USER ethan:ahshumei
+ARG DEPENDENCY=/workspace/app/target/dependency
+COPY --from=build $&#123;DEPENDENCY&#125;/BOOT-INF/lib /app/lib
+COPY --from=build $&#123;DEPENDENCY&#125;/META-INF /app/META-INF
+COPY --from=build $&#123;DEPENDENCY&#125;/BOOT-INF/classes /app
+ENTRYPOINT [&quot;java&quot;,&quot;-cp&quot;,&quot;app:app/lib/*&quot;,&quot;com.EmergencyManagementApplication&quot;]
+</code></pre>
+<p>参考此示例时注意修改第四行jar包名称和最后一行的运行类名。</p>
+<h3 id="1-打包"><a href="#1-打包" class="headerlink" title="1.打包"></a>1.打包</h3><pre><code>mvn -U clean package -Dmaven.test.skip=true
+或者指定打包模块命令：
+mvn -U clean package -Dmaven.test.skip=true -pl 模块名称 -am
+</code></pre>
+<h3 id="–2-解压文件–"><a href="#–2-解压文件–" class="headerlink" title="–2.解压文件–"></a>–2.解压文件–</h3><pre><code>mkdir -p target/dependency &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
+</code></pre>
+<h3 id="3-创建镜像"><a href="#3-创建镜像" class="headerlink" title="3.创建镜像"></a>3.创建镜像</h3><pre><code>DOCKER_BUILDKIT=1 docker build -t ethan/镜像名 .
+</code></pre>
+<h3 id="–4-创建容器–"><a href="#–4-创建容器–" class="headerlink" title="–4.创建容器–"></a>–4.创建容器–</h3><p>可在本地创建容器，用于测试镜像是否可正常使用。<br>指定端口、网络、以及配置文件创建并运行容器<br>docker run –name process -v &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml:&#x2F;app&#x2F;application-cloud.yml -p 10100:10100 –net&#x3D;moon-network –ip&#x3D;172.127.0.100 -t ethan&#x2F;镜像名 –spring.profiles.active&#x3D;cloud<br>指定端口创建并运行容器<br>docker run –name process1 -p 10100:10100 -t ethan&#x2F;镜像名<br>将主机 &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml 文件挂载到容器的 &#x2F;app&#x2F;application-cloud.yml 文件<br>-v &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml:&#x2F;app&#x2F;application-cloud.yml</p>
+<h3 id="5-发布镜像"><a href="#5-发布镜像" class="headerlink" title="5.发布镜像"></a>5.发布镜像</h3><p>docker login -u ethan harbor私服IP:端口<br>docker tag 镜像ID harbor私服IP:端口&#x2F;库名&#x2F;镜像名<br>docker push harbor私服IP:端口&#x2F;库名&#x2F;镜像名</p>
+<h3 id="发布镜像到-docker-hub"><a href="#发布镜像到-docker-hub" class="headerlink" title="发布镜像到 docker hub"></a>发布镜像到 docker hub</h3><p>在docker hub 注册账号：<a href="https://hub.docker.com/repositories">https://hub.docker.com/repositories</a><br>使用Docker hub账号在验证本地登录：</p>
+<pre><code>docker login
+</code></pre>
+<p>修改 repository 名称，即 DockerID&#x2F;仓库名，不一致将无法发布：<br>docker tag 镜像ID 用户名称&#x2F;镜像源名(repository name):新的标签名(tag)<br>$ docker tag 487c260f20ee ethan2docker&#x2F;moon<br>docker push <your_username>&#x2F;my-first-repo:tag<br>$ docker push ethan2docker&#x2F;moon</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eye of The Tiger</title>
+    <url>/xiaoxiao/2020/09/18/Eye-of-The-Tiger/</url>
+    <content><![CDATA[<p>Eye of the Tiger 是 Survivor 乐队在 1982 年应西尔维斯特史泰龙为电影《洛奇3》创作的主题曲。</p>
+<p>Risin’ up<br>back on the street<br>did my time took my chances<br>went the distance<br>now i’m back on my feet<br>just a man and and his will to survive<br>so many times<br>it happens too fast<br>you trade your passion for glory<br>don’t lose your grip on the dreams of the past<br>you must fight just to keep them alive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Face to face<br>out in the heat<br>hangin’ tough<br>stayin’ hungry<br>they stack the odds<br>still we take to the street<br>for the kill with the will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Risin’ up<br>straight to the top<br>had the guts<br>got the glory<br>went the distance<br>now i’m not gonna stop<br>just a man and his will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu Server 安装</title>
+    <url>/xiaoxiao/2021/03/29/install-Ubuntu-Server/</url>
+    <content><![CDATA[<h1 id="下载系统-ISO-文件"><a href="#下载系统-ISO-文件" class="headerlink" title="下载系统 ISO 文件"></a>下载系统 ISO 文件</h1><p><a href="https://cn.ubuntu.com/download">https://cn.ubuntu.com/download</a><br>Ubuntu Server 20.04.2 LTS</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol>
+<li>将 ISO 文件解压至 USB Disk 根目录</li>
+<li>启动电脑时，进入手动选择模式（通常是 F12、F10、F2）</li>
+<li>安装系统</li>
+</ol>
+<h1 id="配置静态IP"><a href="#配置静态IP" class="headerlink" title="配置静态IP"></a>配置静态IP</h1><p>查看IP</p>
+<pre><code>ip addr
+</code></pre>
+<p>修改配置文件</p>
+<pre><code>vi /etc/netplan/00-installer-config.yaml
+
+# This is the network config written by &#39;subiquity&#39;
+network:
+  ethernets:
+    enp2s0:
+      dhcp4: no
+      addresses: [10.10.1.11/24]
+      gateway4: 10.10.1.1
+      nameservers:
+              addresses: [10.10.1.1]
+  version: 2
+​
+</code></pre>
+<h1 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h1><pre><code>修改配置文件
+vi .profile
+​
+# 添加下面一行代码到最后
+TZ=&#39;Asia/Shanghai&#39;; export TZ
+</code></pre>
+<h1 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h1><p>备份 sources.list<br>cd &#x2F;etc&#x2F;apt<br>sudo cp sources.list sources.list.bak</p>
+<p>编辑 sources.list<br>添加如下内容：</p>
+<pre><code># 阿里源
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+​```
+</code></pre>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>记 MySql 数据库被勒索病毒攻击</title>
     <url>/xiaoxiao/2021/04/19/mysql-attacked-by-blackmail-virus/</url>
     <content><![CDATA[<h1 id="被勒索病毒攻击"><a href="#被勒索病毒攻击" class="headerlink" title="被勒索病毒攻击"></a>被勒索病毒攻击</h1><p>To recover your lost databases and avoid leaking it: visit <a href="http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion/">http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion</a> and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser <a href="https://www.torproject.org/projects/torbrowser.html">https://www.torproject.org/projects/torbrowser.html</a></p>
@@ -1962,49 +2074,6 @@ INSERT INTO `WARNING` (`id`, `warning`, `website`, `token`) VALUES (1, &#39;To r
       </categories>
       <tags>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>发布 docker 镜像</title>
-    <url>/xiaoxiao/2020/08/29/docker-push-image/</url>
-    <content><![CDATA[<h2 id="发布镜像到-docker-私服"><a href="#发布镜像到-docker-私服" class="headerlink" title="发布镜像到 docker 私服"></a>发布镜像到 docker 私服</h2><p>Dockerfile 示例：</p>
-<pre><code># syntax=docker/dockerfile:experimental
-FROM openjdk:8-jdk-alpine as build
-WORKDIR /workspace/app
-COPY target/bootstrap-1.0.0-SNAPSHOT.jar app.jar
-RUN mkdir -p target/dependency &amp;&amp; (cp app.jar target) &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
-
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
-USER ethan:ahshumei
-ARG DEPENDENCY=/workspace/app/target/dependency
-COPY --from=build $&#123;DEPENDENCY&#125;/BOOT-INF/lib /app/lib
-COPY --from=build $&#123;DEPENDENCY&#125;/META-INF /app/META-INF
-COPY --from=build $&#123;DEPENDENCY&#125;/BOOT-INF/classes /app
-ENTRYPOINT [&quot;java&quot;,&quot;-cp&quot;,&quot;app:app/lib/*&quot;,&quot;com.EmergencyManagementApplication&quot;]
-</code></pre>
-<p>参考此示例时注意修改第四行jar包名称和最后一行的运行类名。</p>
-<h3 id="1-打包"><a href="#1-打包" class="headerlink" title="1.打包"></a>1.打包</h3><pre><code>mvn -U clean package -Dmaven.test.skip=true
-或者指定打包模块命令：
-mvn -U clean package -Dmaven.test.skip=true -pl 模块名称 -am
-</code></pre>
-<h3 id="–2-解压文件–"><a href="#–2-解压文件–" class="headerlink" title="–2.解压文件–"></a>–2.解压文件–</h3><pre><code>mkdir -p target/dependency &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
-</code></pre>
-<h3 id="3-创建镜像"><a href="#3-创建镜像" class="headerlink" title="3.创建镜像"></a>3.创建镜像</h3><pre><code>DOCKER_BUILDKIT=1 docker build -t ethan/镜像名 .
-</code></pre>
-<h3 id="–4-创建容器–"><a href="#–4-创建容器–" class="headerlink" title="–4.创建容器–"></a>–4.创建容器–</h3><p>可在本地创建容器，用于测试镜像是否可正常使用。<br>指定端口、网络、以及配置文件创建并运行容器<br>docker run –name process -v &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml:&#x2F;app&#x2F;application-cloud.yml -p 10100:10100 –net&#x3D;moon-network –ip&#x3D;172.127.0.100 -t ethan&#x2F;镜像名 –spring.profiles.active&#x3D;cloud<br>指定端口创建并运行容器<br>docker run –name process1 -p 10100:10100 -t ethan&#x2F;镜像名<br>将主机 &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml 文件挂载到容器的 &#x2F;app&#x2F;application-cloud.yml 文件<br>-v &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml:&#x2F;app&#x2F;application-cloud.yml</p>
-<h3 id="5-发布镜像"><a href="#5-发布镜像" class="headerlink" title="5.发布镜像"></a>5.发布镜像</h3><p>docker login -u ethan harbor私服IP:端口<br>docker tag 镜像ID harbor私服IP:端口&#x2F;库名&#x2F;镜像名<br>docker push harbor私服IP:端口&#x2F;库名&#x2F;镜像名</p>
-<h3 id="发布镜像到-docker-hub"><a href="#发布镜像到-docker-hub" class="headerlink" title="发布镜像到 docker hub"></a>发布镜像到 docker hub</h3><p>在docker hub 注册账号：<a href="https://hub.docker.com/repositories">https://hub.docker.com/repositories</a><br>使用Docker hub账号在验证本地登录：</p>
-<pre><code>docker login
-</code></pre>
-<p>修改 repository 名称，即 DockerID&#x2F;仓库名，不一致将无法发布：<br>docker tag 镜像ID 用户名称&#x2F;镜像源名(repository name):新的标签名(tag)<br>$ docker tag 487c260f20ee ethan2docker&#x2F;moon<br>docker push <your_username>&#x2F;my-first-repo:tag<br>$ docker push ethan2docker&#x2F;moon</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2268,79 +2337,6 @@ sleep 2
       </tags>
   </entry>
   <entry>
-    <title>Eye of The Tiger</title>
-    <url>/xiaoxiao/2020/09/18/Eye-of-The-Tiger/</url>
-    <content><![CDATA[<p>Eye of the Tiger 是 Survivor 乐队在 1982 年应西尔维斯特史泰龙为电影《洛奇3》创作的主题曲。</p>
-<p>Risin’ up<br>back on the street<br>did my time took my chances<br>went the distance<br>now i’m back on my feet<br>just a man and and his will to survive<br>so many times<br>it happens too fast<br>you trade your passion for glory<br>don’t lose your grip on the dreams of the past<br>you must fight just to keep them alive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Face to face<br>out in the heat<br>hangin’ tough<br>stayin’ hungry<br>they stack the odds<br>still we take to the street<br>for the kill with the will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Risin’ up<br>straight to the top<br>had the guts<br>got the glory<br>went the distance<br>now i’m not gonna stop<br>just a man and his will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>迁移 mysql 数据目录</title>
-    <url>/xiaoxiao/2023/05/25/migrate-mysql-data-directory/</url>
-    <content><![CDATA[<p>在 CentOS 中迁移 MySQL 的数据目录 &#x2F;var&#x2F;lib&#x2F;mysql 到其他磁盘可以按以下步骤进行:</p>
-<ol>
-<li>停止MySQL服务</li>
-</ol>
-<pre><code class="shell">sudo service mysqld stop
-</code></pre>
-<ol start="2">
-<li>新建目标数据目录，假设新的数据目录为 &#x2F;home&#x2F;mysql&#x2F;data，创建该目录：</li>
-</ol>
-<pre><code class="shell">sudo mkdir /home/mysql/data
-</code></pre>
-<ol start="3">
-<li>将原数据目录中的内容复制到新目录</li>
-</ol>
-<pre><code class="shell">sudo cp -r /var/lib/mysql /home/mysql/data
-</code></pre>
-<ol start="4">
-<li>修改新数据目录权限</li>
-</ol>
-<pre><code class="shell">sudo chown -R mysql:mysql /home/mysql/data/mysql
-sudo chmod -R 755 /home/mysql/data/mysql
-</code></pre>
-<ol start="5">
-<li>修改 MySQL 配置编辑MySQL配置文件 &#x2F;etc&#x2F;my.cnf，在 [mysqld] 部分添加：</li>
-</ol>
-<pre><code class="shell">log-bin = /home/mysql/data/mysql/hfgc-5-bin
-log_bin_index = /home/mysql/data/mysql/hfgc-5-bin.index
-datadir=/home/mysql/data/mysql
-socket=/home/mysql/data/mysql/mysql.sock
-</code></pre>
-<p>将 datadir、log-bin 等相关项的值修改为新的数据目录路径。</p>
-<ol start="6">
-<li>重新启动MySQL服务</li>
-</ol>
-<pre><code class="shell">sudo service mysqld start
-</code></pre>
-<p> MySQL会自动使用新的 datadir 路径启动。</p>
-<ol start="7">
-<li>检查 MySQL 是否正常运行进入 MySQL 命令行,检查数据库、表等是否正常：</li>
-</ol>
-<pre><code class="sql">show databases;
-use test; 
-show tables;
-</code></pre>
-<p>确认无异常后说明迁移成功。</p>
-<ol start="8">
-<li>删除原数据目录（可选）确认迁移成功后可以删除原数据目录 &#x2F;var&#x2F;lib&#x2F;mysql。</li>
-</ol>
-<p>以上步骤通过修改配置、复制数据并修改权限的方式完成 MySQL 数据目录的迁移。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>发送 crontab 定时任务执行结果到指定邮箱</title>
     <url>/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/</url>
     <content><![CDATA[<p>在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下：</p>
@@ -2419,6 +2415,66 @@ fi
       <tags>
         <tag>crontab</tag>
         <tag>mail</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>迁移 mysql 数据目录</title>
+    <url>/xiaoxiao/2023/05/25/migrate-mysql-data-directory/</url>
+    <content><![CDATA[<p>在 CentOS 中迁移 MySQL 的数据目录 &#x2F;var&#x2F;lib&#x2F;mysql 到其他磁盘可以按以下步骤进行:</p>
+<ol>
+<li>停止MySQL服务</li>
+</ol>
+<pre><code class="shell">sudo service mysqld stop
+</code></pre>
+<ol start="2">
+<li>新建目标数据目录，假设新的数据目录为 &#x2F;home&#x2F;mysql&#x2F;data，创建该目录：</li>
+</ol>
+<pre><code class="shell">sudo mkdir /home/mysql/data
+</code></pre>
+<ol start="3">
+<li>将原数据目录中的内容复制到新目录</li>
+</ol>
+<pre><code class="shell">sudo cp -r /var/lib/mysql /home/mysql/data
+</code></pre>
+<ol start="4">
+<li>修改新数据目录权限</li>
+</ol>
+<pre><code class="shell">sudo chown -R mysql:mysql /home/mysql/data/mysql
+sudo chmod -R 755 /home/mysql/data/mysql
+</code></pre>
+<ol start="5">
+<li>修改 MySQL 配置编辑MySQL配置文件 &#x2F;etc&#x2F;my.cnf，在 [mysqld] 部分添加：</li>
+</ol>
+<pre><code class="shell">log-bin = /home/mysql/data/mysql/hfgc-5-bin
+log_bin_index = /home/mysql/data/mysql/hfgc-5-bin.index
+datadir=/home/mysql/data/mysql
+socket=/home/mysql/data/mysql/mysql.sock
+</code></pre>
+<p>将 datadir、log-bin 等相关项的值修改为新的数据目录路径。</p>
+<ol start="6">
+<li>重新启动MySQL服务</li>
+</ol>
+<pre><code class="shell">sudo service mysqld start
+</code></pre>
+<p> MySQL会自动使用新的 datadir 路径启动。</p>
+<ol start="7">
+<li>检查 MySQL 是否正常运行进入 MySQL 命令行,检查数据库、表等是否正常：</li>
+</ol>
+<pre><code class="sql">show databases;
+use test; 
+show tables;
+</code></pre>
+<p>确认无异常后说明迁移成功。</p>
+<ol start="8">
+<li>删除原数据目录（可选）确认迁移成功后可以删除原数据目录 &#x2F;var&#x2F;lib&#x2F;mysql。</li>
+</ol>
+<p>以上步骤通过修改配置、复制数据并修改权限的方式完成 MySQL 数据目录的迁移。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -2748,62 +2804,6 @@ ls /usr/lib/systemd/system/ssh*
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu Server 安装</title>
-    <url>/xiaoxiao/2021/03/29/install-Ubuntu-Server/</url>
-    <content><![CDATA[<h1 id="下载系统-ISO-文件"><a href="#下载系统-ISO-文件" class="headerlink" title="下载系统 ISO 文件"></a>下载系统 ISO 文件</h1><p><a href="https://cn.ubuntu.com/download">https://cn.ubuntu.com/download</a><br>Ubuntu Server 20.04.2 LTS</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol>
-<li>将 ISO 文件解压至 USB Disk 根目录</li>
-<li>启动电脑时，进入手动选择模式（通常是 F12、F10、F2）</li>
-<li>安装系统</li>
-</ol>
-<h1 id="配置静态IP"><a href="#配置静态IP" class="headerlink" title="配置静态IP"></a>配置静态IP</h1><p>查看IP</p>
-<pre><code>ip addr
-</code></pre>
-<p>修改配置文件</p>
-<pre><code>vi /etc/netplan/00-installer-config.yaml
-
-# This is the network config written by &#39;subiquity&#39;
-network:
-  ethernets:
-    enp2s0:
-      dhcp4: no
-      addresses: [10.10.1.11/24]
-      gateway4: 10.10.1.1
-      nameservers:
-              addresses: [10.10.1.1]
-  version: 2
-​
-</code></pre>
-<h1 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h1><pre><code>修改配置文件
-vi .profile
-​
-# 添加下面一行代码到最后
-TZ=&#39;Asia/Shanghai&#39;; export TZ
-</code></pre>
-<h1 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h1><p>备份 sources.list<br>cd &#x2F;etc&#x2F;apt<br>sudo cp sources.list sources.list.bak</p>
-<p>编辑 sources.list<br>添加如下内容：</p>
-<pre><code># 阿里源
-deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
-​```
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>为应用创建守护进程</title>
     <url>/xiaoxiao/2023/09/21/use-systemd-manage-application/</url>
     <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
@@ -2904,6 +2904,130 @@ server &#123;
       <tags>
         <tag>nginx</tag>
         <tag>dns</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务器性能监控及钉钉通知方案</title>
+    <url>/xiaoxiao/2024/07/12/server-performance-monitor/</url>
+    <content><![CDATA[<p>本方案实现思路是通过 shell 脚本查询服务器相关性能指标，并将性能指标记录下来，如果发现指标超出预设的阈值，则发送钉钉通知给相关人员。具体实现思路如下：</p>
+<h1 id="创建脚本目录"><a href="#创建脚本目录" class="headerlink" title="创建脚本目录"></a>创建脚本目录</h1><p>使用如下命令创建所需目录：<br><code>mkdir -p /home/ethan/shell/log/monitor</code><br>使用<code>-p</code>选项，这样如果上层目录不存在，它会自动创建它们。其中用户目录<code>ethan</code>根据实际修改。</p>
+<h1 id="创建监控脚本"><a href="#创建监控脚本" class="headerlink" title="创建监控脚本"></a>创建监控脚本</h1><p>在<code>/home/ethan/shell</code>目录下创建 shell 脚本<code>server-monitor.sh</code>，内容参考附件【监控脚本】。</p>
+<ul>
+<li>修改脚本执行权限：<code>chmod 755 server-monitor.sh</code></li>
+<li>测试脚本：<code>sh server-monitor.sh</code></li>
+</ul>
+<h1 id="创建定时任务"><a href="#创建定时任务" class="headerlink" title="创建定时任务"></a>创建定时任务</h1><p>执行<code>crontab -e</code>，添加定时任务，示例如下：</p>
+<pre><code class="shell"># 服务器性能监控，每天 10:24 执行一次
+24 10 * * * /home/ethan/shell/sever-monitor.sh &gt;&gt; /home/ethan/shell/crontab.log
+</code></pre>
+<h1 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h1><h2 id="监控脚本"><a href="#监控脚本" class="headerlink" title="监控脚本"></a>监控脚本</h2><p>脚本中常量<code>SERVER_NAME、DINGDING_ACCESS_TOKEN、DISK_PATH、LOG_PATH</code>值根据实际进行修改。</p>
+<pre><code class="shell">#!/bin/bash
+
+#定义主机名称
+SERVER_NAME=&quot;XX服务器&quot;
+# 钉钉机器人的 access_token
+DINGDING_ACCESS_TOKEN=access_token
+# 要检测占用率的磁盘分区
+DISK_PATH=&quot;/home&quot;
+LOG_PATH=&quot;/home/ethan/shell/log/monitor&quot;
+
+DATE_STR=`date +%Y%m%d`
+# 服务器性能监控，每天 10:24 执行一次
+# 24 10 * * * /home/ethan/shell/sever-monitor.sh &gt;&gt; /home/ethan/shell/crontab.log
+echo &quot;--------------------------------------&quot;
+echo &quot;`date +&quot;%Y-%m-%d %H:%M:%S&quot;` 检测服务器性能指标开始！&quot;
+
+# 性能阈值
+DISK_THRESHOLD=80 # 磁盘使用率阈值（%）
+MEM_THRESHOLD=80 # 内存使用率阈值（%）
+CPU_THRESHOLD=80 # CPU使用率阈值（%）
+
+# 定义接收通知的钉钉机器人的 Webhook URL。
+DINGTALK_WEBHOOK_URL=&quot;https://oapi.dingtalk.com/robot/send?access_token=$&#123;DINGDING_ACCESS_TOKEN&#125;&quot;
+
+# 获取本机IP地址输出本机的ip地址
+LOCAL_IP=$(hostname -I | awk &#39;&#123;print $1&#125;&#39;)
+
+# 获取指定分区的磁盘占用率  $(df -h / | awk &#39;/\// &#123;print int($5)&#125;&#39;)
+DISK_USED=$(df -h $DISK_PATH | awk &#39;/\// &#123;print int($5)&#125;&#39;)
+# 获取当前系统的实际内存使用率（排除小数部分）
+MEM_USED=$(free | awk &#39;/Mem:/ &#123;print int($3/$2 * 100)&#125;&#39;)
+# 获取当前系统的CPU使用率（精确到个位）。获取当前系统的实际 CPU 使用率（排除空闲 CPU 百分比的影响）
+CPU_USED=$(top -bn 1 | grep &quot;Cpu(s)&quot; | awk &#39;&#123;print int(100 - $8)&#125;&#39;)
+
+echo &quot;--------------------------------------&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+echo &quot;`date +&quot;%Y-%m-%d %H:%M:%S&quot;`&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+# 判断是否超过告警阈值
+if [ $DISK_USED -gt $DISK_THRESHOLD ] || [ $MEM_USED -gt $MEM_THRESHOLD ] || [ $CPU_USED -gt $CPU_THRESHOLD ]; then
+    echo &quot;警告！性能监控发现问题！&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;磁盘已用：$DISK_USED%&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;内存已用：$MEM_USED%&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;CPU 已用：$CPU_USED%&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+else
+    echo &quot;磁盘已用：$DISK_USED% 磁盘空间足够，无需担心&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;内存已用：$MEM_USED% 内存还很充足，无需担心&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;CPU已用：$CPU_USED% CPU运行正常，无需担心&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    exit 1
+fi
+
+if [ $&#123;DISK_USED&#125; -gt $DISK_THRESHOLD ]; then
+    echo &quot;-----------------&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;警告：磁盘空间快不足！&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;已用：$DISK_USED% &quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;其中占用率最多的前5个有：&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;`du -h --max-depth=1 $DISK_PATH | sort -rh | head -n 6`&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    # 如果磁盘使用情况过高，通过钉钉机器人发送通知消息
+    curl -H &quot;Content-Type: application/json&quot; \
+        -d &#39;&#123;
+            &quot;msgtype&quot;: &quot;text&quot;,
+            &quot;text&quot;: &#123;
+                &quot;content&quot;: &quot;【服务器监控】磁盘占用率过高：(&#39;&quot;$DISK_USED&quot;&#39;%) on (&#39;&quot;$SERVER_NAME&quot;&#39;) (&#39;&quot;$LOCAL_IP&quot;&#39;) at &#39;&quot;$(date)&quot;&#39;&quot;
+            &#125;
+        &#125;&#39; $DINGTALK_WEBHOOK_URL
+fi
+
+if [ $&#123;MEM_USED&#125; -gt $MEM_THRESHOLD ]; then
+    echo &quot;-----------------&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;警告：内存使用率过高！&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;已用：$MEM_USED% &quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;其中使用率最多的前5个有：&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;`ps -eo pid,%mem,cmd --sort=-%mem | head -n 6`&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    # 如果内存用量过高，通过钉钉机器人发送通知消息
+    curl -H &quot;Content-Type: application/json&quot; \
+        -d &#39;&#123;
+            &quot;msgtype&quot;: &quot;text&quot;,
+            &quot;text&quot;: &#123;
+                &quot;content&quot;: &quot;【服务器监控】内存占用率过高：(&#39;&quot;$MEM_USED&quot;&#39;%) on (&#39;&quot;$SERVER_NAME&quot;&#39;) (&#39;&quot;$LOCAL_IP&quot;&#39;) at &#39;&quot;$(date)&quot;&#39;&quot;
+            &#125;
+        &#125;&#39; $DINGTALK_WEBHOOK_URL
+fi
+
+if [ $&#123;CPU_USED&#125; -gt $CPU_THRESHOLD ]; then
+    echo &quot;-----------------&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;警告：CPU 使用率过高！&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;已用：$CPU_USED% &quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;其中使用率最多的前5个有：&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    echo &quot;`ps -eo pid,%cpu,cmd --sort=-%cpu | head -n 6`&quot; &gt;&gt; $LOG_PATH/$DATE_STR.log
+    # 如果内存用量过高，通过钉钉机器人发送通知消息
+    curl -H &quot;Content-Type: application/json&quot; \
+        -d &#39;&#123;
+            &quot;msgtype&quot;: &quot;text&quot;,
+            &quot;text&quot;: &#123;
+                &quot;content&quot;: &quot;【服务器监控】CPU 使用率过高：(&#39;&quot;$CPU_USED&quot;&#39;%) on (&#39;&quot;$SERVER_NAME&quot;&#39;) (&#39;&quot;$LOCAL_IP&quot;&#39;) at &#39;&quot;$(date)&quot;&#39;&quot;
+            &#125;
+        &#125;&#39; $DINGTALK_WEBHOOK_URL
+fi
+
+# 参考资料
+# https://blog.csdn.net/qq_45547688/article/details/131804881
+# https://blog.csdn.net/zy_9466/article/details/132298199
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
       </tags>
   </entry>
 </search>
