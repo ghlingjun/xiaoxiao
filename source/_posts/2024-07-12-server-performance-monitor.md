@@ -3,7 +3,8 @@ title: 服务器性能监控及钉钉通知方案
 comments: true
 categories:
   - 运维
-tags: [server]
+tags: 
+  - message
 date: 2024-07-12 16:57:17
 updated: 2024-07-12 16:57:17
 ---
@@ -24,7 +25,7 @@ updated: 2024-07-12 16:57:17
 执行`crontab -e`，添加定时任务，示例如下：
 ```shell
 # 服务器性能监控，每天 10:24 执行一次
-24 10 * * * /home/ethan/shell/sever-monitor.sh >> /home/ethan/shell/crontab.log
+24 10 * * * sh /home/ethan/shell/server-monitor.sh >> /home/ethan/shell/crontab.log
 ```
 
 # 附件
@@ -44,7 +45,7 @@ LOG_PATH="/home/ethan/shell/log/monitor"
 
 DATE_STR=`date +%Y%m%d`
 # 服务器性能监控，每天 10:24 执行一次
-# 24 10 * * * /home/ethan/shell/sever-monitor.sh >> /home/ethan/shell/crontab.log
+# 24 10 * * * sh /home/ethan/shell/server-monitor.sh >> /home/ethan/shell/crontab.log
 echo "--------------------------------------"
 echo "`date +"%Y-%m-%d %H:%M:%S"` 检测服务器性能指标开始！"
 

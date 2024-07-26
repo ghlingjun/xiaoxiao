@@ -2,8 +2,11 @@
 title: 发送 crontab 定时任务执行结果到指定邮箱
 comments: true
 categories:
-  - tech
-tags: [crontab,mail]
+  - 运维
+  - mail
+tags:
+  - ssmtp
+  - mailutils
 date: 2023-05-27 20:32:14
 updated: 2023-07-18 20:32:14
 ---
@@ -16,7 +19,7 @@ updated: 2023-07-18 20:32:14
 
 ```shell
 bash 
-sudo apt install mailutils
+sudo apt install ssmtp mailutils
 ```
 
 配置过程需要选择配置类型，选择 `No configuration`。
@@ -102,7 +105,7 @@ some_command
 # 判断任务执行结果
 if [ $? -ne 0 ]; then
     # 发送邮件,邮件内容为任务输出
-    echo "Subject: Task Failed" | mail -s "Task Failed" $MAIL 
+    echo "Subject: Task Failed" | mail -s "Task Failed" mailname@domain.com
 fi 
 ```
 
@@ -119,8 +122,12 @@ fi
 在 crontab 文件中添加定时任务，例如:
 
 ```shell
-*/5 * * * * /path/to/script.sh   # 每5分钟执行一次
+*/5 * * * * sh /path/to/script.sh   # 每5分钟执行一次
 ```
 
 当定时任务执行失败时，会发送一封邮件通知到您指定的邮箱，实现了只在任务失败时发送邮件的效果。
 
+# 参考文档
+
+https://blog.csdn.net/gmaaa123/article/details/137954791
+https://devpress.csdn.net/linux/62eba51020df032da732ba45.html
