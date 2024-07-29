@@ -1,5 +1,5 @@
 ---
-title: 发送 crontab 定时任务执行结果到指定邮箱
+title: 发送定时任务执行结果到指定邮箱
 comments: true
 categories:
   - 运维
@@ -15,7 +15,7 @@ updated: 2023-07-18 20:32:14
 
 # 1 安装配置环境
 
-## 1.1 安装 mailutils
+## 1.1 安装 ssmtp 和 mailutils
 
 ```shell
 bash 
@@ -24,17 +24,7 @@ sudo apt install ssmtp mailutils
 
 配置过程需要选择配置类型，选择 `No configuration`。
 
-安装日志中有 postfix 的配置说明：
-
-> Postfix was not set up.  Start with
->   cp /usr/share/postfix/main.cf.debian /etc/postfix/main.cf
-> .  If you need to make changes, edit
-> /etc/postfix/main.cf (and others) as needed.  To view Postfix configuration
-> values, see postconf(1).
-
-> After modifying main.cf, be sure to run '/etc/init.d/postfix reload'.
-
-mailutils 提供用于 crontab 发送邮件的环境。安装好后需要配置两个文件：`/etc/ssmtp/ssmtp.conf /etc/ssmtp/revaliases`
+安装好后需要配置两个文件：`/etc/ssmtp/ssmtp.conf /etc/ssmtp/revaliases`
 
 ## 1.2 修改配置
 
@@ -49,7 +39,7 @@ mailutils 提供用于 crontab 发送邮件的环境。安装好后需要配置�
 #
 # The person who gets all mail for userids < 1000
 # Make this empty to disable rewriting.
-root=your_email@163.com
+root=postmaster
 
 # The place where the mail goes. The actual machine name is required no
 # MX records are consulted. Commonly mailhosts are named mail.domain.com
@@ -84,6 +74,7 @@ AuthPass=authpassasdfasdf
 #
 # Example: root:your_login@your.domain:mailhub.your.domain[:port]
 # where [:port] is an optional port number that defaults to 25.
+# shumei 请修改为服务器用户名
 shumei:your_email@163.com:smtp.163.com:465
 ```
 
