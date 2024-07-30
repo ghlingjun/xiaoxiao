@@ -512,7 +512,7 @@
            data-tag="hexo"
            data-author="" >
             <span class="post-title" title="photo bed">photo bed</span>
-            <span class="post-date" title="2024-07-30 13:41:07">2024/07/30</span>
+            <span class="post-date" title="2024-07-30 12:41:07">2024/07/30</span>
         </a>
         
         
@@ -1097,7 +1097,7 @@
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="适合场景"><a href="#适合场景" class="headerlink" title="适合场景"></a>适合场景</h3><p>大文件、数据流式访问、一次写入多次读取、低成本部署，廉价PC、高容错。</p>
 <h3 id="不适合场景"><a href="#不适合场景" class="headerlink" title="不适合场景"></a>不适合场景</h3><p>小文件、数据交互式访问、频繁任意修改、低延迟处理。</p>
 <h1 id="HDFS-重要特性解读"><a href="#HDFS-重要特性解读" class="headerlink" title="HDFS 重要特性解读"></a>HDFS 重要特性解读</h1><h2 id="主从架构集群"><a href="#主从架构集群" class="headerlink" title="主从架构集群"></a>主从架构集群</h2><p>一个 namenode 和一定数目的 datanode 组成。<br>namenode 是 HDFS 的主节点。管理元数据，记录每一个文件的信息，如何分块等信息。<br>datanode 是 HDFS 的从节点。存储 block 数据。</p>
-<img src="/xiaoxiao/.io//2024/07/26/hadoop-learning/hdfs-framework.png" class title="hdfs 架构图">
+<img src="/xiaoxiao/2024/07/26/hadoop-learning/hdfs-framework.png" class="" title="hdfs 架构图">
 
 <h2 id="分块存储"><a href="#分块存储" class="headerlink" title="分块存储"></a>分块存储</h2><p>HDFS 中的文件在物理上是分块（block）存储的，默认大小是 128M（134217728），不足 128M 的文件本身就是一块。</p>
 <h2 id="副本机制"><a href="#副本机制" class="headerlink" title="副本机制"></a>副本机制</h2><p>文件的所有 block 都会有副本。副本系数可以在文件创建时可以指定，也可以在之后通过命令改变。<br>副本数由参数 dfs.replication 控制，默认值为 3，文件的所有 block 都会存储 3 份。</p>
