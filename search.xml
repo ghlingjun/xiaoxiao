@@ -809,7 +809,7 @@ defaults write com.apple.Maps AppleLanguages &#39;(zh-CN)&#39;
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>git</tag>
@@ -976,7 +976,7 @@ controllerBasePackage=com.primeco.log.ctl.base
 </ul>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>maven</tag>
@@ -1026,10 +1026,11 @@ public class CorsFilter implements Filter &#123;
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>跨域</tag>
+        <tag>cors</tag>
       </tags>
   </entry>
   <entry>
@@ -1213,10 +1214,11 @@ nignx 中 autoindex 要配置成 off
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>server</tag>
+        <tag>电信云</tag>
       </tags>
   </entry>
   <entry>
@@ -1255,7 +1257,7 @@ nignx 中 autoindex 要配置成 off
         <category>生活</category>
       </categories>
       <tags>
-        <tag>life</tag>
+        <tag>proust</tag>
       </tags>
   </entry>
   <entry>
@@ -1273,7 +1275,7 @@ nignx 中 autoindex 要配置成 off
 </ul>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>OS</tag>
@@ -1512,10 +1514,11 @@ default upgrade;
 <p>nignx 中 autoindex 要配置成 off</p>
 <h2 id="安装中文字体"><a href="#安装中文字体" class="headerlink" title="安装中文字体"></a>安装中文字体</h2>]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>server</tag>
+        <tag>浪潮云</tag>
       </tags>
   </entry>
   <entry>
@@ -1547,7 +1550,7 @@ default upgrade;
 <h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><p>重启 docker：<br>systemctl restart docker.service<br>sudo service docker restart<br>docker启动日志：<br>&#x2F;var&#x2F;log&#x2F;upstart&#x2F;docker.log</p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>docker</tag>
@@ -1583,10 +1586,11 @@ grant all privileges on fund_management.* to shumei@&#39;%&#39; with grant optio
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>server</tag>
+        <tag>腾讯云</tag>
       </tags>
   </entry>
   <entry>
@@ -1717,7 +1721,7 @@ data_volume: /home/shumei/soft/harbor/data
 <h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>Harbor Installation and Configuration[<a href="https://goharbor.io/docs/2.0.0/install-config/]">https://goharbor.io/docs/2.0.0/install-config/]</a></p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>docker</tag>
@@ -1737,7 +1741,7 @@ data_volume: /home/shumei/soft/harbor/data
 <h1 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h1><p>阿里云镜像获取地址：<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a></p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>mac</tag>
@@ -1795,7 +1799,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-cp&quot;,&quot;app:app/lib/*&quot;,&quot;com
 <p><a href="https://spring.io/guides/gs/spring-boot-docker/">https://spring.io/guides/gs/spring-boot-docker/</a></p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>docker</tag>
@@ -1865,7 +1869,7 @@ sudo service docker restart
 <h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>Get started with Docker Compose[<a href="https://docs.docker.com/compose/gettingstarted/]">https://docs.docker.com/compose/gettingstarted/]</a></p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>docker</tag>
@@ -1905,10 +1909,10 @@ mvn -U clean package -Dmaven.test.skip=true -pl 模块名称 -am
 <h3 id="发布镜像到-docker-hub"><a href="#发布镜像到-docker-hub" class="headerlink" title="发布镜像到 docker hub"></a>发布镜像到 docker hub</h3><p>在docker hub 注册账号：<a href="https://hub.docker.com/repositories">https://hub.docker.com/repositories</a><br>使用Docker hub账号在验证本地登录：</p>
 <pre><code>docker login
 </code></pre>
-<p>修改 repository 名称，即 DockerID&#x2F;仓库名，不一致将无法发布：<br>docker tag 镜像ID 用户名称&#x2F;镜像源名(repository name):新的标签名(tag)<br>$ docker tag 487c260f20ee ethan2docker&#x2F;moon<br>docker push <your_username>&#x2F;my-first-repo:tag<br>$ docker push ethan2docker&#x2F;moon</p>
+<p>修改 repository 名称，即 DockerID&#x2F;仓库名，不一致将无法发布：<br>docker tag 镜像ID 用户名称&#x2F;镜像源名(repository name):新的标签名(tag)<br>$ docker tag 487c260f20ee ethan2docker&#x2F;moon<br>docker push <your_username>&#x2F;my-first-repo:tag<br>$ docker push ethan2docker&#x2F;moon</your_username></p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>docker</tag>
@@ -1977,7 +1981,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted univer
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>ubuntu</tag>
@@ -2072,10 +2076,84 @@ INSERT INTO `WARNING` (`id`, `warning`, `website`, `token`) VALUES (1, &#39;To r
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>联通云服务器初始化</title>
+    <url>/xiaoxiao/2022/07/14/cloud-server-init-cucloud/</url>
+    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
+<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
+<p>查看挂载结果<br>df -TH</p>
+<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
+<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
+<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<pre><code># 查看用户组是否存在
+grep shumei /etc/group
+# 添加用户组 shumei
+groupadd shumei
+
+# 查看用户 shumei 是否存在
+grep shumei /etc/passwd
+# 添加用户
+useradd -g shumei -d /home/shumei -m shumei
+# 查看 shumei 信息
+id shumei
+# 设置用户密码
+passwd shumei
+
+# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
+vi /etc/sudoers
+# 仿照现有root的例子就行，加一行（最好用tab作为空白）
+shumei  ALL=(ALL:ALL)   ALL
+</code></pre>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code># echo $SHELL 可查看当前使用的 shell
+usermod -s /bin/bash shumei
+</code></pre>
+<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
+
+vi .profile
+export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+
+# 使配置生效
+source .profile
+
+# 检查配置是否成功
+java -version
+</code></pre>
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[以下仅示例，具体请参考官网文档]<a href="https://nginx.org/en/linux_packages.html#Ubuntu">https://nginx.org/en/linux_packages.html#Ubuntu</a></p>
+<pre><code>wget http://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
+
+sudo vi /etc/apt/sources.list.d/nginx.list
+# 添加如下内容
+deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx
+deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx
+
+sudo apt-get update
+sudo apt-get install nginx
+</code></pre>
+<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
+sudo apt install redis-server
+
+查看是否启动
+# redis-cli
+以上命令将打开以下终端：
+redis 127.0.0.1:6379&gt;
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+        <tag>联通云</tag>
       </tags>
   </entry>
   <entry>
@@ -2174,79 +2252,6 @@ vi /home/sftp/.ssh/authorized_keys
       </tags>
   </entry>
   <entry>
-    <title>联通云服务器初始化</title>
-    <url>/xiaoxiao/2022/07/14/cloud-server-init-cucloud/</url>
-    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
-<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
-<p>查看挂载结果<br>df -TH</p>
-<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
-<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
-<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
-<pre><code># 查看用户组是否存在
-grep shumei /etc/group
-# 添加用户组 shumei
-groupadd shumei
-
-# 查看用户 shumei 是否存在
-grep shumei /etc/passwd
-# 添加用户
-useradd -g shumei -d /home/shumei -m shumei
-# 查看 shumei 信息
-id shumei
-# 设置用户密码
-passwd shumei
-
-# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
-vi /etc/sudoers
-# 仿照现有root的例子就行，加一行（最好用tab作为空白）
-shumei  ALL=(ALL:ALL)   ALL
-</code></pre>
-<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
-<pre><code># echo $SHELL 可查看当前使用的 shell
-usermod -s /bin/bash shumei
-</code></pre>
-<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
-
-vi .profile
-export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
-export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
-export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
-
-# 使配置生效
-source .profile
-
-# 检查配置是否成功
-java -version
-</code></pre>
-<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[以下仅示例，具体请参考官网文档]<a href="https://nginx.org/en/linux_packages.html#Ubuntu">https://nginx.org/en/linux_packages.html#Ubuntu</a></p>
-<pre><code>wget http://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
-
-sudo vi /etc/apt/sources.list.d/nginx.list
-# 添加如下内容
-deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx
-deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx
-
-sudo apt-get update
-sudo apt-get install nginx
-</code></pre>
-<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
-sudo apt install redis-server
-
-查看是否启动
-# redis-cli
-以上命令将打开以下终端：
-redis 127.0.0.1:6379&gt;
-</code></pre>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>kettle experiences</title>
     <url>/xiaoxiao/2023/05/23/kettle-experiences/</url>
     <content><![CDATA[<h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol>
@@ -2332,7 +2337,7 @@ sleep 2
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>kettle</tag>
@@ -2469,7 +2474,7 @@ show tables;
 <p>以上步骤通过修改配置、复制数据并修改权限的方式完成 MySQL 数据目录的迁移。</p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>mysql</tag>
@@ -2651,10 +2656,113 @@ public class StringEncryptorTest extends BaseTest &#123;
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>jasypt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为应用创建守护进程</title>
+    <url>/xiaoxiao/2023/09/21/use-systemd-manage-application/</url>
+    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
+<pre><code class="text">[Unit]
+Description=moon data center service
+
+[Service]
+ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<blockquote>
+<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
+</blockquote>
+<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
+<blockquote>
+<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>systemd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>防止域名被恶意解析</title>
+    <url>/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/</url>
+    <content><![CDATA[<h1 id="恶意域名解析的原理"><a href="#恶意域名解析的原理" class="headerlink" title="恶意域名解析的原理"></a>恶意域名解析的原理</h1><p>假如公网 IP 暴露，那么别人可以随意用一个域名解析到公网 IP，如果解析的域名未备案，那会有安全风险。那如何防止呢？下面是 Nignx 的解决办法：</p>
+<p>如果 ip 对应的80（或者443）端口在 nginx 里没有指定默认资源，默认会以 conf.d 目录下的顺序第一的配置文件指向的资源为准，也就是用 80 或者 443 各排第一个的配置文件为默认资源。这时候如果用一个不相关的域名解析到 IP上，就会阴差阳错的关联到 conf.d 目录下 80 或者 443 各排第一位的配置文件对应的资源上。</p>
+<p>防解析的解决方法也很简单，就是指定 80 和 443 端口的默认资源，让他们只返回 403 报错，默认资源没法显示有效内容，域名就没法解析成功。</p>
+<h1 id="80-端口反代配置"><a href="#80-端口反代配置" class="headerlink" title="80 端口反代配置"></a>80 端口反代配置</h1><pre><code class="nginx">server &#123;
+    listen       80 default;
+    server_name  _;
+    return 403;
+&#125;
+</code></pre>
+<h1 id="443-端口反代配置"><a href="#443-端口反代配置" class="headerlink" title="443 端口反代配置"></a>443 端口反代配置</h1><p>443 端口防范配置则需要配置 ssl 证书，否则所有 https 请求都会失败，下面是颁发自签名证书和配置过程。</p>
+<h2 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h2><pre><code class="shell"># 首先，进入你想创建证书和私钥的目录，例如：
+cd /home/certs/
+
+# 创建服务器私钥，命令会让你输入一个口令：
+openssl genrsa -des3 -out server.key 2048
+
+# 创建签名请求的证书，最后两步密码留空（CSR）：
+openssl req -new -key server.key -out server.csr
+
+# 在加载 SSL 支持的 Nginx 并使用上述私钥时除去必须的口令：
+cp server.key server.key.org
+openssl rsa -in server.key.org -out server.key
+
+# 最后标记证书使用上述私钥和 CSR：
+openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
+</code></pre>
+<h2 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h2><p>在 nginx 目录下的 conf 目录内创建 403.conf：</p>
+<pre><code class="nginx"># 防止域名被恶意解析
+server &#123;
+    listen       80 default;
+    server_name  403.abc.com;
+
+    return 403;
+
+    location ~/.well-known/acme-challenge/ &#123;
+        root /usr/share/nginx/html/;
+    &#125;
+
+&#125;
+
+server &#123;
+    listen       443 ssl default;
+    server_name  403.abc.com;
+    ssl_certificate      /etc/nginx/cert/server.crt;
+    ssl_certificate_key  /etc/nginx/cert/server.key;
+
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    #表示使用的加密套件的类型。
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #表示使用的TLS协议的类型。
+    ssl_prefer_server_ciphers on;
+
+    return 403;
+
+&#125;
+</code></pre>
+<p>重启nginx，未报错，说明配置成功。</p>
+<p>访问 <a href="http://ip/">http://ip</a> 返回 403，说明 80 端口的防解析配置成功！</p>
+<p>访问 <a href="https://ip/">https://ip</a> 返回 403，说明 443 端口的防解析配置成功！</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+        <tag>dns</tag>
       </tags>
   </entry>
   <entry>
@@ -2802,109 +2910,6 @@ ls /usr/lib/systemd/system/ssh*
       </tags>
   </entry>
   <entry>
-    <title>为应用创建守护进程</title>
-    <url>/xiaoxiao/2023/09/21/use-systemd-manage-application/</url>
-    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
-<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
-<pre><code class="text">[Unit]
-Description=moon data center service
-
-[Service]
-ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<blockquote>
-<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
-</blockquote>
-<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
-<blockquote>
-<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
-</blockquote>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>systemd</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>防止域名被恶意解析</title>
-    <url>/xiaoxiao/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/</url>
-    <content><![CDATA[<h1 id="恶意域名解析的原理"><a href="#恶意域名解析的原理" class="headerlink" title="恶意域名解析的原理"></a>恶意域名解析的原理</h1><p>假如公网 IP 暴露，那么别人可以随意用一个域名解析到公网 IP，如果解析的域名未备案，那会有安全风险。那如何防止呢？下面是 Nignx 的解决办法：</p>
-<p>如果 ip 对应的80（或者443）端口在 nginx 里没有指定默认资源，默认会以 conf.d 目录下的顺序第一的配置文件指向的资源为准，也就是用 80 或者 443 各排第一个的配置文件为默认资源。这时候如果用一个不相关的域名解析到 IP上，就会阴差阳错的关联到 conf.d 目录下 80 或者 443 各排第一位的配置文件对应的资源上。</p>
-<p>防解析的解决方法也很简单，就是指定 80 和 443 端口的默认资源，让他们只返回 403 报错，默认资源没法显示有效内容，域名就没法解析成功。</p>
-<h1 id="80-端口反代配置"><a href="#80-端口反代配置" class="headerlink" title="80 端口反代配置"></a>80 端口反代配置</h1><pre><code class="nginx">server &#123;
-    listen       80 default;
-    server_name  _;
-    return 403;
-&#125;
-</code></pre>
-<h1 id="443-端口反代配置"><a href="#443-端口反代配置" class="headerlink" title="443 端口反代配置"></a>443 端口反代配置</h1><p>443 端口防范配置则需要配置 ssl 证书，否则所有 https 请求都会失败，下面是颁发自签名证书和配置过程。</p>
-<h2 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h2><pre><code class="shell"># 首先，进入你想创建证书和私钥的目录，例如：
-cd /home/certs/
-
-# 创建服务器私钥，命令会让你输入一个口令：
-openssl genrsa -des3 -out server.key 2048
-
-# 创建签名请求的证书，最后两步密码留空（CSR）：
-openssl req -new -key server.key -out server.csr
-
-# 在加载 SSL 支持的 Nginx 并使用上述私钥时除去必须的口令：
-cp server.key server.key.org
-openssl rsa -in server.key.org -out server.key
-
-# 最后标记证书使用上述私钥和 CSR：
-openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
-</code></pre>
-<h2 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h2><p>在 nginx 目录下的 conf 目录内创建 403.conf：</p>
-<pre><code class="nginx"># 防止域名被恶意解析
-server &#123;
-    listen       80 default;
-    server_name  403.abc.com;
-
-    return 403;
-
-    location ~/.well-known/acme-challenge/ &#123;
-        root /usr/share/nginx/html/;
-    &#125;
-
-&#125;
-
-server &#123;
-    listen       443 ssl default;
-    server_name  403.abc.com;
-    ssl_certificate      /etc/nginx/cert/server.crt;
-    ssl_certificate_key  /etc/nginx/cert/server.key;
-
-    ssl_session_timeout 5m;
-    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
-    #表示使用的加密套件的类型。
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #表示使用的TLS协议的类型。
-    ssl_prefer_server_ciphers on;
-
-    return 403;
-
-&#125;
-</code></pre>
-<p>重启nginx，未报错，说明配置成功。</p>
-<p>访问 <a href="http://ip/">http://ip</a> 返回 403，说明 80 端口的防解析配置成功！</p>
-<p>访问 <a href="https://ip/">https://ip</a> 返回 403，说明 443 端口的防解析配置成功！</p>
-]]></content>
-      <categories>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>nginx</tag>
-        <tag>dns</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>服务器性能监控及钉钉通知方案</title>
     <url>/xiaoxiao/2024/07/12/server-performance-monitor/</url>
     <content><![CDATA[<p>本方案实现思路是通过 shell 脚本查询服务器相关性能指标，并将性能指标记录下来，如果发现指标超出预设的阈值，则发送钉钉通知给相关人员。具体实现思路如下：</p>
@@ -3039,7 +3044,9 @@ send_mail
 <p>典型的 HDFS 文件大小是 GB 到 TB 的级别。所以 HDFS 被调整成支持大文件（Large Data Sets）。它应该提供很高的聚合数据带宽，一个集群中支持数百个节点，一个集群还应该支持千万级别的文件。</p>
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="适合场景"><a href="#适合场景" class="headerlink" title="适合场景"></a>适合场景</h3><p>大文件、数据流式访问、一次写入多次读取、低成本部署，廉价PC、高容错。</p>
 <h3 id="不适合场景"><a href="#不适合场景" class="headerlink" title="不适合场景"></a>不适合场景</h3><p>小文件、数据交互式访问、频繁任意修改、低延迟处理。</p>
-<h1 id="HDFS-重要特性解读"><a href="#HDFS-重要特性解读" class="headerlink" title="HDFS 重要特性解读"></a>HDFS 重要特性解读</h1><h2 id="主从架构集群"><a href="#主从架构集群" class="headerlink" title="主从架构集群"></a>主从架构集群</h2><p>一个 namenode 和一定数目的 datanode 组成。<br>namenode 是 HDFS 的主节点。管理元数据，记录每一个文件的信息，如何分块等信息。<br>datanode 是 HDFS 的从节点。存储 block 数据。<br><img src="/xiaoxiao/.io//img/hadoop/hdfs-framework.png" alt="HDFS 架构"></p>
+<h1 id="HDFS-重要特性解读"><a href="#HDFS-重要特性解读" class="headerlink" title="HDFS 重要特性解读"></a>HDFS 重要特性解读</h1><h2 id="主从架构集群"><a href="#主从架构集群" class="headerlink" title="主从架构集群"></a>主从架构集群</h2><p>一个 namenode 和一定数目的 datanode 组成。<br>namenode 是 HDFS 的主节点。管理元数据，记录每一个文件的信息，如何分块等信息。<br>datanode 是 HDFS 的从节点。存储 block 数据。</p>
+<img src="/xiaoxiao/.io//2024/07/26/hadoop-learning/hdfs-framework.png" class title="hdfs 架构图">
+
 <h2 id="分块存储"><a href="#分块存储" class="headerlink" title="分块存储"></a>分块存储</h2><p>HDFS 中的文件在物理上是分块（block）存储的，默认大小是 128M（134217728），不足 128M 的文件本身就是一块。</p>
 <h2 id="副本机制"><a href="#副本机制" class="headerlink" title="副本机制"></a>副本机制</h2><p>文件的所有 block 都会有副本。副本系数可以在文件创建时可以指定，也可以在之后通过命令改变。<br>副本数由参数 dfs.replication 控制，默认值为 3，文件的所有 block 都会存储 3 份。</p>
 <h2 id="元数据记录"><a href="#元数据记录" class="headerlink" title="元数据记录"></a>元数据记录</h2><p>namenode 管理的元数据有两种类型：</p>
@@ -3130,6 +3137,17 @@ send_mail
       </categories>
       <tags>
         <tag>Hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>photo bed</title>
+    <url>/xiaoxiao/2024/07/30/photo-bed/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
