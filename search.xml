@@ -3142,7 +3142,9 @@ send_mail
   <entry>
     <title>photo bed</title>
     <url>/xiaoxiao/2024/07/30/photo-bed/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>post_asset_folder: true</p>
+<p>npm install git:&#x2F;&#x2F;github.com&#x2F;yiyungent&#x2F;hexo-asset-img.git#main</p>
+]]></content>
       <categories>
         <category>工具</category>
       </categories>
