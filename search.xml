@@ -3049,6 +3049,7 @@ send_mail
 
 <h2 id="分块存储"><a href="#分块存储" class="headerlink" title="分块存储"></a>分块存储</h2><p>HDFS 中的文件在物理上是分块（block）存储的，默认大小是 128M（134217728），不足 128M 的文件本身就是一块。</p>
 <h2 id="副本机制"><a href="#副本机制" class="headerlink" title="副本机制"></a>副本机制</h2><p>文件的所有 block 都会有副本。副本系数可以在文件创建时可以指定，也可以在之后通过命令改变。<br>副本数由参数 dfs.replication 控制，默认值为 3，文件的所有 block 都会存储 3 份。</p>
+<img src="/xiaoxiao/2024/07/26/hadoop-learning/3-copy-strategy.png" class="" title="3备份策略">
 <h2 id="元数据记录"><a href="#元数据记录" class="headerlink" title="元数据记录"></a>元数据记录</h2><p>namenode 管理的元数据有两种类型：</p>
 <ol>
 <li>文件自身属性信息：文件名称、权限、修改时间、文件大小、复制因子、数据块大小。</li>
@@ -3056,12 +3057,14 @@ send_mail
 </ol>
 <h2 id="抽象统一的目录树结构（namespace）"><a href="#抽象统一的目录树结构（namespace）" class="headerlink" title="抽象统一的目录树结构（namespace）"></a>抽象统一的目录树结构（namespace）</h2><p>HDFS 支持传统的层次型文件组织结构。文件系统的名字空间的层次结构与大多现有的文件系统雷系：用户可以创建、删除、移动或重命名文件。<br>namenode 负责维护文件系统的 namespace 名称空间，任何对文件系统名称空间或属性的修改都将被 namenode 记录下来。<br>HDFS 给客户端提供一个统一的抽象目录树，客户端通过路径来访问文件，形如：hdfs:&#x2F;&#x2F;namenode:port&#x2F;dir&#x2F;file.txt</p>
 <h2 id="数据块存储"><a href="#数据块存储" class="headerlink" title="数据块存储"></a>数据块存储</h2><p>文件的各个 block 的具体存储管理由 datanode 节点承担。<br>每个 block 都可以在多个 datanode 上存储。</p>
-<h1 id="HDFS-工作流程与机制——各角色职责"><a href="#HDFS-工作流程与机制——各角色职责" class="headerlink" title="HDFS 工作流程与机制——各角色职责"></a>HDFS 工作流程与机制——各角色职责</h1><h2 id="主角色-namenode"><a href="#主角色-namenode" class="headerlink" title="主角色 namenode"></a>主角色 namenode</h2><ul>
+<h1 id="HDFS-工作流程与机制——各角色职责"><a href="#HDFS-工作流程与机制——各角色职责" class="headerlink" title="HDFS 工作流程与机制——各角色职责"></a>HDFS 工作流程与机制——各角色职责</h1><img src="/xiaoxiao/2024/07/26/hadoop-learning/hdfs.png" class="" title="hdfs">
+
+<h2 id="主角色-namenode"><a href="#主角色-namenode" class="headerlink" title="主角色 namenode"></a>主角色 namenode</h2><ul>
 <li>NameNode 是 Hadoop 分布式文件系统的核心，架构中的主角色。</li>
 <li>NameNode 维护和管理文件系统元数据，包括名称空间目录树结构、文件和块的位置信息、访问权限等信息。</li>
 <li>基于此，NameNode 成为了访问 HDFS 的唯一入口。</li>
 <li>NameNode 内部通过内存和磁盘文件两种方式管理元数据。</li>
-<li>其中磁盘上的元数据文件包括 Fsimage 内存元数据镜像文件和 edits log(Journal) 编辑日志。</li>
+<li>其中磁盘上的元数据文件包括 Fsimage 内存元数据镜像文件和 edits log(Journal) 编辑日志。<img src="/xiaoxiao/2024/07/26/hadoop-learning/namenode.png" class="" title="namenode"></li>
 </ul>
 <h3 id="namenode-职责"><a href="#namenode-职责" class="headerlink" title="namenode 职责"></a>namenode 职责</h3><ul>
 <li>NameNode 仅存储 HDFS 的元数据：文件系统中所有文件的目录树，并跟踪整个集群中的文件，不存储实际数据。</li>
@@ -3072,7 +3075,8 @@ send_mail
 </ul>
 <h2 id="从角色-datanode"><a href="#从角色-datanode" class="headerlink" title="从角色 datanode"></a>从角色 datanode</h2><ul>
 <li>DataNode 是 Hadoop HDFS 中的从角色，负责具体得数据快存储。</li>
-<li>DataNode 的数量决定了 HDFS 集群的整体数据存储能力。通过和 NameNode 配合维护着数据块。</li>
+<li>DataNode 的数量决定了 HDFS 集群的整体数据存储能力。通过和 NameNode 配合维护着数据块。<img src="/xiaoxiao/2024/07/26/hadoop-learning/datanodes.png" class="" title="datanodes"></li>
+<li></li>
 </ul>
 <h3 id="datanode-职责"><a href="#datanode-职责" class="headerlink" title="datanode 职责"></a>datanode 职责</h3><ul>
 <li>DataNode 负责最终数据块 block 的存储。是集群的从角色，也称为 Slave。</li>
@@ -3082,10 +3086,16 @@ send_mail
 </ul>
 <h2 id="主角色辅助角色-secondarynamenode"><a href="#主角色辅助角色-secondarynamenode" class="headerlink" title="主角色辅助角色 secondarynamenode"></a>主角色辅助角色 secondarynamenode</h2><ul>
 <li>Secondary NameNode 充当 NameNode 的辅助节点，但不能替代 NameNode。</li>
-<li>主要帮助主角色进行元数据文件的合并动作。可以通俗的理解为主角色的“秘书”。</li>
+<li>主要帮助主角色进行元数据文件的合并动作。可以通俗的理解为主角色的“秘书”。<img src="/xiaoxiao/2024/07/26/hadoop-learning/secondary-name-node.png" class="" title="主角色辅助角色"></li>
 </ul>
-<h1 id="HDFS-工作流程与机制——写数据流程——核心概念"><a href="#HDFS-工作流程与机制——写数据流程——核心概念" class="headerlink" title="HDFS 工作流程与机制——写数据流程——核心概念"></a>HDFS 工作流程与机制——写数据流程——核心概念</h1><h2 id="写数据流程图"><a href="#写数据流程图" class="headerlink" title="写数据流程图"></a>写数据流程图</h2><h2 id="核心概念：Pipeline-管道"><a href="#核心概念：Pipeline-管道" class="headerlink" title="核心概念：Pipeline 管道"></a>核心概念：Pipeline 管道</h2><p>客户端将数据库写入第一个数据节点，第一个数据节点保存数据之后再将块复制到第二个数据节点，第二个数据节点保存后再将块复制到第三个数据节点。数据以管道方式，顺序的沿着一个方向传输，这样能够充分利用每个机器的贷款，避免网络瓶颈和高延时的连接，最小化推送所有数据的延时。</p>
+<h1 id="HDFS-工作流程与机制——写数据流程——核心概念"><a href="#HDFS-工作流程与机制——写数据流程——核心概念" class="headerlink" title="HDFS 工作流程与机制——写数据流程——核心概念"></a>HDFS 工作流程与机制——写数据流程——核心概念</h1><h2 id="写数据流程图"><a href="#写数据流程图" class="headerlink" title="写数据流程图"></a>写数据流程图</h2><img src="/xiaoxiao/2024/07/26/hadoop-learning/write-data-flow.png" class="" title="写数据流程图">
+
+<h2 id="核心概念：Pipeline-管道"><a href="#核心概念：Pipeline-管道" class="headerlink" title="核心概念：Pipeline 管道"></a>核心概念：Pipeline 管道</h2><p>客户端将数据库写入第一个数据节点，第一个数据节点保存数据之后再将块复制到第二个数据节点，第二个数据节点保存后再将块复制到第三个数据节点。数据以管道方式，顺序的沿着一个方向传输，这样能够充分利用每个机器的贷款，避免网络瓶颈和高延时的连接，最小化推送所有数据的延时。</p>
+<img src="/xiaoxiao/2024/07/26/hadoop-learning/pipline.png" class="" title="pipline">
+
 <h2 id="核心概念：ACK应答响应"><a href="#核心概念：ACK应答响应" class="headerlink" title="核心概念：ACK应答响应"></a>核心概念：ACK应答响应</h2><p>ACK（Acknowledge character），在数据通信中，接收方发给发送方的一种传输类控制字符。表示发来的数据已确认接收无误。<br>在 HDFS pipeline 传输数据过程中，传输的反方向会进行 ACK 校验，确保数据传输安全。</p>
+<img src="/xiaoxiao/2024/07/26/hadoop-learning/ack.png" class="" title="ack应答响应">
+
 <h2 id="核心概念：默认三副本存储策略"><a href="#核心概念：默认三副本存储策略" class="headerlink" title="核心概念：默认三副本存储策略"></a>核心概念：默认三副本存储策略</h2><p>默认副本存储策略是由 BlockPlacementPolicyDefault 指定。<br>第一块副本：优先客户端本地，否则随机。<br>第二块副本：不同于第一块副本的不同机架。<br>第三块副本：第二块副本相同机架不同机器。</p>
 <h1 id="HDFS-工作流程与机制——写数据流程——梳理"><a href="#HDFS-工作流程与机制——写数据流程——梳理" class="headerlink" title="HDFS 工作流程与机制——写数据流程——梳理"></a>HDFS 工作流程与机制——写数据流程——梳理</h1><ol>
 <li><p>HDFS 客户端创建对象实例 DistributedFileSystem，该对象中封装了与 HDFS 文件系统操作的相关方法。</p>
@@ -3108,7 +3118,8 @@ send_mail
 </ol>
 <h1 id="MapReduce-的设计思想"><a href="#MapReduce-的设计思想" class="headerlink" title="MapReduce 的设计思想"></a>MapReduce 的设计思想</h1><h2 id="如何对付大数据处理场景"><a href="#如何对付大数据处理场景" class="headerlink" title="如何对付大数据处理场景"></a>如何对付大数据处理场景</h2><ol>
 <li>对相互不具计算依赖关系的大数据计算任务，实现并行最自然的办法就是采用 MapReduce 分而治之的策略。</li>
-<li>首先 Map 阶段进行拆分，把大数据拆分成若干份小数据，多个程序同时并行计算产生中间结果；然后是 Reduce 聚合阶段，通过程序对并行的结果进行最终的汇总计算，得出最终结果。</li>
+<li>首先 Map 阶段进行拆分，把大数据拆分成若干份小数据，多个程序同时并行计算产生中间结果；然后是 Reduce 聚合阶段，通过程序对并行的结果进行最终的汇总计算，得出最终结果。<img src="/xiaoxiao/2024/07/26/hadoop-learning/map-reduce.png" class="" title="map-reduce"></li>
+<li></li>
 </ol>
 <h2 id="构建抽象编程模型"><a href="#构建抽象编程模型" class="headerlink" title="构建抽象编程模型"></a>构建抽象编程模型</h2><p>MapReduce 借鉴了函数式语言中的思想，用 Map 和 Reduce 两个函数提供了高层的并行编程抽象模型。</p>
 <p>map：对一组数据元素进行某种重复是的处理；</p>
@@ -3129,6 +3140,8 @@ send_mail
 <p>MRAppMaster：负责整个 MR 程序的过程调度及状态协调</p>
 <p>MapTask：负责 map 阶段的整个数据处理流程</p>
 <p>ReduceTask：负责 reduce 阶段的整个数据处理流程</p>
+<img src="/xiaoxiao/2024/07/26/hadoop-learning/map-reduce-instance-process.png" class="" title="MapReduce 实例进程">
+
 <h2 id="阶段组成"><a href="#阶段组成" class="headerlink" title="阶段组成"></a>阶段组成</h2><p>一个 MapReduce 编程模型中只能包含一个 Map 阶段和一个 Reduce 阶段，或者只有 Map 阶段。</p>
 ]]></content>
       <categories>
@@ -3142,8 +3155,12 @@ send_mail
   <entry>
     <title>photo bed</title>
     <url>/xiaoxiao/2024/07/30/photo-bed/</url>
-    <content><![CDATA[<p>post_asset_folder: true</p>
-<p>npm install git:&#x2F;&#x2F;github.com&#x2F;yiyungent&#x2F;hexo-asset-img.git#main</p>
+    <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>因为文章有少量图片需求，又不想使用三方存储资源，所以了解了使用 GitHub 作为图床的方法。具体操作方法如下：</p>
+<h1 id="配置-Hexo-以使用文章资源文件夹"><a href="#配置-Hexo-以使用文章资源文件夹" class="headerlink" title="配置 Hexo 以使用文章资源文件夹"></a>配置 Hexo 以使用文章资源文件夹</h1><p>在 Hexo 的配置文件 <code>_config.yml</code> 中启用 post_asset_folder 功能：<code>post_asset_folder: true</code>。<br>该配置的作用：每次使用  ‘hexo new page’ 生成新文章，都会在文章文件同级目录创建一个与文章文件名同名的文件夹，我们就在这里存放此文章的所有图片和其他资源。<br>参考官方文档了解更多信息：<a href="https://hexo.io/zh-cn/docs/asset-folders">Hexo 官方文档 - 资源文件夹</a></p>
+<h1 id="安装-hexo-asset-img-插件"><a href="#安装-hexo-asset-img-插件" class="headerlink" title="安装 hexo-asset-img 插件"></a>安装 hexo-asset-img 插件</h1><p>安装 <code>hexo-asset-img</code> 插件。</p>
+<pre><code class="shell">npm install git://github.com/yiyungent/hexo-asset-img.git#main
+</code></pre>
+<p>该插件作用：主要功能是处理 Markdown 文件中图片的路径。</p>
 ]]></content>
       <categories>
         <category>工具</category>
