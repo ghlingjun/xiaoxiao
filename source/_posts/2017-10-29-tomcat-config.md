@@ -2,7 +2,7 @@
 title: Tomcat 配置
 date: 2017-10-29 20:50:15
 categories:
-  - tech
+  - 运维
 tags: [tomcat]
 ---
 

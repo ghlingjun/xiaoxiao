@@ -2,7 +2,7 @@
 title: jBPM 基础
 date: 2014-11-07 09:46:00
 categories:
-  - tech
+  - 工具
 tags: 
   - jbpm
 ---

@@ -3,7 +3,7 @@ layout: default
 title: git 命令行指引
 date: 2017-09-15 10:09:09
 categories:
-  - tech
+  - 工具
 tags: [git]
 ---
 总结的一些不常用的 git 操作命令

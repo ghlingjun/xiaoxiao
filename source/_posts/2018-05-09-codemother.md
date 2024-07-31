@@ -2,8 +2,8 @@
 title: Maven 插件 codemother 使用说明
 date: 2018-05-09 12:29:57
 categories:
-  - tech
-tags: [maven,codemother]
+  - 工具
+tags: [maven, codemother]
 ---
 
 项目地址:[https://gitee.com/osethan/codemother-maven-plugin](https://gitee.com/osethan/codemother-maven-plugin)

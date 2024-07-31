@@ -3,8 +3,8 @@ layout: default
 title: 可以用下面的方法让你的大脑就范
 date: 2017-04-29 21:09:09
 categories:
-  - 生活
-tags: [life]
+  - 学习
+tags: [方法]
 ---
 
 1. 慢一点，你理解的越多，需要记的就越少。

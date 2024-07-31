@@ -2,8 +2,8 @@
 title: 电信云服务器规划以及配置
 comments: true
 categories:
-  - tech
-tags: [server]
+  - 运维
+tags: [server, 电信云]
 date: 2019-10-30 22:46:01
 updated: 2019-11-29 13:46:01
 ---

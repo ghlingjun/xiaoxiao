@@ -3,7 +3,7 @@ layout: default
 title: Mac 下 Svn 命令配置
 date: 2016-09-21 21:09:09
 categories:
-  - tech
+  - 工具
 tags: [svn]
 ---
 

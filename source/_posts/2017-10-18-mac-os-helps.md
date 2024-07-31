@@ -3,7 +3,7 @@ layout: default
 title: Mac 系统使用的一些经验总结
 date: 2017-10-18 21:31:02
 categories:
-  - tech
+  - 工具
 tags:
   - mac
 ---

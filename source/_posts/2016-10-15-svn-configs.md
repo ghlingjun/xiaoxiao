@@ -3,7 +3,7 @@ layout: default
 title: SVN 使用
 date: 2016-10-15 21:09:09
 categories:
-  - tech
+  - 工具
 tags: [svn]
 ---
 

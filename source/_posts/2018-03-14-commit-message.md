@@ -2,8 +2,8 @@
 title: 代码提交注释格式
 date: 2018-03-14 10:42:04
 categories:
-  - tech
-tags: [git,svn]
+  - 工具
+tags: [git, svn]
 ---
 
 每次提交，Commit message 格式如下：

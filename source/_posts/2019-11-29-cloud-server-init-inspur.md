@@ -2,8 +2,8 @@
 title: 浪潮云服务器规划与配置
 comments: true
 categories:
-  - tech
-tags: [server]
+  - 运维
+tags: [server, 浪潮云]
 date: 2019-11-29 14:18:03
 updated: 2019-11-29 14:18:03
 ---

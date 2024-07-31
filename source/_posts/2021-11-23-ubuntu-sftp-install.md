@@ -4,8 +4,8 @@ comments: true
 categories:
   - 运维
 tags: [sftp]
-date: 2021-11-23 15:44:47
-updated: 2021-11-23 15:44:47
+date: 2021-11-23 21:44:47
+updated: 2021-11-23 21:44:47
 ---
 # 目标
 

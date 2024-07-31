@@ -4,8 +4,8 @@ comments: true
 categories:
   - 运维
 tags: [ssh]
-date: 2024-07-02 11:10:54
-updated: 2024-07-02 11:10:54
+date: 2024-07-02 19:10:54
+updated: 2024-07-02 19:10:54
 ---
 
 # 验证 ssh 依赖软件版本

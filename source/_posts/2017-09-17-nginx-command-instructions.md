@@ -2,7 +2,7 @@
 title: Nginx Command Instructions
 date: 2017-09-17 22:19:40
 categories:
-  - tech
+  - 工具
 tags: [nginx]
 ---
 # 概述

@@ -2,7 +2,7 @@
 title: docker 私服 harbor 安装
 comments: true
 categories:
-  - tech
+  - 工具
 tags: [harbor,docker]
 date: 2020-08-22 21:32:02
 updated: 2020-08-22 21:32:02

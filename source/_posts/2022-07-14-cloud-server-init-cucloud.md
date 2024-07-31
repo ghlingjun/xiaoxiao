@@ -2,10 +2,10 @@
 title: 联通云服务器初始化
 comments: true
 categories:
-  - tech
-tags: [server]
-date: 2022-07-14 13:43:55
-updated: 2022-07-14 13:43:55
+  - 运维
+tags: [server, 联通云]
+date: 2022-07-14 18:43:55
+updated: 2022-07-14 18:43:55
 ---
 
 # 挂载并格式化磁盘

@@ -2,7 +2,7 @@
 title: mac 系统常用工具安装
 comments: true
 categories:
-  - tech
+  - 工具
 tags: [mac,brew]
 date: 2020-08-22 20:57:31
 updated: 2020-08-22 20:57:31

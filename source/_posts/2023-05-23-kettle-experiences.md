@@ -2,10 +2,10 @@
 title: kettle experiences
 comments: true
 categories:
-  - tech
+  - 工具
 tags: [kettle]
-date: 2023-05-23 11:56:35
-updated: 2023-05-23 11:56:35
+date: 2023-05-23 19:56:35
+updated: 2023-05-23 19:56:35
 ---
 
 # kettle 部署

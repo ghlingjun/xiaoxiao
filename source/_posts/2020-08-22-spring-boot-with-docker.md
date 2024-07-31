@@ -2,7 +2,7 @@
 title: spring-boot-with-docker
 comments: true
 categories:
-  - tech
+  - 工具
 tags: [docker,springboot]
 date: 2020-08-22 21:52:20
 updated: 2020-08-22 21:52:20

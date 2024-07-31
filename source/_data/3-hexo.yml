@@ -11,8 +11,8 @@ blog_path: /xiaoxiao
 link:
   theme: color # 链接样式，color: 彩色图标  white: 黑白图标
   items:
-    #    rss: /atom.xml
-    #    github: https://github.com/ghlingjun
+    rss: /atom.xml
+    github: https://github.com/ghlingjun
     #    facebook: https://www.facebook.com/faker.tops
     #    twitter:
     #    linkedin:
@@ -42,8 +42,6 @@ category:
   num: true # 分类显示文章数
   sub: true # 开启多级分类
   sort:
-    - tech
-    - life
     - 生活
     - 读书
     - 工具
@@ -66,24 +64,24 @@ shortcutKey: true
 # 左下角自定义菜单
 menu:
   about:  # '关于' 按钮
-    on: false # 是否显示
+    on: true # 是否显示
     url: /about  # 跳转链接
     type: 1 # 跳转类型 1：站内异步跳转 2：当前页面跳转 3：打开新的tab页
   friend: # '友链' 按钮
     on: true # 是否展示
   menus: # 添加的其他菜单写在 menus 下，如下三个菜单：动态菜单1、动态菜单2、动态菜单3
-    #    相册:
-    #      on: false
-    #      url: /photo
-    #      type: 1  # 跳转类型 1：站内异步跳转
-    #    叶落阁:
-    #      on: false
-    #      url: http://yelog.org/
-    #      type: 2  # 跳转类型 2：当前页面跳转
-    github:
-      on: true
-      url: https://github.com/ghlingjun
-      type: 3  # 跳转类型 3：打开新的tab页
+  #    相册:
+  #      on: false
+  #      url: /photo
+  #      type: 1  # 跳转类型 1：站内异步跳转
+  #    叶落阁:
+  #      on: false
+  #      url: http://yelog.org/
+  #      type: 2  # 跳转类型 2：当前页面跳转
+#    github:
+#      on: true
+#      url: https://github.com/ghlingjun
+#      type: 3  # 跳转类型 3：打开新的tab页
 
 # 文末声明
 article_txt: 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以邮件至 ethan89@aliyun.com
@@ -228,6 +226,8 @@ mermaid:
 friends:
   羽青: https://www.jianshu.com/u/210052204bc2
   V2EX: https://www.v2ex.com/?r=lingshang
+  叶落阁: https://yelog.org/
+  通义灵码: https://developer.aliyun.com/topic/lingma/activities/202405?taskCode=16245&recordId=82c61e888b48ebdf2a7ea92a97c50a8d#/?utm_content=m_fission_1
 
 ##########评论设置#############
 comment:
@@ -241,7 +241,6 @@ disqus:
   shortname:
   # disqus评论系统， 2016年9月被GFW认证，大陆不能使用。
   # 获取shortname：https://help.disqus.com/customer/en/portal/articles/466208-what-s-a-shortname-
-
 
 gitalk:
   githubID: ghlingjun
@@ -262,7 +261,6 @@ gitalk:
 # distractionFreeMode: 全屏遮罩效果
 # language: 语言：支持：en / zh-CN / zh-TW 三种
 # perPage: 每次加载的数据大小，默认10，最大100
-
 
 gitment:
   owner: ghlingjun

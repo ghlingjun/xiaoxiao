@@ -2,7 +2,7 @@
 title: 修改 hosts 方式翻墙
 date: 2017-10-13 11:01:09
 categories:
-  - tech
+  - 工具
 tags: [hosts,google]
 ---
 

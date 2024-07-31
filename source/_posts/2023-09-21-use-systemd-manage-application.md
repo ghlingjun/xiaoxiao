@@ -2,7 +2,7 @@
 title: 为应用创建守护进程
 comments: true
 categories:
-  - tech
+  - 运维
 tags: [systemd]
 date: 2023-09-21 22:34:53
 updated: 2023-09-21 22:34:53

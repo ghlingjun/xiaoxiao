@@ -2,7 +2,7 @@
 title: 初始化 windows 操作系统
 comments: false
 categories:
-  - tech
+  - 运维
 tags: [OS]
 date: 2019-11-18 09:27:06
 updated: 2019-11-20 09:27:06

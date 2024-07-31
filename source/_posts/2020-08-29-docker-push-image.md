@@ -2,7 +2,7 @@
 title: 发布 docker 镜像
 comments: true
 categories:
-  - tech
+  - 工具
 tags: [docker]
 date: 2020-08-29 17:39:58
 updated: 2020-08-29 17:39:58

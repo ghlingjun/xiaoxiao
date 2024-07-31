@@ -6,8 +6,8 @@ categories:
   - Hadoop
 tags:
   - Hadoop
-date: 2024-07-26 15:26:55
-updated: 2024-07-26 15:26:55
+date: 2024-07-26 18:26:55
+updated: 2024-07-26 18:26:55
 ---
 
 # HDFS简介、设计目标和应用场景
@@ -45,6 +45,7 @@ HDFS 上的应用主要以流式读取数据（Streaming Data Access）。HDFS �
 一个 namenode 和一定数目的 datanode 组成。
 namenode 是 HDFS 的主节点。管理元数据，记录每一个文件的信息，如何分块等信息。
 datanode 是 HDFS 的从节点。存储 block 数据。
+![hdfs 架构图](2024-07-26-hadoop-learning/hdfs-framework.png)
 
 ## 分块存储
 
@@ -54,7 +55,7 @@ HDFS 中的文件在物理上是分块（block）存储的，默认大小是 128
 
 文件的所有 block 都会有副本。副本系数可以在文件创建时可以指定，也可以在之后通过命令改变。
 副本数由参数 dfs.replication 控制，默认值为 3，文件的所有 block 都会存储 3 份。
-
+![3备份策略](2024-07-26-hadoop-learning/3-copy-strategy.png)
 ## 元数据记录
 
 namenode 管理的元数据有两种类型：
@@ -74,6 +75,7 @@ HDFS 给客户端提供一个统一的抽象目录树，客户端通过路径来
 每个 block 都可以在多个 datanode 上存储。
 
 # HDFS 工作流程与机制——各角色职责
+![hdfs](2024-07-26-hadoop-learning/hdfs.png)
 
 ## 主角色 namenode
 
@@ -82,6 +84,7 @@ HDFS 给客户端提供一个统一的抽象目录树，客户端通过路径来
 - 基于此，NameNode 成为了访问 HDFS 的唯一入口。
 - NameNode 内部通过内存和磁盘文件两种方式管理元数据。
 - 其中磁盘上的元数据文件包括 Fsimage 内存元数据镜像文件和 edits log(Journal) 编辑日志。
+![namenode](2024-07-26-hadoop-learning/namenode.png)
 
 ### namenode 职责
 
@@ -95,7 +98,8 @@ HDFS 给客户端提供一个统一的抽象目录树，客户端通过路径来
 
 - DataNode 是 Hadoop HDFS 中的从角色，负责具体得数据快存储。
 - DataNode 的数量决定了 HDFS 集群的整体数据存储能力。通过和 NameNode 配合维护着数据块。
-
+  ![datanodes](2024-07-26-hadoop-learning/datanodes.png)
+- 
 ### datanode 职责
 
 - DataNode 负责最终数据块 block 的存储。是集群的从角色，也称为 Slave。
@@ -107,19 +111,23 @@ HDFS 给客户端提供一个统一的抽象目录树，客户端通过路径来
 
 - Secondary NameNode 充当 NameNode 的辅助节点，但不能替代 NameNode。
 - 主要帮助主角色进行元数据文件的合并动作。可以通俗的理解为主角色的“秘书”。
+![主角色辅助角色](2024-07-26-hadoop-learning/secondary-name-node.png)
 
 # HDFS 工作流程与机制——写数据流程——核心概念
 
 ## 写数据流程图
+![写数据流程图](2024-07-26-hadoop-learning/write-data-flow.png)
 
 ## 核心概念：Pipeline 管道
 
 客户端将数据库写入第一个数据节点，第一个数据节点保存数据之后再将块复制到第二个数据节点，第二个数据节点保存后再将块复制到第三个数据节点。数据以管道方式，顺序的沿着一个方向传输，这样能够充分利用每个机器的贷款，避免网络瓶颈和高延时的连接，最小化推送所有数据的延时。
+![pipline](2024-07-26-hadoop-learning/pipline.png)
 
 ## 核心概念：ACK应答响应
 
 ACK（Acknowledge character），在数据通信中，接收方发给发送方的一种传输类控制字符。表示发来的数据已确认接收无误。
 在 HDFS pipeline 传输数据过程中，传输的反方向会进行 ACK 校验，确保数据传输安全。
+![ack应答响应](2024-07-26-hadoop-learning/ack.png)
 
 ## 核心概念：默认三副本存储策略
 
@@ -157,7 +165,8 @@ ACK（Acknowledge character），在数据通信中，接收方发给发送方�
 
 1. 对相互不具计算依赖关系的大数据计算任务，实现并行最自然的办法就是采用 MapReduce 分而治之的策略。
 2. 首先 Map 阶段进行拆分，把大数据拆分成若干份小数据，多个程序同时并行计算产生中间结果；然后是 Reduce 聚合阶段，通过程序对并行的结果进行最终的汇总计算，得出最终结果。
-
+![map-reduce](2024-07-26-hadoop-learning/map-reduce.png)
+3. 
 ## 构建抽象编程模型
 
 MapReduce 借鉴了函数式语言中的思想，用 Map 和 Reduce 两个函数提供了高层的并行编程抽象模型。
@@ -203,6 +212,7 @@ MRAppMaster：负责整个 MR 程序的过程调度及状态协调
 MapTask：负责 map 阶段的整个数据处理流程
 
 ReduceTask：负责 reduce 阶段的整个数据处理流程
+![MapReduce 实例进程](2024-07-26-hadoop-learning/map-reduce-instance-process.png)
 
 ## 阶段组成
 
