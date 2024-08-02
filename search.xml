@@ -123,7 +123,7 @@ $ git branch -d mybranch
         <category>工具</category>
       </categories>
       <tags>
-        <tag>小窍门</tag>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -139,7 +139,7 @@ $ git branch -d mybranch
 <p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>jbpm</tag>
@@ -181,7 +181,7 @@ $ git branch -d mybranch
         <category>生活</category>
       </categories>
       <tags>
-        <tag>life</tag>
+        <tag>proust</tag>
       </tags>
   </entry>
   <entry>
@@ -279,7 +279,7 @@ set @@global.sql_mode = &#39;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_D
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>mysql</tag>
@@ -292,7 +292,7 @@ set @@global.sql_mode = &#39;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_D
 <p>此博客受此启发</p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>blog</tag>
@@ -343,7 +343,7 @@ alias svnadd=&quot;sh ~/scripts/svnadd.sh&quot;
 <p>svnadd.sh 命令解释: 首先使用 svn status 命令列出所有改动，打 ? 号的是已经新增的文件但是还未标记加入库；再用 awk ‘{print $2}’ 将抽离出来的文本结果处理，留下每一行的第二段文字，即文件名；最后使用 xargs 这个参数构造命令，将每一行的文本作为参数提供给 svn add，结果就是所有列出的文件都执行了一遍添加命令。</p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>svn</tag>
@@ -391,7 +391,7 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
 <p>这个错误原因是文件被 add 进本地仓库后，又被删除了，提交到服务器时 svn 找不到对应的文件。</p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>svn</tag>
@@ -412,10 +412,10 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
 </ol>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>学习</category>
       </categories>
       <tags>
-        <tag>life</tag>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -428,10 +428,10 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
 <h3 id="共享词汇能帮助初级开发人员迅速成长"><a href="#共享词汇能帮助初级开发人员迅速成长" class="headerlink" title="共享词汇能帮助初级开发人员迅速成长"></a>共享词汇能帮助初级开发人员迅速成长</h3><p>初级开发人员向有经验的开发人员看齐。当高级开发人员使用设计模式，初级开发人员也会跟着学。把你的组织建立成一个模式使用者的社区。</p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>学习</category>
       </categories>
       <tags>
-        <tag>schema</tag>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -470,7 +470,7 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
         <category>生活</category>
       </categories>
       <tags>
-        <tag>life</tag>
+        <tag>proust</tag>
       </tags>
   </entry>
   <entry>
@@ -531,7 +531,6 @@ Default encoding for properties files: UTF-8
 ]]></content>
       <categories>
         <category>工具</category>
-        <category>idea</category>
       </categories>
       <tags>
         <tag>idea</tag>
@@ -634,7 +633,7 @@ git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 <p><a href="https://git-scm.com/about">git - home</a><br><a href="http://rogerdudler.github.io/git-guide/index.zh.html">git - 简明指南</a></p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>git</tag>
@@ -666,7 +665,7 @@ git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 <h1 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h1><p>[参考]<a href="https://www.cnblogs.com/lidabo/p/4169396.html">https://www.cnblogs.com/lidabo/p/4169396.html</a></p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>nginx</tag>
@@ -698,7 +697,7 @@ git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 <h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p><a href="https://www.zhihu.com/question/19782572">hosts 翻墙原理</a><br><a href="https://github.com/racaljk/hosts">hosts 文件更新相关</a><br><a href="https://github.com/googlehosts/hosts.git">hosts 文件更新相关</a><br><a href="https://github.com/racaljk/hosts/tree/master/tools">hosts 文件更新工具相关</a><br><a href="https://github.com/racaljk/hosts/wiki/%E5%85%B3%E4%BA%8E%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91">关于中国的互联网</a></p>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>hosts</tag>
@@ -741,7 +740,7 @@ defaults write com.apple.Maps AppleLanguages &#39;(zh-CN)&#39;
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>工具</category>
       </categories>
       <tags>
         <tag>mac</tag>
@@ -771,7 +770,7 @@ defaults write com.apple.Maps AppleLanguages &#39;(zh-CN)&#39;
 </code></pre>
 ]]></content>
       <categories>
-        <category>tech</category>
+        <category>运维</category>
       </categories>
       <tags>
         <tag>tomcat</tag>
@@ -3160,10 +3159,11 @@ send_mail
 <h1 id="安装-hexo-asset-img-插件"><a href="#安装-hexo-asset-img-插件" class="headerlink" title="安装 hexo-asset-img 插件"></a>安装 hexo-asset-img 插件</h1><p>安装 <code>hexo-asset-img</code> 插件。</p>
 <pre><code class="shell">npm install git://github.com/yiyungent/hexo-asset-img.git#main
 </code></pre>
-<p>该插件作用：主要功能是处理 Markdown 文件中图片的路径。</p>
+<p>该插件作用：主要功能是处理 Markdown 文件中图片的路径，使文章发布后图片能正确显示。</p>
 ]]></content>
       <categories>
         <category>工具</category>
+        <category>hexo</category>
       </categories>
       <tags>
         <tag>hexo</tag>
