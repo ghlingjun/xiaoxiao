@@ -101,10 +101,10 @@ else
 fi
 
 item_monitor() {
-    item_name = $1
-    item_used = $2
-    item_threshold = $3
-    item_command = $4
+    item_name=$1
+    item_used=$2
+    item_threshold=$3
+    item_command=$4
     if [ ${item_used} -gt ${item_threshold} ]; then
         echo "-----------------" >> ${log_path}
         echo "警告：${item_name}资源使用率超出阈值！(${SERVER_NAME}) (${LOCAL_IP})" >> ${log_path}
