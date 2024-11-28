@@ -52,7 +52,7 @@ export PATH=${JAVA_HOME}/bin:$PATH
 create user 'shumei'@'%' identified by '密码';
 
 create database fund_management default character set utf8;
-grant all privileges on fund_management.* to shumei@'%' with grant option;
+grant all privileges on fund_management.* to shumei@'%';
 ```
 
 ```

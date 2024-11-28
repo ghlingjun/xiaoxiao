@@ -76,19 +76,7 @@ java -version
 ```
 
 # 安装 Nginx
-[以下仅示例，具体请参考官网文档]https://nginx.org/en/linux_packages.html#Ubuntu
-```
-wget http://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
-
-sudo vi /etc/apt/sources.list.d/nginx.list
-# 添加如下内容
-deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx
-deb-src http://nginx.org/packages/mainline/ubuntu/ xenial nginx
-
-sudo apt-get update
-sudo apt-get install nginx
-```
+[请参考官网文档]https://nginx.org/en/linux_packages.html#Ubuntu
 
 # Redis安装
 ```
