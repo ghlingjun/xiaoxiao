@@ -3,7 +3,7 @@ layout: default
 title: Hello World
 date: 2016-09-10 21:09:09
 categories:
-  - 生活
+  - blog
 tags: [life]
 ---
 

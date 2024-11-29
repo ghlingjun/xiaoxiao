@@ -2,7 +2,7 @@
 title: Eye of The Tiger
 comments: true
 categories:
-  - 生活
+  - blog
 tags: [music]
 date: 2020-09-18 13:38:56
 updated: 2020-09-18 13:48:56

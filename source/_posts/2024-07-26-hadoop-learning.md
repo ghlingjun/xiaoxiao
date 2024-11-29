@@ -2,7 +2,7 @@
 title: Hadoop 学习笔记
 comments: true
 categories:
-  - 学习
+  - 读书
   - Hadoop
 tags:
   - Hadoop

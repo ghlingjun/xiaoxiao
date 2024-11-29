@@ -3,7 +3,7 @@ layout: default
 title: 可以用下面的方法让你的大脑就范
 date: 2017-04-29 21:09:09
 categories:
-  - 学习
+  - 读书
 tags: [方法]
 ---
 

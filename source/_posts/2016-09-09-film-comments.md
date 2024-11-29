@@ -3,7 +3,7 @@ layout: default
 title: 电影日记
 date: 2016-09-09 21:09:09
 categories:
-  - 生活
+  - blog
 tags: [life]
 ---
 

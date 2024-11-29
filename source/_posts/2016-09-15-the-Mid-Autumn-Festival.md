@@ -3,7 +3,7 @@ layout: default
 title: 中秋节
 date: 2016-09-15 21:09:09
 categories:
-  - 生活
+  - blog
 tags: [life]
 ---
 

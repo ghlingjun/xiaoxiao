@@ -2,7 +2,7 @@
 title: 朋友相聚
 date: 2018-05-09 12:29:57
 categories:
-  - 生活
+  - blog
 tags: [life]
 ---
 
