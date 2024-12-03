@@ -299,18 +299,6 @@ set @@global.sql_mode = &#39;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_D
       </tags>
   </entry>
   <entry>
-    <title>中秋节</title>
-    <url>/2016/09/15/the-Mid-Autumn-Festival/</url>
-    <content><![CDATA[<p>回想起来，从高中开始就没有全家人在一起过中秋节了，今年可是10几年来第一次！本来想好台词：月是故乡明。然后在下面陪一张现在的星空图……可惜这里阴天，星空图就没有了，但是大家坐在院子里聊天，偶尔不说话时听着四周黑暗角落里各种虫鸣声，也感觉极其美好（如果天气晴朗的话，就会在房顶铺一张席子，或坐或躺聊天，看星星……）</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mac 下 Svn 命令配置</title>
     <url>/2016/09/21/OSX-svn-commands-config/</url>
     <content><![CDATA[<h2 id="研究原因"><a href="#研究原因" class="headerlink" title="研究原因"></a>研究原因</h2><p>为了使用方便，通过配置或者创建了一些 shell 脚本，简化 svn 的常用操作</p>
@@ -347,6 +335,18 @@ alias svnadd=&quot;sh ~/scripts/svnadd.sh&quot;
       </categories>
       <tags>
         <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>中秋节</title>
+    <url>/2016/09/15/the-Mid-Autumn-Festival/</url>
+    <content><![CDATA[<p>回想起来，从高中开始就没有全家人在一起过中秋节了，今年可是10几年来第一次！本来想好台词：月是故乡明。然后在下面陪一张现在的星空图……可惜这里阴天，星空图就没有了，但是大家坐在院子里聊天，偶尔不说话时听着四周黑暗角落里各种虫鸣声，也感觉极其美好（如果天气晴朗的话，就会在房顶铺一张席子，或坐或躺聊天，看星星……）</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -474,6 +474,19 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
       </tags>
   </entry>
   <entry>
+    <title>dream</title>
+    <url>/2017/09/06/dream/</url>
+    <content><![CDATA[<p>昨晚不小心到三点才睡觉～ </p>
+<p>“那种感觉……就像过山车…” 这声音让我好生激动！看清楚了两个ID，都是4个字加特殊符号组成，很对称，但是有两个字很生僻！听到这声音时，意识到自己在做梦，很想继续听，但是又特别想把名字记下来。我让自己醒来了，那声音特别清晰，如同还在耳边，但是名字是记不住的，画面无论如何也浮现不出来了！</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Idea 常用配置</title>
     <url>/2017/08/19/idea-config-instructions/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些 idea 配置方法</p>
@@ -534,19 +547,6 @@ Default encoding for properties files: UTF-8
       </categories>
       <tags>
         <tag>idea</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>dream</title>
-    <url>/2017/09/06/dream/</url>
-    <content><![CDATA[<p>昨晚不小心到三点才睡觉～ </p>
-<p>“那种感觉……就像过山车…” 这声音让我好生激动！看清楚了两个ID，都是4个字加特殊符号组成，很对称，但是有两个字很生僻！听到这声音时，意识到自己在做梦，很想继续听，但是又特别想把名字记下来。我让自己醒来了，那声音特别清晰，如同还在耳边，但是名字是记不住的，画面无论如何也浮现不出来了！</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -684,27 +684,6 @@ git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
       </tags>
   </entry>
   <entry>
-    <title>修改 hosts 方式翻墙</title>
-    <url>/2017/10/13/visit-google-by-update-hosts/</url>
-    <content><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>修改 hosts 文件是一种非常直接有效的翻墙方式，这种方式有两个困难点：</p>
-<ol>
-<li>有效的 hosts 文件；</li>
-<li>方便的更新 hosts 文件方式；</li>
-</ol>
-<p>但是这两个问题在开源社区有很好的解决方案</p>
-<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p><strong>要达到翻墙效果，只需使用更新 hosts 文件的工具，定时执行更新操作即可</strong></p>
-<h2 id="可以方便更新-hosts-文件的工具软件"><a href="#可以方便更新-hosts-文件的工具软件" class="headerlink" title="可以方便更新 hosts 文件的工具软件"></a>可以方便更新 hosts 文件的工具软件</h2><p>手动更新 hosts 文件会比较麻烦，有各路大侠提供了各种操作系统下的更新工具，可根据自己设备的操作系统选用合适的工具：<a href="https://github.com/HostsTools">https://github.com/HostsTools</a></p>
-<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p><a href="https://www.zhihu.com/question/19782572">hosts 翻墙原理</a><br><a href="https://github.com/racaljk/hosts">hosts 文件更新相关</a><br><a href="https://github.com/googlehosts/hosts.git">hosts 文件更新相关</a><br><a href="https://github.com/racaljk/hosts/tree/master/tools">hosts 文件更新工具相关</a><br><a href="https://github.com/racaljk/hosts/wiki/%E5%85%B3%E4%BA%8E%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91">关于中国的互联网</a></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>hosts</tag>
-        <tag>google</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mac 系统使用的一些经验总结</title>
     <url>/2017/10/18/mac-os-helps/</url>
     <content><![CDATA[<ol>
@@ -747,6 +726,27 @@ defaults write com.apple.Maps AppleLanguages &#39;(zh-CN)&#39;
       </tags>
   </entry>
   <entry>
+    <title>修改 hosts 方式翻墙</title>
+    <url>/2017/10/13/visit-google-by-update-hosts/</url>
+    <content><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>修改 hosts 文件是一种非常直接有效的翻墙方式，这种方式有两个困难点：</p>
+<ol>
+<li>有效的 hosts 文件；</li>
+<li>方便的更新 hosts 文件方式；</li>
+</ol>
+<p>但是这两个问题在开源社区有很好的解决方案</p>
+<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p><strong>要达到翻墙效果，只需使用更新 hosts 文件的工具，定时执行更新操作即可</strong></p>
+<h2 id="可以方便更新-hosts-文件的工具软件"><a href="#可以方便更新-hosts-文件的工具软件" class="headerlink" title="可以方便更新 hosts 文件的工具软件"></a>可以方便更新 hosts 文件的工具软件</h2><p>手动更新 hosts 文件会比较麻烦，有各路大侠提供了各种操作系统下的更新工具，可根据自己设备的操作系统选用合适的工具：<a href="https://github.com/HostsTools">https://github.com/HostsTools</a></p>
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p><a href="https://www.zhihu.com/question/19782572">hosts 翻墙原理</a><br><a href="https://github.com/racaljk/hosts">hosts 文件更新相关</a><br><a href="https://github.com/googlehosts/hosts.git">hosts 文件更新相关</a><br><a href="https://github.com/racaljk/hosts/tree/master/tools">hosts 文件更新工具相关</a><br><a href="https://github.com/racaljk/hosts/wiki/%E5%85%B3%E4%BA%8E%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91">关于中国的互联网</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>hosts</tag>
+        <tag>google</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Tomcat 配置</title>
     <url>/2017/10/29/tomcat-config/</url>
     <content><![CDATA[<ol>
@@ -774,45 +774,6 @@ defaults write com.apple.Maps AppleLanguages &#39;(zh-CN)&#39;
       </categories>
       <tags>
         <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>代码提交注释格式</title>
-    <url>/2018/03/14/commit-message/</url>
-    <content><![CDATA[<p>每次提交，Commit message 格式如下：</p>
-<pre><code>&lt;type&gt; #&lt;subject&gt;
-</code></pre>
-<p>包含两部分：type 和 subject</p>
-<ol>
-<li><p>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。</p>
-<ul>
-<li>feat：新功能（feature）</li>
-<li>fix：修补bug</li>
-<li>docs：文档（documentation）</li>
-<li>style： 格式（不影响代码运行的变动）</li>
-<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
-<li>test：增加测试</li>
-<li>chore：构建过程或辅助工具的变动</li>
-</ul>
-</li>
-<li><p>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。</p>
-<ul>
-<li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
-<li>第一个字母小写</li>
-<li>结尾不加句号（.）</li>
-</ul>
-</li>
-</ol>
-<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>云效代码提交说明规则配置</p>
-<pre><code>^(fix|feat|docs|style|refactor|test|chore) #|^Merge
-</code></pre>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -983,15 +944,42 @@ controllerBasePackage=com.primeco.log.ctl.base
       </tags>
   </entry>
   <entry>
-    <title>朋友相聚</title>
-    <url>/2018/05/09/frinds-meeting/</url>
-    <content><![CDATA[<p>尊敬的贵宾:您好！2018年11月3中餐为您安排的是海悦新四方酒店二楼四方厅。地址：合肥政务新区祁门路1777号（祁门路与茂荫路交口往南50米，省供销社东侧裙楼）</p>
+    <title>代码提交注释格式</title>
+    <url>/2018/03/14/commit-message/</url>
+    <content><![CDATA[<p>每次提交，Commit message 格式如下：</p>
+<pre><code>&lt;type&gt; #&lt;subject&gt;
+</code></pre>
+<p>包含两部分：type 和 subject</p>
+<ol>
+<li><p>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。</p>
+<ul>
+<li>feat：新功能（feature）</li>
+<li>fix：修补bug</li>
+<li>docs：文档（documentation）</li>
+<li>style： 格式（不影响代码运行的变动）</li>
+<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
+<li>test：增加测试</li>
+<li>chore：构建过程或辅助工具的变动</li>
+</ul>
+</li>
+<li><p>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。</p>
+<ul>
+<li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
+<li>第一个字母小写</li>
+<li>结尾不加句号（.）</li>
+</ul>
+</li>
+</ol>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>云效代码提交说明规则配置</p>
+<pre><code>^(fix|feat|docs|style|refactor|test|chore) #|^Merge
+</code></pre>
 ]]></content>
       <categories>
-        <category>blog</category>
+        <category>工具</category>
       </categories>
       <tags>
-        <tag>life</tag>
+        <tag>git</tag>
+        <tag>svn</tag>
       </tags>
   </entry>
   <entry>
@@ -1030,6 +1018,18 @@ public class CorsFilter implements Filter &#123;
       <tags>
         <tag>跨域</tag>
         <tag>cors</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>朋友相聚</title>
+    <url>/2018/05/09/frinds-meeting/</url>
+    <content><![CDATA[<p>尊敬的贵宾:您好！2018年11月3中餐为您安排的是海悦新四方酒店二楼四方厅。地址：合肥政务新区祁门路1777号（祁门路与茂荫路交口往南50米，省供销社东侧裙楼）</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
       </tags>
   </entry>
   <entry>
@@ -1556,43 +1556,6 @@ default upgrade;
       </tags>
   </entry>
   <entry>
-    <title>腾讯云服务器部署</title>
-    <url>/2020/08/08/cloud-server-init-tecent/</url>
-    <content><![CDATA[<p>执行以下命令，查看连接到实例的磁盘名称<br>sudo fdisk -l<br>执行以下命令，格式化该磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>执行以下命令，将该磁盘挂载到 &#x2F;data 挂载点<br>sudo mount &#x2F;dev&#x2F;vdb &#x2F;data<br>创建用户组及用户<br>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
-<h1 id="用户创建"><a href="#用户创建" class="headerlink" title="用户创建"></a>用户创建</h1><p>查看用户组是否存在<br>grep shumei &#x2F;etc&#x2F;group<br>添加用户组 shumei<br>groupadd shumei</p>
-<p>查看用户 shumei 是否存在<br>grep shumei &#x2F;etc&#x2F;passwd<br>添加用户<br>useradd -g shumei -d &#x2F;data&#x2F;home&#x2F;shumei -m shumei<br>查看 shumei 信息<br>id shumei<br>设置用户密码<br>passwd shumei</p>
-<p>赋给用户 sudo 权限：<a href="http://man.linuxde.net/sudo">http://man.linuxde.net/sudo</a><br>vi &#x2F;etc&#x2F;sudoers<br>仿照现有root的例子就行，加一行（最好用tab作为空白）<br>shumei  ALL&#x3D;(ALL)   ALL<br>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
-<pre><code>echo $SHELL
-usermod -s /bin/bash shumei
-</code></pre>
-<pre><code>export JAVA_HOME=/data/home/shumei/software/jdk1.8.0_221
-export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
-export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
-</code></pre>
-<pre><code>create user &#39;shumei&#39;@&#39;%&#39; identified by &#39;密码&#39;;
-
-create database fund_management default character set utf8;
-grant all privileges on fund_management.* to shumei@&#39;%&#39;;
-</code></pre>
-<pre><code>server &#123;
-    listen       80;
-    server_name  gx.digital-fund.cn;
-
-    access_log off;
-    rewrite ^(.*)$ https://$host$1 permanent;
-
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
-        <tag>腾讯云</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker 私服 harbor 安装</title>
     <url>/2020/08/22/harbor-install/</url>
     <content><![CDATA[<h1 id="1-安装-docker-compose"><a href="#1-安装-docker-compose" class="headerlink" title="1 安装 docker-compose"></a>1 安装 docker-compose</h1><pre><code class="shell">sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
@@ -1725,6 +1688,43 @@ data_volume: /home/shumei/soft/harbor/data
       <tags>
         <tag>docker</tag>
         <tag>harbor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>腾讯云服务器部署</title>
+    <url>/2020/08/08/cloud-server-init-tecent/</url>
+    <content><![CDATA[<p>执行以下命令，查看连接到实例的磁盘名称<br>sudo fdisk -l<br>执行以下命令，格式化该磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>执行以下命令，将该磁盘挂载到 &#x2F;data 挂载点<br>sudo mount &#x2F;dev&#x2F;vdb &#x2F;data<br>创建用户组及用户<br>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<h1 id="用户创建"><a href="#用户创建" class="headerlink" title="用户创建"></a>用户创建</h1><p>查看用户组是否存在<br>grep shumei &#x2F;etc&#x2F;group<br>添加用户组 shumei<br>groupadd shumei</p>
+<p>查看用户 shumei 是否存在<br>grep shumei &#x2F;etc&#x2F;passwd<br>添加用户<br>useradd -g shumei -d &#x2F;data&#x2F;home&#x2F;shumei -m shumei<br>查看 shumei 信息<br>id shumei<br>设置用户密码<br>passwd shumei</p>
+<p>赋给用户 sudo 权限：<a href="http://man.linuxde.net/sudo">http://man.linuxde.net/sudo</a><br>vi &#x2F;etc&#x2F;sudoers<br>仿照现有root的例子就行，加一行（最好用tab作为空白）<br>shumei  ALL&#x3D;(ALL)   ALL<br>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code>echo $SHELL
+usermod -s /bin/bash shumei
+</code></pre>
+<pre><code>export JAVA_HOME=/data/home/shumei/software/jdk1.8.0_221
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+</code></pre>
+<pre><code>create user &#39;shumei&#39;@&#39;%&#39; identified by &#39;密码&#39;;
+
+create database fund_management default character set utf8;
+grant all privileges on fund_management.* to shumei@&#39;%&#39;;
+</code></pre>
+<pre><code>server &#123;
+    listen       80;
+    server_name  gx.digital-fund.cn;
+
+    access_log off;
+    rewrite ^(.*)$ https://$host$1 permanent;
+
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+        <tag>腾讯云</tag>
       </tags>
   </entry>
   <entry>
@@ -2207,69 +2207,6 @@ vi /home/sftp/.ssh/authorized_keys
       </tags>
   </entry>
   <entry>
-    <title>联通云服务器初始化</title>
-    <url>/2022/07/14/cloud-server-init-cucloud/</url>
-    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
-<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
-<p>查看挂载结果<br>df -TH</p>
-<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
-<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
-<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
-<pre><code># 查看用户组是否存在
-grep shumei /etc/group
-# 添加用户组 shumei
-groupadd shumei
-
-# 查看用户 shumei 是否存在
-grep shumei /etc/passwd
-# 添加用户
-useradd -g shumei -d /home/shumei -m shumei
-# 查看 shumei 信息
-id shumei
-# 设置用户密码
-passwd shumei
-
-# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
-vi /etc/sudoers
-# 仿照现有root的例子就行，加一行（最好用tab作为空白）
-shumei  ALL=(ALL:ALL)   ALL
-</code></pre>
-<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
-<pre><code># echo $SHELL 可查看当前使用的 shell
-usermod -s /bin/bash shumei
-</code></pre>
-<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
-
-vi .profile
-export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
-export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
-export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
-
-# 使配置生效
-source .profile
-
-# 检查配置是否成功
-java -version
-</code></pre>
-<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[请参考官网文档]<a href="https://nginx.org/en/linux_packages.html#Ubuntu">https://nginx.org/en/linux_packages.html#Ubuntu</a></p>
-<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
-sudo apt install redis-server
-
-查看是否启动
-# redis-cli
-以上命令将打开以下终端：
-redis 127.0.0.1:6379&gt;
-</code></pre>
-]]></content>
-      <categories>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
-        <tag>联通云</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>kettle experiences</title>
     <url>/2023/05/23/kettle-experiences/</url>
     <content><![CDATA[<h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol>
@@ -2359,6 +2296,69 @@ sleep 2
       </categories>
       <tags>
         <tag>kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>联通云服务器初始化</title>
+    <url>/2022/07/14/cloud-server-init-cucloud/</url>
+    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
+<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
+<p>查看挂载结果<br>df -TH</p>
+<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
+<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
+<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<pre><code># 查看用户组是否存在
+grep shumei /etc/group
+# 添加用户组 shumei
+groupadd shumei
+
+# 查看用户 shumei 是否存在
+grep shumei /etc/passwd
+# 添加用户
+useradd -g shumei -d /home/shumei -m shumei
+# 查看 shumei 信息
+id shumei
+# 设置用户密码
+passwd shumei
+
+# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
+vi /etc/sudoers
+# 仿照现有root的例子就行，加一行（最好用tab作为空白）
+shumei  ALL=(ALL:ALL)   ALL
+</code></pre>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code># echo $SHELL 可查看当前使用的 shell
+usermod -s /bin/bash shumei
+</code></pre>
+<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
+
+vi .profile
+export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+
+# 使配置生效
+source .profile
+
+# 检查配置是否成功
+java -version
+</code></pre>
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[请参考官网文档]<a href="https://nginx.org/en/linux_packages.html#Ubuntu">https://nginx.org/en/linux_packages.html#Ubuntu</a></p>
+<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
+sudo apt install redis-server
+
+查看是否启动
+# redis-cli
+以上命令将打开以下终端：
+redis 127.0.0.1:6379&gt;
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+        <tag>联通云</tag>
       </tags>
   </entry>
   <entry>
@@ -2496,6 +2496,38 @@ fi
       <tags>
         <tag>ssmtp</tag>
         <tag>mailutils</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为应用创建守护进程</title>
+    <url>/2023/09/21/use-systemd-manage-application/</url>
+    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
+<pre><code class="text">[Unit]
+Description=moon data center service
+
+[Service]
+ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<blockquote>
+<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
+</blockquote>
+<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
+<blockquote>
+<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>systemd</tag>
       </tags>
   </entry>
   <entry>
@@ -2678,38 +2710,6 @@ public class StringEncryptorTest extends BaseTest &#123;
       </categories>
       <tags>
         <tag>jasypt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>为应用创建守护进程</title>
-    <url>/2023/09/21/use-systemd-manage-application/</url>
-    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
-<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
-<pre><code class="text">[Unit]
-Description=moon data center service
-
-[Service]
-ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<blockquote>
-<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
-</blockquote>
-<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
-<blockquote>
-<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
-</blockquote>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
-]]></content>
-      <categories>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>systemd</tag>
       </tags>
   </entry>
   <entry>
