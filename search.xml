@@ -1728,6 +1728,26 @@ data_volume: /home/shumei/soft/harbor/data
       </tags>
   </entry>
   <entry>
+    <title>mac 系统常用工具安装</title>
+    <url>/2020/08/22/mac-useful-tools-install/</url>
+    <content><![CDATA[<h1 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h1><p>简单记录下 Homebrew 安装。</p>
+<p>Homebrew 可以在 macOS 中方便的安装和管理各种系统不自带的开发包。但令人苦恼的是很多时候它的下载和更新速度太慢，推荐国内自动安装 Homebrew 的脚本。</p>
+<p>项目名称：HomebrewCN<br>项目作者：CunKai<br>项目地址：<a href="https://gitee.com/cunkai/HomebrewCN">https://gitee.com/cunkai/HomebrewCN</a><br>脚本内容</p>
+<pre><code>/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;
+</code></pre>
+<p>只需要把这段脚本内容复制到「终端」中执行，按提示安装。</p>
+<h1 id="autojump"><a href="#autojump" class="headerlink" title="autojump"></a>autojump</h1><p>brew install autojump</p>
+<h1 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h1><p>阿里云镜像获取地址：<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+        <tag>brew</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>spring-boot-with-docker</title>
     <url>/2020/08/22/spring-boot-with-docker/</url>
     <content><![CDATA[<p>Docker is a Linux container management toolkit with a “social” aspect, allowing users to publish container images and consume those published by others. A Docker image is a recipe for running a containerized process, and in this guide we will build one for a simple Spring boot application.</p>
@@ -1783,26 +1803,6 @@ ENTRYPOINT [&quot;java&quot;,&quot;-cp&quot;,&quot;app:app/lib/*&quot;,&quot;com
       <tags>
         <tag>docker</tag>
         <tag>springboot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 系统常用工具安装</title>
-    <url>/2020/08/22/mac-useful-tools-install/</url>
-    <content><![CDATA[<h1 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h1><p>简单记录下 Homebrew 安装。</p>
-<p>Homebrew 可以在 macOS 中方便的安装和管理各种系统不自带的开发包。但令人苦恼的是很多时候它的下载和更新速度太慢，推荐国内自动安装 Homebrew 的脚本。</p>
-<p>项目名称：HomebrewCN<br>项目作者：CunKai<br>项目地址：<a href="https://gitee.com/cunkai/HomebrewCN">https://gitee.com/cunkai/HomebrewCN</a><br>脚本内容</p>
-<pre><code>/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;
-</code></pre>
-<p>只需要把这段脚本内容复制到「终端」中执行，按提示安装。</p>
-<h1 id="autojump"><a href="#autojump" class="headerlink" title="autojump"></a>autojump</h1><p>brew install autojump</p>
-<h1 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h1><p>阿里云镜像获取地址：<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>mac</tag>
-        <tag>brew</tag>
       </tags>
   </entry>
   <entry>
