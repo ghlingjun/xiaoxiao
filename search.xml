@@ -1,0 +1,3333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Github 入门</title>
+    <url>/2013/01/28/Github-Training/</url>
+    <content><![CDATA[<h2 id="创建一个Repo"><a href="#创建一个Repo" class="headerlink" title="创建一个Repo"></a>创建一个Repo</h2><p>参考：<a href="https://help.github.com/articles/create-a-repo">https://help.github.com/articles/create-a-repo</a></p>
+<h3 id="初始化一个Repo"><a href="#初始化一个Repo" class="headerlink" title="初始化一个Repo"></a>初始化一个Repo</h3><pre><code class="shell">$ mkdir ~/Hello-World
+# Creates a directory for your project called &quot;Hello-World&quot; in your user directory
+
+$ cd ~/Hello-World
+# Changes the current working directory to your newly created directory
+
+$ git init
+# Sets up the necessary Git files
+
+# Initialized empty Git repository in /Users/you/Hello-World/.git/
+</code></pre>
+<h3 id="为你的项目创建-README-文件"><a href="#为你的项目创建-README-文件" class="headerlink" title="为你的项目创建 README 文件"></a>为你的项目创建 README 文件</h3><pre><code class="shell">$ touch README
+# Creates a file called &quot;README&quot; in your Hello-World directory
+
+然后编辑这个文件，输入“你好”。保存并关闭它。
+</code></pre>
+<h3 id="提交-README-文件"><a href="#提交-README-文件" class="headerlink" title="提交 README 文件"></a>提交 README 文件</h3><pre><code class="shell">现在提交你的README文件。提交本质上是一个您的项目中的所有文件在一个特定时间点的快照。在提示符下，输入下面的代码：
+$ git add README
+# Stages your README file, adding it to the list of files to be committed
+
+$ git commit -m &#39;first commit&#39;
+# Commits your files, adding the message &quot;first commit&quot;
+</code></pre>
+<h3 id="推送提交的文件到服务器"><a href="#推送提交的文件到服务器" class="headerlink" title="推送提交的文件到服务器"></a>推送提交的文件到服务器</h3><pre><code class="shell">到现在你所做的操作仍是在本地仓库中，新增以及修改的内容都还没有添加到github上。为本地仓库设置一个远程仓库，把本地仓库和你的github账户连接起来，然后把文件推送到github上。
+$ git remote add origin https://github.com/username/Hello-World.git
+# Creates a remote named &quot;origin&quot; pointing at your GitHub repo
+
+$ git push origin master
+# Sends your commits in the &quot;master&quot; branch to GitHub
+</code></pre>
+<p>现在看你的github上的仓库，你会发现README文件已经添加在里面了。</p>
+<h2 id="加入一个开源项目"><a href="#加入一个开源项目" class="headerlink" title="加入一个开源项目"></a>加入一个开源项目</h2><p>参考：<a href="https://help.github.com/articles/fork-a-repo">https://help.github.com/articles/fork-a-repo</a></p>
+<p>也许某天你发现一个有趣的项目，自己也想加入项目开发组为项目做点贡献；或者你想在别人的项目的基础上开发自己的东西，这个过程就是 forking。这里介绍如何 fork 一个项目: Fork the “Spoon-Knife” Repo.</p>
+<p>点击 github 中的 fork 按钮即可 Fork 项目。</p>
+<p>Forked项目后，你需要clone项目到本地才可以对项目修改，执行下面命令：</p>
+<pre><code class="shell">$ git clone https://github.com/username/Spoon-Knife.git
+# Clones your fork of the repo into the current directory in terminal
+</code></pre>
+<p>这样我们复制了代码库到本地，不过这个默认指向我们 github 中的项目，我们叫它 origin, 并不是最初我们 Fork 的项目。为了跟踪源库的变动，我们需要和最初的仓库（叫它为 upstream ）联系起来：</p>
+<pre><code class="shell">$ cd Spoon-Knife
+# Changes the active directory in the prompt to the newly cloned &quot;Spoon-Knife&quot; directory
+
+$ git remote add upstream https://github.com/octocat/Spoon-Knife.git
+# Assigns the original repo to a remote called &quot;upstream&quot;
+
+$ git fetch upstream
+# Pulls in changes not present in your local repository, without modifying your files
+</code></pre>
+<p>That’s it. 我们准备好了。</p>
+<p>后面我们可以做些更有趣的事</p>
+<h3 id="Push-commits"><a href="#Push-commits" class="headerlink" title="Push commits"></a>Push commits</h3><p>如果你提交了一些修改到你的本地代码库，现在想把这些推送到 github ，执行下面命令：</p>
+<pre><code class="shell">$ git push origin master
+# Pushes commits to your remote repo stored on GitHub
+</code></pre>
+<h3 id="Pull-in-upstream-changes"><a href="#Pull-in-upstream-changes" class="headerlink" title="Pull in upstream changes"></a>Pull in upstream changes</h3><p>如果原始代码库有更新，你可以执行下面命令，将那些更新也同步到你的代码库：</p>
+<pre><code class="shell">$ git fetch upstream
+# Fetches any new changes from the original repo
+
+$ git merge upstream/master
+# Merges any changes fetched into your working files
+</code></pre>
+<h3 id="Create-branches"><a href="#Create-branches" class="headerlink" title="Create branches"></a>Create branches</h3><p>有时你想给项目添加个新的特性或者测试一个想法，你肯定不愿意直接在项目上做，以免对项目造成未知的影响，这时你可以创建一个项目的分支。在 git 中，分支并不是把代码库复制一边，而是 a sort of bookmark that references the last commit made in the branch. 所以分支是很小的并且很容易处理。</p>
+<p>项目分支是非常方便的，特别是当你和许多人一起为一个项目工作时。创建分支命令：</p>
+<pre><code class="shell">$ git branch mybranch
+# Creates a new branch called &quot;mybranch&quot;
+
+$ git checkout mybranch
+# Makes &quot;mybranch&quot; the active branch
+
+或者：
+$ git checkout -b mybranch
+# Creates a new branch called &quot;mybranch&quot; and makes it the active branch
+
+切换分支，使用命令 git checkout.
+$ git checkout master
+# Makes &quot;master&quot; the active branch
+
+$ git checkout mybranch
+# Makes &quot;mybranch&quot; the active branch
+
+当你在分支上完成工作后，想将它和主分支合并时，使用命令： merge
+$ git checkout master
+# Makes &quot;master&quot; the active branch
+
+$ git merge mybranch
+# Merges the commits from &quot;mybranch&quot; into &quot;master&quot;
+
+$ git branch -d mybranch
+# Deletes the &quot;mybranch&quot; branch
+</code></pre>
+<h3 id="Pull-requests"><a href="#Pull-requests" class="headerlink" title="Pull requests"></a>Pull requests</h3><p>如果你想将你的代码贡献给最初的项目，可以发送 pull request 给项目创建者。</p>
+<p>Celebrate!</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows 下快捷启动应用程序的一个方法</title>
+    <url>/2013/11/21/windows-quick-start-app/</url>
+    <content><![CDATA[<p>这里介绍一个小窍门给 windows 用户——可以很快捷方便的启动自己常用的软件程序！</p>
+<p>三步即可：</p>
+<ol>
+<li>在C盘目录下创建了一个名为 shoutcut 的文件夹；</li>
+<li>将 shoutcut 路径添加进环境变量的 path 值内（Win7 系统打开环境变量方法：控制面板–&gt;高级系统设置–&gt;高级 Tab –&gt;环境变量）；</li>
+<li>将常用的应用程序的快捷方式复制到 shoutcut 目录，并为其重命名一个简单明了的名字，例如, Sublime Text 重命名为 sublime, Google Chrome 重命名为 chrome, 腾讯 QQ 重命名为 qq, 等等.</li>
+</ol>
+<p>完成上面三步后，即可快速打开应用程序，例如：按下快捷键 Win+R，输入 chrome，然后按下 Enter 键即可打开谷歌浏览器……</p>
+<p>这个方法好吗？</p>
+<p><font style="color: gray; font-size: 10px;">不重要的内容:</font><br><span style="color: gray; font-size: 10px;">因为虚拟的系统比较卡，之前都是在 Windows 下编写修改代码，Ubuntu 系统只是提供 ROR（Ruby On Rails）环境用。前两天在 Ubuntu 下调试公司的 OA 系统时，在虚拟机中安装了 Sublime Text 用于编写代码。当创建 Sublime Text 的软链接时，突然想到其实在 Windows 下快捷方式也相当于软链接，所以启动程序也可以直接运行命令的方式启动。<br>我的电脑桌面一向就只有一个回收站图标，非常干净，这个是个人喜好，然后每次打开程序都必须从开始菜单打开，但是现在就像在Ubuntu下打开程序一样，非常爽快 :-)<br></span></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jBPM 基础</title>
+    <url>/2014/11/07/jBPM-overview/</url>
+    <content><![CDATA[<p>了解并部署好jBPM环境是使用的基本，但最重要的是需要了解jBPM的Core Engine API.</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>这里先了解装载流程以及执行流程所需要的API，至于如何定义流程，需要专门去研究BPMN2.0.</p>
+<p>为了与一个流程进行交互，需要建立起一个会话。但是创建一个session, 需要首先创建一个knowledge base, 其包含有整个流程的所有定义，这样session通过knowledge base就可以获取一个process的所有信息，从而进行交互。</p>
+<p>当你成功创建一个session后，就可以用它来启动流程。每当你启动一个process，对应的就创建了一个流程实例。</p>
+<p>例如你准备写一个应用来处理销售订单。为了处理一个订单，你可能需要定义一个或者多个流程，当启动应用时，首先你需要创建一个knowledge base，其包含了这些流程定义；接着需要创建一个基于knowledge base的session；当有一个新订单时，启动一个新的process实例来服务它，由它可以随时了解这个订单的状态。</p>
+<h2 id="knowledge-base"><a href="#knowledge-base" class="headerlink" title="knowledge base"></a>knowledge base</h2><p>多个sessions可以共享一个knowledge base，所以通常knowledge base只在应用启动时创建一次。但是knowledge base 可以被动态的改变，你可以在运行时新增或者删除某些processes.</p>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session是基于knowledge base创建的，用于执行processes，以及与process engine进行交互。可以根据需要创建多个独立的sessions，没有限制。但是大多数情况下在一个应用中我们只创建一个session就够用了。如果你想有多个独立的运行中的unit（例如你想让A客户启动的所有processes与B客户拥有的processes独立开来），或者因为可扩展性的原因，这些情况下可以使用多个sessions。如果你还是不确定，那就干脆只创建一个knowledge base，其包含所有processes的定义；只创建一个session，其用来执行你的所有processes。</p>
+<p>综上所述：jBPM API主要用于（1）创建一个包含所有流程定义的knowledge base，然后去（2）创建一个session来启动新的processes实例，调用已存在的processes，注册监听器，等等。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>jbpm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>普鲁斯特问卷</title>
+    <url>/2016/08/06/Proust-Questionnaire/</url>
+    <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>做自己喜欢的事情，与喜欢的人一起生活。</p>
+<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>优秀的表达能力。</p>
+<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>暂时没有。</p>
+<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>最近心里有些乱、挣扎。</p>
+<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>没有。</p>
+<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>我没有什么成就。</p>
+<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>拖延症。</p>
+<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>没有。</p>
+<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>浅薄。</p>
+<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>自由。</p>
+<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
+<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>被人骂。</p>
+<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>爱国。</p>
+<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>程序员挺好的。希望自己能尝试画画。</p>
+<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>对外表没有不满。</p>
+<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>从不后悔。</p>
+<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>熟悉的人中没有，不熟悉的人不会费神。</p>
+<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>MAN。</p>
+<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
+<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>独立。</p>
+<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>不说。</p>
+<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>诚实、正直。</p>
+<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>三年前可以给个名字，但是现在不可以给出。</p>
+<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>大海特别深邃壮观，被超大海浪吞没如何？</p>
+<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>每天吃午饭时。</p>
+<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>不知道。</p>
+<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>我希望能重过2012和2013这两年，不知是否可以改变些什么。</p>
+<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>proust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电影日记</title>
+    <url>/2016/09/09/film-comments/</url>
+    <content><![CDATA[<h3 id="《那啊那啊神去村》"><a href="#《那啊那啊神去村》" class="headerlink" title="《那啊那啊神去村》"></a>《那啊那啊神去村》</h3><p>环保题材的内容，个人感觉故事一般；但是大自然是让人敬畏的，最后的49年一次的祭祀活动挺震撼人心的！不推荐看，实在闲的无聊可以看～ Thu Sep  8 23:28:15 CST 2016</p>
+<h3 id="《海街日记》"><a href="#《海街日记》" class="headerlink" title="《海街日记》"></a>《海街日记》</h3><p>让人感觉生活真是美好、温馨！情节非常有代入感，故事可以这样描述真是让人难以想象！整部电影好像没讲什么内容，但是整体又给人非常丰满的感觉，回味无穷…… Wed Sep  7 23:31:41 CST 2016</p>
+<h3 id="《黄昏的清兵卫》"><a href="#《黄昏的清兵卫》" class="headerlink" title="《黄昏的清兵卫》"></a>《黄昏的清兵卫》</h3><p>本来正在 coding，但是电影一开始就被代入，自然的沉入故事中去，专注度就像在做数学难题，不是，就像在解决 bug 一样！ Wed Sep  7 23:39:51 CST 2016</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2016/09/10/hello-world/</url>
+    <content><![CDATA[<p>Hello, world!</p>
+<p>现在台式机正播放速度与激情7，因为已经看过了，感觉无聊，就想试试Github Pages，于是就有了这个 Hello World……</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySql 常用操作命令</title>
+    <url>/2016/09/12/MySql/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些 MySql 操作命令</p>
+<h1 id="MySql-服务启动"><a href="#MySql-服务启动" class="headerlink" title="MySql 服务启动"></a>MySql 服务启动</h1><pre><code class="shell">sudo /etc/init.d/mysqld start
+or
+sudo service mysqld start
+</code></pre>
+<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><pre><code class="sql">CREATE USER &#39;octopus&#39;@&#39;%&#39; IDENTIFIED BY &#39;octopus&#39;;
+</code></pre>
+<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><pre><code class="sql">drop user &#39;octopus&#39;@&#39;%&#39;;
+</code></pre>
+<h1 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h1><h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><pre><code class="sql">drop database testdb;
+
+CREATE DATABASE testdb DEFAULT CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON testdb.* TO octopus@&#39;%&#39;;
+# 查询权限用户
+GRANT SELECT ON testdb.* TO octopus@&#39;%&#39;;
+
+FLUSH PRIVILEGES;
+</code></pre>
+<p>with grant option 作用是：对象的 owner 可以将权限赋予某个用户，普通用户不用授予此权限。</p>
+<p>撤销授权</p>
+<pre><code class="sql">revoke all privileges,grant option from &#39;user_name&#39;@&#39;host&#39;;
+</code></pre>
+<h1 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h1><h2 id="导出表结构"><a href="#导出表结构" class="headerlink" title="导出表结构"></a>导出表结构</h2><pre><code class="shell">mysqldump -h192.168.1.160 --opt --set-gtid-purged=OFF -d testdb -uoctopus -p &gt; ddl-testdb-20160912.sql
+</code></pre>
+<h2 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h2><pre><code class="shell">mysqldump -t -h192.168.1.160 --set-gtid-purged=OFF testdb -uoctopus -p &gt; data-testdb-20160912.sql
+</code></pre>
+<h2 id="导出表结构与数据"><a href="#导出表结构与数据" class="headerlink" title="导出表结构与数据"></a>导出表结构与数据</h2><pre><code class="shell">mysqldump -uoctopus -p --default-character-set=utf8 testdb &gt; testdb-20160912.sql
+mysqldump -uoctopus -p --default-character-set=utf8 --set-gtid-purged=OFF testdb &gt; testdb-20160912.sql
+mysqldump -uoctopus -p --default-character-set=utf8 -ntd -R testdb &gt; testdb-20160912.sql
+mysqldump -uoctopus -p --default-character-set=utf8 -h192.168.1.160 -P10002 testdb &gt; testdb-20160912.sql
+</code></pre>
+<p>其中，-ntd 是表示导出存储过程；-R 是表示导出函数；-P 指定端口号；</p>
+<h2 id="导入sql脚本"><a href="#导入sql脚本" class="headerlink" title="导入sql脚本"></a>导入sql脚本</h2><ul>
+<li>方式一：</li>
+</ul>
+<pre><code class="shell">mysql -h192.168.1.160 -uoctopus -p testdb &lt; testdb-20160912.sql
+</code></pre>
+<ul>
+<li>方式二：先登录数据库，然后执行命令(这种方式将顺序执行脚本，如果数据量大，不建议使用此种方式)：</li>
+</ul>
+<pre><code class="shell">mysql &gt; source testdb-20160912.sql
+</code></pre>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>&#x2F;etc&#x2F;init.d&#x2F;mysql: ERROR: The partition with &#x2F;var&#x2F;lib&#x2F;mysql is too full!<br>磁盘空间被占满导致无法启动服务，可使用 du -sh .&#x2F;* 来查看 &#x2F;var 下的文件大小详情，释放一些空间，再使用启动命令 &#x2F;etc&#x2F;init.d&#x2F;mysql start 启动。</p>
+<h1 id="MySQL-启动慢查询日志"><a href="#MySQL-启动慢查询日志" class="headerlink" title="MySQL 启动慢查询日志"></a>MySQL 启动慢查询日志</h1><p>查看慢查询相关参数：</p>
+<pre><code class="sql">show variables like &#39;slow_query%&#39;;
+</code></pre>
+<p>方式一：命令设置：</p>
+<pre><code class="sql">set global slow_query_log=&#39;ON&#39;;
+set global long_query_time=1;
+</code></pre>
+<p>方式二：配置文件设置：（配置后需重启服务）</p>
+<pre><code class="text">[mysqld]
+slow_query_log = ON
+slow_query_log_file = /var/run/mysqld/mysqld-slow.log
+long_query_time = 1
+</code></pre>
+<h1 id="sql-mode-修改"><a href="#sql-mode-修改" class="headerlink" title="sql_mode 修改"></a>sql_mode 修改</h1><p>临时修改方案：</p>
+<pre><code class="sql">select @@global.sql_mode;
+set @@global.sql_mode = &#39;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#39;;
+</code></pre>
+<p>永久修改方案：<br>修改 &#x2F;etc&#x2F;my.cnf 文件中 [mysqld] 模块下添加如下配置：</p>
+<pre><code class="conf">sql_mode = ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+</code></pre>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何搭建一个免费的博客</title>
+    <url>/2016/09/12/how-to-build-a-blog/</url>
+    <content><![CDATA[<p><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog</a></p>
+<p>此博客受此启发</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>中秋节</title>
+    <url>/2016/09/15/the-Mid-Autumn-Festival/</url>
+    <content><![CDATA[<p>回想起来，从高中开始就没有全家人在一起过中秋节了，今年可是10几年来第一次！本来想好台词：月是故乡明。然后在下面陪一张现在的星空图……可惜这里阴天，星空图就没有了，但是大家坐在院子里聊天，偶尔不说话时听着四周黑暗角落里各种虫鸣声，也感觉极其美好（如果天气晴朗的话，就会在房顶铺一张席子，或坐或躺聊天，看星星……）</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 下 Svn 命令配置</title>
+    <url>/2016/09/21/OSX-svn-commands-config/</url>
+    <content><![CDATA[<h2 id="研究原因"><a href="#研究原因" class="headerlink" title="研究原因"></a>研究原因</h2><p>为了使用方便，通过配置或者创建了一些 shell 脚本，简化 svn 的常用操作</p>
+<h2 id="配置列表"><a href="#配置列表" class="headerlink" title="配置列表"></a>配置列表</h2><h3 id="1、配置全局忽略文件类型"><a href="#1、配置全局忽略文件类型" class="headerlink" title="1、配置全局忽略文件类型"></a>1、配置全局忽略文件类型</h3><p>编辑 svn 的 config 文件</p>
+<pre><code>vi ~/.subversion/config
+</code></pre>
+<p>如果”.subversion”目录不存在，运行”svn status”命令，虽然此命令会失败，但是会为你创建所需要的文件。</p>
+<p>找到 global-ignores 一行，新增需要忽略的文件：</p>
+<pre><code>
+global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.iml target
+   *.rej *~ #*# .#* .*.swp .DS_Store .idea *.iml *.lst logs
+</code></pre>
+
+<h3 id="2、添加命令脚本"><a href="#2、添加命令脚本" class="headerlink" title="2、添加命令脚本"></a>2、添加命令脚本</h3><p>vi svnadd.sh</p>
+<pre><code class="shell">svn status | grep &#39;?&#39; | awk -F&#39; &#39; &#39;&#123;print $2&#125;&#39; | xargs svn add
+</code></pre>
+<h3 id="3、删除命令脚本"><a href="#3、删除命令脚本" class="headerlink" title="3、删除命令脚本"></a>3、删除命令脚本</h3><p>vi svndel.sh</p>
+<pre><code class="shell">svn status | grep &#39;!&#39; | awk -F&#39; &#39; &#39;&#123;print $2&#125;&#39; | xargs svn del --force
+</code></pre>
+<h4 id="创建命令别名"><a href="#创建命令别名" class="headerlink" title="创建命令别名"></a>创建命令别名</h4><p>vi ~&#x2F;.zshrc</p>
+<pre><code class="shell">alias svndel=&quot;sh ~/scripts/svndel.sh&quot;
+alias svnadd=&quot;sh ~/scripts/svnadd.sh&quot;
+</code></pre>
+<p>执行命令使配置生效</p>
+<pre><code>source ~/.zshrc
+</code></pre>
+<p>配置生效后，进入svn仓库目录，即可通过命令 svnadd 或者 svndel 来添加或者删除文件；</p>
+<p>最后通过命令 svn ci -m “comments” 来提交到服务器</p>
+<hr>
+<p>svnadd.sh 命令解释: 首先使用 svn status 命令列出所有改动，打 ? 号的是已经新增的文件但是还未标记加入库；再用 awk ‘{print $2}’ 将抽离出来的文本结果处理，留下每一行的第二段文字，即文件名；最后使用 xargs 这个参数构造命令，将每一行的文本作为参数提供给 svn add，结果就是所有列出的文件都执行了一遍添加命令。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SVN 使用</title>
+    <url>/2016/10/15/svn-configs/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些不常用的 svn 操作命令</p>
+<h2 id="svn-服务启动命令"><a href="#svn-服务启动命令" class="headerlink" title="svn 服务启动命令"></a>svn 服务启动命令</h2><pre><code>sudo svnserve -d -r /data/svn
+sudo killall svnserve
+</code></pre>
+<h2 id="ignore-命令"><a href="#ignore-命令" class="headerlink" title="ignore 命令"></a>ignore 命令</h2><p><strong>忽略文件夹</strong></p>
+<pre><code>svn propset svn:ignore &quot;
+&gt;schema
+&gt;.back
+&gt;&quot; .
+</code></pre>
+<p>注意:写值的时候不要一下将两个引号写完，否则回车会直接执行命令。<br>svn:ignore的值每行一个</p>
+<p><strong>忽略已存在的文件</strong></p>
+<pre><code>svn export config.properties config.properties-tmp
+svn rm config.properties
+svn ci -m &#39;remove config.properties&#39;
+mv config.properties-tmp config.properties
+svn propset svn:ignore &#39;config.properties&#39; .
+svn ci - &#39;ignore config.properties&#39;
+</code></pre>
+<p><strong>忽略文件夹中某几个文件</strong><br>在文件夹中新增 .svnignore 文件，在 .svnignore 中添加要忽略的文件，例如：</p>
+<pre><code>.list
+.iml
+.idea
+</code></pre>
+<p>然后执行如下命令：</p>
+<pre><code>svn propset svn:ignore -F .svnignore .
+</code></pre>
+<h2 id="add-a-tag"><a href="#add-a-tag" class="headerlink" title="add a tag"></a>add a tag</h2><pre><code>!/bin/bash
+export VERSION=v1.2.0
+svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/tags/$VERSION
+</code></pre>
+<h2 id="重定位location"><a href="#重定位location" class="headerlink" title="重定位location"></a>重定位location</h2><pre><code>svn relocate url
+</code></pre>
+<h2 id="E155010-Commit-failed"><a href="#E155010-Commit-failed" class="headerlink" title="E155010: Commit failed"></a>E155010: Commit failed</h2><p>“xxx” is scheduled for addition, but is missing 遇到此错误提示时执行下面命令即可：</p>
+<pre><code>svn rm xxx
+</code></pre>
+<p>这个错误原因是文件被 add 进本地仓库后，又被删除了，提交到服务器时 svn 找不到对应的文件。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可以用下面的方法让你的大脑就范</title>
+    <url>/2017/04/29/how-to-learn/</url>
+    <content><![CDATA[<ol>
+<li>慢一点，你理解的越多，需要记的就越少。<br>遇到问题的时候，不要直接去翻答案。可以假想成真的有人在问你问题。让你的大脑想的越深，就越有可能学会并记住。</li>
+<li>勤做练习，自己记笔记。<br>大量研究都证实，学习过程中如果能实际动动手，将改善你的学习效果。拿出笔来，写一写，画一画。</li>
+<li>上床睡觉之前不要再看别的书了，或者至少不再看其他有难度的东西。<br>学习中有一部分是在你合上书之后完成的（特别是，要把学到的知识长久的记住，这往往无法在看书的过程中做到）。你的大脑也需要有自己的时间来再做一些处理。如果在这段时间内你又往大脑里灌输了新的知识，那么你刚学的一些东西就会被丢掉。</li>
+<li>要喝水，而且要多喝点水。<br>如果能提供充足的液体，你的大脑才能有最佳的表现。如果缺水（可能你觉得口渴之前，就已经缺水了），学习能力就会下降。</li>
+<li>大声说出来。<br>说话可以刺激大脑的另一部分。如果你想看懂什么，或者想更牢的记住它，就要大声说出来。更好的办法是，大声的解释给别人听。这样你会学得更快，而且可能会有一些新的认识，而这是以前光看不说的时候未曾发现的。</li>
+<li>听听你的大脑怎么说。<br>注意一下你的大脑是不是负荷太重了，如果发现自己开始浮光掠影地翻看，或者刚看的东西就忘记了，这说明你该休息一会儿了。达到某个临界点时，如果还一味的向大脑里塞，这对加快学习速度根本没有帮助，甚至还可能影响正常的学习。</li>
+<li>要有点感觉！<br>你的大脑需要知道这是很重要的东西。要真正融入到书中的故事里。为书里加照片，加上你自己的说明。你可能觉得一个笑话很蹩脚，不太让人满意，但这总比根本无动于衷要好。</li>
+<li>设计一些东西！<br>将学来的知识应用到新项目中，甚至重构旧项目。反正就是尽量应用知识，获取实践经验。你所需要的是一支铅笔和一个难题，试着解决这个难题。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>共享模式词汇的威力</title>
+    <url>/2017/04/30/why-learn-schemas/</url>
+    <content><![CDATA[<h3 id="共享模式词汇“威力强大”"><a href="#共享模式词汇“威力强大”" class="headerlink" title="共享模式词汇“威力强大”"></a>共享模式词汇“威力强大”</h3><p>当你使用模式名称和其他开发人员或者开发团队沟通时，你们之间交流的不只是模式名称，而是一整套模式背后所象征的质量、特性、约束。</p>
+<h3 id="模式能让你用更少的词汇做更充分的沟通"><a href="#模式能让你用更少的词汇做更充分的沟通" class="headerlink" title="模式能让你用更少的词汇做更充分的沟通"></a>模式能让你用更少的词汇做更充分的沟通</h3><p>当你用模式描述的时候，其他开发人员便很容易地知道你对设计的想法。</p>
+<h3 id="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"><a href="#将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面" class="headerlink" title="将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面"></a>将说话方式保持在模式层次，可让你待在“设计圈子”久一点上面</h3><p>使用模式谈论软件系统，可以让你保持在设计层次，不会被压低到对象与类这种琐碎的事情。</p>
+<h3 id="共享词汇可帮你的开发团队快速充电"><a href="#共享词汇可帮你的开发团队快速充电" class="headerlink" title="共享词汇可帮你的开发团队快速充电"></a>共享词汇可帮你的开发团队快速充电</h3><p>对于设计模式有深入了解的团队，彼此之间对于设计的看法不容易产生误解。</p>
+<h3 id="共享词汇能帮助初级开发人员迅速成长"><a href="#共享词汇能帮助初级开发人员迅速成长" class="headerlink" title="共享词汇能帮助初级开发人员迅速成长"></a>共享词汇能帮助初级开发人员迅速成长</h3><p>初级开发人员向有经验的开发人员看齐。当高级开发人员使用设计模式，初级开发人员也会跟着学。把你的组织建立成一个模式使用者的社区。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>普鲁斯特问卷</title>
+    <url>/2017/08/06/Proust-Questionnaire/</url>
+    <content><![CDATA[<h4 id="1-你认为最完美的快乐是怎样的？"><a href="#1-你认为最完美的快乐是怎样的？" class="headerlink" title="1.你认为最完美的快乐是怎样的？"></a>1.你认为最完美的快乐是怎样的？</h4><p>和喜欢的人在一起。</p>
+<h4 id="2-你最希望拥有哪种才华？"><a href="#2-你最希望拥有哪种才华？" class="headerlink" title="2.你最希望拥有哪种才华？"></a>2.你最希望拥有哪种才华？</h4><p>画画。</p>
+<h4 id="3-你最恐惧的是什么？"><a href="#3-你最恐惧的是什么？" class="headerlink" title="3.你最恐惧的是什么？"></a>3.你最恐惧的是什么？</h4><p>迷茫。</p>
+<h4 id="4-你目前的心境怎样？"><a href="#4-你目前的心境怎样？" class="headerlink" title="4.你目前的心境怎样？"></a>4.你目前的心境怎样？</h4><p>还算平静。</p>
+<h4 id="5-还在世的人中你最钦佩的是谁？"><a href="#5-还在世的人中你最钦佩的是谁？" class="headerlink" title="5.还在世的人中你最钦佩的是谁？"></a>5.还在世的人中你最钦佩的是谁？</h4><p>小小。</p>
+<h4 id="6-你认为自己最伟大的成就是什么？"><a href="#6-你认为自己最伟大的成就是什么？" class="headerlink" title="6.你认为自己最伟大的成就是什么？"></a>6.你认为自己最伟大的成就是什么？</h4><p>不知道。</p>
+<h4 id="7-你自己的哪个特点让你最觉得痛恨？"><a href="#7-你自己的哪个特点让你最觉得痛恨？" class="headerlink" title="7.你自己的哪个特点让你最觉得痛恨？"></a>7.你自己的哪个特点让你最觉得痛恨？</h4><p>老做傻事。</p>
+<h4 id="8-你最喜欢的旅行是哪一次？"><a href="#8-你最喜欢的旅行是哪一次？" class="headerlink" title="8.你最喜欢的旅行是哪一次？"></a>8.你最喜欢的旅行是哪一次？</h4><p>惠州。</p>
+<h4 id="9-你最痛恨别人的什么特点？"><a href="#9-你最痛恨别人的什么特点？" class="headerlink" title="9.你最痛恨别人的什么特点？"></a>9.你最痛恨别人的什么特点？</h4><p>不知道。</p>
+<h4 id="10-你最珍惜的财产是什么？"><a href="#10-你最珍惜的财产是什么？" class="headerlink" title="10.你最珍惜的财产是什么？"></a>10.你最珍惜的财产是什么？</h4><p>健康。</p>
+<h4 id="11-你最奢侈的是什么？"><a href="#11-你最奢侈的是什么？" class="headerlink" title="11.你最奢侈的是什么？"></a>11.你最奢侈的是什么？</h4><p>爱情。</p>
+<h4 id="12-你认为程度最浅的痛苦是什么？"><a href="#12-你认为程度最浅的痛苦是什么？" class="headerlink" title="12.你认为程度最浅的痛苦是什么？"></a>12.你认为程度最浅的痛苦是什么？</h4><p>痛苦都差不多。</p>
+<h4 id="13-你认为哪种美德是被过高的评估的？"><a href="#13-你认为哪种美德是被过高的评估的？" class="headerlink" title="13.你认为哪种美德是被过高的评估的？"></a>13.你认为哪种美德是被过高的评估的？</h4><p>不知道。</p>
+<h4 id="14-你最喜欢的职业是什么？"><a href="#14-你最喜欢的职业是什么？" class="headerlink" title="14.你最喜欢的职业是什么？"></a>14.你最喜欢的职业是什么？</h4><p>工程师。</p>
+<h4 id="15-你对自己的外表哪一点不满意？"><a href="#15-你对自己的外表哪一点不满意？" class="headerlink" title="15.你对自己的外表哪一点不满意？"></a>15.你对自己的外表哪一点不满意？</h4><p>身高。</p>
+<h4 id="16-你最后悔的事情是什么？"><a href="#16-你最后悔的事情是什么？" class="headerlink" title="16.你最后悔的事情是什么？"></a>16.你最后悔的事情是什么？</h4><p>在能够爱你时没有更好的去爱你。</p>
+<h4 id="17-还在世的人中你最鄙视的是谁？"><a href="#17-还在世的人中你最鄙视的是谁？" class="headerlink" title="17.还在世的人中你最鄙视的是谁？"></a>17.还在世的人中你最鄙视的是谁？</h4><p>没有。</p>
+<h4 id="18-你最喜欢男性身上的什么品质？"><a href="#18-你最喜欢男性身上的什么品质？" class="headerlink" title="18.你最喜欢男性身上的什么品质？"></a>18.你最喜欢男性身上的什么品质？</h4><p>落落大方。</p>
+<h4 id="19-你使用过的最多的单词或者是词语是什么？"><a href="#19-你使用过的最多的单词或者是词语是什么？" class="headerlink" title="19.你使用过的最多的单词或者是词语是什么？"></a>19.你使用过的最多的单词或者是词语是什么？</h4><p>嗯。</p>
+<h4 id="20-你最喜欢女性身上的什么品质？"><a href="#20-你最喜欢女性身上的什么品质？" class="headerlink" title="20.你最喜欢女性身上的什么品质？"></a>20.你最喜欢女性身上的什么品质？</h4><p>落落大方。</p>
+<h4 id="21-你最伤痛的事是什么？"><a href="#21-你最伤痛的事是什么？" class="headerlink" title="21.你最伤痛的事是什么？"></a>21.你最伤痛的事是什么？</h4><p>失恋。</p>
+<h4 id="22-你最看重朋友的什么特点？"><a href="#22-你最看重朋友的什么特点？" class="headerlink" title="22.你最看重朋友的什么特点？"></a>22.你最看重朋友的什么特点？</h4><p>比我好的特点。</p>
+<h4 id="23-你这一生中最爱的人或东西是什么？"><a href="#23-你这一生中最爱的人或东西是什么？" class="headerlink" title="23.你这一生中最爱的人或东西是什么？"></a>23.你这一生中最爱的人或东西是什么？</h4><p>小小。</p>
+<h4 id="24-你希望以什么样的方式死去？"><a href="#24-你希望以什么样的方式死去？" class="headerlink" title="24.你希望以什么样的方式死去？"></a>24.你希望以什么样的方式死去？</h4><p>考虑还早。</p>
+<h4 id="25-何时何地让你感觉到最快乐？"><a href="#25-何时何地让你感觉到最快乐？" class="headerlink" title="25.何时何地让你感觉到最快乐？"></a>25.何时何地让你感觉到最快乐？</h4><p>上班路上听故事广播时。</p>
+<h4 id="26-如果你可以改变你的家庭一件事，那会是什么？"><a href="#26-如果你可以改变你的家庭一件事，那会是什么？" class="headerlink" title="26.如果你可以改变你的家庭一件事，那会是什么？"></a>26.如果你可以改变你的家庭一件事，那会是什么？</h4><p>家人能住在一起。</p>
+<h4 id="27-如果你能选择的话，你希望让什么重现？"><a href="#27-如果你能选择的话，你希望让什么重现？" class="headerlink" title="27.如果你能选择的话，你希望让什么重现？"></a>27.如果你能选择的话，你希望让什么重现？</h4><p>不知道。</p>
+<h4 id="28-你的座右铭是什么？"><a href="#28-你的座右铭是什么？" class="headerlink" title="28.你的座右铭是什么？"></a>28.你的座右铭是什么？</h4><p>无。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>proust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Idea 常用配置</title>
+    <url>/2017/08/19/idea-config-instructions/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些 idea 配置方法</p>
+<h2 id="隐藏-idea-文件夹和-iml-等文件（可选）"><a href="#隐藏-idea-文件夹和-iml-等文件（可选）" class="headerlink" title="隐藏 .idea 文件夹和 .iml 等文件（可选）"></a>隐藏 .idea 文件夹和 .iml 等文件（可选）</h2><p>在 File -&gt; Settings -&gt; Editor -&gt; File Types 下的 “Ignore files and folders” 中添加：</p>
+<pre><code>.idea;*.iml;
+</code></pre>
+<h2 id="文件编码设置"><a href="#文件编码设置" class="headerlink" title="文件编码设置"></a>文件编码设置</h2><p>File -&gt; Settings -&gt; Editor -&gt; File Encodings 下设置：</p>
+<pre><code>Global Encoding: UTF-8
+Projectt Encoding: UTF-8
+Default encoding for properties files: UTF-8
+</code></pre>
+<p>勾选上 Transparent native-to-ascii conversion</p>
+<h2 id="生成-javadoc-配置"><a href="#生成-javadoc-配置" class="headerlink" title="生成 javadoc 配置"></a>生成 javadoc 配置</h2><p>打开 Tools -&gt; Gerenate JavaDoc<br>在 Other command line arguments 中输入：-encoding utf-8 -charset utf-8, 避免中文乱码</p>
+<h2 id="设置代码行宽度-Columns"><a href="#设置代码行宽度-Columns" class="headerlink" title="设置代码行宽度(Columns)"></a>设置代码行宽度(Columns)</h2><p>打开 File -&gt; Other Settings -&gt; Default Settings -&gt; Editor -&gt; Code Style<br>修改 Default Options -&gt; Right Margin (Columns) 可以为所有类型的文件设置默认宽度，设置为 120。<br>另外可以在 Code Style 下特定类型文件（例如 Java、Jsp）的 Wrapping tab 下修改该类型文件的代码行宽度。</p>
+<h2 id="自定义-Live-Template"><a href="#自定义-Live-Template" class="headerlink" title="自定义 Live Template"></a>自定义 Live Template</h2><p>Preferences -&gt; Editor -&gt; Live Templates 选择 Java, 添加自定义模板以及自己的快捷输入方法。</p>
+<h3 id="方法注释模板配置示例"><a href="#方法注释模板配置示例" class="headerlink" title="方法注释模板配置示例"></a>方法注释模板配置示例</h3><ul>
+<li>Abbreviation: mc</li>
+<li>Description: method comments</li>
+<li>Template Text内容：</li>
+</ul>
+<pre><code>/**
+ * $notes$
+ *
+ $params$
+ * @return $return$
+ * @author LingJun
+ * @datetime $DATE$ $TIME$
+ */
+</code></pre>
+<p>params Default value:</p>
+<pre><code> groovyScript(&quot;if(\&quot;$&#123;_1&#125;\&quot;.length() == 2) &#123;return &#39;&#39;;&#125; else &#123;def result=&#39;&#39;; def params=\&quot;$&#123;_1&#125;\&quot;.replaceAll(&#39;[\\\\[|\\\\]|\\\\s]&#39;, &#39;&#39;).split(&#39;,&#39;).toList();for(i = 0; i &lt; params.size(); i++) &#123;if(i&lt;(params.size()-1))&#123;result+=&#39; * @param &#39; + params[i] + &#39;\\n&#39;&#125;else&#123;result+=&#39; * @param &#39; + params[i]&#125;&#125;; return result;&#125;&quot;, methodParameters());
+</code></pre>
+<p>note: comments for this method</p>
+<h3 id="代码块注释示例"><a href="#代码块注释示例" class="headerlink" title="代码块注释示例"></a>代码块注释示例</h3><ul>
+<li>Abbreviation: cc</li>
+<li>Description: class comments</li>
+<li>Template Text内容：</li>
+</ul>
+<pre><code>**
+ * $notes$
+ *
+ * @author LingJun
+ * @datetime $DATE$ $TIME$
+ */
+</code></pre>
+<p>注意:</p>
+<ul>
+<li>需要编辑 date，time 等变量的值。</li>
+<li>日期的变量值推荐加参数如：date(“yyyy&#x2F;MM&#x2F;dd”)</li>
+<li>define 选择 java</li>
+<li>note: comments for this class</li>
+</ul>
+<h2 id="换行符"><a href="#换行符" class="headerlink" title="换行符"></a>换行符</h2><p>使用 Unix 格式，不要使用 Windows 格式。</p>
+<h2 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h2><p>禁止使用 tab 缩进，采用 4 个空格缩进。如果使用 tab 缩进，必须在 IDE 中 Use tab character。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>idea</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dream</title>
+    <url>/2017/09/06/dream/</url>
+    <content><![CDATA[<p>昨晚不小心到三点才睡觉～ </p>
+<p>“那种感觉……就像过山车…” 这声音让我好生激动！看清楚了两个ID，都是4个字加特殊符号组成，很对称，但是有两个字很生僻！听到这声音时，意识到自己在做梦，很想继续听，但是又特别想把名字记下来。我让自己醒来了，那声音特别清晰，如同还在耳边，但是名字是记不住的，画面无论如何也浮现不出来了！</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 命令行指引</title>
+    <url>/2017/09/15/git-command-line-instructions/</url>
+    <content><![CDATA[<p>总结的一些不常用的 git 操作命令</p>
+<h1 id="Git-全局配置"><a href="#Git-全局配置" class="headerlink" title="Git 全局配置"></a>Git 全局配置</h1><pre><code>git config --global user.name &quot;lingjun&quot;
+git config --global user.email &quot;lingjun@live.cn&quot;
+</code></pre>
+<h1 id="git-core-autocrlf-配置说明"><a href="#git-core-autocrlf-配置说明" class="headerlink" title="git core.autocrlf 配置说明"></a>git core.autocrlf 配置说明</h1><p>基于 git 服务在 linux 服务器，以及应用运行在 linux 服务器上的假设，git 换行符配置如下：<br>Windows 系统下开发配置如下，Git 可以在你提交时自动地把行结束符 CRLF 转换成LF，而在签出代码时把LF转换成CRLF</p>
+<pre><code>git config --global core.autocrlf true
+</code></pre>
+<p>Mac或者Linux下开发，则配置如下，Git 在提交时把 CRLF 转换成 LF，签出时不转换</p>
+<pre><code>git config --global core.autocrlf input
+</code></pre>
+<p>拒绝提交包含混合换行符的文件</p>
+<pre><code>git config --global core.safecrlf true
+</code></pre>
+<h1 id="创建一个新的仓库"><a href="#创建一个新的仓库" class="headerlink" title="创建一个新的仓库"></a>创建一个新的仓库</h1><pre><code>git clone git@code.aliyun.com:lingjun/dolphin.git
+cd dolphin
+touch README.md
+git add README.md
+git commit -m &quot;add README&quot;
+git push -u origin master
+</code></pre>
+<h1 id="Existing-folder-or-Git-repository"><a href="#Existing-folder-or-Git-repository" class="headerlink" title="Existing folder or Git repository"></a>Existing folder or Git repository</h1><pre><code>cd existing_folder
+git init
+git remote add origin git@code.aliyun.com:lingjun/dolphin.git
+git add .
+git commit
+git push -u origin master
+</code></pre>
+<h1 id="Ignore-files"><a href="#Ignore-files" class="headerlink" title="Ignore files"></a>Ignore files</h1><pre><code># in directory: /Users/ethan/workspace/jeecg
+git rm --cached --force src/main/webapp/webpage/content/plug-in/ueditor/jsp/config.properties
+git rm --cached --force src/main/webapp/plug-in/ueditor/jsp/config.properties
+
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with &#39;#&#39; are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):
+# *.[oa]
+# *~
+</code></pre>
+<h1 id="relocate-repository"><a href="#relocate-repository" class="headerlink" title="relocate repository"></a>relocate repository</h1><pre><code>git remote set-url origin url
+</code></pre>
+<p>或者</p>
+<pre><code>git remote rm origin
+git remote add origin git@code.aliyun.com:lingjun/jee-octopus.git
+</code></pre>
+<h1 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h1><pre><code>git branch -a
+git checkout master_herbinate
+</code></pre>
+<h1 id="Keep-your-fork-synced"><a href="#Keep-your-fork-synced" class="headerlink" title="Keep your fork synced"></a>Keep your fork synced</h1><ol>
+<li>See the current configured remote repository for your fork：</li>
+</ol>
+<pre><code>git remote -v
+</code></pre>
+<ol start="2">
+<li>Add remote upstream</li>
+</ol>
+<pre><code>git remote add upstream https://github.com/thinkgem/jeesite.git
+</code></pre>
+<ol start="3">
+<li>Fetch the branches and their respective commits from the upstream repository</li>
+</ol>
+<pre><code>git fetch upstream
+</code></pre>
+<ol start="4">
+<li>确保当前分支是 master, 如果不是，切换至 master</li>
+</ol>
+<pre><code>git branch -a
+</code></pre>
+<ol start="5">
+<li>Merge the changes from upstream&#x2F;master into your local master branch</li>
+</ol>
+<pre><code>git merge upstream/master
+</code></pre>
+<h1 id="Revert-file"><a href="#Revert-file" class="headerlink" title="Revert file"></a>Revert file</h1><pre><code>git rm --cached -f -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
+git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
+</code></pre>
+<h1 id="导出提交日志"><a href="#导出提交日志" class="headerlink" title="导出提交日志"></a>导出提交日志</h1><pre><code>git log --date=iso --pretty=format:&#39;&quot;%h&quot;, &quot;%an&quot;, &quot;%ad&quot;, &quot;%s&quot;&#39; &gt;&gt; log.csv
+</code></pre>
+<p>更多</p>
+<p><a href="https://git-scm.com/about">git - home</a><br><a href="http://rogerdudler.github.io/git-guide/index.zh.html">git - 简明指南</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx Command Instructions</title>
+    <url>/2017/09/17/nginx-command-instructions/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Nginx (engine x) 是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP&#x2F;POP3&#x2F;SMTP 服务器。Nginx 是由伊戈尔·赛索耶夫为俄罗斯访问量第二的 Rambler.ru 站点开发的，第一个公开版本 0.1.0 发布于 2004 年 10 月 4 日。</p>
+<h2 id="nginx-安装-Ubuntu-系统"><a href="#nginx-安装-Ubuntu-系统" class="headerlink" title="nginx 安装(Ubuntu 系统)"></a>nginx 安装(Ubuntu 系统)</h2><pre><code>sudo apt-get install nginx
+</code></pre>
+<p>The configuration file of nginx is named nginx.conf and placed in the directory &#x2F;etc&#x2F;nginx</p>
+<h2 id="启动-nginx-服务"><a href="#启动-nginx-服务" class="headerlink" title="启动 nginx 服务"></a>启动 nginx 服务</h2><p>To start nginx, run the executable file. </p>
+<pre><code>sudo nginx
+</code></pre>
+<h2 id="nginx-commands"><a href="#nginx-commands" class="headerlink" title="nginx commands"></a>nginx commands</h2><p>Once nginx is started, it can be controlled by invoking the executable with the <code>-s</code> parameter. Use the following syntax:</p>
+<pre><code>nginx -s signal
+</code></pre>
+<p>Where <em>signal</em> may be one of the following:</p>
+<ul>
+<li><code>stop</code> — fast shutdown</li>
+<li><code>quit</code> — graceful shutdown</li>
+<li><code>reload</code> — reloading the configuration file</li>
+<li><code>reopen</code> — reopening the log files</li>
+</ul>
+<p>For getting the list of all running nginx processes, the <code>ps</code> utility may be used, for example, in the following way:</p>
+<pre><code>ps -ax | grep nginx
+</code></pre>
+<h1 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h1><p>[参考]<a href="https://www.cnblogs.com/lidabo/p/4169396.html">https://www.cnblogs.com/lidabo/p/4169396.html</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dream</title>
+    <url>/2017/09/22/dream/</url>
+    <content><![CDATA[<p>最近心情一直很平静，梦真是很神奇的东西，分分钟让你跪！即便是梦里的场景荒诞离奇，但一点都不妨碍它影响情绪！</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>修改 hosts 方式翻墙</title>
+    <url>/2017/10/13/visit-google-by-update-hosts/</url>
+    <content><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>修改 hosts 文件是一种非常直接有效的翻墙方式，这种方式有两个困难点：</p>
+<ol>
+<li>有效的 hosts 文件；</li>
+<li>方便的更新 hosts 文件方式；</li>
+</ol>
+<p>但是这两个问题在开源社区有很好的解决方案</p>
+<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><p><strong>要达到翻墙效果，只需使用更新 hosts 文件的工具，定时执行更新操作即可</strong></p>
+<h2 id="可以方便更新-hosts-文件的工具软件"><a href="#可以方便更新-hosts-文件的工具软件" class="headerlink" title="可以方便更新 hosts 文件的工具软件"></a>可以方便更新 hosts 文件的工具软件</h2><p>手动更新 hosts 文件会比较麻烦，有各路大侠提供了各种操作系统下的更新工具，可根据自己设备的操作系统选用合适的工具：<a href="https://github.com/HostsTools">https://github.com/HostsTools</a></p>
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p><a href="https://www.zhihu.com/question/19782572">hosts 翻墙原理</a><br><a href="https://github.com/racaljk/hosts">hosts 文件更新相关</a><br><a href="https://github.com/googlehosts/hosts.git">hosts 文件更新相关</a><br><a href="https://github.com/racaljk/hosts/tree/master/tools">hosts 文件更新工具相关</a><br><a href="https://github.com/racaljk/hosts/wiki/%E5%85%B3%E4%BA%8E%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91">关于中国的互联网</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>hosts</tag>
+        <tag>google</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 系统使用的一些经验总结</title>
+    <url>/2017/10/18/mac-os-helps/</url>
+    <content><![CDATA[<ol>
+<li>修改应用的默认语言</li>
+</ol>
+<pre><code class="shell">defaults write com.apple.iCal AppleLanguages &#39;(zh-CN)&#39;
+defaults write com.apple.iCal AppleLanguages &#39;(en-US)&#39;
+defaults write com.apple.Maps AppleLanguages &#39;(zh-CN)&#39;
+</code></pre>
+<ol>
+<li>DS_Store文件</li>
+</ol>
+<p>.DS_Store 文件是 Mac OS 保存文件夹的自定义属性的隐藏文件，如文件的图标位置或背景色，相当于 Windows 系统中的 desktop.ini 文件。</p>
+<ol>
+<li>允许任何来源的软件安装</li>
+</ol>
+<pre><code class="shell">sudo spctl --master-disable
+</code></pre>
+<ol>
+<li>重启程序</li>
+</ol>
+<p>重启菜单栏</p>
+<pre><code class="shell">killall -KILL SystemUIServer
+</code></pre>
+<p>重启Dock</p>
+<pre><code class="shell">killall Dock
+</code></pre>
+<p>重启Finder</p>
+<pre><code class="shell">killall Finder
+</code></pre>
+<p>重启wifi</p>
+<pre><code class="shell">
+</code></pre>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat 配置</title>
+    <url>/2017/10/29/tomcat-config/</url>
+    <content><![CDATA[<ol>
+<li>注释 ajp 协议</li>
+<li>修改 HTTP&#x2F;1.1（bio） 协议<br>修改 HTTP&#x2F;1.1（bio） 协议为 org.apache.coyote.http11.Http11NioProtocol （nio）协议；使用 apr 性能会更高；</li>
+</ol>
+<pre><code>&lt;Connector executor=&quot;tomcatThreadPool&quot; port=&quot;8080&quot; protocol=&quot;org.apache.coyote.http11.Http11Nio2Protocol&quot;
+       connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot;
+       enableLookups=&quot;false&quot; maxPostSize=&quot;10485760&quot; URIEncoding=&quot;UTF-8&quot; acceptCount=&quot;100&quot;
+       acceptorThreadCount=&quot;2&quot; disableUploadTimeout=&quot;true&quot; maxConnections=&quot;10000&quot; SSLEnabled=&quot;false&quot;/&gt;
+</code></pre>
+<ol start="3">
+<li>开启线程池<br>开启线程池；线程池默认数量为 200，可根据服务器性能调整数量；</li>
+</ol>
+<pre><code>&lt;Executor name=&quot;tomcatThreadPool&quot; namePrefix=&quot;catalina-exec-&quot;  maxThreads=&quot;420&quot; minSpareThreads=&quot;4&quot;/&gt;
+</code></pre>
+<ol start="4">
+<li>tomcat 8 以上对 resource 采取了 cache，默认的大小是 10240(10M)，修改其默认值</li>
+</ol>
+<pre><code>&lt;Resources cachingAllowed=&quot;true&quot; cacheMaxSize=&quot;102400&quot; /&gt;
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码提交注释格式</title>
+    <url>/2018/03/14/commit-message/</url>
+    <content><![CDATA[<p>每次提交，Commit message 格式如下：</p>
+<pre><code>&lt;type&gt; #&lt;subject&gt;
+</code></pre>
+<p>包含两部分：type 和 subject</p>
+<ol>
+<li><p>type<br> <code>type</code>用于说明 commit 的类别，只允许使用下面7个标识。</p>
+<ul>
+<li>feat：新功能（feature）</li>
+<li>fix：修补bug</li>
+<li>docs：文档（documentation）</li>
+<li>style： 格式（不影响代码运行的变动）</li>
+<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
+<li>test：增加测试</li>
+<li>chore：构建过程或辅助工具的变动</li>
+</ul>
+</li>
+<li><p>subject<br> <code>subject</code>是 commit 目的的简短描述，不超过50个字符。</p>
+<ul>
+<li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
+<li>第一个字母小写</li>
+<li>结尾不加句号（.）</li>
+</ul>
+</li>
+</ol>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>云效代码提交说明规则配置</p>
+<pre><code>^(fix|feat|docs|style|refactor|test|chore) #|^Merge
+</code></pre>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Maven 插件 codemother 使用说明</title>
+    <url>/2018/05/09/codemother/</url>
+    <content><![CDATA[<p>项目地址:<a href="https://gitee.com/osethan/codemother-maven-plugin">https://gitee.com/osethan/codemother-maven-plugin</a></p>
+<h3 id="What-is-this-repository-for"><a href="#What-is-this-repository-for" class="headerlink" title="What is this repository for?"></a>What is this repository for?</h3><ul>
+<li>通过简单配置，生成大量的基础代码，达到快速开发的目的</li>
+</ul>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><h3 id="How-do-I-get-set-up"><a href="#How-do-I-get-set-up" class="headerlink" title="How do I get set up?"></a>How do I get set up?</h3><ul>
+<li><p>创建模板文件夹</p>
+<p>  将本项目中codemother目录复制到自己的项目的根目录下。</p>
+<p>  template下的模板可根据实际需要进行修改、新增和删除，模版语言是 freemarker，极易上手。</p>
+</li>
+<li><p>创建 schema 目录</p>
+<p>  schema目录用于存放业务表对应的xml配置文件（生成方法附在文档末），codemother基于此配置文件以及模板生成代码。</p>
+<p>  在项目或模块中的resources目录下创建文件夹com&#x2F;ethanxx&#x2F;codemother，其下包含 dbschema文件夹以及global.properties文件，</p>
+<p>  dbschema文件夹用于存放业务表对应的xml配置文件,global.properties配置信息实例如下：</p>
+<pre><code># 默认即可，无需更改
+baseOutputPath=.
+outputPathJava=src/main/java
+outputPathJavaResource=src/main/resources
+outputWebPath=src/main/webapp
+outputPagePath=src/main/webapp/WEB-INF/page/
+javaOutputPath=src/main/java
+resourceOutputPath=src/main/resources
+
+# 需要根据模块的包名修改
+projectId=com.primeco.log
+packagePath=com/primeco/log
+modelPackage=com.primeco.log.model
+mapperPackage=com.primeco.log.mapper
+servicePackage=com.primeco.log.service
+controllerPackage=com.primeco.log.ctl
+controllerBasePackage=com.primeco.log.ctl.base
+</code></pre>
+</li>
+<li><p>配置maven依赖</p>
+<p>  在项目或者模块pom.xml中配置插件依赖：</p>
+<pre><code>&lt;!--codemother 插件--&gt;
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;com.ethanxx&lt;/groupId&gt;
+            &lt;artifactId&gt;codemother-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;1.1.3&lt;/version&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+</li>
+<li><p>How to run tests</p>
+<p>  进入要生成代码的项目或者模块目录下，执行命令：<code>mvn codemother:code-generate</code></p>
+<p>  倘若你的项目是单模块，执行命令：<code>mvn codemother:code-generate -DtemplatePath=./codemother/template</code>, 这是因为<code>templatePath</code>默认值为<code>../codemother/template</code>, 用于多模块项目。</p>
+<p>  templatePath的值实际依赖于src目录与template的项目路径，可以自定义temlate目录位置，可根据实际需要传参数。</p>
+<p>  多模块项目目录结构示例：</p>
+<pre><code>.
+├── codemother
+│   ├── codemother.properties
+│   ├── dbschema
+│   └── template
+├── README.md
+├── pom.xml
+├── model1
+│   ├── pom.xml
+│   ├── src
+│   │   └── main
+│   │       └── java
+└── model2
+    ├── pom.xml
+    ├── src
+    │   ├── main
+    │   │   ├── java
+    │   │   └── resources
+    │   └── test
+            └── java
+</code></pre>
+<p>  假设要在 model1 模块中生成代码，则执行命令：<code>mvn codemother:code-generate</code></p>
+<p>  单模块项目目录结构示例：</p>
+<pre><code>.
+├── codemother
+│   ├── codemother.properties
+│   ├── dbschema
+│   └── template
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   ├── resources
+    │   └── webapp
+    └── test
+        ├── java
+        └── resources
+</code></pre>
+<p>  此项目生成代码则需要执行命令：<br>  <code>mvn codemother:code-generate -DtemplatePath=./codemother/template</code></p>
+</li>
+</ul>
+<h3 id="Schema文件生成方法"><a href="#Schema文件生成方法" class="headerlink" title="Schema文件生成方法"></a>Schema文件生成方法</h3><ul>
+<li><p>通过SchemaGenerator工具类生成</p>
+<p>  工具类通过解析配置文件codemother.properties，连接数据库，根据配置中制定的数据表名，生成对应的schema文件</p>
+</li>
+<li><p>配置schema文件</p>
+<p>  生成的schema文件可以直接使用，但可以根据需要做高级配置，具体配置参数说明如下：</p>
+<pre><code>    &lt;schema tableName=&quot;ACHIEVEMENT_ALLOCATION&quot; modelName=&quot;AchievementAllocation&quot; paged=&quot;true&quot; noController=&quot;true&quot;&gt;
+        &lt;key name=&quot;id&quot; type=&quot;integer&quot; length=&quot;10&quot; generator=&quot;native&quot;&gt;&lt;/key&gt;
+    
+        &lt;column name=&quot;account_number&quot; type=&quot;varchar&quot; length=&quot;64&quot;&gt;&lt;/column&gt;
+    
+        &lt;default-condition&gt;
+            &lt;match column=&quot;user_id&quot; param=&quot;userId&quot;/&gt;
+            &lt;match column=&quot;status_cd&quot; param=&quot;statusCd&quot;/&gt;
+            &lt;like column=&quot;username&quot;/&gt;
+            &lt;match-value column=&quot;record_flag&quot; value=&quot;1&quot;/&gt;
+            &lt;between column=&quot;last_login_time&quot; javaType=&quot;java.sql.Timestamp&quot; low=&quot;low&quot; high=&quot;high&quot;/&gt;
+            &lt;in column=&quot;id&quot;/&gt;
+        &lt;/default-condition&gt;
+    
+        &lt;default-order&gt;
+            &lt;order-by column=&quot;username&quot; asc=&quot;false&quot;/&gt;
+        &lt;/default-order&gt;
+    
+        &lt;alias name=&quot;user&quot;/&gt;
+    &lt;/schema&gt;
+</code></pre>
+<ul>
+<li><p>标签 key 描述了表的主键，包含属性 name,type,length 等; 当主键为序列时，添加 generator 属性，值为 native;</p>
+</li>
+<li><p>标签 match 表示查询时精确匹配；</p>
+</li>
+<li><p>标签 not-match 表示不匹配查询；</p>
+</li>
+<li><p>标签 match-value 表示查询时按特定的值进行查询；</p>
+</li>
+<li><p>标签 like 表示查询时模糊匹配；</p>
+</li>
+<li><p>标签 like-left 表示左模糊匹配；</p>
+</li>
+<li><p>标签 like-right 表示右模糊匹配；</p>
+</li>
+<li><p>标签 between 表示范围查询，low 和 high 分别表示查询范围的上下限；边界值是否包含取决于数据库类型（例如db2是左闭右开），如果边界值只传一个 low 或者 high，则按大于等于 low 或者小于等于 high 查询；</p>
+</li>
+<li><p>标签 in 表示包含查询（查询效率低，慎用），其参数值一个数组，如：”value1,value2,value3”.split(“,”);</p>
+</li>
+<li><p>标签 not-in 表示不包含查询（查询效率低，慎用），其参数值一个数组，如：”value1,value2,value3”.split(“,”);</p>
+</li>
+<li><p>标签 order-by 表示查询结果按该字段进行排序；</p>
+</li>
+<li><p>属性 column 指的表示 Table 的字段名；</p>
+</li>
+<li><p>属性 javaType 表示数据库字段类型对应在 Java 中的数据类型；缺省该属性则默认为 String；</p>
+</li>
+<li><p>属性 searchType 表示该字段在 Controller 接收页面传来的值的类型；缺省该属性则默认为 String；</p>
+</li>
+<li><p>属性 param 表示该字段在 Java 代码中的命名，以驼峰形式命名；缺省该属性则默认为 column 的值；</p>
+</li>
+<li><p>属性 asc 的值决定了查询结果的排序方式，false 表示按降序排列，缺省该属性或者设置为 true 表示按升序排列结果；</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+        <tag>codemother</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>朋友相聚</title>
+    <url>/2018/05/09/frinds-meeting/</url>
+    <content><![CDATA[<p>尊敬的贵宾:您好！2018年11月3中餐为您安排的是海悦新四方酒店二楼四方厅。地址：合肥政务新区祁门路1777号（祁门路与茂荫路交口往南50米，省供销社东侧裙楼）</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cors problems</title>
+    <url>/2019/01/23/cors-problems/</url>
+    <content><![CDATA[<p>Springboot</p>
+<pre><code>@Component
+public class CorsFilter implements Filter &#123;
+    @Override
+    public void init(FilterConfig config) &#123;
+
+    &#125;
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response,
+                         FilterChain chain) throws ServletException, IOException &#123;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+        httpServletResponse.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
+        httpServletResponse.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);
+        httpServletResponse.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, GET, HEAD, OPTIONS, DELETE&quot;);
+        httpServletResponse.setHeader(&quot;Access-Control-Max-Age&quot;, &quot;3600&quot;);
+        httpServletResponse.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;Origin, Accept, x-auth-token, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers&quot;);
+        chain.doFilter(request, response);
+    &#125;
+
+    @Override
+    public void destroy() &#123;
+    &#125;
+
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>跨域</tag>
+        <tag>cors</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随笔</title>
+    <url>/2019/06/03/PMP-sprint-class/</url>
+    <content><![CDATA[<h1 id="PMP-考试冲刺课"><a href="#PMP-考试冲刺课" class="headerlink" title="PMP 考试冲刺课"></a>PMP 考试冲刺课</h1><p>昨天一大早从巢湖赶回合肥参加 PMP 考试冲刺课，一天课程收获颇多，除去关于项目管理相关的知识外，觉得有几个想法让我颇有感觉。</p>
+<h3 id="第一个是：相关方满意度"><a href="#第一个是：相关方满意度" class="headerlink" title="第一个是：相关方满意度"></a>第一个是：相关方满意度</h3><p>老师说的大致意思是这样的：我们每个人都很优秀，最重要的是管理好自己的相关方。<br>老师从项目管理中相关方满意度的角度来思考人生还真的是特别有意思！我们一生还真的就是这样，会认识、接触很多人，但是一定要经常分析自己的相关方，不同阶段你的相关方会大不相同，我们只要让重要的相关方满意，那么生活必定会顺风顺水、开开心心。</p>
+<h3 id="第二个是：看书-锻炼"><a href="#第二个是：看书-锻炼" class="headerlink" title="第二个是：看书+锻炼"></a>第二个是：看书+锻炼</h3><p>现在已经有些忘了老师是从项目管理的那个角度提到这个问题的，不过结论就是不管什么时候，多读书 + 锻炼身体总是对的事。</p>
+<h3 id="第三个是：定义问题"><a href="#第三个是：定义问题" class="headerlink" title="第三个是：定义问题"></a>第三个是：定义问题</h3><p>老师讲问题日志时提到，我们解决问题的水平由定义问题水平决定的。</p>
+<h3 id="第四个是：低调"><a href="#第四个是：低调" class="headerlink" title="第四个是：低调"></a>第四个是：低调</h3><p>项目经理要低调做事，不能给客户和领导太高的期望值，这样会提高项目的成功率。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>周日晚上和几位朋友小聚，大家从晚上6点多吃到了10点多，最后因为店家要关门了才不得已散场……<br>每次朋友相聚总感觉光阴似箭，但彼此又感觉倍加亲切！</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux 常用命令</title>
+    <url>/2019/10/29/linux-commands/</url>
+    <content><![CDATA[<h2 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h2><h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><p>当前目录只进入第一级目录</p>
+<pre><code>du -h --max-depth=1
+du -h -d1
+</code></pre>
+<h3 id="free-查看内存情况"><a href="#free-查看内存情况" class="headerlink" title="free 查看内存情况"></a>free 查看内存情况</h3><pre><code>free -m
+</code></pre>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><pre><code>top
+</code></pre>
+<h3 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h3><pre><code>vmstat
+</code></pre>
+<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h3><pre><code>tree -d -L 3
+</code></pre>
+<h3 id="挂在硬盘"><a href="#挂在硬盘" class="headerlink" title="挂在硬盘"></a>挂在硬盘</h3><pre><code>blkid -o device
+mount /dev/xvde1 /home
+</code></pre>
+<h3 id="重启定时任务"><a href="#重启定时任务" class="headerlink" title="重启定时任务"></a>重启定时任务</h3><pre><code>sudo /etc/init.d/crond restart
+</code></pre>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><pre><code>id # 查看用户信息
+passwd # 修改用户密码
+</code></pre>
+<h3 id="修改-ssh-服务端口号"><a href="#修改-ssh-服务端口号" class="headerlink" title="修改 ssh 服务端口号"></a>修改 ssh 服务端口号</h3><p>查看端口是否被占用：</p>
+<pre><code>sudo netstat -anp | grep 10007
+</code></pre>
+<p>添加配置：</p>
+<pre><code>sudo vi /etc/ssh/sshd_config
+</code></pre>
+<p>修改 Port 值：<br>Port 10007</p>
+<p>重启 ssh 服务：</p>
+<pre><code>sudo service sshd restart
+</code></pre>
+<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><pre><code>curl -Iv www.baidu.com
+curl -Iv http://172.17.0.15
+curl 129.211.135.212:80
+</code></pre>
+<h3 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h3><pre><code>telnet 172.17.0.15 80
+</code></pre>
+<h3 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h3><pre><code>lsb_release -a
+</code></pre>
+<h3 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h3><pre><code>stat /etc/my.cnf
+</code></pre>
+<h3 id="查看指定时间之前的登陆记录"><a href="#查看指定时间之前的登陆记录" class="headerlink" title="查看指定时间之前的登陆记录"></a>查看指定时间之前的登陆记录</h3><pre><code>last -t 20220410000000
+</code></pre>
+<h3 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h3><pre><code class="shell">alias sshdb=&quot;ssh ethan@192.168.1.79&quot;
+
+export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+</code></pre>
+<h2 id="日期时间函数"><a href="#日期时间函数" class="headerlink" title="日期时间函数"></a>日期时间函数</h2><pre><code class="shell"># 取日期 yyyy-mm-dd
+date +%F
+# 取上个月月份（两位数字符串）
+date -d &quot;2023-06-06 -1 month&quot; +%m
+# 取上个月月份（数字）
+month=`date -d &quot;2023-06-06 -1 month&quot; +%m`
+$((month))
+# 取上一年年份
+date -d &quot;2023-06-06 -1 year&quot; +%Y
+
+v_date=`date +%F`
+# 取上个月字符串
+`date -d &quot;$v_date -1 month&quot; +%Y%m`
+
+v_date_now=`date +&quot;%F %T&quot;`
+# 取前 15 分钟的时间
+v_date_time=`date -d &quot;-15 minute $v_date_now&quot; +&quot;%F %T&quot;`
+</code></pre>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><pre><code>80,8080,443,8443 需要备案
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电信云服务器规划以及配置</title>
+    <url>/2019/10/30/cloud-server-init-ctyun/</url>
+    <content><![CDATA[<h3 id="挂载磁盘"><a href="#挂载磁盘" class="headerlink" title="挂载磁盘"></a>挂载磁盘</h3><p>查看分区</p>
+<pre><code>df -h
+</code></pre>
+<p>查看磁盘</p>
+<pre><code>fdisk -l
+</code></pre>
+<p>格式化分区</p>
+<pre><code>fdisk /dev/xvde
+</code></pre>
+<p>按顺序执行以下命令：<br>p # 避免错误先查看下现在磁盘的已存在分区，新磁盘没有分区<br>n # 新建分区——选择p<br>t # 转换分区格式为8e<br>w # 保存新建分区格式。</p>
+<p>格式化磁盘</p>
+<pre><code>mkfs -t ext4 /dev/xvde1 
+mount /dev/xvde1 /home
+</code></pre>
+<p>查看挂载结果</p>
+<pre><code>df -TH
+</code></pre>
+<h3 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h3><pre><code>id # 查看用户信息
+passwd # 修改用户密码
+</code></pre>
+<h3 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h3><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<pre><code># 查看用户组是否存在
+grep shumei /etc/group
+# 添加用户组 shumei
+groupadd shumei
+
+# 查看用户 shumei 是否存在
+grep shumei /etc/passwd
+# 添加用户
+useradd -g shumei -d /home/shumei -m shumei
+# 查看 shumei 信息
+id shumei
+# 设置用户密码
+passwd shumei
+
+# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
+vi /etc/sudoers
+# 仿照现有root的例子就行，加一行（最好用tab作为空白）
+shumei  ALL=(ALL)   ALL
+</code></pre>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code># echo #SHELL
+# usermod -s /bin/bash shumei
+</code></pre>
+<h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
+
+vi .bashrc
+export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+</code></pre>
+<h3 id="安装-MySql-服务"><a href="#安装-MySql-服务" class="headerlink" title="安装 MySql 服务"></a>安装 MySql 服务</h3><pre><code># 查找需要安装的文件名
+yum search mysql
+# 安装文件 5.1
+sudo yum install mysql-server.x86_64 -y
+# 5.7
+https://www.cnblogs.com/lzj0218/p/5724446.html
+
+# 修改数据库配置(myspace/my.cnf)
+scp /Users/ethan/docs/scripts/config ethan@ip:/home/shumei
+sudo cp my.cnf /etc/my.cnf
+
+sudo /etc/init.d/mysqld start # 启动数据库服务
+# 无法启动删除以下文件
+sudo rm -rf /var/lib/mysql
+
+sudo mysql # 登陆 MySql
+# 创建用户
+# https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/
+create user &#39;octopus&#39;@&#39;%&#39; identified by &#39;octopus&#39;;
+
+create database owl default character set utf8;
+grant all privileges on owl.* to octopus@&#39;%&#39; with grant option;
+</code></pre>
+<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><pre><code>http://www.cnblogs.com/rainy-shurun/p/6192753.html
+
+nignx 中 autoindex 要配置成 off
+
+修改 MySQL 默认端口
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+        <tag>电信云</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Proust Questionnaire</title>
+    <url>/2019/11/15/Proust-Questionnaire/</url>
+    <content><![CDATA[<p>1.你认为最完美的快乐是怎样的？<br>和家人在一起生活。</p>
+<p>2.你最希望拥有哪种才华？<br>画画。</p>
+<p>3.你最恐惧的是什么？<br>迷茫。</p>
+<p>4.你目前的心境怎样？<br>平和。</p>
+<p>5.还在世的人中你最钦佩的是谁？<br>无。</p>
+<p>6.你认为自己最伟大的成就是什么？<br>不知道。</p>
+<p>7.你自己的哪个特点让你最觉得痛恨？<br>无。</p>
+<p>8.你最喜欢的旅行是哪一次？<br>黄山。</p>
+<p>9.你最痛恨别人的什么特点？<br>无。</p>
+<p>10.你最珍惜的财产是什么？<br>家。</p>
+<p>11.你最奢侈的是什么？<br>无。</p>
+<p>12.你认为程度最浅的痛苦是什么？<br>没有痛苦。</p>
+<p>13.你认为哪种美德是被过高的评估的？<br>不知道。</p>
+<p>14.你最喜欢的职业是什么？<br>软件开发。</p>
+<p>15.你对自己的外表哪一点不满意？<br>身高。</p>
+<p>16.你最后悔的事情是什么？<br>无。</p>
+<p>17.还在世的人中你最鄙视的是谁？<br>没有。</p>
+<p>18.你最喜欢男性身上的什么品质？<br>落落大方。</p>
+<p>19.你使用过的最多的单词或者是词语是什么？<br>好的。</p>
+<p>20.你最喜欢女性身上的什么品质？<br>落落大方。</p>
+<p>21.你最伤痛的事是什么？<br>失恋。</p>
+<p>22.你最看重朋友的什么特点？<br>可靠。</p>
+<p>23.你这一生中最爱的人或东西是什么？<br>路飞。</p>
+<p>24.你希望以什么样的方式死去？<br>平静的不痛苦的。</p>
+<p>25.何时何地让你感觉到最快乐？<br>休息在家。</p>
+<p>26.如果你可以改变你的家庭一件事，那会是什么？<br>多付出。</p>
+<p>27.如果你能选择的话，你希望让什么重现？<br>不知道。</p>
+<p>28.你的座右铭是什么？<br>无。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>proust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初始化 windows 操作系统</title>
+    <url>/2019/11/18/windows-os-init/</url>
+    <content><![CDATA[<ul>
+<li>激活操作系统</li>
+<li>新建个人账户，登录并禁用 administrator 用户</li>
+<li>安装 360 浏览器</li>
+<li>安装 360 安全卫士（主要用于驱动、系统更新）</li>
+<li>安装 WPS、微信、QQ</li>
+<li>安装 JDK，配置环境变量</li>
+<li>安装 git</li>
+<li>安装 intellij idea</li>
+</ul>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo commands</title>
+    <url>/2019/11/21/hexo-commands/</url>
+    <content><![CDATA[<h2 id="Hexo-Commands"><a href="#Hexo-Commands" class="headerlink" title="Hexo Commands"></a>Hexo Commands</h2><p>最常用三个命令：</p>
+<pre><code>$ hexo new [layout] &lt;title&gt;
+$ hexo server
+$ hexo deploy -g
+</code></pre>
+<h3 id="创建一篇文章"><a href="#创建一篇文章" class="headerlink" title="创建一篇文章"></a>创建一篇文章</h3><p>创建一篇新的文章，如果没有指定<code>layout</code>，Hexo 会使用 _config.yml 中配置的<code>default_layout</code>，如果标题中包含空格，需要使用双引号将其引起来。</p>
+<pre><code># 进入 hexo-site 目录
+$ hexo new [layout] &lt;title&gt;
+</code></pre>
+<p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 post 相同，都将储存到 source&#x2F;_posts 文件夹。</p>
+<table>
+<thead>
+<tr>
+<th>布局</th>
+<th>路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>post</td>
+<td>source&#x2F;_posts</td>
+</tr>
+<tr>
+<td>page</td>
+<td>source</td>
+</tr>
+<tr>
+<td>draft</td>
+<td>source&#x2F;_drafts</td>
+</tr>
+</tbody></table>
+<h3 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h3><pre><code>$ hexo server
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-p</code>, <code>--port</code></td>
+<td>Override default port</td>
+</tr>
+<tr>
+<td><code>-s</code>, <code>--static</code></td>
+<td>Only serve static files</td>
+</tr>
+<tr>
+<td><code>-l</code>, <code>--log</code></td>
+<td>Enable logger. Override logger format.</td>
+</tr>
+</tbody></table>
+<h3 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h3><pre><code>$ hexo deploy
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-g</code>, <code>--generate</code></td>
+<td>Generate before deployment</td>
+</tr>
+</tbody></table>
+<h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><pre><code>$ hexo clean
+</code></pre>
+<p>Cleans the cache file (<code>db.json</code>) and generated files (<code>public</code>).</p>
+<h3 id="显示所有草稿"><a href="#显示所有草稿" class="headerlink" title="显示所有草稿"></a>显示所有草稿</h3><pre><code>$ hexo --draft
+</code></pre>
+<p>Displays draft posts (stored in the <code>source/_drafts</code> folder).</p>
+<h3 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h3><pre><code>$ hexo publish [layout] &lt;filename&gt;
+</code></pre>
+<h3 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h3><pre><code>$ hexo generate
+</code></pre>
+<p>生成静态文件。</p>
+<table>
+<thead>
+<tr>
+<th>可选参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-d</code>, <code>--deploy</code></td>
+<td>生成完成后，同时发布</td>
+</tr>
+<tr>
+<td><code>-w</code>, <code>--watch</code></td>
+<td>Watch file changes</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浪潮云服务器规划与配置</title>
+    <url>/2019/11/29/cloud-server-init-inspur/</url>
+    <content><![CDATA[<ul>
+<li>创建业务组</li>
+<li>创建 VPC</li>
+<li>创建 SLB</li>
+<li>创建 ECS</li>
+<li>创建 NAT</li>
+<li>配置 SLB</li>
+</ul>
+<h2 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h2><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<pre><code># 查看用户组是否存在
+grep shumei /etc/group
+# 添加用户组 shumei
+sudo groupadd shumei
+
+# 查看用户 ethan 是否存在
+grep ethan /etc/passwd
+# 添加用户，推荐用户名与目录名一致
+sudo useradd -g shumei -d /data/home/ethan -m ethan
+# 查看 ethan 信息
+id ethan
+# 设置用户密码
+sudo passwd ethan
+
+# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
+sudo vi /etc/sudoers
+# 仿照现有root的例子就行，加一行（最好用tab作为空白）
+ethan  ALL=(ALL)   ALL
+</code></pre>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code># echo #SHELL
+sudo usermod -s /bin/bash ethan
+</code></pre>
+<h2 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h2><pre><code>scp -P port jdk-8u25-linux-x64.tar.gz ethan@IP:/path
+
+vi .bashrc
+export JAVA_HOME=/home/ethan/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+</code></pre>
+<h2 id="数据服务器安装-MySql-服务（5-7）"><a href="#数据服务器安装-MySql-服务（5-7）" class="headerlink" title="数据服务器安装 MySql 服务（5.7）"></a>数据服务器安装 MySql 服务（5.7）</h2><pre><code># sudo apt-get update
+# sudo apt-get install mysql-server
+初始化配置
+# sudo mysql_secure_installation
+检查服务状态
+# systemctl status mysql.service
+
+root 权限登录MySql
+# sudo mysql -u root -p
+可以修改（也可以不修改） plugin 实现普通用户也能使用 mysql 的 root 用户来登录，同时修改 root 密码
+mysql&gt; update user set authentication_string=PASSWORD(&quot;123456&quot;), plugin=&quot;mysql_native_password&quot; where user=&quot;root&quot;;
+</code></pre>
+<h3 id="修改编码配置"><a href="#修改编码配置" class="headerlink" title="修改编码配置"></a>修改编码配置</h3><p>查看编码</p>
+<pre><code>show variables like &#39;character%&#39;;
+</code></pre>
+<p>修改mysql.cnf文件，在[mysql]中增加如下内容：</p>
+<pre><code># sudo vi /etc/mysql/conf.d/mysql.cnf
+default-character-set=utf8
+</code></pre>
+<p>修改 mysqld.cnf，在文件的[mysqld]中增加如下内容：</p>
+<pre><code># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+character-set-server=utf8
+</code></pre>
+<h3 id="大小写敏感设置"><a href="#大小写敏感设置" class="headerlink" title="大小写敏感设置"></a>大小写敏感设置</h3><p>修改 mysqld.cnf，在文件的[mysqld]中增加如下内容：</p>
+<pre><code># show variables like &#39;lower%&#39;;
+# sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+# 表名存储在磁盘是小写的，但是比较的时候是不区分大小写
+lower_case_table_names = 1
+</code></pre>
+<h3 id="修改远程登录权限"><a href="#修改远程登录权限" class="headerlink" title="修改远程登录权限"></a>修改远程登录权限</h3><pre><code># sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+# 注释 bind-address
+</code></pre>
+<h3 id="修改-sql-mode"><a href="#修改-sql-mode" class="headerlink" title="修改 sql_mode"></a>修改 sql_mode</h3><pre><code># select @@global.sql_mode
+# 重新设置值，添加 sql_mode 配置
+# ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+# sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+</code></pre>
+<h3 id="开启Binlog"><a href="#开启Binlog" class="headerlink" title="开启Binlog"></a>开启Binlog</h3><pre><code># 查看开启状态
+show variables like &#39;%log_bin%&#39;;
+# 修改配置文件，添加如下配置
+server-id=1
+log-bin=/var/lib/mysql/mysql-bin
+# server-id :表示单个结点的id,单个节点可以随意写，多个节点不能重复，
+# log-bin指定binlog日志文件的名字为mysql-bin，以及其存储路径
+</code></pre>
+<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><pre><code># sudo /etc/init.d/mysql restart
+</code></pre>
+<h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p><a href="https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/">https://ghlingjun.github.io/xiaoxiao/2016/09/12/MySql/</a></p>
+<pre><code>create user &#39;octopus&#39;@&#39;%&#39; identified by &#39;octopus&#39;;
+
+create database owl default character set utf8;
+grant all privileges on owl.* to octopus@&#39;%&#39; with grant option;
+
+grant REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO octopus@&#39;%&#39; with grant option;
+FLUSH PRIVILEGES;
+</code></pre>
+<h2 id="安装-redis"><a href="#安装-redis" class="headerlink" title="安装 redis"></a>安装 redis</h2><pre><code>sudo apt-get update
+sudo apt-get install redis-server
+# 修改远程访问配置，注释 /etc/redis/redis.conf 中 bind 参数
+# 启动redis
+sudo redis-server /etc/redis/redis.conf &amp;
+sudo /etc/init.d/redis-server stop
+# 客户端连接
+redis-cli
+</code></pre>
+<h2 id="WEB服务器安装Nginx"><a href="#WEB服务器安装Nginx" class="headerlink" title="WEB服务器安装Nginx"></a>WEB服务器安装Nginx</h2><pre><code>sudo apt-get update
+sudo apt-get install nginx
+# 检查服务状态
+sudo systemctl status nginx
+sudo nginx -v
+</code></pre>
+<p>修改配置文件</p>
+<pre><code>sudo vi /etc/nginx/nginx.conf
+# 添加配置
+send_timeout 200;
+client_max_body_size 200m;
+# websocket on
+map $http_upgrade $connection_upgrade &#123;
+default upgrade;
+&#39;&#39; close;
+&#125;
+</code></pre>
+<p>nignx 中 autoindex 要配置成 off</p>
+<h2 id="安装中文字体"><a href="#安装中文字体" class="headerlink" title="安装中文字体"></a>安装中文字体</h2>]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+        <tag>浪潮云</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过 docker 初始化服务器运行环境</title>
+    <url>/2020/08/07/server-env-init-with-docker/</url>
+    <content><![CDATA[<p>使用官方安装脚本自动安装<br>安装命令如下：</p>
+<pre><code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+</code></pre>
+<p>如果要使用 Docker 作为非 root 用户，则应考虑使用类似以下方式将用户添加到 docker 组：</p>
+<blockquote>
+<p>sudo usermod -aG docker ethan</p>
+</blockquote>
+<h1 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h1><p>sudo systemctl start docker</p>
+<h1 id="查看本地镜像"><a href="#查看本地镜像" class="headerlink" title="查看本地镜像"></a>查看本地镜像</h1><p>docker images</p>
+<h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><p>docker rmi hello-world</p>
+<h1 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h1><p>docker ps -a</p>
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><p>docker rm -f 1e560fca3906</p>
+<h1 id="容器起停命令"><a href="#容器起停命令" class="headerlink" title="容器起停命令"></a>容器起停命令</h1><p>docker stop 2b50eae281cb<br>docker start 2b50eae281cb<br>docker restart 2b50eae281cb</p>
+<h2 id="MySql-部署"><a href="#MySql-部署" class="headerlink" title="MySql 部署"></a>MySql 部署</h2><p>docker pull mysql:5.7</p>
+<p>docker run -p 3306:3306 –name mysqlpro <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;mysql&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;mysql&#x2F;conf:&#x2F;etc&#x2F;mysql <br>-e MYSQL_ROOT_PASSWORD&#x3D;密码 <br>-d mysql:5.7</p>
+<h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><p>docker exec -it mysqlpro bash</p>
+<h3 id="登录mysql"><a href="#登录mysql" class="headerlink" title="登录mysql"></a>登录mysql</h3><p>mysql -u root -p<br>create user ‘shumei‘@’%’ identified by ‘密码’;</p>
+<p>create database fund_management default character set utf8;<br>grant all privileges on fund_management.* to shumei@’%’ with grant option;<br>flush privileges;</p>
+<h2 id="Redis-部署"><a href="#Redis-部署" class="headerlink" title="Redis 部署"></a>Redis 部署</h2><p>docker pull redis</p>
+<p>docker run -p 6379:6379 –name redis -v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;redis&#x2F;data:&#x2F;data <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;redis&#x2F;redis.conf:&#x2F;etc&#x2F;redis&#x2F;redis.conf <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;redis&#x2F;data:&#x2F;data <br>-d redis redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf –appendonly yes –requirepass “密码”</p>
+<p>docker exec -it redis &#x2F;bin&#x2F;bash</p>
+<h2 id="Nginx-部署"><a href="#Nginx-部署" class="headerlink" title="Nginx 部署"></a>Nginx 部署</h2><p>docker run -p 10000:10000 –name smnginx -v $PWD&#x2F;www:&#x2F;www -v $PWD&#x2F;conf&#x2F;nginx.conf:&#x2F;etc&#x2F;nginx&#x2F;nginx.conf -v $PWD&#x2F;logs:&#x2F;wwwlogs -d nginx</p>
+<p>参考文档：<br><a href="https://www.runoob.com/docker/ubuntu-docker-install.html">https://www.runoob.com/docker/ubuntu-docker-install.html</a></p>
+<h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><p>重启 docker：<br>systemctl restart docker.service<br>sudo service docker restart<br>docker启动日志：<br>&#x2F;var&#x2F;log&#x2F;upstart&#x2F;docker.log</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>腾讯云服务器部署</title>
+    <url>/2020/08/08/cloud-server-init-tecent/</url>
+    <content><![CDATA[<p>执行以下命令，查看连接到实例的磁盘名称<br>sudo fdisk -l<br>执行以下命令，格式化该磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>执行以下命令，将该磁盘挂载到 &#x2F;data 挂载点<br>sudo mount &#x2F;dev&#x2F;vdb &#x2F;data<br>创建用户组及用户<br>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<h1 id="用户创建"><a href="#用户创建" class="headerlink" title="用户创建"></a>用户创建</h1><p>查看用户组是否存在<br>grep shumei &#x2F;etc&#x2F;group<br>添加用户组 shumei<br>groupadd shumei</p>
+<p>查看用户 shumei 是否存在<br>grep shumei &#x2F;etc&#x2F;passwd<br>添加用户<br>useradd -g shumei -d &#x2F;data&#x2F;home&#x2F;shumei -m shumei<br>查看 shumei 信息<br>id shumei<br>设置用户密码<br>passwd shumei</p>
+<p>赋给用户 sudo 权限：<a href="http://man.linuxde.net/sudo">http://man.linuxde.net/sudo</a><br>vi &#x2F;etc&#x2F;sudoers<br>仿照现有root的例子就行，加一行（最好用tab作为空白）<br>shumei  ALL&#x3D;(ALL)   ALL<br>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code>echo $SHELL
+usermod -s /bin/bash shumei
+</code></pre>
+<pre><code>export JAVA_HOME=/data/home/shumei/software/jdk1.8.0_221
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+</code></pre>
+<pre><code>create user &#39;shumei&#39;@&#39;%&#39; identified by &#39;密码&#39;;
+
+create database fund_management default character set utf8;
+grant all privileges on fund_management.* to shumei@&#39;%&#39;;
+</code></pre>
+<pre><code>server &#123;
+    listen       80;
+    server_name  gx.digital-fund.cn;
+
+    access_log off;
+    rewrite ^(.*)$ https://$host$1 permanent;
+
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+        <tag>腾讯云</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker 私服 harbor 安装</title>
+    <url>/2020/08/22/harbor-install/</url>
+    <content><![CDATA[<h1 id="1-安装-docker-compose"><a href="#1-安装-docker-compose" class="headerlink" title="1 安装 docker-compose"></a>1 安装 docker-compose</h1><pre><code class="shell">sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>验证：<br>docker-compose -version<br>PS：如果想要卸载docker-compose，请执行以下命令<br><code>sudo rm /usr/local/bin/docker-compose</code></p>
+<h1 id="2-安装-harbor"><a href="#2-安装-harbor" class="headerlink" title="2 安装 harbor"></a>2 安装 harbor</h1><p>本文是参照官方文档进行编写的。<a href="https://goharbor.io/docs/2.0.0/install-config/">https://goharbor.io/docs/2.0.0/install-config/</a></p>
+<h2 id="2-1-下载安装包"><a href="#2-1-下载安装包" class="headerlink" title="2.1 下载安装包"></a>2.1 下载安装包</h2><p>如果服务器可以联网直接下载在线安装包(<code>harbor-offline-installer-v2.8.2.tgz</code>)。</p>
+<p>然后解压安装包：</p>
+<pre><code class="sh">tar xzvf harbor-online-installer-version.tgz
+</code></pre>
+<h2 id="2-2-配置-Https-Access"><a href="#2-2-配置-Https-Access" class="headerlink" title="2.2 配置 Https Access"></a>2.2 配置 Https Access</h2><h3 id="生成授权证书"><a href="#生成授权证书" class="headerlink" title="生成授权证书"></a>生成授权证书</h3><p>生成 CA 证书的秘钥：</p>
+<pre><code class="sh">openssl genrsa -out ca.key 4096
+</code></pre>
+<p>生成 CA 证书：</p>
+<p><code>-subj</code>参数的值反映了自己的机构信息。</p>
+<pre><code class="sh">openssl req -x509 -new -nodes -sha512 -days 3650 \
+ -subj &quot;/C=CN/ST=Beijing/L=Beijing/O=shumei/OU=Personal/CN=ahshumei.com&quot; \
+ -key ca.key \
+ -out ca.crt
+</code></pre>
+<h3 id="生成服务端证书"><a href="#生成服务端证书" class="headerlink" title="生成服务端证书"></a>生成服务端证书</h3><ol>
+<li>生成秘钥：</li>
+</ol>
+<pre><code class="sh">openssl genrsa -out ahshumei.com.key 4096
+</code></pre>
+<ol start="2">
+<li>生成 a certificate signing request (CSR)</li>
+</ol>
+<pre><code class="sh">openssl req -sha512 -new \
+    -subj &quot;/C=CN/ST=Beijing/L=Beijing/O=shumei/OU=Personal/CN=ahshumei.com&quot; \
+    -key ahshumei.com.key \
+    -out ahshumei.com.csr
+</code></pre>
+<ol start="3">
+<li>Generate an x509 v3 extension file</li>
+</ol>
+<pre><code class="sh">cat &gt; v3.ext &lt;&lt;-EOF
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1=ahshumei.com
+DNS.2=ahshumei
+DNS.3=服务器外网 IP
+EOF
+</code></pre>
+<ol start="4">
+<li>使用 <code>v3.ext</code> 为 harbor 服务生成一个证书</li>
+</ol>
+<pre><code class="sh">openssl x509 -req -sha512 -days 3650 \
+    -extfile v3.ext \
+    -CA ca.crt -CAkey ca.key -CAcreateserial \
+    -in ahshumei.com.csr \
+    -out ahshumei.com.crt
+</code></pre>
+<h3 id="配置证书到-Harbor-和-Docker"><a href="#配置证书到-Harbor-和-Docker" class="headerlink" title="配置证书到 Harbor 和 Docker"></a>配置证书到 Harbor 和 Docker</h3><p>生成 ca.acrt、ahshumei.com.crt、和 ahshumei.com.key 文件后，我们要将他们配置到 harbor 和 docker。</p>
+<ol>
+<li>复制服务端证书和 key 到harbor 服务器的证书文件夹</li>
+</ol>
+<pre><code class="sh">cp ahshumei.com.crt /home/shumei/soft/harbor/cert
+cp ahshumei.com.key /home/shumei/soft/harbor/cert
+</code></pre>
+<ol start="2">
+<li>将 <code>yourdomain.com.crt</code> 转换为 <code>yourdomain.com.cert</code>， Docker 会用到。</li>
+</ol>
+<pre><code class="sh">openssl x509 -inform PEM -in ahshumei.com.crt -out ahshumei.com.cert
+</code></pre>
+<ol start="3">
+<li>复制服务器证书、key、和 CA 文件到harbor 服务器的 Docker 证书目录。</li>
+</ol>
+<pre><code class="sh">cp ahshumei.com.cert /etc/docker/certs.d/ahshumei.com:11005/
+cp ahshumei.com.key /etc/docker/certs.d/ahshumei.com:11005/
+cp ca.crt /etc/docker/certs.d/ahshumei.com:11005/
+</code></pre>
+<p>如果将 nginx 的 443 端口映射到了其他端口，证书文件夹目录创建为：<code>/etc/docker/certs.d/ahshumei.com:prot/</code>或者<code>/etc/docker/certs.d/harbor_ip:prot</code>，否则不需要加端口。</p>
+<ol start="4">
+<li>重启 docker 引擎</li>
+</ol>
+<pre><code class="sh">systemctl restart docker
+# 或
+sudo service docker restart
+</code></pre>
+<p>证书目录结构如下：</p>
+<pre><code class="fallback">/etc/docker/certs.d/
+    └── ahshumei.com:11005
+       ├── ahshumei.com.cert  &lt;-- Server certificate signed by CA
+       ├── ahshumei.com.key   &lt;-- Server key signed by CA
+       └── ca.crt        &lt;-- Certificate authority that signed the registry certificate
+</code></pre>
+<h2 id="2-3-部署-harbor"><a href="#2-3-部署-harbor" class="headerlink" title="2.3 部署 harbor"></a>2.3 部署 harbor</h2><h3 id="配置必须的参数"><a href="#配置必须的参数" class="headerlink" title="配置必须的参数"></a>配置必须的参数</h3><pre><code class="yaml">hostname：ahshuemi.com
+https: 
+        port: 11005
+        certificate: /home/shumei/soft/harbor/cert/ahshumei.com.cert
+        private_key: /home/shumei/soft/harbor/cert/ahshumei.com.key
+harbor_admin_password： 修改
+database: 
+        password: 修改
+data_volume: /home/shumei/soft/harbor/data
+</code></pre>
+<h3 id="执行安装脚本"><a href="#执行安装脚本" class="headerlink" title="执行安装脚本"></a>执行安装脚本</h3><pre><code class="sh">sudo ./install.sh
+</code></pre>
+<p>安装后默认会启动。</p>
+<p>如果 <code>harbor</code> 已经安装过，修改 <code>harbor.yml</code> 后需要先执行 <code>prepare</code> 脚本：</p>
+<pre><code class="sh">./prepare
+</code></pre>
+<p>如果 harbor 服务启动着，需要先关闭服务并移除存在的实例（镜像数据不会丢失）：</p>
+<pre><code class="sh">docker-compose down -v
+</code></pre>
+<p>启动 harbor</p>
+<pre><code class="sh">docker-compose up -d
+</code></pre>
+<h3 id="验证是否启动成功"><a href="#验证是否启动成功" class="headerlink" title="验证是否启动成功"></a>验证是否启动成功</h3><ol>
+<li>浏览器访问 <code>https://ahshumei.com:11005</code>，应该可以打开 harder 服务地址。</li>
+<li>查看<code>/etc/docker/daemon.json</code>确保<code>-insecure-registry</code>配置项中不包含<code>https://ahshumei.com:11005</code>。</li>
+<li>使用 Docker client 登录 harbor。</li>
+</ol>
+<pre><code class="sh">docker login ahshumei.com:11005
+</code></pre>
+<h1 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h1><h3 id="Stop-Harbor"><a href="#Stop-Harbor" class="headerlink" title="Stop Harbor"></a>Stop Harbor</h3><p>sudo docker-compose stop</p>
+<h3 id="Restart-harbor"><a href="#Restart-harbor" class="headerlink" title="Restart harbor"></a>Restart harbor</h3><p>sudo docker-compose start</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>Harbor Installation and Configuration[<a href="https://goharbor.io/docs/2.0.0/install-config/]">https://goharbor.io/docs/2.0.0/install-config/]</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>harbor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring-boot-with-docker</title>
+    <url>/2020/08/22/spring-boot-with-docker/</url>
+    <content><![CDATA[<p>Docker is a Linux container management toolkit with a “social” aspect, allowing users to publish container images and consume those published by others. A Docker image is a recipe for running a containerized process, and in this guide we will build one for a simple Spring boot application.</p>
+<h1 id="Containerize-It"><a href="#Containerize-It" class="headerlink" title="Containerize It"></a>Containerize It</h1><p>Docker has a simple “Dockerfile” file format that it uses to specify the “layers” of an image. So let’s go ahead and create a Dockerfile in our Spring Boot project:</p>
+<p>Dockerfile</p>
+<pre><code>FROM openjdk:8-jdk-alpine
+RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
+USER ethan:ahshumei
+ARG JAR_FILE=target/*.jar
+COPY $&#123;JAR_FILE&#125; app.jar
+ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
+</code></pre>
+<p>Also, there is a clean separation between dependencies and application resources in a Spring Boot fat jar file, and we can use that fact to improve performance. The key is to create layers in the container filesystem. The layers are cached both at build time and at runtime (in most runtimes) so we want the most frequently changing resources, usually the class and static resources in the application itself, to be layered after the more slowly changing resources. Thus we will use a slightly different implementation of the Dockerfile:</p>
+<pre><code>FROM openjdk:8-jdk-alpine
+MAINTAINER ethan@ahshumei.com
+RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
+USER ethan:ahshumei
+ARG DEPENDENCY=target/dependency
+COPY $&#123;DEPENDENCY&#125;/BOOT-INF/lib /app/lib
+COPY $&#123;DEPENDENCY&#125;/META-INF /app/META-INF
+COPY $&#123;DEPENDENCY&#125;/BOOT-INF/classes /app
+ENTRYPOINT [&quot;java&quot;,&quot;-cp&quot;,&quot;app:app/lib/*&quot;,&quot;com.ahshumei.EurekaApplication&quot;]
+</code></pre>
+<p>This Dockerfile has a DEPENDENCY parameter pointing to a directory where we have unpacked the fat jar. From a Maven build:</p>
+<pre><code>$ mkdir -p target/dependency &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
+</code></pre>
+<p>运行以下命令创建镜像（如果用的是Maven的话）：</p>
+<pre><code>$ docker build -t ahshumei/eureka-docker .
+</code></pre>
+<p>This command builds an image and tags it as ahshumei&#x2F;eureka-docker.</p>
+<h1 id="创建自定义网络并设置固定IP"><a href="#创建自定义网络并设置固定IP" class="headerlink" title="创建自定义网络并设置固定IP"></a>创建自定义网络并设置固定IP</h1><p>在搭建一些集群软件的时候，组件和组件之间需要进行网络通信，这个时候如果每次重启IP都发生变化会很不方便，因此希望能够将容器的IP固定下来，这也是可以实现的，具体参考下面的方法。<br>1.创建自定义网络</p>
+<pre><code>docker network create --subnet=172.127.0.0/16 moon-network
+</code></pre>
+<p>2.创建Docker容器</p>
+<pre><code>docker run --name eureka -p 10090:10090 --net=gc-network --ip=172.127.0.90 -t ahshumei/eureka-docker
+</code></pre>
+<p>使用docker inspect container-id可以看到当前容器分配的IP就是固定IP了。</p>
+<h1 id="Build-a-Docker-Image-with-Maven"><a href="#Build-a-Docker-Image-with-Maven" class="headerlink" title="Build a Docker Image with Maven"></a>Build a Docker Image with Maven</h1><p>To get started quickly, you can run the Spring Boot image generator without even changing your pom.xml (and remember the Dockerfile if it is still there is ignored):</p>
+<pre><code>$ ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=springio/gs-spring-boot-docker
+</code></pre>
+<p>To push to a Docker registry you will need to have permission to push, which you won’t have by default. Change the image prefix to your own Dockerhub ID, and docker login to make sure you are authenticated before you run Docker.</p>
+<h1 id="Using-Spring-Profiles"><a href="#Using-Spring-Profiles" class="headerlink" title="Using Spring Profiles"></a>Using Spring Profiles</h1><p>Running your freshly minted Docker image with Spring profiles is as easy as passing an environment variable to the Docker run command</p>
+<pre><code>$ docker run -e &quot;SPRING_PROFILES_ACTIVE=prod&quot; -p 10900:10900 -t ahshumei/eureka-docker
+</code></pre>
+<h1 id="Debugging-the-application-in-a-Docker-container"><a href="#Debugging-the-application-in-a-Docker-container" class="headerlink" title="Debugging the application in a Docker container"></a>Debugging the application in a Docker container</h1><p>To debug the application JPDA Transport can be used. So we’ll treat the container like a remote server. To enable this feature pass a java agent settings in JAVA_OPTS variable and map agent’s port to localhost during a container run. With the Docker for Mac there is limitation due to that we can’t access container by IP without black magic usage.</p>
+<pre><code>$ docker run -e &quot;JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n&quot; -p 10900:10900 -t ahshumei/eureka-docker
+</code></pre>
+<p><a href="https://spring.io/guides/gs/spring-boot-docker/">https://spring.io/guides/gs/spring-boot-docker/</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 系统常用工具安装</title>
+    <url>/2020/08/22/mac-useful-tools-install/</url>
+    <content><![CDATA[<h1 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h1><p>简单记录下 Homebrew 安装。</p>
+<p>Homebrew 可以在 macOS 中方便的安装和管理各种系统不自带的开发包。但令人苦恼的是很多时候它的下载和更新速度太慢，推荐国内自动安装 Homebrew 的脚本。</p>
+<p>项目名称：HomebrewCN<br>项目作者：CunKai<br>项目地址：<a href="https://gitee.com/cunkai/HomebrewCN">https://gitee.com/cunkai/HomebrewCN</a><br>脚本内容</p>
+<pre><code>/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;
+</code></pre>
+<p>只需要把这段脚本内容复制到「终端」中执行，按提示安装。</p>
+<h1 id="autojump"><a href="#autojump" class="headerlink" title="autojump"></a>autojump</h1><p>brew install autojump</p>
+<h1 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h1><p>阿里云镜像获取地址：<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+        <tag>brew</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker compose 服务编排</title>
+    <url>/2020/08/23/docker-compose/</url>
+    <content><![CDATA[<p>安装 docker-compose</p>
+<pre><code>sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>验证：<br>docker-compose -version<br>PS：如果想要卸载docker-compose，请执行以下命令<br>sudo rm &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose</p>
+<p>docker-compose 配置示例</p>
+<pre><code>version: &#39;3&#39;
+services:
+  gc-admin:
+    build: ./spring-boot-admin
+    volumes:
+      - &quot;/opt/docker_v/application-cloud.yml:/app/application-cloud.yml&quot;
+    ports:
+      - &quot;10091:10091&quot;
+    networks:
+      gcnet:
+        ipv4_address: 172.127.0.91
+    environment:
+      spring.profiles.active: cloud
+#  redis:
+#    image: &quot;redis:alpine&quot;
+  networks:
+    gcnet:
+      external:
+        name: gc-network
+</code></pre>
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><pre><code>docker-compose build
+</code></pre>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code>docker-compose up -d
+
+docker-compose ps
+</code></pre>
+<p>The docker-compose run command allows you to run one-off commands for your services. For example, to see what environment variables are available to the web service:<br>$ docker-compose run web env</p>
+<p>docker-compose stop<br>You can bring everything down, removing the containers entirely, with the down command. Pass –volumes to also remove the data volume used by the Redis container:<br>$ docker-compose down –volumes</p>
+<p>docker-compose rm –force</p>
+<h3 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h3><ol>
+<li>http: server gave HTTP response to HTTPS client<br>解决办法：<br>在 &#x2F;etc&#x2F;docker 下，创建 daemon.json 文件，写入：</li>
+</ol>
+<pre><code>&#123;
+  &quot;debug&quot;: true,
+  &quot;experimental&quot;: false,
+  &quot;registry-mirrors&quot;: [
+    &quot;http://hub-mirror.c.163.com&quot;,
+    &quot;https://d4u3cjo2.mirror.aliyuncs.com&quot;
+  ],
+  &quot;insecure-registries&quot;: [
+    &quot;IP:PORT&quot; harbor私服的IP和端口
+  ]
+&#125;
+</code></pre>
+<p>重启 docker：</p>
+<pre><code>systemctl restart docker.service
+sudo service docker restart
+</code></pre>
+<p>docker启动日志：</p>
+<pre><code>/var/log/upstart/docker.log
+</code></pre>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>Get started with Docker Compose[<a href="https://docs.docker.com/compose/gettingstarted/]">https://docs.docker.com/compose/gettingstarted/]</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发布 docker 镜像</title>
+    <url>/2020/08/29/docker-push-image/</url>
+    <content><![CDATA[<h2 id="发布镜像到-docker-私服"><a href="#发布镜像到-docker-私服" class="headerlink" title="发布镜像到 docker 私服"></a>发布镜像到 docker 私服</h2><p>Dockerfile 示例：</p>
+<pre><code># syntax=docker/dockerfile:experimental
+FROM openjdk:8-jdk-alpine as build
+WORKDIR /workspace/app
+COPY target/bootstrap-1.0.0-SNAPSHOT.jar app.jar
+RUN mkdir -p target/dependency &amp;&amp; (cp app.jar target) &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
+
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+RUN addgroup -S ahshumei &amp;&amp; adduser -S ethan -G ahshumei
+USER ethan:ahshumei
+ARG DEPENDENCY=/workspace/app/target/dependency
+COPY --from=build $&#123;DEPENDENCY&#125;/BOOT-INF/lib /app/lib
+COPY --from=build $&#123;DEPENDENCY&#125;/META-INF /app/META-INF
+COPY --from=build $&#123;DEPENDENCY&#125;/BOOT-INF/classes /app
+ENTRYPOINT [&quot;java&quot;,&quot;-cp&quot;,&quot;app:app/lib/*&quot;,&quot;com.EmergencyManagementApplication&quot;]
+</code></pre>
+<p>参考此示例时注意修改第四行jar包名称和最后一行的运行类名。</p>
+<h3 id="1-打包"><a href="#1-打包" class="headerlink" title="1.打包"></a>1.打包</h3><pre><code>mvn -U clean package -Dmaven.test.skip=true
+或者指定打包模块命令：
+mvn -U clean package -Dmaven.test.skip=true -pl 模块名称 -am
+</code></pre>
+<h3 id="–2-解压文件–"><a href="#–2-解压文件–" class="headerlink" title="–2.解压文件–"></a>–2.解压文件–</h3><pre><code>mkdir -p target/dependency &amp;&amp; (cd target/dependency; jar -xf ../*.jar)
+</code></pre>
+<h3 id="3-创建镜像"><a href="#3-创建镜像" class="headerlink" title="3.创建镜像"></a>3.创建镜像</h3><pre><code>DOCKER_BUILDKIT=1 docker build -t ethan/镜像名 .
+</code></pre>
+<h3 id="–4-创建容器–"><a href="#–4-创建容器–" class="headerlink" title="–4.创建容器–"></a>–4.创建容器–</h3><p>可在本地创建容器，用于测试镜像是否可正常使用。<br>指定端口、网络、以及配置文件创建并运行容器<br>docker run –name process -v &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml:&#x2F;app&#x2F;application-cloud.yml -p 10100:10100 –net&#x3D;moon-network –ip&#x3D;172.127.0.100 -t ethan&#x2F;镜像名 –spring.profiles.active&#x3D;cloud<br>指定端口创建并运行容器<br>docker run –name process1 -p 10100:10100 -t ethan&#x2F;镜像名<br>将主机 &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml 文件挂载到容器的 &#x2F;app&#x2F;application-cloud.yml 文件<br>-v &#x2F;opt&#x2F;docker_v&#x2F;application-cloud.yml:&#x2F;app&#x2F;application-cloud.yml</p>
+<h3 id="5-发布镜像"><a href="#5-发布镜像" class="headerlink" title="5.发布镜像"></a>5.发布镜像</h3><p>docker login -u ethan harbor私服IP:端口<br>docker tag 镜像ID harbor私服IP:端口&#x2F;库名&#x2F;镜像名<br>docker push harbor私服IP:端口&#x2F;库名&#x2F;镜像名</p>
+<h3 id="发布镜像到-docker-hub"><a href="#发布镜像到-docker-hub" class="headerlink" title="发布镜像到 docker hub"></a>发布镜像到 docker hub</h3><p>在docker hub 注册账号：<a href="https://hub.docker.com/repositories">https://hub.docker.com/repositories</a><br>使用Docker hub账号在验证本地登录：</p>
+<pre><code>docker login
+</code></pre>
+<p>修改 repository 名称，即 DockerID&#x2F;仓库名，不一致将无法发布：<br>docker tag 镜像ID 用户名称&#x2F;镜像源名(repository name):新的标签名(tag)<br>$ docker tag 487c260f20ee ethan2docker&#x2F;moon<br>docker push <your_username>&#x2F;my-first-repo:tag<br>$ docker push ethan2docker&#x2F;moon</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eye of The Tiger</title>
+    <url>/2020/09/18/Eye-of-The-Tiger/</url>
+    <content><![CDATA[<p>Eye of the Tiger 是 Survivor 乐队在 1982 年应西尔维斯特史泰龙为电影《洛奇3》创作的主题曲。</p>
+<p>Risin’ up<br>back on the street<br>did my time took my chances<br>went the distance<br>now i’m back on my feet<br>just a man and and his will to survive<br>so many times<br>it happens too fast<br>you trade your passion for glory<br>don’t lose your grip on the dreams of the past<br>you must fight just to keep them alive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Face to face<br>out in the heat<br>hangin’ tough<br>stayin’ hungry<br>they stack the odds<br>still we take to the street<br>for the kill with the will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Risin’ up<br>straight to the top<br>had the guts<br>got the glory<br>went the distance<br>now i’m not gonna stop<br>just a man and his will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu Server 安装</title>
+    <url>/2021/03/29/install-Ubuntu-Server/</url>
+    <content><![CDATA[<h1 id="下载系统-ISO-文件"><a href="#下载系统-ISO-文件" class="headerlink" title="下载系统 ISO 文件"></a>下载系统 ISO 文件</h1><p><a href="https://cn.ubuntu.com/download">https://cn.ubuntu.com/download</a><br>Ubuntu Server 20.04.2 LTS</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol>
+<li>将 ISO 文件解压至 USB Disk 根目录</li>
+<li>启动电脑时，进入手动选择模式（通常是 F12、F10、F2）</li>
+<li>安装系统</li>
+</ol>
+<h1 id="配置静态IP"><a href="#配置静态IP" class="headerlink" title="配置静态IP"></a>配置静态IP</h1><p>查看IP</p>
+<pre><code>ip addr
+</code></pre>
+<p>修改配置文件</p>
+<pre><code>vi /etc/netplan/00-installer-config.yaml
+
+# This is the network config written by &#39;subiquity&#39;
+network:
+  ethernets:
+    enp2s0:
+      dhcp4: no
+      addresses: [10.10.1.11/24]
+      gateway4: 10.10.1.1
+      nameservers:
+              addresses: [10.10.1.1]
+  version: 2
+</code></pre>
+<h1 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h1><pre><code>修改配置文件
+vi .profile
+
+# 添加下面一行代码到最后
+TZ=&#39;Asia/Shanghai&#39;; export TZ
+</code></pre>
+<h1 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h1><p>备份 sources.list<br>cd &#x2F;etc&#x2F;apt<br>sudo cp sources.list sources.list.bak</p>
+<p>编辑 sources.list<br>添加如下内容（选择一个源即可）：</p>
+<pre><code># tsinghua
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted
+
+## Major bug fix updates produced after the final release of the
+## distribution.
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted
+
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## team. Also, please note that software in universe WILL NOT receive any
+## review or updates from the Ubuntu security team.
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates universe
+
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## team, and may not be under a free licence. Please satisfy yourself as to
+## your rights to use the software. Also, please note that software in
+## multiverse WILL NOT receive any review or updates from the Ubuntu
+## security team.
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates multiverse
+
+## N.B. software from this repository may not have been tested as
+## extensively as that contained in the main release, although it includes
+## newer versions of some applications which may provide useful features.
+## Also, please note that software in backports WILL NOT receive any review
+## or updates from the Ubuntu security team.
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted
+deb http://security.ubuntu.com/ubuntu/ jammy-security universe
+deb http://security.ubuntu.com/ubuntu/ jammy-security multiverse
+
+# 阿里源
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记 MySql 数据库被勒索病毒攻击</title>
+    <url>/2021/04/19/mysql-attacked-by-blackmail-virus/</url>
+    <content><![CDATA[<h1 id="被勒索病毒攻击"><a href="#被勒索病毒攻击" class="headerlink" title="被勒索病毒攻击"></a>被勒索病毒攻击</h1><p>To recover your lost databases and avoid leaking it: visit <a href="http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion/">http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion</a> and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser <a href="https://www.torproject.org/projects/torbrowser.html">https://www.torproject.org/projects/torbrowser.html</a></p>
+<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><h2 id="1-第一时间修改密码"><a href="#1-第一时间修改密码" class="headerlink" title="1. 第一时间修改密码"></a>1. 第一时间修改密码</h2><ol>
+<li>修改服务器密码</li>
+<li>修改数据库密码</li>
+<li>修改数据库访问端口</li>
+</ol>
+<h2 id="2-确认数据恢复条件"><a href="#2-确认数据恢复条件" class="headerlink" title="2. 确认数据恢复条件"></a>2. 确认数据恢复条件</h2><p>数据恢复需要具备两个条件：</p>
+<ol>
+<li>有历史数据库备份文件；</li>
+<li>MySql服务开启了 binlog；<br>若条件具备，才可进行数据恢复。</li>
+</ol>
+<h2 id="3-恢复方法"><a href="#3-恢复方法" class="headerlink" title="3. 恢复方法"></a>3. 恢复方法</h2><h3 id="1-查看binlog信息"><a href="#1-查看binlog信息" class="headerlink" title="1. 查看binlog信息"></a>1. 查看binlog信息</h3><p>show variables like ‘%log_bin%’;</p>
+<p>备份 binlog 文件，防止日志文件丢失，binlog 文件目录可能为：&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;var，具体位置查询方式有两种：</p>
+<ol>
+<li>查询 MySql 配置文件 my.cnf，查看 binlog 路径配置项</li>
+<li>通过 sql 命令查询</li>
+</ol>
+<pre><code># 查询当前主日志
+show master status; 
+# 查询日志名为 binlog.000002 的相关信息，其中含日志路径
+show binlog events in &#39;binlog.000002&#39;;
+</code></pre>
+<p>日志文件备份后，查询日志，确认数据被删除时间。先使用 mysqlbinlog 命令导出指定时间之后的日志信息：</p>
+<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 &gt; /home/shumei/sqllog/log89.sql
+</code></pre>
+<p>若不知道 mysqlbinlog 命令位置，可通过 find 命令查找：</p>
+<pre><code>find / -name mysqlbinlog
+</code></pre>
+<p>输入日志后，查看日志内容如下：</p>
+<pre><code># at 3809968
+#210416 17:46:19 server id 1  end_log_pos 3810094 	Query	thread_id=27527	exec_time=0	error_code=0
+use `emerge`/*!*/;
+SET TIMESTAMP=1618566379/*!*/;
+SET @@session.sql_mode=0/*!*/;
+CREATE TABLE whiteeyes (name VARCHAR(255), code VARCHAR(255))
+/*!*/;
+# at 3810094
+#210416 17:46:19 server id 1  end_log_pos 3810207 	Query	thread_id=27527	exec_time=0	error_code=0
+SET TIMESTAMP=1618566379/*!*/;
+DROP TABLE `whiteeyes` /* generated by server */
+/*!*/;
+# at 3810207
+#210416 17:48:59 server id 1  end_log_pos 3810294 	Query	thread_id=27529	exec_time=0	error_code=0
+SET TIMESTAMP=1618566539/*!*/;
+DROP DATABASE `emerge`
+/*!*/;
+# at 3810294
+#210416 17:49:01 server id 1  end_log_pos 3810448 	Query	thread_id=27530	exec_time=0	error_code=0
+SET TIMESTAMP=1618566541/*!*/;
+SET @@session.sql_mode=524288/*!*/;
+CREATE DATABASE IF NOT EXISTS `emerge` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci
+/*!*/;
+# at 3810448
+#210416 17:49:02 server id 1  end_log_pos 3810736 	Query	thread_id=27530	exec_time=0	error_code=0
+use `emerge`/*!*/;
+SET TIMESTAMP=1618566542/*!*/;
+CREATE TABLE `WARNING`( `id` int(11) NOT NULL, `warning` text COLLATE utf8_unicode_ci, `website` text COLLATE utf8_unicode_ci, `token` text COLLATE utf8_unicode_ci) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+/*!*/;
+# at 3810736
+#210416 17:49:03 server id 1  end_log_pos 3810806 	Query	thread_id=27530	exec_time=0	error_code=0
+SET TIMESTAMP=1618566543/*!*/;
+BEGIN
+/*!*/;
+# at 3810806
+#210416 17:49:03 server id 1  end_log_pos 3811614 	Query	thread_id=27530	exec_time=0	error_code=0
+SET TIMESTAMP=1618566543/*!*/;
+INSERT INTO `WARNING` (`id`, `warning`, `website`, `token`) VALUES (1, &#39;To recover your lost databases and avoid leaking it: visit http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser https://www.torproject.org/projects/torbrowser.html&#39;, &#39;http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion&#39;, &#39;e620354e995a068f&#39;)
+</code></pre>
+<p>确定数据库被删除时间为：210416 17:48:59，并根据日志推断需要恢复数据的时间点。</p>
+<h3 id="2-根据推断确认恢复内容"><a href="#2-根据推断确认恢复内容" class="headerlink" title="2. 根据推断确认恢复内容"></a>2. 根据推断确认恢复内容</h3><p>导出日志内容：</p>
+<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000086 &gt; /home/shumei/sqllog/mysql_restore_86.sql
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000087 &gt; /home/shumei/sqllog/mysql_restore_87.sql
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge /home/shumei/sqllog/mysql-bin.000088 &gt; /home/shumei/sqllog/mysql_restore_88.sql
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --stop-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 &gt; /home/shumei/sqllog/mysql_restore_89.sql
+</code></pre>
+<p>start-datetime 为拥有的最新数据库备份时间；<br>stop-datetime 为数据库被攻击时间；<br>日志导出后进行查看、确认，确定没问题可进行下一步数据恢复。</p>
+<h3 id="3-恢复操作"><a href="#3-恢复操作" class="headerlink" title="3. 恢复操作"></a>3. 恢复操作</h3><ol>
+<li>导入历史数据库备份。</li>
+<li>通过 binlog 恢复备份时间至被攻击时间段内的数据。</li>
+</ol>
+<pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000087 | mysql -u root -p********
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge /home/shumei/sqllog/mysql-bin.000088 | mysql -u root -p********
+/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --stop-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 | mysql -u root -p********
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 安装 SFTP 服务</title>
+    <url>/2021/11/23/ubuntu-sftp-install/</url>
+    <content><![CDATA[<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>在 Ubuntu 系统上开通 sftp 文件服务，允许指定用户上传及下载文件。但是这些用户只能使用 sftp 传输文件，不能使用 SSH 终端访问服务器，并且 sftp 不能访问系统文件。系统管理员则既能使用 sftp 传输文件，也能使用 SSH 远程管理服务器。<br>以下是将允许 sftp 用户组内的用户使用 sftp，但不允许使用 SSH Shell，且该组用户不能访问系统文件。</p>
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="查看是否已安装-sftp"><a href="#查看是否已安装-sftp" class="headerlink" title="查看是否已安装 sftp"></a>查看是否已安装 sftp</h2><pre><code class="shell">dpkg --get-selections | grep ssh
+</code></pre>
+<h2 id="新建-sftp-用户组"><a href="#新建-sftp-用户组" class="headerlink" title="新建 sftp 用户组"></a>新建 sftp 用户组</h2><pre><code class="shell"># 查看用户组是否存在
+grep sftp /etc/group
+# 添加用户组 sftp
+groupadd sftp
+</code></pre>
+<h2 id="新建-sftp-用户"><a href="#新建-sftp-用户" class="headerlink" title="新建 sftp 用户"></a>新建 sftp 用户</h2><pre><code class="shell"># 查看用户 sftp 是否存在
+grep sftp /etc/passwd
+# 添加用户
+useradd -g sftp -m sftp
+</code></pre>
+<p>将 sftp 从所有其他用户组中移除并加入到 sftp 组，并且关闭其 Shell 访问：<br>sudo usermod -G sftp -s &#x2F;bin&#x2F;false sftp</p>
+<h2 id="创建并设置-sftp-用户目录"><a href="#创建并设置-sftp-用户目录" class="headerlink" title="创建并设置 sftp 用户目录"></a>创建并设置 sftp 用户目录</h2><p>准备“监狱”的根目录及共享目录，“监狱”的根目录必须满足以下要求：<br>所有者为 root，其他任何用户都不能拥有写入权限。<br>因此，为了让 sftp 用户能够上传文件，还必须在“监狱”根目录下再创建一个普通用户能够写入的共享文件目录。</p>
+<pre><code class="shell">sudo mkdir /home/sftp
+sudo mkdir /home/sftp/shared
+sudo chown shumei:sftp /home/sftp/shared
+sudo chmod 770 /home/sftp/shared
+</code></pre>
+<h2 id="修改SSH配置文件"><a href="#修改SSH配置文件" class="headerlink" title="修改SSH配置文件"></a>修改SSH配置文件</h2><pre><code>vi  /etc/ssh/sshd_config
+注释内容：
+#Subsystem      sftp    /usr/libexec/openssh/sftp-server
+在文件的最后，添加以下内容：
+Subsystem       sftp    internal-sftp
+AllowGroups shumei sftp
+Match Group sftp
+ChrootDirectory /home/sftp
+AllowTcpForwarding no
+X11Forwarding no
+ForceCommand internal-sftp -d shared
+</code></pre>
+<p>这些内容的意思是：<br>只允许 shumei 及 sftp 通过SSH访问系统；<br>针对 sftp 用户，额外增加一些设置：<br>将“&#x2F;home&#x2F;sftp”设置为该组用户的系统根目录（因此它们将不能访问该目录之外的其他系统文件）；<br>禁止 TCP Forwarding 和X11 Forwarding；<br>强制该组用户仅仅使用 SFTP，“-d shared”默认用户登陆后自动进入 shared 目录。<br>如果需要进一步了解细节，可以使用“man sshd_config”命令。这样设置之后，SSH用户组可以访问SSH，并且不受其他限制；而SFTP用户组仅能使用SFTP进行访问，而且被关进监狱目录。</p>
+<h2 id="设置-sftp-端口"><a href="#设置-sftp-端口" class="headerlink" title="设置 sftp 端口"></a>设置 sftp 端口</h2><p><code>sudo vim /etc/ssh/sshd_config</code></p>
+<p>搜索以端口22开头的行。通常，该行使用井号(＃)注释掉。 删除哈希号，然后输入新的SSH端口号： Port 2222</p>
+<p>编辑配置文件时要非常小心。 错误的配置可能会阻止SSH服务启动。</p>
+<p>完成后，保存文件并重新启动SSH服务以使更改生效： <code>sudo systemctl restart ssh</code></p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>访问 sftp 服务：</p>
+<pre><code class="shell">sftp -P 2222 sftp@127.0.0.1
+
+# 上传一个文件
+put local_file remote_file
+put /home/user/test.txt /test/test_upload.txt
+
+# 下载一个文件
+get remote_file local_file
+get /test/test.txt ~/Downloads/download.txt
+</code></pre>
+<h1 id="使用-SSH-密钥对来访问-sftp-服务"><a href="#使用-SSH-密钥对来访问-sftp-服务" class="headerlink" title="使用 SSH 密钥对来访问 sftp 服务"></a>使用 SSH 密钥对来访问 sftp 服务</h1><p>首先为 sftp 用户创建 SSH 密钥对，然后将公钥添加到 sftp 用户的 SSH 允许列表中。这样 sftp 用户就可以使用 SSH 密钥对来访问 sftp 服务了。</p>
+<h2 id="第一步查看已存在的密钥对"><a href="#第一步查看已存在的密钥对" class="headerlink" title="第一步查看已存在的密钥对"></a>第一步查看已存在的密钥对</h2><p>先检查是否已存在 SSH 密钥，SSH 密钥对一般存放在本地用户的根目录下。已存在本地公钥，你可以跳过生成 SSH 密钥。</p>
+<p>ED25519 算法</p>
+<pre><code class="shell">cat ~/.ssh/id_ed25519.pub
+</code></pre>
+<p>RSA 算法</p>
+<pre><code class="shell">cat ~/.ssh/id_rsa.pub
+</code></pre>
+<p>如果返回一长串以 ssh-ed25519 或 ssh-rsa 开头的字符串, 说明已存在本地公钥，你可以跳过生成 SSH 密钥。如果不存在，参考第二步生成 SSH 密钥对。</p>
+<h2 id="第二步生成-SSH-密钥对"><a href="#第二步生成-SSH-密钥对" class="headerlink" title="第二步生成 SSH 密钥对"></a>第二步生成 SSH 密钥对</h2><p>SSH 加密算法类型有 ED25519、RSA 等。</p>
+<p>ED25519 是一种基于椭圆曲线密码学的数字签名算法，属于 EdDSA 签名方案的一部分。它使用 SHA-512&#x2F;256 散列函数和 Curve25519 椭圆曲线。由于其数学特性，ED25519 被认为是目前最安全、加解密速度最快的密钥类型之一。它的密钥长度比 RSA 小很多，因此具有更好的性能。然而，由于它的新颖性和复杂性，一些旧的软件或系统可能不支持 ED25519。</p>
+<p>RSA 是一种广泛使用的公钥加密算法，既可以用于数据加密，也可以用于数字签名。RSA 的安全性基于大质数的难以分解性质。然而，随着计算机技术的发展，RSA 的安全性可能会受到威胁。RSA 密钥的长度通常比 ED25519 长，因此加解密速度相对较慢。但是，由于 RSA 的广泛使用和支持，它仍然是最兼容的密钥类型之一。</p>
+<p>推荐使用 ED25519 算法生成 SSH 密钥对：</p>
+<pre><code class="shell"># 注释会出现在.pub文件中，一般可使用邮箱作为注释内容，或者使用用户名作为注释内容
+ssh-keygen -t ed25519 -C &quot;&lt;注释内容&gt;&quot;
+</code></pre>
+<p>基于 RSA 算法，生成密钥对命令如下：</p>
+<pre><code class="shell">ssh-keygen -t rsa -C &quot;&lt;注释内容&gt;&quot;
+</code></pre>
+<blockquote>
+<p>警告：密钥用于鉴权，请谨慎保管。公钥文件以 .pub 扩展名结尾，可以公开给其他人，而没有 .pub 扩展名的私钥文件不要泄露给任何人！</p>
+</blockquote>
+<h2 id="第三步复制公钥"><a href="#第三步复制公钥" class="headerlink" title="第三步复制公钥"></a>第三步复制公钥</h2><p>查看公钥，然后复制到剪贴板</p>
+<pre><code class="shell"># ED25519 算法
+cat ~/.ssh/id_ed25519.pub
+# 如果使用 RSA 算法生成密钥对，使用以下命令
+cat ~/.ssh/id_rsa.pub
+</code></pre>
+<h2 id="第四步添加公钥"><a href="#第四步添加公钥" class="headerlink" title="第四步添加公钥"></a>第四步添加公钥</h2><p>将公钥添加到 sftp 用户的 SSH 允许列表中：</p>
+<pre><code class="shell"># 添加公钥
+vi /home/sftp/.ssh/authorized_keys
+</code></pre>
+<h2 id="测试确认"><a href="#测试确认" class="headerlink" title="测试确认"></a>测试确认</h2><p>测试确认是否可以使用 SSH 密钥对来访问 sftp 服务：</p>
+<pre><code class="shell">sftp -P 2222 sftpuser@ip
+</code></pre>
+<p>如果登陆成功，说明可以使用 SSH 密钥对来访问 sftp 服务了。</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>sftp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>联通云服务器初始化</title>
+    <url>/2022/07/14/cloud-server-init-cucloud/</url>
+    <content><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p>
+<p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p>
+<p>查看挂载结果<br>df -TH</p>
+<h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p>
+<h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p>
+<h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p>
+<pre><code># 查看用户组是否存在
+grep shumei /etc/group
+# 添加用户组 shumei
+groupadd shumei
+
+# 查看用户 shumei 是否存在
+grep shumei /etc/passwd
+# 添加用户
+useradd -g shumei -d /home/shumei -m shumei
+# 查看 shumei 信息
+id shumei
+# 设置用户密码
+passwd shumei
+
+# 赋给用户 sudo 权限：http://man.linuxde.net/sudo
+vi /etc/sudoers
+# 仿照现有root的例子就行，加一行（最好用tab作为空白）
+shumei  ALL=(ALL:ALL)   ALL
+</code></pre>
+<p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p>
+<pre><code># echo $SHELL 可查看当前使用的 shell
+usermod -s /bin/bash shumei
+</code></pre>
+<h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/path
+
+vi .profile
+export JAVA_HOME=/home/shumei/software/jdk1.8.0_25
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH
+
+# 使配置生效
+source .profile
+
+# 检查配置是否成功
+java -version
+</code></pre>
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[请参考官网文档]<a href="https://nginx.org/en/linux_packages.html#Ubuntu">https://nginx.org/en/linux_packages.html#Ubuntu</a></p>
+<h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装
+sudo apt install redis-server
+
+查看是否启动
+# redis-cli
+以上命令将打开以下终端：
+redis 127.0.0.1:6379&gt;
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+        <tag>联通云</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kettle experiences</title>
+    <url>/2023/05/23/kettle-experiences/</url>
+    <content><![CDATA[<h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol>
+<li>解压 pdi-ce 压缩包</li>
+<li>放入 mysql 驱动至 lib 文件夹下</li>
+<li>配置环境变量 .profile</li>
+</ol>
+<pre><code class="shell">export KETTLE=/home/shumei/soft/data-integration
+export PATH=$&#123;KETTLE&#125;:$PATH
+</code></pre>
+<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ul>
+<li>日期转换</li>
+</ul>
+<pre><code class="sql">date_format(a.start_date, &#39;%Y/%m/%d 00:00:00.000&#39;) as start_date
+date_format(create_time, &#39;%Y/%m/%d %T.%f&#39;) as data_create_time
+date_format(a.payedDate, &#39;%Y/%m&#39;) as payedDate
+date_format(DATE_ADD(now(), INTERVAL -1 MONTH), &#39;%Y%m&#39;);
+</code></pre>
+<ul>
+<li>日期计算</li>
+</ul>
+<pre><code class="sql">a.update_time &gt;= DATE_ADD(now(), INTERVAL -15 MINUTE)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -3 DAY)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 MONTH)
+a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 YEAR)
+</code></pre>
+<ul>
+<li>类型转换</li>
+</ul>
+<pre><code class="sql"># 把字段 id 的类型转换为字符串 char
+CAST(id as CHAR) AS CODE
+</code></pre>
+<h2 id="设定变量"><a href="#设定变量" class="headerlink" title="设定变量"></a>设定变量</h2><p>转换命名参数就是在转换内部定义的变量，作用范围是在转换内部。在转换的空白处双击左键，在转换属性中能看到“命名参数”。</p>
+<p>引用：可以在表输入SQL语句中使用${变量名} 或者 %%变量名%%</p>
+<h1 id="作业执行"><a href="#作业执行" class="headerlink" title="作业执行"></a>作业执行</h1><ul>
+<li>执行转换</li>
+</ul>
+<pre><code class="shell">pan.sh -file tr1.ktr
+pan.sh -file tr1.ktr -param:year=2023 -param:month=5
+</code></pre>
+<ul>
+<li>执行作业</li>
+</ul>
+<pre><code class="shell">kitchen.sh -file jobname1.kjb
+kitchen.sh -file jobname2.kjb -param:input=/kettle -param:output=/kettle
+</code></pre>
+<h1 id="定时任务脚本"><a href="#定时任务脚本" class="headerlink" title="定时任务脚本"></a>定时任务脚本</h1><pre><code class="shell">#!/bin/bash
+# 环境变量
+JAVA_HOME=/home/shumei/soft/jdk1.8.0_171
+KETTLE_HOME=&quot;/home/shumei/soft/data-integration&quot;
+export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib
+export PATH=$&#123;JAVA_HOME&#125;/bin::$PATH
+# 公共变量
+DATE_STR=`date +%Y%m%d`;
+BASE_DIR=&#39;/home/shumei/kettle&#39;
+# 局部变量
+v_script_dir=&#39;/kettle/1015dca/pro&#39;
+v_shell_name=dca1m
+v_result=&quot;执行成功&quot;
+# 脚本名称
+JOB01_NAME=tr1.ktr
+JOB02_NAME=tr2.ktr
+
+# X 企业名录入库
+v_date_str=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)
+$&#123;KETTLE_HOME&#125;/pan.sh -file $&#123;BASE_DIR&#125;$&#123;v_script_dir&#125;/$&#123;v_job01_name&#125; -level=Basic &gt;&gt; $&#123;BASE_DIR&#125;/logs/$&#123;v_shell_name&#125;.$&#123;DATE_STR&#125;
+pan_return=$?
+if [ $pan_return -eq 0 ]; then
+    v_result=&quot;执行成功&quot;
+elif [ $pan_return -eq 1 ]; then
+    v_result=&quot;执行失败&quot;
+else
+    v_result=&quot;执行取消&quot;
+fi
+echo $v_result
+if [ $pan_return -ne 0 ]; then
+    echo &quot;Task X 企业名录入库-$v_result $&#123;v_date_str&#125;&quot; | mail -s &quot;Subject: Task Failed&quot; ethan@ahshumei.com
+fi
+echo $&#123;v_date_str&#125;-X 企业名录入库 start
+echo -e $(date +&quot;%Y-%m-%d %H:%M:%S&quot;)-X 企业名录入库 end\n
+
+sleep 2
+</code></pre>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>kettle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>迁移 mysql 数据目录</title>
+    <url>/2023/05/25/migrate-mysql-data-directory/</url>
+    <content><![CDATA[<p>在 CentOS 中迁移 MySQL 的数据目录 &#x2F;var&#x2F;lib&#x2F;mysql 到其他磁盘可以按以下步骤进行:</p>
+<ol>
+<li>停止MySQL服务</li>
+</ol>
+<pre><code class="shell">sudo service mysqld stop
+</code></pre>
+<ol start="2">
+<li>新建目标数据目录，假设新的数据目录为 &#x2F;home&#x2F;mysql&#x2F;data，创建该目录：</li>
+</ol>
+<pre><code class="shell">sudo mkdir /home/mysql/data
+</code></pre>
+<ol start="3">
+<li>将原数据目录中的内容复制到新目录</li>
+</ol>
+<pre><code class="shell">sudo cp -r /var/lib/mysql /home/mysql/data
+</code></pre>
+<ol start="4">
+<li>修改新数据目录权限</li>
+</ol>
+<pre><code class="shell">sudo chown -R mysql:mysql /home/mysql/data/mysql
+sudo chmod -R 755 /home/mysql/data/mysql
+</code></pre>
+<ol start="5">
+<li>修改 MySQL 配置编辑MySQL配置文件 &#x2F;etc&#x2F;my.cnf，在 [mysqld] 部分添加：</li>
+</ol>
+<pre><code class="shell">log-bin = /home/mysql/data/mysql/hfgc-5-bin
+log_bin_index = /home/mysql/data/mysql/hfgc-5-bin.index
+datadir=/home/mysql/data/mysql
+socket=/home/mysql/data/mysql/mysql.sock
+</code></pre>
+<p>将 datadir、log-bin 等相关项的值修改为新的数据目录路径。</p>
+<ol start="6">
+<li>重新启动MySQL服务</li>
+</ol>
+<pre><code class="shell">sudo service mysqld start
+</code></pre>
+<p> MySQL会自动使用新的 datadir 路径启动。</p>
+<ol start="7">
+<li>检查 MySQL 是否正常运行进入 MySQL 命令行,检查数据库、表等是否正常：</li>
+</ol>
+<pre><code class="sql">show databases;
+use test; 
+show tables;
+</code></pre>
+<p>确认无异常后说明迁移成功。</p>
+<ol start="8">
+<li>删除原数据目录（可选）确认迁移成功后可以删除原数据目录 &#x2F;var&#x2F;lib&#x2F;mysql。</li>
+</ol>
+<p>以上步骤通过修改配置、复制数据并修改权限的方式完成 MySQL 数据目录的迁移。</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发送定时任务执行结果到指定邮箱</title>
+    <url>/2023/05/27/send-result-of-crontab-to-mail/</url>
+    <content><![CDATA[<p>在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下：</p>
+<h1 id="1-安装配置环境"><a href="#1-安装配置环境" class="headerlink" title="1 安装配置环境"></a>1 安装配置环境</h1><h2 id="1-1-安装-ssmtp-和-mailutils"><a href="#1-1-安装-ssmtp-和-mailutils" class="headerlink" title="1.1 安装 ssmtp 和 mailutils"></a>1.1 安装 ssmtp 和 mailutils</h2><pre><code class="shell">bash 
+sudo apt install ssmtp mailutils
+</code></pre>
+<p>配置过程需要选择配置类型，选择 <code>No configuration</code>。</p>
+<p>安装好后需要配置两个文件：<code>/etc/ssmtp/ssmtp.conf /etc/ssmtp/revaliases</code></p>
+<h2 id="1-2-修改配置"><a href="#1-2-修改配置" class="headerlink" title="1.2 修改配置"></a>1.2 修改配置</h2><h3 id="修改-ssmtp-配置文件"><a href="#修改-ssmtp-配置文件" class="headerlink" title="修改 ssmtp 配置文件"></a>修改 ssmtp 配置文件</h3><p>设置发送邮箱、SMTP服务器和端口等：</p>
+<p><code>vi /etc/ssmtp/ssmtp.conf</code></p>
+<pre><code class="shell"># Config file for sSMTP sendmail
+#
+# The person who gets all mail for userids &lt; 1000
+# Make this empty to disable rewriting.
+root=postmaster
+
+# The place where the mail goes. The actual machine name is required no
+# MX records are consulted. Commonly mailhosts are named mail.domain.com
+#mailhub=smtp.aliyun.com:465
+mailhub=smtp.163.com:465
+
+# The full hostname
+hostname=ubuntu
+UseTLS=Yes
+# Are users allowed to set their own From: address?
+# YES - Allow the user to specify their own From: address
+# NO - Use the system generated From: address
+FromLineOverride=NO
+
+#邮箱名
+AuthUser=your_email@163.com
+#授权码
+AuthPass=authpassasdfasdf
+</code></pre>
+<p>其中授权码 AuthPass 需要登录邮箱客户端获取。</p>
+<h3 id="修改配置文件-revaliases"><a href="#修改配置文件-revaliases" class="headerlink" title="修改配置文件 revaliases"></a>修改配置文件 revaliases</h3><p><code>vi /etc/ssmtp/revaliases</code></p>
+<pre><code class="shell"># sSMTP aliases
+#
+# Format:       local_account:outgoing_address:mailhub
+#
+# Example: root:your_login@your.domain:mailhub.your.domain[:port]
+# where [:port] is an optional port number that defaults to 25.
+# shumei 请修改为服务器用户名
+shumei:your_email@163.com:smtp.163.com:465
+</code></pre>
+<p>至此邮件发送的环境已搭建完成。下面是编写脚本测试发送邮件。</p>
+<h1 id="2-测试邮件发送"><a href="#2-测试邮件发送" class="headerlink" title="2 测试邮件发送"></a>2 测试邮件发送</h1><h2 id="2-1-编写任务脚本"><a href="#2-1-编写任务脚本" class="headerlink" title="2.1 编写任务脚本"></a>2.1 编写任务脚本</h2><p>在脚本中判断任务是否执行成功，如果失败则发送邮件。例如：</p>
+<pre><code class="shell">bash
+#!/bin/bash
+
+# 执行任务
+some_command
+
+# 判断任务执行结果
+if [ $? -ne 0 ]; then
+    # 发送邮件,邮件内容为任务输出
+    echo &quot;Subject: Task Failed&quot; | mail -s &quot;Task Failed&quot; mailname@domain.com
+fi 
+</code></pre>
+<p>- <code>some_command</code> 替换为要执行的命令<br>- <code>$?</code> 用于获取上一条命令的返回值,如果不等于 0 表示失败<br>- <code>mail</code> 命令用于发送邮件<br>- <code>-s</code> 指定邮件主题<br>- <code>$MAIL</code> 为预先配置的接收邮箱环境变量</p>
+<p>完成后为任务脚本添加可执行权限:<code>chmod +x script.sh</code></p>
+<h2 id="2-2-添加定时任务"><a href="#2-2-添加定时任务" class="headerlink" title="2.2 添加定时任务"></a>2.2 添加定时任务</h2><p>在 crontab 文件中添加定时任务，例如:</p>
+<pre><code class="shell">*/5 * * * * sh /path/to/script.sh   # 每5分钟执行一次
+</code></pre>
+<p>当定时任务执行失败时，会发送一封邮件通知到您指定的邮箱，实现了只在任务失败时发送邮件的效果。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://blog.csdn.net/gmaaa123/article/details/137954791">https://blog.csdn.net/gmaaa123/article/details/137954791</a><br><a href="https://devpress.csdn.net/linux/62eba51020df032da732ba45.html">https://devpress.csdn.net/linux/62eba51020df032da732ba45.html</a></p>
+]]></content>
+      <categories>
+        <category>运维</category>
+        <category>mail</category>
+      </categories>
+      <tags>
+        <tag>ssmtp</tag>
+        <tag>mailutils</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jasypt spring boot</title>
+    <url>/2023/07/14/jasypt-spring-boot/</url>
+    <content><![CDATA[<p>本文介绍如何将 jasypt 集成进 spring boot 项目中，用于解决用户、密码等敏感信息在代码中明文存储的问题。</p>
+<h1 id="什么是-jasypt-spring-boot"><a href="#什么是-jasypt-spring-boot" class="headerlink" title="什么是 jasypt spring boot"></a>什么是 jasypt spring boot</h1><p><strong><a href="http://www.jasypt.org/">Jasypt</a></strong>  is a java library which allows the developer to add basic encryption capabilities to his&#x2F;her projects with minimum effort, and without the need of having deep knowledge on how cryptography works.</p>
+<p>Jasypt 的特点请参看：<a href="http://www.jasypt.org/features.html">http://www.jasypt.org/features.html</a></p>
+<h1 id="集成方法"><a href="#集成方法" class="headerlink" title="集成方法"></a>集成方法</h1><p><strong><a href="https://github.com/ulisesbocchio/jasypt-spring-boot">开源项目文档</a></strong> 中介绍了三种集成方式，本文仅详细介绍第一种详细集成方式（本文只做参考，应以开源项目文档未准）。</p>
+<h2 id="三种集成方式"><a href="#三种集成方式" class="headerlink" title="三种集成方式"></a>三种集成方式</h2><h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><p>如果项目使用<code>@SpringBootApplication</code> 或者 <code>@EnableAutoConfiguration</code>，直接添加 jar 依赖即可。加密的配置项会在整个 Spring 项目中生效（This means any system property, environment property, command line argument, application.properties, application-*.properties, yaml properties, and any other property sources can contain encrypted properties）。</p>
+<pre><code class="xml">&lt;dependency&gt;
+        &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
+        &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;
+        &lt;version&gt;3.0.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><p>如何项目中不使用自动配置注解 <code>@SpringBootApplication</code> 或<code>@EnableAutoConfiguration</code> ，那么添加如下依赖到项目中：</p>
+<pre><code class="xml">&lt;dependency&gt;
+        &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
+        &lt;artifactId&gt;jasypt-spring-boot&lt;/artifactId&gt;
+        &lt;version&gt;3.0.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>再添加 <code>@EnableEncryptableProperties</code> 到你的 Configuration class. 示例：</p>
+<pre><code class="java">@Configuration
+@EnableEncryptableProperties
+public class MyApplication &#123;
+    ...
+&#125;
+</code></pre>
+<p>这样加密配置项就会在整个 Spring 项目中生效（This means any system property, environment property, command line argument, application.properties, yaml properties, and any other custom property sources can contain encrypted properties）。</p>
+<h3 id="第三种"><a href="#第三种" class="headerlink" title="第三种"></a>第三种</h3><p>如果项目中不使用自动装配注解 <code>@SpringBootApplication</code> or <code>@EnableAutoConfiguration</code> ，并且你也不想在整个 Spring 项目中启用加密配置，有第三种配置方式可以满足。首先添加下面依赖到项目中：</p>
+<pre><code class="xml">&lt;dependency&gt;
+        &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
+        &lt;artifactId&gt;jasypt-spring-boot&lt;/artifactId&gt;
+        &lt;version&gt;3.0.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>然后在你的配置文件中根据需要添加注解<code>@EncryptablePropertySource</code>，就像添加 Spring 的注解<code>@PropertySource</code>一样，例如：</p>
+<pre><code class="java">@Configuration
+@EncryptablePropertySource(name = &quot;EncryptedProperties&quot;, value = &quot;classpath:encrypted.properties&quot;)
+public class MyApplication &#123;
+    ...
+&#125;
+</code></pre>
+<p>还有一个注解<code>@EncryptablePropertySources</code>，用于添加一组<code>@EncryptablePropertySource</code>注解，例如：</p>
+<pre><code class="java">    @Configuration
+    @EncryptablePropertySources(&#123;@EncryptablePropertySource(&quot;classpath:encrypted.properties&quot;),
+                                 @EncryptablePropertySource(&quot;classpath:encrypted2.properties&quot;)&#125;)
+    public class MyApplication &#123;
+        ...
+    &#125;
+</code></pre>
+<p>Also, note that as of version 1.8, <code>@EncryptablePropertySource</code> supports YAML files.</p>
+<h2 id="集成详细步骤"><a href="#集成详细步骤" class="headerlink" title="集成详细步骤"></a>集成详细步骤</h2><h3 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h3><p>第一步添加依赖略，参看上面<strong>三种集成方式</strong>的第一种。</p>
+<h3 id="2-添加加密配置项"><a href="#2-添加加密配置项" class="headerlink" title="2. 添加加密配置项"></a>2. 添加加密配置项</h3><p>在 application.yml 配置文件中添加如下配置项：</p>
+<pre><code class="yaml">jasypt:
+  encryptor:
+    algorithm: PBEWITHHMACSHA512ANDAES_256
+    saltGeneratorClassName: org.jasypt.salt.RandomSaltGenerator
+    ivGeneratorClassName: org.jasypt.iv.RandomIvGenerator
+    property:
+      prefix: &quot;DC@[&quot;
+      suffix: &quot;]&quot;
+</code></pre>
+<p>配置中的 prefix 和 suffix 是<strong>自定义</strong>的密码串标识。其中还有一个必须的参数<code>jasypt.encryptor.password</code>，用于加密。但为了安全需要通过命令行方式传入，不能放入配置文件中（<del>测试环境为了方便可以临时使用，但不能提交到代码仓库</del>）。启动命令示例：</p>
+<pre><code class="yaml">java -Djasypt.encryptor.password=自己的加密秘钥 -jar xx.jar
+</code></pre>
+<p>其中<code>自己的加密秘钥</code>是自定义密码字符串，推荐 32 为 md5 码。<strong>测试环境和生产环境不要用同一个秘钥</strong>。</p>
+<p>如果使用 idea ，运行程序前需要在 Run&#x2F;Debug configuration 中的 VM option 中加入下面参数：</p>
+<p><code>-Djasypt.encryptor.password=测试环境秘钥</code></p>
+<h3 id="3-敏感信息加密"><a href="#3-敏感信息加密" class="headerlink" title="3. 敏感信息加密"></a>3. 敏感信息加密</h3><p>编写加密测试类如下：（**&#x3D;&#x3D;加密方法推荐使用附 1 中的脚本&#x3D;&#x3D;**）</p>
+<pre><code class="java">package com.ahshumei.common.utils;
+
+import com.ahshumei.BaseTest;
+import org.jasypt.encryption.StringEncryptor;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.annotation.Resource;
+
+/**
+ * 对称加密算法测试类
+ *
+ * @author ethan
+ * @datetime 2023/7/14 14:01
+ */
+public class StringEncryptorTest extends BaseTest &#123;
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Resource
+    StringEncryptor stringEncryptor;
+
+    /**
+     * 对称加密测试方法
+     *
+     * @author ethan
+     * @datetime 2023/7/14 13:57
+     */
+    @Test
+    public void encryptTest() &#123;
+        String usernameEnc = stringEncryptor.encrypt(&quot;empower&quot;);
+        String passwordEnc = stringEncryptor.encrypt(&quot;teststr&quot;);
+
+        System.out.println(usernameEnc);
+        System.out.println(passwordEnc);
+        logger.info(&quot;test username encrypt is &#123;&#125;ª&quot;, usernameEnc);
+        logger.info(&quot;test password encrypt is &#123;&#125;&quot;, passwordEnc);
+
+        logger.info(&quot;test username is &#123;&#125;&quot;, stringEncryptor.decrypt(usernameEnc));
+        logger.info(&quot;test password is &#123;&#125;&quot;, stringEncryptor.decrypt(passwordEnc));
+    &#125;
+
+&#125;
+</code></pre>
+<h3 id="4-配置加密项"><a href="#4-配置加密项" class="headerlink" title="4. 配置加密项"></a>4. 配置加密项</h3><p>将需要加密的配置项明文通过上一步测试方式进行加密，然后将加密后密文配置进配置文件中，示例：</p>
+<pre><code class="yaml">spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      # 主库数据源
+      master:
+        url: jdbc:mysql://10.10.1.7:3306/moon
+        username: DC@[4Y2s7d6D8rVQ3NAS/oWT+08QZT3dLcqN95i8YDtujnY6eFYshKGHDdniy7R5vyymª]
+        password: DC@[xImPkGcaY6qMK3vctVxkpKRg1KgxEG4hhMlgSQwiJhdueooHFGSUEccZFezeD2ig]
+</code></pre>
+<p><code>DC@[]</code>占位符是上面配置文件中自定义配置的。</p>
+<p>读取配置项测试类：</p>
+<pre><code class="java">package com.ahshumei.common.utils;
+
+import com.ahshumei.BaseTest;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+
+/**
+ * 对称加密算法测试类
+ *
+ * @author ethan
+ * @datetime 2023/7/14 14:01
+ */
+public class StringEncryptorTest extends BaseTest &#123;
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Value(&quot;$&#123;spring.datasource.druid.master.username&#125;&quot;)
+    private String username;
+    @Value(&quot;$&#123;spring.datasource.druid.master.password&#125;&quot;)
+    private String password;
+
+    /**
+     * 测试读取加密配置项方法
+     *
+     * @author ethan
+     * @datetime 2023/7/14 18:13
+     */
+    @Test
+    public void decodeTest() &#123;
+        logger.info(username);
+        logger.info(password);
+    &#125;
+
+&#125;
+</code></pre>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>jasypt 开源库为 Spring 项目提供了一种加解密能力来保护项目中的敏感信息，通过以上 4 步简单的配置即可使用，我们不需要去了解复杂加解密机制即可使用。并且 jasypt 不仅能集成到 Spring 中，还能集成到 Apache、Hibernate、SpringSecurity 等框架中。</p>
+<h1 id="附-1：其他加密字符串生成方法"><a href="#附-1：其他加密字符串生成方法" class="headerlink" title="附 1：其他加密字符串生成方法"></a>附 1：其他加密字符串生成方法</h1><p>除了上面通过测试方法生成加密字符串外，还有以下两种更方便的方式：</p>
+<h2 id="1-Java-命令行"><a href="#1-Java-命令行" class="headerlink" title="1 Java 命令行"></a>1 Java 命令行</h2><p>Jasypt提供了一个类专门用于加密解密，提供了main方法，调用如下：</p>
+<pre><code class="shell">java -cp ./jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI password=自己的加密秘钥 algorithm=PBEWithMD5AndTripleDES input=要加密的字符串
+</code></pre>
+<h2 id="2-脚本"><a href="#2-脚本" class="headerlink" title="2 脚本"></a>2 脚本</h2><p>Jasypt为我们提供了脚本，可以直接用于加密解密，从 <a href="http://www.jasypt.org/download.html">http://www.jasypt.org/download.html</a> 可以下载（会引导到 github 项目中下载）。下载（jasypt-1.9.3-dist.zip）解压后的文件中有一个 bin 目录，其中有加密、解密的脚本。</p>
+<p>脚本的使用方法与 java 命令一样，脚本本质上是封装了调用 java 类的工具。使用方法如下（参数含义参看<a href="http://www.jasypt.org/cli.html">官网文档</a>）：</p>
+<pre><code class="shell">sh encrypt.sh password=自己的加密秘钥 algorithm=PBEWITHHMACSHA512ANDAES_256 saltGeneratorClassName=org.jasypt.salt.RandomSaltGenerator ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator input=要加密的字符串
+</code></pre>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>jasypt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为应用创建守护进程</title>
+    <url>/2023/09/21/use-systemd-manage-application/</url>
+    <content><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p>
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p>
+<pre><code class="text">[Unit]
+Description=moon data center service
+
+[Service]
+ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<blockquote>
+<p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p>
+</blockquote>
+<h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p>
+<blockquote>
+<p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>systemd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>防止域名被恶意解析</title>
+    <url>/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/</url>
+    <content><![CDATA[<h1 id="恶意域名解析的原理"><a href="#恶意域名解析的原理" class="headerlink" title="恶意域名解析的原理"></a>恶意域名解析的原理</h1><p>假如公网 IP 暴露，那么别人可以随意用一个域名解析到公网 IP，如果解析的域名未备案，那会有安全风险。那如何防止呢？下面是 Nignx 的解决办法：</p>
+<p>如果 ip 对应的80（或者443）端口在 nginx 里没有指定默认资源，默认会以 conf.d 目录下的顺序第一的配置文件指向的资源为准，也就是用 80 或者 443 各排第一个的配置文件为默认资源。这时候如果用一个不相关的域名解析到 IP上，就会阴差阳错的关联到 conf.d 目录下 80 或者 443 各排第一位的配置文件对应的资源上。</p>
+<p>防解析的解决方法也很简单，就是指定 80 和 443 端口的默认资源，让他们只返回 403 报错，默认资源没法显示有效内容，域名就没法解析成功。</p>
+<h1 id="80-端口反代配置"><a href="#80-端口反代配置" class="headerlink" title="80 端口反代配置"></a>80 端口反代配置</h1><pre><code class="nginx">server &#123;
+    listen       80 default;
+    server_name  _;
+    return 403;
+&#125;
+</code></pre>
+<h1 id="443-端口反代配置"><a href="#443-端口反代配置" class="headerlink" title="443 端口反代配置"></a>443 端口反代配置</h1><p>443 端口防范配置则需要配置 ssl 证书，否则所有 https 请求都会失败，下面是颁发自签名证书和配置过程。</p>
+<h2 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h2><pre><code class="shell"># 首先，进入你想创建证书和私钥的目录，例如：
+cd /home/certs/
+
+# 创建服务器私钥，命令会让你输入一个口令：
+openssl genrsa -des3 -out server.key 2048
+
+# 创建签名请求的证书，最后两步密码留空（CSR）：
+openssl req -new -key server.key -out server.csr
+
+# 在加载 SSL 支持的 Nginx 并使用上述私钥时除去必须的口令：
+cp server.key server.key.org
+openssl rsa -in server.key.org -out server.key
+
+# 最后标记证书使用上述私钥和 CSR：
+openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
+</code></pre>
+<h2 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h2><p>在 nginx 目录下的 conf 目录内创建 403.conf：</p>
+<pre><code class="nginx"># 防止域名被恶意解析
+server &#123;
+    listen       80 default;
+    server_name  403.abc.com;
+
+    return 403;
+
+    location ~/.well-known/acme-challenge/ &#123;
+        root /usr/share/nginx/html/;
+    &#125;
+
+&#125;
+
+server &#123;
+    listen       443 ssl default;
+    server_name  403.abc.com;
+    ssl_certificate      /etc/nginx/cert/server.crt;
+    ssl_certificate_key  /etc/nginx/cert/server.key;
+
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    #表示使用的加密套件的类型。
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #表示使用的TLS协议的类型。
+    ssl_prefer_server_ciphers on;
+
+    return 403;
+
+&#125;
+</code></pre>
+<p>重启nginx，未报错，说明配置成功。</p>
+<p>访问 <a href="http://ip/">http://ip</a> 返回 403，说明 80 端口的防解析配置成功！</p>
+<p>访问 <a href="https://ip/">https://ip</a> 返回 403，说明 443 端口的防解析配置成功！</p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+        <tag>dns</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次 ssh 版本升级步骤</title>
+    <url>/2024/07/02/ssh-update/</url>
+    <content><![CDATA[<h1 id="验证-ssh-依赖软件版本"><a href="#验证-ssh-依赖软件版本" class="headerlink" title="验证 ssh 依赖软件版本"></a>验证 ssh 依赖软件版本</h1><p>首先查看 openSSH 的安装说明，确定 openssl、zlib 的最低版本要求。例如 openssh-9.7p1 的要求如下：</p>
+<pre><code class="text">A working installation of zlib:
+Zlib 1.1.4 or 1.2.1.2 or greater (earlier 1.2.x versions have problems):
+https://zlib.net/
+
+libcrypto from either of LibreSSL or OpenSSL.  Building without libcrypto
+is supported but severely restricts the available ciphers and algorithms.
+ - LibreSSL (https://www.libressl.org/) 3.1.0 or greater
+ - OpenSSL (https://www.openssl.org) 1.1.1 or greater
+
+LibreSSL/OpenSSL should be compiled as a position-independent library
+(i.e. -fPIC, eg by configuring OpenSSL as &quot;./config [options] -fPIC&quot;
+or LibreSSL as &quot;CFLAGS=-fPIC ./configure&quot;) otherwise OpenSSH will not
+be able to link with it.  If you must use a non-position-independent
+libcrypto, then you may need to configure OpenSSH --without-pie.
+
+If you build either from source, running the OpenSSL self-test (&quot;make
+tests&quot;) or the LibreSSL equivalent (&quot;make check&quot;) and ensuring that all
+tests pass is strongly recommended.
+
+NB. If you operating system supports /dev/random, you should configure
+libcrypto (LibreSSL/OpenSSL) to use it. OpenSSH relies on libcrypto&#39;s
+direct support of /dev/random, or failing that, either prngd or egd.
+</code></pre>
+<p>从 openSSH 的安装说明中，可以得知，libcrypto 的最低版本要求是 LibreSSL 3.1.0 或 OpenSSL 1.1.1 或更高版本。<br>查看服务器上的 openssl 和 zlib 版本：</p>
+<pre><code class="shell">openssl version
+OpenSSL 1.1.1v  1 Aug 2023
+
+find /usr/ -name zlib.pc
+/usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc
+/usr/local/lib/pkgconfig/zlib.pc
+/usr/local/zlib/lib/pkgconfig/zlib.pc
+
+cat /usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc
+prefix=/usr
+exec_prefix=$&#123;prefix&#125;
+libdir=$&#123;prefix&#125;/lib/x86_64-linux-gnu
+sharedlibdir=$&#123;libdir&#125;
+includedir=$&#123;prefix&#125;/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.11
+
+Requires:
+Libs: -L$&#123;libdir&#125; -L$&#123;sharedlibdir&#125; -lz
+Cflags: -I$&#123;includedir&#125;
+</code></pre>
+<p>检查是否有 gcc 编译器：</p>
+<pre><code class="shell">gcc --version
+# 如果没有的话安装
+apt-get install build-essential
+</code></pre>
+<h1 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h1><p>openssh-9.7p1.tar.gz 下载<br><a href="https://mirrors.aliyun.com/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz">https://mirrors.aliyun.com/pub/OpenBSD/OpenSSH/portable/openssh-9.7p1.tar.gz</a><br>openssl-1.1.1w.tar.gz 下载<br><a href="https://www.openssl.org/source/old/1.1.1/openssl-1.1.1w.tar.gz">https://www.openssl.org/source/old/1.1.1/openssl-1.1.1w.tar.gz</a><br>zlib 最新版本下载<br><a href="https://zlib.net/current/zlib.tar.gz">https://zlib.net/current/zlib.tar.gz</a></p>
+<pre><code class="shell"># 上传到服务器
+scp openssh-9.7p1.tar.gz ethan@ip:/home/ethan/soft/
+</code></pre>
+<h1 id="安装-openSSH"><a href="#安装-openSSH" class="headerlink" title="安装 openSSH"></a>安装 openSSH</h1><h2 id="备份-openSSH"><a href="#备份-openSSH" class="headerlink" title="备份 openSSH"></a>备份 openSSH</h2><pre><code class="shell">mkdir ~/backup/ssh/bak240328
+ls /etc/ssh
+sudo mv /etc/ssh/* ~/backup/ssh/bak240328
+
+mkdir ~/backup/ssh/pamd240328
+ls /etc/pam.d/sshd
+sudo mv /etc/pam.d/sshd* ~/backup/ssh/pamd240328
+
+mkdir ~/backup/ssh/etcinitdbak240328
+ls /etc/init.d/ssh*
+sudo mv /etc/init.d/ssh* ~/backup/ssh/etcinitdbak240328/
+
+ls /usr/bin/ssh*
+sudo mv /usr/bin/ssh* ~/backup/ssh/
+
+# 停止 openSSH 服务
+sudo systemctl sshd.service stop
+</code></pre>
+<h2 id="卸载-openSSH"><a href="#卸载-openSSH" class="headerlink" title="卸载 openSSH"></a>卸载 openSSH</h2><pre><code class="shell">sudo apt-get remove openssh-server openssh-client -y
+# or
+sudo apt purge --remove &quot;openssh*&quot;
+</code></pre>
+<h2 id="安装-openSSH-1"><a href="#安装-openSSH-1" class="headerlink" title="安装 openSSH"></a>安装 openSSH</h2><pre><code class="shell">tar -xvzf openssh-9.7p1.tar.gz
+cd openssh-9.7p1
+# 编译配置
+./configure --prefix=/usr/local/openssh --sysconfdir=/etc/ssh  --with-ssl-dir=/usr/local/openssl --with-zlib-dir=/usr/local/zlib --without-openssl-header-check
+# 编译
+make
+# 安装
+sudo make install
+
+sudo ln -s /usr/local/openssh/bin/ssh /usr/local/bin/ssh
+ssh -V
+</code></pre>
+<h2 id="将-openSSH-注册为服务"><a href="#将-openSSH-注册为服务" class="headerlink" title="将 openSSH 注册为服务"></a>将 openSSH 注册为服务</h2><pre><code class="shell">sudo vi /etc/systemd/system/sshd.service
+# /usr/lib/systemd/system/sshd.service
+
+# 添加以下内容：
+[Unit]
+Description=OpenSSH server
+Documentation=man:sshd(8) man:sshd_config(5)
+#After=network.target sshd-keygen.service
+#Wants=sshd-keygen.service
+After=network.target
+
+[Service]
+#Type=notify
+#EnvironmentFile=/etc/sysconfig/sshd
+#ExecStart=/usr/local/openssh/sbin/sshd -D $OPTIONS
+ExecStart=/usr/local/openssh/sbin/sshd
+#ExecReload=/bin/kill -HUP $MAINPID
+#KillMode=process
+#Restart=on-failure
+#RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<h2 id="重载-Systemctl-并设置为自启动"><a href="#重载-Systemctl-并设置为自启动" class="headerlink" title="重载 Systemctl, 并设置为自启动"></a>重载 Systemctl, 并设置为自启动</h2><pre><code class="shell">sudo systemctl enable sshd
+sudo systemctl daemon-reload
+sudo systemctl start sshd.service
+</code></pre>
+<h2 id="检查服务状态"><a href="#检查服务状态" class="headerlink" title="检查服务状态"></a>检查服务状态</h2><pre><code class="shell">systemctl status sshd
+netstat -anpt | grep 22
+</code></pre>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><pre><code class="shell"># 手动启动 openSSH
+sudo /usr/local/openssh/sbin/sshd
+
+# 测试 scp 命令
+scp zlib.tar.gz ethan@ip:/home/ethan/
+</code></pre>
+<h2 id="注册服务失败"><a href="#注册服务失败" class="headerlink" title="注册服务失败"></a>注册服务失败</h2><p>主要原因是 sshd.service 或者 ssh.service 冲突导致，主要查看以下两个目录：</p>
+<pre><code class="shell">ls /etc/systemd/system/ssh*
+ls /usr/lib/systemd/system/ssh*
+</code></pre>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/INSTALL">https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/INSTALL</a><br><a href="https://www.cnblogs.com/tangllty/p/18054446">https://www.cnblogs.com/tangllty/p/18054446</a><br><a href="https://blog.csdn.net/chsh4587/article/details/136328617">https://blog.csdn.net/chsh4587/article/details/136328617</a></p>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务器性能监控及钉钉通知方案</title>
+    <url>/2024/07/12/server-performance-monitor/</url>
+    <content><![CDATA[<p>本方案实现思路是通过 shell 脚本查询服务器相关性能指标，并将性能指标记录下来，如果发现指标超出预设的阈值，则发送钉钉通知给相关人员。具体实现思路如下：</p>
+<h1 id="创建脚本目录"><a href="#创建脚本目录" class="headerlink" title="创建脚本目录"></a>创建脚本目录</h1><p>使用如下命令创建所需目录：<br><code>mkdir -p /home/ethan/shell/log/monitor</code><br>使用<code>-p</code>选项，这样如果上层目录不存在，它会自动创建它们。其中用户目录<code>ethan</code>根据用户名修改。</p>
+<h1 id="创建监控脚本"><a href="#创建监控脚本" class="headerlink" title="创建监控脚本"></a>创建监控脚本</h1><p>在<code>/home/ethan/shell</code>目录下创建 shell 脚本<code>server-monitor.sh</code>，内容参考附件【监控脚本】。</p>
+<ul>
+<li>修改脚本中服务器名称、磁盘目录等变量值；</li>
+<li>修改脚本执行权限：<code>chmod 755 server-monitor.sh</code></li>
+<li>测试脚本：<code>sh server-monitor.sh</code></li>
+</ul>
+<h1 id="创建定时任务"><a href="#创建定时任务" class="headerlink" title="创建定时任务"></a>创建定时任务</h1><p>执行<code>crontab -e</code>，添加定时任务，示例如下：</p>
+<pre><code class="shell"># 服务器性能监控，每天 10:24 执行一次
+24 10 * * * sh /home/ethan/shell/server-monitor.sh &gt;&gt; /home/ethan/shell/crontab.log
+</code></pre>
+<h1 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h1><h2 id="监控脚本"><a href="#监控脚本" class="headerlink" title="监控脚本"></a>监控脚本</h2><ol>
+<li>脚本中常量<code>SERVER_NAME、DINGDING_ACCESS_TOKEN、DISK_PATH、LOG_PATH</code>值根据实际进行修改。</li>
+<li>发送邮件通知可选。删掉函数 send_mail及两处调用代码即可禁用。启用发送邮件功能需要安装 mail组件，安装手册可参考文章 <a href="https://ghlingjun.github.io/xiaoxiao/2023/05/27/send-result-of-crontab-to-mail/">安装 mailutils</a>。</li>
+</ol>
+<pre><code class="shell">#!/bin/bash
+#定义主机名称
+SERVER_NAME=&quot;XX服务器&quot;
+# 要检测占用率的磁盘分区
+DISK_PATH=&quot;/home&quot;
+LOG_PATH=&quot;/home/ethan/shell/log/monitor&quot;
+# 钉钉机器人的 access_token
+DINGDING_ACCESS_TOKEN=access_token
+#可配置多个邮件接收者，使用,号分割
+RECIPIENT=&quot;ethan@163.com&quot;
+
+# 服务器性能监控，每天 10:24 执行一次
+# 24 10 * * * sh /home/ethan/shell/server-monitor.sh &gt;&gt; /home/ethan/shell/crontab.log
+
+DATE_STR=`date +%Y%m%d`
+echo &quot;--------------------------------------&quot;
+echo &quot;`date +&quot;%Y-%m-%d %H:%M:%S&quot;` 检测服务器性能指标开始！&quot;
+# 性能阈值
+DISK_THRESHOLD=80 # 磁盘使用率阈值（%）
+MEM_THRESHOLD=80 # 内存使用率阈值（%）
+CPU_THRESHOLD=80 # CPU使用率阈值（%）
+# 定义接收通知的钉钉机器人的 Webhook URL。
+DINGTALK_WEBHOOK_URL=&quot;https://oapi.dingtalk.com/robot/send?access_token=$&#123;DINGDING_ACCESS_TOKEN&#125;&quot;
+# 获取本机IP地址输出本机的ip地址
+LOCAL_IP=$(hostname -I | awk &#39;&#123;print $1&#125;&#39;)
+# 获取指定分区的磁盘占用率  $(df -h / | awk &#39;/\// &#123;print int($5)&#125;&#39;)
+DISK_USED=$(df -h $DISK_PATH | awk &#39;/\// &#123;print int($5)&#125;&#39;)
+# 获取当前系统的实际内存使用率（排除小数部分）
+MEM_USED=$(free | awk &#39;/Mem:/ &#123;print int($3/$2 * 100)&#125;&#39;)
+# 获取当前系统的CPU使用率（精确到个位）。获取当前系统的实际 CPU 使用率（排除空闲 CPU 百分比的影响）
+CPU_USED=$(top -bn 1 | grep &quot;Cpu(s)&quot; | awk &#39;&#123;print int(100 - $8)&#125;&#39;)
+
+log_path=&quot;$LOG_PATH/$&#123;DATE_STR&#125;.log&quot;
+
+send_mail() &#123;
+    cat &quot;$&#123;log_path&#125;&quot; | mail -s &quot;服务器($&#123;LOCAL_IP&#125;)性能指标&quot; &quot;$&#123;RECIPIENT&#125;&quot;
+&#125;
+
+echo &quot;--------------------------------------&quot; &gt;&gt; $&#123;log_path&#125;
+echo &quot;`date +&quot;%Y-%m-%d %H:%M:%S&quot;`&quot; &gt;&gt; $&#123;log_path&#125;
+# 判断是否超过告警阈值
+if [ $DISK_USED -gt $DISK_THRESHOLD ] || [ $MEM_USED -gt $MEM_THRESHOLD ] || [ $CPU_USED -gt $CPU_THRESHOLD ]; then
+    echo &quot;警告！性能监控发现问题！($&#123;SERVER_NAME&#125;) ($&#123;LOCAL_IP&#125;)&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;-----------------&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;磁盘已用：$DISK_USED%，其中占用率最多的前5个有：&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;`du -h --max-depth=1 $DISK_PATH | sort -rh | head -n 6`&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;-----------------&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;内存已用：$MEM_USED%，其中占用率最多的前5个有：&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;`ps -eo pid,%mem,cmd --sort=-%mem | head -n 6`&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;-----------------&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;CPU 已用：$CPU_USED%，其中占用率最多的前5个有：&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;`ps -eo pid,%cpu,cmd --sort=-%cpu | head -n 6`&quot; &gt;&gt; $&#123;log_path&#125;
+else
+    echo &quot;服务器($&#123;SERVER_NAME&#125;) ($&#123;LOCAL_IP&#125;)当前资源使用情况如下：&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;磁盘已用：$DISK_USED% 磁盘空间足够，无需担心&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;内存已用：$MEM_USED% 内存还很充足，无需担心&quot; &gt;&gt; $&#123;log_path&#125;
+    echo &quot;CPU已用：$CPU_USED% CPU运行正常，无需担心&quot; &gt;&gt; $&#123;log_path&#125;
+    # 每月1日将监控结果通过邮件发送给负责人
+    DAY_OF_WEEK=$(date +%u)
+    if [ &quot;$DAY_OF_WEEK&quot; -eq 1 ]; then
+        send_mail
+    fi
+    exit 1
+fi
+
+item_monitor() &#123;
+    item_name=$1
+    item_used=$2
+    item_threshold=$3
+    item_command=$4
+    if [ $&#123;item_used&#125; -gt $&#123;item_threshold&#125; ]; then
+        echo &quot;-----------------&quot; &gt;&gt; $&#123;log_path&#125;
+        echo &quot;警告：$&#123;item_name&#125;资源使用率超出阈值！($&#123;SERVER_NAME&#125;) ($&#123;LOCAL_IP&#125;)&quot; &gt;&gt; $&#123;log_path&#125;
+        echo &quot;已用：$&#123;item_used&#125;% &quot; &gt;&gt; $&#123;log_path&#125;
+        echo &quot;查看占用率靠前的资源命令如下：&quot; &gt;&gt; $&#123;log_path&#125;
+        echo &quot;$&#123;item_command&#125;&quot; &gt;&gt; $&#123;log_path&#125;
+        # 通过钉钉机器人发送通知消息
+        curl -H &quot;Content-Type: application/json&quot; \
+            -d &#39;&#123;
+                &quot;msgtype&quot;: &quot;text&quot;,
+                &quot;text&quot;: &#123;
+                    &quot;content&quot;: &quot;【服务器监控】&#39;&quot;$&#123;item_name&#125;&quot;&#39; 占用率过高：(&#39;&quot;$&#123;item_used&#125;&quot;&#39;%) on (&#39;&quot;$&#123;SERVER_NAME&#125;&quot;&#39;) (&#39;&quot;$&#123;LOCAL_IP&#125;&quot;&#39;) at &#39;&quot;$(date)&quot;&#39;&quot;
+                &#125;
+            &#125;&#39; $DINGTALK_WEBHOOK_URL
+    fi
+&#125;
+
+item_monitor &quot;磁盘&quot; $&#123;DISK_USED&#125; $&#123;DISK_THRESHOLD&#125; &quot;du -h --max-depth=1 $&#123;DISK_PATH&#125; | sort -rh | head -n 6&quot;
+item_monitor &quot;内存&quot; $&#123;MEM_USED&#125; $&#123;MEM_THRESHOLD&#125; &quot;ps -eo pid,%mem,cmd --sort=-%mem | head -n 6&quot;
+item_monitor &quot;CPU&quot; $&#123;CPU_USED&#125; $&#123;CPU_THRESHOLD&#125; &quot;ps -eo pid,%cpu,cmd --sort=-%cpu | head -n 6&quot;
+
+send_mail
+
+# 参考资料
+# https://blog.csdn.net/qq_45547688/article/details/131804881
+# https://blog.csdn.net/zy_9466/article/details/132298199
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>message</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop 学习笔记</title>
+    <url>/2024/07/26/hadoop-learning/</url>
+    <content><![CDATA[<h1 id="HDFS简介、设计目标和应用场景"><a href="#HDFS简介、设计目标和应用场景" class="headerlink" title="HDFS简介、设计目标和应用场景"></a>HDFS简介、设计目标和应用场景</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>HDFS（Hadoop Distributed File System） 是 Apache Hadoop 的核心组件之一，作为大数据生态圈最底层的分布式存储服务而存在。</p>
+<p>HDFS 主要是解决大数据如何存储问题的。其是一种能够在普通硬件上运行的分布式文件系统，它是高容错的，适应于具有大数据集的应用程序，非常适合存储大型数据（比如TB和PB）。</p>
+<p>HDFD 使用多台计算机存储文件，并且提供了统一的访问接口，像访问一个普通文件系统一样使用分布式文件系统。</p>
+<h2 id="HDFS设计目标"><a href="#HDFS设计目标" class="headerlink" title="HDFS设计目标"></a>HDFS设计目标</h2><p>HDFS 可能有成千上百的服务器组成，每一个组件都有可能出现故障。因此故障检测和自动快速恢复是 HDFS 的核心架构目标。</p>
+<p>HDFS 上的应用主要以流式读取数据（Streaming Data Access）。HDFS 因此被设计成用于批处理，而不是用户交互式的。相较于数据访问的反应时间，更注重数据访问的高吞吐量。</p>
+<p>典型的 HDFS 文件大小是 GB 到 TB 的级别。所以 HDFS 被调整成支持大文件（Large Data Sets）。它应该提供很高的聚合数据带宽，一个集群中支持数百个节点，一个集群还应该支持千万级别的文件。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="适合场景"><a href="#适合场景" class="headerlink" title="适合场景"></a>适合场景</h3><p>大文件、数据流式访问、一次写入多次读取、低成本部署，廉价PC、高容错。</p>
+<h3 id="不适合场景"><a href="#不适合场景" class="headerlink" title="不适合场景"></a>不适合场景</h3><p>小文件、数据交互式访问、频繁任意修改、低延迟处理。</p>
+<h1 id="HDFS-重要特性解读"><a href="#HDFS-重要特性解读" class="headerlink" title="HDFS 重要特性解读"></a>HDFS 重要特性解读</h1><h2 id="主从架构集群"><a href="#主从架构集群" class="headerlink" title="主从架构集群"></a>主从架构集群</h2><p>一个 namenode 和一定数目的 datanode 组成。<br>namenode 是 HDFS 的主节点。管理元数据，记录每一个文件的信息，如何分块等信息。<br>datanode 是 HDFS 的从节点。存储 block 数据。</p>
+<img src="/2024/07/26/hadoop-learning/hdfs-framework.png" class="" title="hdfs 架构图">
+
+<h2 id="分块存储"><a href="#分块存储" class="headerlink" title="分块存储"></a>分块存储</h2><p>HDFS 中的文件在物理上是分块（block）存储的，默认大小是 128M（134217728），不足 128M 的文件本身就是一块。</p>
+<h2 id="副本机制"><a href="#副本机制" class="headerlink" title="副本机制"></a>副本机制</h2><p>文件的所有 block 都会有副本。副本系数可以在文件创建时可以指定，也可以在之后通过命令改变。<br>副本数由参数 dfs.replication 控制，默认值为 3，文件的所有 block 都会存储 3 份。</p>
+<img src="/2024/07/26/hadoop-learning/3-copy-strategy.png" class="" title="3备份策略">
+<h2 id="元数据记录"><a href="#元数据记录" class="headerlink" title="元数据记录"></a>元数据记录</h2><p>namenode 管理的元数据有两种类型：</p>
+<ol>
+<li>文件自身属性信息：文件名称、权限、修改时间、文件大小、复制因子、数据块大小。</li>
+<li>文件块位置映射信息：记录文件块 ID 等信息，及 datanode 之间的映射信息，即块位于哪个节点上。</li>
+</ol>
+<h2 id="抽象统一的目录树结构（namespace）"><a href="#抽象统一的目录树结构（namespace）" class="headerlink" title="抽象统一的目录树结构（namespace）"></a>抽象统一的目录树结构（namespace）</h2><p>HDFS 支持传统的层次型文件组织结构。文件系统的名字空间的层次结构与大多现有的文件系统雷系：用户可以创建、删除、移动或重命名文件。<br>namenode 负责维护文件系统的 namespace 名称空间，任何对文件系统名称空间或属性的修改都将被 namenode 记录下来。<br>HDFS 给客户端提供一个统一的抽象目录树，客户端通过路径来访问文件，形如：hdfs:&#x2F;&#x2F;namenode:port&#x2F;dir&#x2F;file.txt</p>
+<h2 id="数据块存储"><a href="#数据块存储" class="headerlink" title="数据块存储"></a>数据块存储</h2><p>文件的各个 block 的具体存储管理由 datanode 节点承担。<br>每个 block 都可以在多个 datanode 上存储。</p>
+<h1 id="HDFS-工作流程与机制——各角色职责"><a href="#HDFS-工作流程与机制——各角色职责" class="headerlink" title="HDFS 工作流程与机制——各角色职责"></a>HDFS 工作流程与机制——各角色职责</h1><img src="/2024/07/26/hadoop-learning/hdfs.png" class="" title="hdfs">
+
+<h2 id="主角色-namenode"><a href="#主角色-namenode" class="headerlink" title="主角色 namenode"></a>主角色 namenode</h2><ul>
+<li>NameNode 是 Hadoop 分布式文件系统的核心，架构中的主角色。</li>
+<li>NameNode 维护和管理文件系统元数据，包括名称空间目录树结构、文件和块的位置信息、访问权限等信息。</li>
+<li>基于此，NameNode 成为了访问 HDFS 的唯一入口。</li>
+<li>NameNode 内部通过内存和磁盘文件两种方式管理元数据。</li>
+<li>其中磁盘上的元数据文件包括 Fsimage 内存元数据镜像文件和 edits log(Journal) 编辑日志。<img src="/2024/07/26/hadoop-learning/namenode.png" class="" title="namenode"></li>
+</ul>
+<h3 id="namenode-职责"><a href="#namenode-职责" class="headerlink" title="namenode 职责"></a>namenode 职责</h3><ul>
+<li>NameNode 仅存储 HDFS 的元数据：文件系统中所有文件的目录树，并跟踪整个集群中的文件，不存储实际数据。</li>
+<li>NameNode 知道 HDFS 中任何给定文件的块列表及其位置。使用此信息 NameNode 知道如何从块中构建文件。</li>
+<li>NameNode 不持久化存储每个文件中各个块所在的 DataNode 的位置信息，这些信息会在系统启动时从 DataNode 重建。</li>
+<li>NameNode 是 Hadoop 集群中的单点故障。</li>
+<li>NameNode 所在机器通常会配置有大量内存（RAM）。</li>
+</ul>
+<h2 id="从角色-datanode"><a href="#从角色-datanode" class="headerlink" title="从角色 datanode"></a>从角色 datanode</h2><ul>
+<li>DataNode 是 Hadoop HDFS 中的从角色，负责具体得数据快存储。</li>
+<li>DataNode 的数量决定了 HDFS 集群的整体数据存储能力。通过和 NameNode 配合维护着数据块。<img src="/2024/07/26/hadoop-learning/datanodes.png" class="" title="datanodes"></li>
+<li></li>
+</ul>
+<h3 id="datanode-职责"><a href="#datanode-职责" class="headerlink" title="datanode 职责"></a>datanode 职责</h3><ul>
+<li>DataNode 负责最终数据块 block 的存储。是集群的从角色，也称为 Slave。</li>
+<li>DataNode 启动时，会将自己注册到 NameNode 并汇报自己负责持有的块列表。</li>
+<li>当某个 DataNode 关闭时，不会影响数据的可用性。NameNode 将安排由其他 DataNode 管理的块进行副本复制。</li>
+<li>DataNode 所在的机器通常配置有大量的磁盘空间，因为实际数据存储在 DataNode 中。</li>
+</ul>
+<h2 id="主角色辅助角色-secondarynamenode"><a href="#主角色辅助角色-secondarynamenode" class="headerlink" title="主角色辅助角色 secondarynamenode"></a>主角色辅助角色 secondarynamenode</h2><ul>
+<li>Secondary NameNode 充当 NameNode 的辅助节点，但不能替代 NameNode。</li>
+<li>主要帮助主角色进行元数据文件的合并动作。可以通俗的理解为主角色的“秘书”。<img src="/2024/07/26/hadoop-learning/secondary-name-node.png" class="" title="主角色辅助角色"></li>
+</ul>
+<h1 id="HDFS-工作流程与机制——写数据流程——核心概念"><a href="#HDFS-工作流程与机制——写数据流程——核心概念" class="headerlink" title="HDFS 工作流程与机制——写数据流程——核心概念"></a>HDFS 工作流程与机制——写数据流程——核心概念</h1><h2 id="写数据流程图"><a href="#写数据流程图" class="headerlink" title="写数据流程图"></a>写数据流程图</h2><img src="/2024/07/26/hadoop-learning/write-data-flow.png" class="" title="写数据流程图">
+
+<h2 id="核心概念：Pipeline-管道"><a href="#核心概念：Pipeline-管道" class="headerlink" title="核心概念：Pipeline 管道"></a>核心概念：Pipeline 管道</h2><p>客户端将数据库写入第一个数据节点，第一个数据节点保存数据之后再将块复制到第二个数据节点，第二个数据节点保存后再将块复制到第三个数据节点。数据以管道方式，顺序的沿着一个方向传输，这样能够充分利用每个机器的贷款，避免网络瓶颈和高延时的连接，最小化推送所有数据的延时。</p>
+<img src="/2024/07/26/hadoop-learning/pipline.png" class="" title="pipline">
+
+<h2 id="核心概念：ACK应答响应"><a href="#核心概念：ACK应答响应" class="headerlink" title="核心概念：ACK应答响应"></a>核心概念：ACK应答响应</h2><p>ACK（Acknowledge character），在数据通信中，接收方发给发送方的一种传输类控制字符。表示发来的数据已确认接收无误。<br>在 HDFS pipeline 传输数据过程中，传输的反方向会进行 ACK 校验，确保数据传输安全。</p>
+<img src="/2024/07/26/hadoop-learning/ack.png" class="" title="ack应答响应">
+
+<h2 id="核心概念：默认三副本存储策略"><a href="#核心概念：默认三副本存储策略" class="headerlink" title="核心概念：默认三副本存储策略"></a>核心概念：默认三副本存储策略</h2><p>默认副本存储策略是由 BlockPlacementPolicyDefault 指定。<br>第一块副本：优先客户端本地，否则随机。<br>第二块副本：不同于第一块副本的不同机架。<br>第三块副本：第二块副本相同机架不同机器。</p>
+<h1 id="HDFS-工作流程与机制——写数据流程——梳理"><a href="#HDFS-工作流程与机制——写数据流程——梳理" class="headerlink" title="HDFS 工作流程与机制——写数据流程——梳理"></a>HDFS 工作流程与机制——写数据流程——梳理</h1><ol>
+<li><p>HDFS 客户端创建对象实例 DistributedFileSystem，该对象中封装了与 HDFS 文件系统操作的相关方法。</p>
+</li>
+<li><p>调用 DistributedFileSystem 对象的 create() 方法，通过 RPC 请求 NameNode 创建文件。</p>
+<p>NameNode 执行各种检查判断：目标文件是否存在、父目录是否存在、客户端是否具有创建该文件的权限。检查通过 NameNode 就会为本次请求记录下一条记录，返回 FSDataOutputStream 输出流对象给客户端用于写数据。</p>
+</li>
+<li><p>客户端通过 FSDataOutputStream 输出流开始写入数据。</p>
+</li>
+<li><p>客户端写入数据时，将数据分成一个个数据包（packet 默认 64k），内部组件 DataStreamer 请求 NameNode 挑选出适合存储数据副本的一组 DataNode 地址，默认是 3 副本存储。</p>
+<p>DataStreamer 将数据包流式传输到 pipeline 的第一个 DataNode, 该 DataNode 存储数据包并将它发送到 pipeline 的第二个 DataNode。同样，第二个 DataNode 存储数据包并且发送给第三个（也就是最后一个） DataNode。</p>
+</li>
+<li><p>传输的反方向上，会通过 ACK 机制校验数据包传输是否成功；</p>
+</li>
+<li><p>客户端完成数据写入后，在 FSDataOutputStream 输出流商调用 close() 方法关闭。</p>
+</li>
+<li><p>DistributedFileSystem 联系 NameNode 告知其文件写入完成，等待 NameNode 确认。<br>因为 NameNode 已经知道文件由哪些块组成（DataStream 请求分配数据块），因此仅需等待最小复制块即可返回成功。</p>
+<p>最小复制是由参数 dfs.namenode.replication.min 指定，默认是 1。</p>
+</li>
+</ol>
+<h1 id="MapReduce-的设计思想"><a href="#MapReduce-的设计思想" class="headerlink" title="MapReduce 的设计思想"></a>MapReduce 的设计思想</h1><h2 id="如何对付大数据处理场景"><a href="#如何对付大数据处理场景" class="headerlink" title="如何对付大数据处理场景"></a>如何对付大数据处理场景</h2><ol>
+<li>对相互不具计算依赖关系的大数据计算任务，实现并行最自然的办法就是采用 MapReduce 分而治之的策略。</li>
+<li>首先 Map 阶段进行拆分，把大数据拆分成若干份小数据，多个程序同时并行计算产生中间结果；然后是 Reduce 聚合阶段，通过程序对并行的结果进行最终的汇总计算，得出最终结果。<img src="/2024/07/26/hadoop-learning/map-reduce.png" class="" title="map-reduce"></li>
+<li></li>
+</ol>
+<h2 id="构建抽象编程模型"><a href="#构建抽象编程模型" class="headerlink" title="构建抽象编程模型"></a>构建抽象编程模型</h2><p>MapReduce 借鉴了函数式语言中的思想，用 Map 和 Reduce 两个函数提供了高层的并行编程抽象模型。</p>
+<p>map：对一组数据元素进行某种重复是的处理；</p>
+<p>reduce：对 Map 的中间结果进行某种进一步的结果整理。</p>
+<p>MapReduce 中定义了 Map 和 Reduce 两个抽象的编程接口，由用户去编程实现：</p>
+<p>map: (k1:v1) -&gt; (k2:v2)</p>
+<p>reduce: (k2:[v2]) -&gt; (k3:v3)</p>
+<p>通过以上两个编程接口，可以看出 MapReduce 处理的数据类型是 &lt;key, value&gt; 键值对。</p>
+<h2 id="统一架构、隐藏底层细节"><a href="#统一架构、隐藏底层细节" class="headerlink" title="统一架构、隐藏底层细节"></a>统一架构、隐藏底层细节</h2><p>如何提供统一的计算框架，如果没有统一封装底层细节，那么程序员则需要考虑诸如数据存储、划分、分发、结果收集、错误恢复等诸多细节；为此，MapReduce 设计并提供了统一的计算框架，为程序员隐藏了绝大多数系统层面的处理细节。</p>
+<p>MapReduce 最大的亮点在于通过抽象模型和计算框架把需要做什么和具体怎么做分开了，为程序员提供了一个抽象和高层的编程接口和框架。</p>
+<p>程序员仅需要关心其应用层的具体计算问题，仅需编写少量处理应用本身计算问题的业务程序代码。</p>
+<p>至于如何具体完成这个并行计算任务所相关的诸多系统层细节被隐藏起来，交给框架去处理：从分布代码的执行，到大到数千小到单个节点集群的自动调度使用。</p>
+<h1 id="MapReduce-介绍"><a href="#MapReduce-介绍" class="headerlink" title="MapReduce 介绍"></a>MapReduce 介绍</h1><p>MapReduce 是一个分布式计算框架，用于轻松编写分布式应用程序，这些应用程序以可靠、容错的方式并行处理大型硬件集群（数千个节点）上的大量数据（多TB数据集）。</p>
+<p>MapReduce 是一种面向海量数据处理的一种指导思想，也是一种用于对大规模数据进行分布式计算的编程模型。</p>
+<p>MapReduce 特点：易于编程；良好的扩展性；高容错性；适合海量数据的离线处理。</p>
+<p>MapReduce 局限性：实时计算性能差；不能进行流式计算。</p>
+<h2 id="MapReduce-实例进程"><a href="#MapReduce-实例进程" class="headerlink" title="MapReduce 实例进程"></a>MapReduce 实例进程</h2><p>一个完整的 MapReduce 程序在分布式运行时有三类：</p>
+<p>MRAppMaster：负责整个 MR 程序的过程调度及状态协调</p>
+<p>MapTask：负责 map 阶段的整个数据处理流程</p>
+<p>ReduceTask：负责 reduce 阶段的整个数据处理流程</p>
+<img src="/2024/07/26/hadoop-learning/map-reduce-instance-process.png" class="" title="MapReduce 实例进程">
+
+<h2 id="阶段组成"><a href="#阶段组成" class="headerlink" title="阶段组成"></a>阶段组成</h2><p>一个 MapReduce 编程模型中只能包含一个 Map 阶段和一个 Reduce 阶段，或者只有 Map 阶段。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+        <category>Hadoop</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文章如何添加图片？</title>
+    <url>/2024/07/30/photo-bed/</url>
+    <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>因为文章有少量图片需求，又不想使用三方存储资源，所以了解了使用 GitHub 作为图床的方法。具体操作方法如下：</p>
+<h1 id="配置-Hexo-以使用文章资源文件夹"><a href="#配置-Hexo-以使用文章资源文件夹" class="headerlink" title="配置 Hexo 以使用文章资源文件夹"></a>配置 Hexo 以使用文章资源文件夹</h1><p>在 Hexo 的配置文件 <code>_config.yml</code> 中启用 post_asset_folder 功能：<code>post_asset_folder: true</code>。<br>该配置的作用：每次使用  ‘hexo new page’ 生成新文章，都会在文章文件同级目录创建一个与文章文件名同名的文件夹，我们就在这里存放此文章的所有图片和其他资源。<br>参考官方文档了解更多信息：<a href="https://hexo.io/zh-cn/docs/asset-folders">Hexo 官方文档 - 资源文件夹</a></p>
+<h1 id="安装-hexo-asset-img-插件"><a href="#安装-hexo-asset-img-插件" class="headerlink" title="安装 hexo-asset-img 插件"></a>安装 hexo-asset-img 插件</h1><p>安装 <code>hexo-asset-img</code> 插件。</p>
+<pre><code class="shell">npm install git://github.com/yiyungent/hexo-asset-img.git#main
+</code></pre>
+<p>该插件作用：主要功能是处理 Markdown 文件中图片的路径，使文章发布后图片能正确显示。</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>在 Markdown 文件中，图片路径使用如下格式：<code>![图片描述](文章名称/图片名称.jpg)</code>。其中，<code>文章名称</code> 表示当前文章同名的文件夹，<code>图片名称.jpg</code> 表示图片名称和后缀。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 系统如何读取 CD？</title>
+    <url>/2024/08/02/how-to-read-cd/</url>
+    <content><![CDATA[<p>在 Ubuntu 中，你可以使用命令行工具来读取光盘中的数据。以下是一个简单的步骤说明和示例代码：</p>
+<ul>
+<li>插入光盘到光驱。</li>
+<li>打开终端。</li>
+<li>使用 lsblk 命令来确定光盘的设备路径（例如：&#x2F;dev&#x2F;cdrom 或 &#x2F;dev&#x2F;sr0）。</li>
+<li>如果需要，你可以挂载光盘到文件系统中，以便能够访问其数据。</li>
+</ul>
+<p>使用文件浏览器或命令行工具来读取光盘上的文件。</p>
+<p>以下是一个示例命令序列，用于挂载光盘并复制其内容到当前目录：</p>
+<pre><code class="shell"># 确定光盘设备，例如 /dev/cdrom 或 /dev/sr0
+lsblk
+
+# 创建一个挂载点，例如在 /mnt/cdrom
+sudo mkdir /mnt/cdrom
+
+# 挂载光盘到这个挂载点
+sudo mount /dev/cdrom /mnt/cdrom
+
+# 复制光盘内容到当前目录
+cp -r /mnt/cdrom/. ./
+
+# 卸载光盘
+sudo umount /mnt/cdrom
+
+# 删除挂载点（如果不再需要）
+sudo rmdir /mnt/cdrom
+</code></pre>
+]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>cd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 rsync 服务备份 nas 数据</title>
+    <url>/2024/09/05/use-rsync-server-to-backup-nas/</url>
+    <content><![CDATA[<p>Nas 中的数据可通过 Hyper Backup 进行备份，Hyper Backup 可保留最多达 65,535 个版本的数据，同时通过跨版本重复数据删除功能，使存储空间消耗最小化。<br>备份的数据保留在一个拥有专利的数据库中，该数据库可通过 DSM、Windows 和 Linux 平台上专门设计的多版本资源管理器来浏览、下载或还原。<br>通过 Hyper Backup，可以将数据备份到本地&#x2F;远程 Synology NAS 设备，备份到远程 rsync、WebDav 和 OpenStack 服务器，备份到公有云。<br>这里介绍如何将数据备份到远程 rsync 服务器。</p>
+<h1 id="首选需要配置-rsync-服务器"><a href="#首选需要配置-rsync-服务器" class="headerlink" title="首选需要配置 rsync 服务器"></a>首选需要配置 rsync 服务器</h1><h2 id="rsync-简介"><a href="#rsync-简介" class="headerlink" title="rsync 简介"></a>rsync 简介</h2><p>Rsync(remote synchronize) 是一个常用的 Linux 应用程序，用于文件同步。它可以同步本地和远程主机之间的文件。<br>与 FTP 或 scp 等其他文件传输工具不同，其最大的特点是：<br>会检查发送方和接收方已有的文件，仅传输有变动的部分（默认规则是文件大小或修改时间有变动）。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>ubuntu 默认安装了 rsync。若备份服务器没有安装 rsync，可以用下面的命令安装。</p>
+<pre><code class="bash"># Debain/Ubuntu
+sudo apt install rsync
+
+# CentOS
+sudo yum install rsync
+</code></pre>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>Ubuntu 默认的配置文件位置：&#x2F;usr&#x2F;share&#x2F;doc&#x2F;rsync&#x2F;examples&#x2F;rsyncd.conf<br>需要将其复制到 &#x2F;etc&#x2F; 目录下。<br>配置示例：</p>
+<pre><code class="text"># GLOBAL OPTIONS
+#motd file=/etc/motd
+log file=/var/log/rsyncd
+# for pid file, do not use /var/run/rsync.pid if
+# you are going to run rsync out of the init.d script.
+# The init.d script does its own pid file handling,
+# so omit the &quot;pid file&quot; line completely in that case.
+pid file=/var/run/rsyncd.pid
+syslog facility=daemon
+
+# MODULE OPTIONS
+[module_name]
+        comment = public archive
+        path = /home/username/backups/nas
+        use chroot = no
+        lock file = /var/lock/rsyncd
+
+        read only = no
+        list = yes
+        uid = username
+        gid = groupname
+
+        auth users = nas_user
+        secrets file = /etc/rsyncd.secrets
+        strict modes = yes
+        hosts allow = 10.10.1.190 10.10.1.189
+        
+        ignore errors = yes
+        ignore nonreadable = yes
+        transfer logging = yes
+
+        timeout = 600
+        refuse options = checksum dry-run
+        dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz
+</code></pre>
+<p>示例配置使用了验证权限的配置，需要建立：<br>&#x2F;etc&#x2F;rsyncd.secrets</p>
+<pre><code class="text">nas_user:nas_password
+</code></pre>
+<p>修改 rsyncd.secrets 访问权限为 600。</p>
+<h2 id="启动-rsync-服务"><a href="#启动-rsync-服务" class="headerlink" title="启动 rsync 服务"></a>启动 rsync 服务</h2><p>配置完成后，启动 rsync 服务。</p>
+<pre><code class="bash">sudo /etc/init.d/rsync start
+</code></pre>
+<p>可在　&#x2F;etc&#x2F;default 路径下的 rsync 文件中将其改为自启动：<br><code>RSYNC_ENABLE=true</code></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre><code class="shell">rsync -vzrtopg nas_user@10.10.1.9::module_name /home/shumei/backups/nas
+rsync -avz /mnt/d/honor.csv nas_user@10.10.1.9::module_name
+rsync -avz /mnt/d/honor.csv nas_user@10.10.1.9::module_name --password-file=/etc/rsyncd.secrets
+</code></pre>
+<h2 id="其次配置-Hyper-Backup"><a href="#其次配置-Hyper-Backup" class="headerlink" title="其次配置 Hyper Backup"></a>其次配置 Hyper Backup</h2><ul>
+<li>从 nas 套件中心安装 Hyper Backup 套件。</li>
+<li>打开新增备份任务向导，备份类型选择【文件夹和套件】，下一步。</li>
+<li>备份目的地选择文件服务器中的【rsync】，下一步。</li>
+<li>备份版本类型选择【多个版本】，下一步。</li>
+<li>备份目的地设置：填写 ip、端口（默认 873）、用户名、密码、选择共享文件夹，然后下一步。</li>
+<li>选择要备份的目录，然后点击【下一步】。</li>
+<li>配置备份计划（每天运行一次；启用完整性检查，每周一次），然后点击【下一步】。</li>
+<li>启用备份循环（Smart Recycle），保留版本的数量上限设置为 256，然后点击【完成】。</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://kb.synology.cn/zh-cn/DSM/help/HyperBackup/data_backup_source?version=7">https://kb.synology.cn/zh-cn/DSM/help/HyperBackup/data_backup_source?version=7</a><br><a href="https://www.cnblogs.com/felixzh/p/4950049.html">https://www.cnblogs.com/felixzh/p/4950049.html</a><br><a href="https://www.ruanyifeng.com/blog/2020/08/rsync.html">https://www.ruanyifeng.com/blog/2020/08/rsync.html</a></p>
+]]></content>
+      <categories>
+        <category>运维</category>
+        <category>nas</category>
+      </categories>
+      <tags>
+        <tag>nas</tag>
+        <tag>rsync</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次读书会</title>
+    <url>/2024/11/28/reading-club/</url>
+    <content><![CDATA[<p>上周六去参加了一场读书会，这几天总是时不时回味，就想最好还是记下来比较好。</p>
+<p>起初周五时老婆发消息问我愿不愿意去参加读书会，我是比较排斥的。对于团体活动我都是既向往又排斥，排斥是因为有社交压力，向往是因为未知和不确定。这次决定去还是因为邀请的人，其实我们只见过几面，交流不多，给我的感觉就是温润如玉、学识渊博、乐于助人！</p>
+<p>周六吃过午饭一家人就出发了，距离目的地紫蓬山东陶洼 30 多分钟的路程。今天天气很好，秋高气爽，集贤路两边树叶都黄了，一眼望去很美。紫庐空间是郑大哥租的地方，正对着一个方形大水塘，位置非常好，空间也够大，到的时候朋友正在给院外的萝卜浇水，也有人已经到了。非常惊讶整个房子与院子的设计，第一感觉是如果我年老了是不是也可以这样搞？两个孩子很开心，在院子里到处看。</p>
+<img src="/2024/11/28/reading-club/yard.jpg" class="" title="小院">
+<img src="/2024/11/28/reading-club/wall-corner.jpg" class="" title="小院一角">
+
+<p>参加读书会的人陆续到达，大家都惊叹这里的环境和小院的美丽，大约 15 点一刻左右读书会开始。加上主持人一共 11 人，等真正开始时突然反应过来这其实是我第一次参加读书会。郑大哥主持，介绍了读书会的由来、主题，为什么取名”紫庐空间“，其实氛围还是挺轻松的，但也不失严肃。大家先自我介绍，然后是两位书友进行分享，分别是《救命饮食》和《卓有成效的管理者》。</p>
+<p>《救命饮食》主要讲饮食与健康，不吃动物、低脂、深加工食物。其实饮食方面我个人没太多追求，平时饮食还是相对比较健康的，现阶段也很难一下就改为老师所讲的饮食方式，但很敬佩老师在推广健康饮食方面所做的事情。然后主持人补充讲的最触动我——善念，突然就想明白哪些能坚持吃素的人的动力在哪里了，这个善念应该是起了很大的作用。虽然大家偶尔会有小蚂蚁、小鸡、小鸭都是可爱的小动物，为什么会随意被杀死？意识到，讲出来，行动起来，最后到影响周围人，一步步都是思想上质的飞跃，深受触动的原因是他们在做第四步！</p>
+<p>《卓有成效的管理者》我也读过两遍，但最近一次读也是去年了。今天听书友分享又受益匪浅！”有效性人人可学，但是无人可教“这句话让我醍醐灌顶，讲不清楚具体缘由，有种”纸上得来终觉浅，绝知此事要躬行“的感觉，但也不能完全表达自己的体会。还有一点是”我能贡献什么？“，这句话理解起来很简单，但是老师举的一个例子让我联想到自己更愿意独处的原因了，就是自己不善言辞，与人相处有时候就会感觉尴尬，也担心浪费别人时间。周老师关于这本书的其他解读也很有见地，是自己读的时候没有体会到的，我听得特别认真！很遗憾没有带纸笔，手机记录很不方便，想结束时最好要下他的 PPT 教材，再加深理解，后来忘记了！也感觉不大合适……</p>
+<p>两位分享完差不多已 17 点多了，太阳已落山，本来讲茶歇时能欣赏日落的美景呢。15分钟左右时间的茶歇，大家去楼下吃一位参与者自己制作的面包，垫垫肚子，然后回去谈一谈读书会感受，差不多 18 点半左右读书会结束。大家陆续离开，本来想问下有什么收尾事情可以帮忙的，但是因为小路飞已经睡着了，也确实有些晚了就没有开口。临走时感谢了朋友的邀请，表达了收获很多，但是最后的感受讲的有些乱七八糟，朋友解围讲”意会就行，意会就行！“。回去的路上不自觉的就在不断回味，这个紫庐空间、读书会的意义。深深的感受到朋友他们那种博爱和宽广的胸怀，心里面更加的多佩服了几分！他们不止是做好自己，更在潜移默化的影响周围的人，为世界的更加美好真真实实的贡献更大力量。</p>
+<p>现在一周都快过去了，脑袋里还是会无意识的的回味那天下午的体验。那句”意会就行“的客气话就很有道理，意会就像流行语说的”种草“，总会在心里慢慢成长……</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>reading</tag>
+      </tags>
+  </entry>
+</search>
