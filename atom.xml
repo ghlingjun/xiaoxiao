@@ -6,7 +6,7 @@
   <link href="https://mp127.fun/atom.xml" rel="self"/>
   
   <link href="https://mp127.fun/"/>
-  <updated>2025-04-11T11:17:14.000Z</updated>
+  <updated>2025-04-20T10:30:10.000Z</updated>
   <id>https://mp127.fun/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>磁盘分区不足时，移动文件到其他磁盘分区</title>
+    <link href="https://mp127.fun/2025/04/20/move-files-from-c-to-other-disk-partition/"/>
+    <id>https://mp127.fun/2025/04/20/move-files-from-c-to-other-disk-partition/</id>
+    <published>2025-04-20T10:30:10.000Z</published>
+    <updated>2025-04-20T10:30:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>我们偶尔会遇到磁盘空间不足的情况，这时我们需要将一些文件移动到其他磁盘分区，同时需要保障不影响原有程序的使用和配置。这里分别举个人电脑C盘空间不足和Ubuntu系统磁盘空间不足两个实际场景的例子来说明如何处理。</p><h1 id="场景一：Windows系统C盘空间不足"><a href="#场景一：Windows系统C盘空间不足" class="headerlink" title="场景一：Windows系统C盘空间不足"></a>场景一：Windows系统C盘空间不足</h1><p>首先确认占用空间较大的文件或文件夹。例如：maven本地仓库、Docker镜像、Ubuntu子系统磁盘文件等。<br>有些文件是可以通过设置程序的配置来减少占用的，做相应的配置即可。例如：maven本地仓库可以通过设置maven的本地仓库路径来减少占用的空间；Docker镜像可以通过设置Docker的镜像存储路径来减少占用的空间。<br>Docker 磁盘文件从C盘移动到其他盘具体方法是：打开 Docker Desktop 的 Settings，点击 Resources 菜单下的 Advanced 选项卡，更改 Disk image location 目录，应用并重启 Docker 服务后，程序将自动移动 docker_data.vhdx 磁盘文件。</p><p>针对无法通过简单配置来处理的情况，比较简单的迁移思路是将文件夹移动到其他分区，然后在原位置创建一个软链接指向新的文件夹。示例如下：</p><h2 id="Ubuntu子系统从C盘迁出到其他盘"><a href="#Ubuntu子系统从C盘迁出到其他盘" class="headerlink" title="Ubuntu子系统从C盘迁出到其他盘"></a>Ubuntu子系统从C盘迁出到其他盘</h2><p>通过 PowerShell 关闭 wsl</p><pre><code class="bat">wsl --shutdown</code></pre><p>找到子系统的磁盘文件 ext4.vhdx<br><code>C:\Users\lingj\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx</code></p><h2 id="创建新路径"><a href="#创建新路径" class="headerlink" title="创建新路径"></a>创建新路径</h2><p>在空间足够的分区，如D盘，创建文件夹 <code>D:\home\ethan\AppData\Local\Packages\Ubuntu24.04LTS</code> 用于存放子系统文件。</p><h2 id="文件迁移"><a href="#文件迁移" class="headerlink" title="文件迁移"></a>文件迁移</h2><p>将 ext4.vhdx 文件直接 ctrl+x 剪切到 <code>D:\home\ethan\AppData\Local\Packages\Ubuntu24.04LTS</code> 文件夹。移动结束后，删除 ext4.vhdx 原来的上层文件夹 LocalState。</p><h2 id="创建链接"><a href="#创建链接" class="headerlink" title="创建链接"></a>创建链接</h2><p>使用 Win+r，输入 cmd 打开命令行(一定是cmd，PowerShell会报错)。然后输入命令：</p><pre><code class="bat">mklink /j C:\Users\lingj\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc\LocalState D:\home\ethan\AppData\Local\Packages\Ubuntu24.04LTS</code></pre><h2 id="启动-wsl"><a href="#启动-wsl" class="headerlink" title="启动 wsl"></a>启动 wsl</h2><pre><code class="bat">wsl</code></pre><h1 id="场景二：Ubuntu系统磁盘空间不足"><a href="#场景二：Ubuntu系统磁盘空间不足" class="headerlink" title="场景二：Ubuntu系统磁盘空间不足"></a>场景二：Ubuntu系统磁盘空间不足</h1><p>思路同场景一，首先确认占用空间较大的文件或文件夹。然后将文件夹移动到其他分区，然后在原位置创建一个软链接指向新的文件夹。示例如下：</p><pre><code class="shell"># 分析磁盘占用现状df -h# 查看占用空间最大的文件夹du -h --max-depth=1 /</code></pre><p>查看结果发现：<br>磁盘占用：789G，占用率 88%<br>附件占用：414G<br>数据库备份占用：12G<br>有一块新增磁盘 &#x2F;dev&#x2F;vdc, 空间1T，计划将附件、数据库备份迁移到该磁盘，然后在原路径创建一个软链接指向新的文件夹。</p><pre><code class="shell"># 移动数据库备份目录mv /home/shumei/backup/_ZHGC /disk2/backup/# 创建软链接ln -s /disk2/backup/_ZHGC /home/shumei/backup/_ZHGC# 移动附件目录mv /home/shumei/attaches /disk2# 创建软链接ln -s /disk2/attaches /home/shumei/attaches</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我们偶尔会遇到磁盘空间不足的情况，这时我们需要将一些文件移动到其他磁盘分区，同时需要保障不影响原有程序的使用和配置。这里分别举个人电脑C盘空间不足和Ubuntu系统磁盘空间不足两个实际场景的例子来说明如何处理。&lt;/p&gt;
+&lt;h1 id=&quot;场景一：Windows系统C盘空间不足</summary>
+      
+    
+    
+    
+    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+    <category term="Windows" scheme="https://mp127.fun/tags/Windows/"/>
+    
+    <category term="Linux" scheme="https://mp127.fun/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FastGPT 应用配置指南</title>
+    <link href="https://mp127.fun/2025/04/17/fastgpt-config-instructions/"/>
+    <id>https://mp127.fun/2025/04/17/fastgpt-config-instructions/</id>
+    <published>2025-04-17T10:48:17.000Z</published>
+    <updated>2025-04-17T10:48:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="知识库搜索配置技巧"><a href="#知识库搜索配置技巧" class="headerlink" title="知识库搜索配置技巧"></a>知识库搜索配置技巧</h2><ol><li>搜索方式推荐优先使用全文检索，其次是语义检索。全文检索匹配度高时，搜索结果会更加准确。语义搜索可能会返回一些无关的结果，需要根据具体情况进行筛选。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;知识库搜索配置技巧&quot;&gt;&lt;a href=&quot;#知识库搜索配置技巧&quot; class=&quot;headerlink&quot; title=&quot;知识库搜索配置技巧&quot;&gt;&lt;/a&gt;知识库搜索配置技巧&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;搜索方式推荐优先使用全文检索，其次是语义检索。全文检索匹配度高时，搜索结</summary>
+      
+    
+    
+    
+    <category term="大模型" scheme="https://mp127.fun/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+    <category term="FastGPT" scheme="https://mp127.fun/tags/FastGPT/"/>
+    
+  </entry>
   
   <entry>
     <title>ubuntu 环境下搭建共享文件夹</title>
@@ -34,12 +86,12 @@
     
     
     
-    <category term="ubuntu" scheme="https://mp127.fun/categories/ubuntu/"/>
+    <category term="工具" scheme="https://mp127.fun/categories/%E5%B7%A5%E5%85%B7/"/>
     
-    
-    <category term="共享文件夹" scheme="https://mp127.fun/tags/%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/"/>
     
     <category term="samba" scheme="https://mp127.fun/tags/samba/"/>
+    
+    <category term="共享文件夹" scheme="https://mp127.fun/tags/%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/"/>
     
   </entry>
   
@@ -50,7 +102,7 @@
     <published>2025-01-23T10:36:14.000Z</published>
     <updated>2025-01-23T11:17:14.000Z</updated>
     
-    <content type="html"><![CDATA[<p>本文详细介绍了如何在目标服务器上使用 acme.sh 工具(下载地址：<a href="https://github.com/acmesh-official/acme.sh)%EF%BC%8C%E9%80%9A%E8%BF%87">https://github.com/acmesh-official/acme.sh)，通过</a> DNS 模式申请证书、安装证书的一系列操作步骤。<br>DNS 验证：在您的服务器网络环境比较复杂情况下，可以使用 DNS 验证，不需要任何公网 IP，不需要任何服务器，只需要 DNS 的解析记录即可完成验证。</p><h1 id="安装-acme-sh-工具"><a href="#安装-acme-sh-工具" class="headerlink" title="安装 acme.sh 工具"></a>安装 acme.sh 工具</h1><p>首先，使用 scp 命令将 acme.sh.tar 文件传输到指定服务器的指定目录：</p><pre><code class="shell">scp acme.sh.tar shumei@ip:/home/shumei/software</code></pre><p>这里 shumei 是用户名，ip 是目标服务器的 IP 地址。</p><p>然后登录服务器，解压 acme.sh.tar 文件后，进入到 acme.sh 所在的目录，命令如下：</p><pre><code class="shell">tar -zxvf acme.sh.tarcd acme.sh</code></pre><p>接着，执行以下命令进行安装：</p><pre><code class="shell">./acme.sh --install -m mail@163.com</code></pre><p>其中 -m 参数后的邮箱 <a href="mailto:&#109;&#x61;&#105;&#x6c;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#111;&#x6d;">&#109;&#x61;&#105;&#x6c;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#111;&#x6d;</a> 用于生成证书。</p><h1 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h1><p>DNS 方式的可以使用域名解析商提供的 API 自动添加 TXT 记录，且在完成验证后删除对应的记录。这里以 aliyun 为例，具体操作步骤如下：</p><ul><li>登录 Aliyun 账号，创建一个 RAM API key. <a href="https://ram.console.aliyun.com/users">https://ram.console.aliyun.com/users</a></li><li>将 key 和 secret 保存在环境变量中，命令如下：</li></ul><pre><code class="shell">export Ali_Key=&quot;keyStr&quot;export Ali_Secret=&quot;secretStr&quot;</code></pre><ul><li>使用 acme.sh 命令申请证书。</li></ul><pre><code class="shell">acme.sh --issue --dns dns_ali -d example.com -d *.example.com</code></pre><p>-d 指定域名，*.example.com 表示通配符域名。也可以仅指定一个域名，如 example.com。</p><p>Ali_Key 和 Ali_Secret 会保存在 ~&#x2F;.acme.sh&#x2F;account.conf 中，当后期更新证书时会用到。</p><h1 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h1><p>使用 acme.sh 命令将申请到的证书安装到指定目录。–key-file 指定私钥文件路径，–fullchain-file 指定证书文件路径，–reloadcmd<br>指定安装完成后重新加载 nginx 服务的命令，命令如下：<br>acme.sh –install-cert -d example.com -d *.example.com <br>–key-file &#x2F;etc&#x2F;nginx&#x2F;cert&#x2F;example&#x2F;cert.key  <br>–fullchain-file &#x2F;etc&#x2F;nginx&#x2F;cert&#x2F;example&#x2F;cert.cer <br>–reloadcmd     “service nginx force-reload”</p><p>通过以上步骤，我们就完成了从证书申请和安装的整个过程。<br>相关技术资源链接：<br>acme.sh 官方文档：<a href="https://github.com/acmesh-official/acme.sh/wiki">https://github.com/acmesh-official/acme.sh/wiki</a><br>nginx官方文档：<a href="https://nginx.org/en/docs/">https://nginx.org/en/docs/</a></p>]]></content>
+    <content type="html"><![CDATA[<p>本文详细介绍了如何在目标服务器上使用 acme.sh 工具(下载地址：<a href="https://github.com/acmesh-official/acme.sh)%EF%BC%8C%E9%80%9A%E8%BF%87">https://github.com/acmesh-official/acme.sh)，通过</a> DNS 模式申请证书、安装证书的一系列操作步骤。<br>DNS 验证：在您的服务器网络环境比较复杂情况下，可以使用 DNS 验证，不需要任何公网 IP，不需要任何服务器，只需要 DNS 的解析记录即可完成验证。</p><h1 id="安装-acme-sh-工具"><a href="#安装-acme-sh-工具" class="headerlink" title="安装 acme.sh 工具"></a>安装 acme.sh 工具</h1><p>首先，使用 scp 命令将 acme.sh.tar 文件传输到指定服务器的指定目录：</p><pre><code class="shell">scp acme.sh.tar shumei@ip:/home/shumei/software</code></pre><p>这里 shumei 是用户名，ip 是目标服务器的 IP 地址。</p><p>然后登录服务器，解压 acme.sh.tar 文件后，进入到 acme.sh 所在的目录，命令如下：</p><pre><code class="shell">tar -zxvf acme.sh.tarcd acme.sh</code></pre><p>接着，执行以下命令进行安装：</p><pre><code class="shell">./acme.sh --install -m mail@163.com</code></pre><p>其中 -m 参数后的邮箱 <a href="mailto:&#109;&#97;&#105;&#108;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;">&#109;&#97;&#105;&#108;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;</a> 用于生成证书。</p><h1 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h1><p>DNS 方式的可以使用域名解析商提供的 API 自动添加 TXT 记录，且在完成验证后删除对应的记录。这里以 aliyun 为例，具体操作步骤如下：</p><ul><li>登录 Aliyun 账号，创建一个 RAM API key. <a href="https://ram.console.aliyun.com/users">https://ram.console.aliyun.com/users</a></li><li>将 key 和 secret 保存在环境变量中，命令如下：</li></ul><pre><code class="shell">export Ali_Key=&quot;keyStr&quot;export Ali_Secret=&quot;secretStr&quot;</code></pre><ul><li>使用 acme.sh 命令申请证书。</li></ul><pre><code class="shell">acme.sh --issue --dns dns_ali -d example.com -d *.example.com</code></pre><p>-d 指定域名，*.example.com 表示通配符域名。也可以仅指定一个域名，如 example.com。</p><p>Ali_Key 和 Ali_Secret 会保存在 ~&#x2F;.acme.sh&#x2F;account.conf 中，当后期更新证书时会用到。</p><h1 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h1><p>使用 acme.sh 命令将申请到的证书安装到指定目录。–key-file 指定私钥文件路径，–fullchain-file 指定证书文件路径，–reloadcmd<br>指定安装完成后重新加载 nginx 服务的命令，命令如下：<br>acme.sh –install-cert -d example.com -d *.example.com <br>–key-file &#x2F;etc&#x2F;nginx&#x2F;cert&#x2F;example&#x2F;cert.key  <br>–fullchain-file &#x2F;etc&#x2F;nginx&#x2F;cert&#x2F;example&#x2F;cert.cer <br>–reloadcmd     “service nginx force-reload”</p><p>通过以上步骤，我们就完成了从证书申请和安装的整个过程。<br>相关技术资源链接：<br>acme.sh 官方文档：<a href="https://github.com/acmesh-official/acme.sh/wiki">https://github.com/acmesh-official/acme.sh/wiki</a><br>nginx官方文档：<a href="https://nginx.org/en/docs/">https://nginx.org/en/docs/</a></p>]]></content>
     
     
       
@@ -481,55 +533,6 @@
     
     
     <category term="mysql" scheme="https://mp127.fun/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu Server 安装</title>
-    <link href="https://mp127.fun/2021/03/29/install-Ubuntu-Server/"/>
-    <id>https://mp127.fun/2021/03/29/install-Ubuntu-Server/</id>
-    <published>2021-03-29T08:54:42.000Z</published>
-    <updated>2021-03-29T08:54:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="下载系统-ISO-文件"><a href="#下载系统-ISO-文件" class="headerlink" title="下载系统 ISO 文件"></a>下载系统 ISO 文件</h1><p><a href="https://cn.ubuntu.com/download">https://cn.ubuntu.com/download</a><br>Ubuntu Server 20.04.2 LTS</p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol><li>将 ISO 文件解压至 USB Disk 根目录</li><li>启动电脑时，进入手动选择模式（通常是 F12、F10、F2）</li><li>安装系统</li></ol><h1 id="配置静态IP"><a href="#配置静态IP" class="headerlink" title="配置静态IP"></a>配置静态IP</h1><p>查看IP</p><pre><code>ip addr</code></pre><p>修改配置文件</p><pre><code>vi /etc/netplan/00-installer-config.yaml# This is the network config written by &#39;subiquity&#39;network:  ethernets:    enp2s0:      dhcp4: no      addresses: [10.10.1.11/24]      gateway4: 10.10.1.1      nameservers:              addresses: [10.10.1.1]  version: 2</code></pre><h1 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h1><pre><code>修改配置文件vi .profile# 添加下面一行代码到最后TZ=&#39;Asia/Shanghai&#39;; export TZ</code></pre><h1 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h1><p>备份 sources.list<br>cd &#x2F;etc&#x2F;apt<br>sudo cp sources.list sources.list.bak</p><p>编辑 sources.list<br>添加如下内容（选择一个源即可）：</p><pre><code># tsinghuadeb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted## Major bug fix updates produced after the final release of the## distribution.deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu## team. Also, please note that software in universe WILL NOT receive any## review or updates from the Ubuntu security team.deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy universedeb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates universe## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu## team, and may not be under a free licence. Please satisfy yourself as to## your rights to use the software. Also, please note that software in## multiverse WILL NOT receive any review or updates from the Ubuntu## security team.deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy multiversedeb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates multiverse## N.B. software from this repository may not have been tested as## extensively as that contained in the main release, although it includes## newer versions of some applications which may provide useful features.## Also, please note that software in backports WILL NOT receive any review## or updates from the Ubuntu security team.deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiversedeb http://security.ubuntu.com/ubuntu/ jammy-security main restricteddeb http://security.ubuntu.com/ubuntu/ jammy-security universedeb http://security.ubuntu.com/ubuntu/ jammy-security multiverse# 阿里源deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;下载系统-ISO-文件&quot;&gt;&lt;a href=&quot;#下载系统-ISO-文件&quot; class=&quot;headerlink&quot; title=&quot;下载系统 ISO 文件&quot;&gt;&lt;/a&gt;下载系统 ISO 文件&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://cn.ubuntu.com/dow</summary>
-      
-    
-    
-    
-    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-    <category term="ubuntu" scheme="https://mp127.fun/tags/ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Eye of The Tiger</title>
-    <link href="https://mp127.fun/2020/09/18/Eye-of-The-Tiger/"/>
-    <id>https://mp127.fun/2020/09/18/Eye-of-The-Tiger/</id>
-    <published>2020-09-18T05:38:56.000Z</published>
-    <updated>2020-09-18T05:48:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Eye of the Tiger 是 Survivor 乐队在 1982 年应西尔维斯特史泰龙为电影《洛奇3》创作的主题曲。</p><p>Risin’ up<br>back on the street<br>did my time took my chances<br>went the distance<br>now i’m back on my feet<br>just a man and and his will to survive<br>so many times<br>it happens too fast<br>you trade your passion for glory<br>don’t lose your grip on the dreams of the past<br>you must fight just to keep them alive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Face to face<br>out in the heat<br>hangin’ tough<br>stayin’ hungry<br>they stack the odds<br>still we take to the street<br>for the kill with the will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger<br>Risin’ up<br>straight to the top<br>had the guts<br>got the glory<br>went the distance<br>now i’m not gonna stop<br>just a man and his will to survive<br>It’s the eye of the tiger<br>it’s the thrill of the fight<br>risin’ up to the challenge of our rival<br>and the last known survivor stalks his prey in the night<br>and he’s watchin us all with the eye<br>of the tiger</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Eye of the Tiger 是 Survivor 乐队在 1982 年应西尔维斯特史泰龙为电影《洛奇3》创作的主题曲。&lt;/p&gt;
-&lt;p&gt;Risin’ up&lt;br&gt;back on the street&lt;br&gt;did my time took my chances&lt;br&gt;w</summary>
-      
-    
-    
-    
-    <category term="blog" scheme="https://mp127.fun/categories/blog/"/>
-    
-    
-    <category term="music" scheme="https://mp127.fun/tags/music/"/>
     
   </entry>
   
