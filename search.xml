@@ -1047,19 +1047,23 @@ public class CorsFilter implements Filter &#123;
     <title>linux 常用命令（Ubuntu）</title>
     <url>/2019/10/29/linux-commands/</url>
     <content><![CDATA[<h2 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h2><h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><p>当前目录只进入第一级目录</p>
-<pre><code class="shell">du -h --max-depth=1
-du -h -d1
+<pre><code class="shell"># 使用 sort -hr 选项对结果进行排序，其中-h表示按照人类可读的数字大小排序，-r表示逆序排序（从大到小）。
+du -h --max-depth=1
+du -h -d1 | sort -hr
 </code></pre>
-<h3 id="查询目录下文件数量"><a href="#查询目录下文件数量" class="headerlink" title="查询目录下文件数量"></a>查询目录下文件数量</h3><pre><code class="shell">find . -type f | wc -l
-</code></pre>
-<h3 id="free-查看内存情况"><a href="#free-查看内存情况" class="headerlink" title="free 查看内存情况"></a>free 查看内存情况</h3><pre><code class="shell">free -m
-</code></pre>
-<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><pre><code class="shell">top
-</code></pre>
-<h3 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h3><pre><code class="shell">vmstat
-</code></pre>
-<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h3><pre><code class="shell">tree -d -L 3
-</code></pre>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><code>find . -type f | wc -l</code> 查询目录下文件数量</li>
+<li><code>curl cip.cc</code> 查询本机公网 IP。</li>
+<li><code>tree -d -L 3</code> 树形查看目录结构命令。</li>
+<li><code>top</code> 查看应用的内存占用明细。</li>
+<li><code>free -m</code> 查看内存使用率及大小。</li>
+<li><code>telnet 172.17.0.15 80</code> 测试指定端口是否处于监听状态。</li>
+<li><code>lsb_release -a</code> 查看系统版本</li>
+<li><code>stat /etc/my.cnf</code> 查看文件状态</li>
+<li><code>last -t 20220410000000</code> 查看指定时间之前的登陆记录</li>
+<li><code>vmstat [选项] [延迟时间] [重复次数]</code> 监控系统虚拟内存、进程、CPU活动以及I&#x2F;O操作的工具。它能够提供系统资源的实时快照，帮助识别性能瓶颈。示例：<code>vmstat -w 3</code></li>
+<li><code>tmux</code> 通过一个终端登录远程主机并运行tmux后，在其中可以开启多个控制台而无需再“浪费”多余的终端来连接这台远程主机；当然其功能远不止于此。</li>
+</ul>
 <h3 id="挂在硬盘"><a href="#挂在硬盘" class="headerlink" title="挂在硬盘"></a>挂在硬盘</h3><pre><code class="shell">blkid -o device
 mount /dev/xvde1 /home
 </code></pre>
@@ -1098,14 +1102,6 @@ sudo vi /etc/ssh/sshd_config
 <h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><pre><code class="shell">curl -Iv www.baidu.com
 curl -Iv http://172.17.0.15
 curl 129.211.135.212:80
-</code></pre>
-<h3 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h3><pre><code class="shell">telnet 172.17.0.15 80
-</code></pre>
-<h3 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h3><pre><code class="shell">lsb_release -a
-</code></pre>
-<h3 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h3><pre><code class="shell">stat /etc/my.cnf
-</code></pre>
-<h3 id="查看指定时间之前的登陆记录"><a href="#查看指定时间之前的登陆记录" class="headerlink" title="查看指定时间之前的登陆记录"></a>查看指定时间之前的登陆记录</h3><pre><code class="shell">last -t 20220410000000
 </code></pre>
 <h3 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h3><pre><code class="shell">alias sshdb=&quot;ssh ethan@192.168.1.79&quot;
 
@@ -1338,7 +1334,7 @@ nignx 中 autoindex 要配置成 off
   <entry>
     <title>hexo commands</title>
     <url>/2019/11/21/hexo-commands/</url>
-    <content><![CDATA[<p>如何尚未安装 Hexo，请参考<a href="https://hexo.io/zh-cn/docs/">Hexo 安装文档</a>。</p>
+    <content><![CDATA[<p>如何尚未安装 Hexo，请参考<a href="https://hexo.io/zh-cn/docs/">Hexo 安装文档</a>。<br>卸载 hexo：<code>npm uninstall hexo</code><br>安装最新版本命令：<code>npm install hexo</code>,或者指定版本命令：<code>npm install hexo@7.3.0</code></p>
 <h2 id="Hexo-Commands"><a href="#Hexo-Commands" class="headerlink" title="Hexo Commands"></a>Hexo Commands</h2><p>最常用三个命令：</p>
 <pre><code class="shell">$ hexo new [layout] &lt;title&gt;
 $ hexo server
@@ -1616,14 +1612,9 @@ grant all privileges on fund_management.* to shumei@&#39;%&#39;;
   <entry>
     <title>通过 docker 初始化服务器运行环境</title>
     <url>/2020/08/07/server-env-init-with-docker/</url>
-    <content><![CDATA[<p>使用官方安装脚本自动安装<br>安装命令如下：</p>
-<pre><code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-</code></pre>
-<p>如果要使用 Docker 作为非 root 用户，则应考虑使用类似以下方式将用户添加到 docker 组：</p>
-<blockquote>
-<p>sudo usermod -aG docker ethan</p>
-</blockquote>
-<h1 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h1><p>使用以下命令编辑或创建 daemon.json 文件：</p>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用官方安装脚本自动安装<br>安装命令如下：<code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code></p>
+<p>如果要使用 Docker 作为非 root 用户，则应考虑使用类似以下方式将用户添加到 docker 组：<br><code>sudo usermod -aG docker ethan</code></p>
+<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><p>使用以下命令编辑或创建 daemon.json 文件：</p>
 <pre><code class="shell">sudo vim /etc/docker/daemon.json
 </code></pre>
 <p>添加以下内容到 daemon.json 中，然后保存并关闭</p>
@@ -1635,28 +1626,109 @@ grant all privileges on fund_management.* to shumei@&#39;%&#39;;
   ]
 &#125;
 </code></pre>
-<p>替换 <your-mirror> 为您申请的专属镜像加速地址（如果没有，可以直接使用公共地址）。</p>
+<p>替换 <code>&lt;your-mirror&gt;</code> 为您申请的专属镜像加速地址（如果没有，可以直接使用公共地址）。</p>
 <p>保存文件后，重启 Docker 服务：</p>
-<pre><code class="shell">sudo systemctl daemon-reload
-sudo systemctl restart docker
+<p><code>sudo systemctl daemon-reload</code> &amp; <code>sudo systemctl restart docker</code><br>or <code>sudo service docker restart</code></p>
+<h2 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h2><p><code>sudo systemctl start docker</code> or <code>sudo service docker start</code></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>查看本地镜像：<code>docker images</code><br>删除镜像：<code>docker rmi hello-world</code><br>查看所有容器：<code>docker ps -a</code><br>删除容器：<code>docker rm -f 1e560fca3906</code><br>容器起停命令：</p>
+<pre><code class="shell">docker stop 2b50eae281cb
+docker start 2b50eae281cb
+docker restart 2b50eae281cb
 </code></pre>
-<h1 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h1><p>sudo systemctl start docker</p>
-<h1 id="查看本地镜像"><a href="#查看本地镜像" class="headerlink" title="查看本地镜像"></a>查看本地镜像</h1><p>docker images</p>
-<h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><p>docker rmi hello-world</p>
-<h1 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h1><p>docker ps -a</p>
-<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><p>docker rm -f 1e560fca3906</p>
-<h1 id="容器起停命令"><a href="#容器起停命令" class="headerlink" title="容器起停命令"></a>容器起停命令</h1><p>docker stop 2b50eae281cb<br>docker start 2b50eae281cb<br>docker restart 2b50eae281cb</p>
-<h2 id="MySql-部署"><a href="#MySql-部署" class="headerlink" title="MySql 部署"></a>MySql 部署</h2><p>docker pull mysql:5.7</p>
-<p>docker run -p 3306:3306 –name mysqlpro <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;mysql&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;mysql&#x2F;conf:&#x2F;etc&#x2F;mysql <br>-e MYSQL_ROOT_PASSWORD&#x3D;密码 <br>-d mysql:5.7</p>
-<h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><p>docker exec -it mysqlpro bash</p>
-<h3 id="登录mysql"><a href="#登录mysql" class="headerlink" title="登录mysql"></a>登录mysql</h3><p>mysql -u root -p<br>create user ‘shumei‘@’%’ identified by ‘密码’;</p>
-<p>create database fund_management default character set utf8;<br>grant all privileges on fund_management.* to shumei@’%’ with grant option;<br>flush privileges;</p>
-<h2 id="Redis-部署"><a href="#Redis-部署" class="headerlink" title="Redis 部署"></a>Redis 部署</h2><p>docker pull redis</p>
-<p>docker run -p 6379:6379 –name redis -v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;redis&#x2F;data:&#x2F;data <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;redis&#x2F;redis.conf:&#x2F;etc&#x2F;redis&#x2F;redis.conf <br>-v &#x2F;home&#x2F;shumei&#x2F;docker&#x2F;redis&#x2F;data:&#x2F;data <br>-d redis redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf –appendonly yes –requirepass “密码”</p>
-<p>docker exec -it redis &#x2F;bin&#x2F;bash</p>
-<h2 id="Nginx-部署"><a href="#Nginx-部署" class="headerlink" title="Nginx 部署"></a>Nginx 部署</h2><p>docker run -p 10000:10000 –name smnginx -v $PWD&#x2F;www:&#x2F;www -v $PWD&#x2F;conf&#x2F;nginx.conf:&#x2F;etc&#x2F;nginx&#x2F;nginx.conf -v $PWD&#x2F;logs:&#x2F;wwwlogs -d nginx</p>
-<p>参考文档：<br><a href="https://www.runoob.com/docker/ubuntu-docker-install.html">https://www.runoob.com/docker/ubuntu-docker-install.html</a></p>
-<h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><p>重启 docker：<br>systemctl restart docker.service<br>sudo service docker restart<br>docker启动日志：<br>&#x2F;var&#x2F;log&#x2F;upstart&#x2F;docker.log</p>
+<h3 id="MySql-部署"><a href="#MySql-部署" class="headerlink" title="MySql 部署"></a>MySql 部署</h3><ol>
+<li>拉取 mysql 镜像</li>
+</ol>
+<p><code>docker pull mysql:5.7</code> or <code>docker pull mysql:8.0.36</code></p>
+<ol start="2">
+<li>创建 mysql 数据文件挂载目录</li>
+</ol>
+<pre><code class="shell">cd /home/ubuntu/docker/mysql
+
+mkdir -p data
+</code></pre>
+<ol start="3">
+<li>创建 mysql 配置文件</li>
+</ol>
+<pre><code class="shell">cd /home/ubuntu/docker/mysql
+touch my.cnf
+vim my.cnf
+
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+log_bin = mysql-bin
+binlog-ignore-db = mysql
+binlog-ignore-db = information_schema
+binlog-ignore-db = performance_schema
+binlog-ignore-db = sys
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+
+# Remove leading # to revert to previous value for default_authentication_plugin,
+# this will increase compatibility with older clients. For background, see:
+# https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_default_authentication_plugin
+# default-authentication-plugin=mysql_native_password
+skip-host-cache
+skip-name-resolve
+datadir=/var/lib/mysql
+socket=/var/run/mysqld/mysqld.sock
+secure-file-priv=/var/lib/mysql-files
+character_set_server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+user=mysql
+lower_case_table_names=1
+sql_mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+
+pid-file=/var/run/mysqld/mysqld.pid
+
+[mysql]
+default-character-set = utf8mb4
+
+[client]
+default-character-set = utf8mb4
+socket = /var/run/mysqld/mysqld.sock
+
+!includedir /etc/mysql/conf.d/
+</code></pre>
+<p>创建 mysql 容器</p>
+<pre><code class="shell">sudo docker run --restart=always -p 3306:3306 --name mysql \
+-v /home/ubuntu/docker/mysql/data:/var/lib/mysql \
+-v /home/ubuntu/docker/mysql/my.cnf:/etc/my.cnf \
+-e MYSQL_ROOT_PASSWORD=Ms@wsx34 \
+-d mysql:8.0.36
+</code></pre>
+<p>查看日志：<code>docker logs --tail 200 -f mysql</code><br>进入容器：<code>docker exec -it mysql bash</code><br>登录 mysql：<code>mysql -u root -p</code></p>
+<pre><code class="sql">create user &#39;test&#39;@&#39;%&#39; identified by &#39;密码&#39;;
+
+create database test default character set utf8mb4;
+grant all privileges on test.* to test@&#39;%&#39; with grant option;
+flush privileges;
+</code></pre>
+<h3 id="Redis-部署"><a href="#Redis-部署" class="headerlink" title="Redis 部署"></a>Redis 部署</h3><pre><code class="shell">docker pull redis:7.2-alpine
+
+sudo docker run -p 6379:6379 --name redis -v /home/ubuntu/docker/redis/data:/data \
+-d redis:7.2-alpine redis-server --requirepass 123@wsx --loglevel warning --maxclients 10000 --appendonly yes --save 60 10 --maxmemory 4gb --maxmemory-policy noeviction
+
+docker exec -it redis /bin/bash
+</code></pre>
+<h3 id="Nginx-部署"><a href="#Nginx-部署" class="headerlink" title="Nginx 部署"></a>Nginx 部署</h3><pre><code class="shell">docker run -p 10000:10000 --name smnginx -v $PWD/www:/www -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -v $PWD/logs:/wwwlogs -d nginx
+</code></pre>
+<p>参考文档：</p>
+<p><a href="https://www.runoob.com/docker/ubuntu-docker-install.html">Ubuntu Docker 安装</a></p>
+<h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><p>重启 docker：<br><code>systemctl restart docker.service</code><br><code>sudo service docker restart</code></p>
+<p>docker启动日志：<code>/var/log/upstart/docker.log</code></p>
 ]]></content>
       <categories>
         <category>工具</category>
@@ -1804,29 +1876,22 @@ data_volume: /home/shumei/soft/harbor/data
     <title>docker compose 服务编排</title>
     <url>/2020/08/23/docker-compose/</url>
     <content><![CDATA[<p>安装 docker-compose</p>
-<pre><code class="shell">sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+<pre><code class="shell">sudo curl -L https://github.com/docker/compose/releases/download/2.36.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
 </code></pre>
 <p>如果服务器网络无法下载，可下载后手动安装。</p>
 <ol>
-<li>访问 <a href="https://github.com/docker/compose/releases%EF%BC%8C%E9%80%89%E6%8B%A9%E9%80%82%E5%90%88%E7%9A%84%E7%89%88%E6%9C%AC%E3%80%82">https://github.com/docker/compose/releases，选择适合的版本。</a></li>
-</ol>
-<ul>
-<li><code>uname -s</code>-<code>uname -m</code> 命令分别查看操作系统及CPU架构。</li>
-</ul>
-<ol start="2">
+<li>访问 <a href="https://github.com/docker/compose/releases">docker-compose</a>，选择适合的版本。<code>uname -s</code>-<code>uname -m</code> 命令分别查看操作系统及CPU架构。</li>
 <li>将下载的文件移动到 <code>/usr/local/bin</code> 目录。</li>
 </ol>
 <pre><code class="shell">
-sudo mv ~/softwares/docker-compose-linux-x86_64 /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+sudo mv ~/softwares/docker-compose-linux-x86_64 /usr/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
 </code></pre>
-<p>验证安装：</p>
-<pre><code class="shell">docker-compose -version
-</code></pre>
-<p>PS：如果想要卸载docker-compose，请执行以下命令<br>sudo rm &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose</p>
+<p>验证安装：<code>docker-compose -version</code></p>
+<p>PS：如果想要卸载docker-compose，请执行以下命令<br>sudo rm &#x2F;usr&#x2F;bin&#x2F;docker-compose</p>
 <p>docker-compose 配置示例</p>
-<pre><code>version: &#39;3&#39;
+<pre><code class="yaml">version: &#39;3&#39;
 services:
   gc-admin:
     build: ./spring-boot-admin
@@ -1846,14 +1911,12 @@ services:
       external:
         name: gc-network
 </code></pre>
-<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><pre><code>docker-compose build
-</code></pre>
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p><code>docker-compose build</code></p>
 <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code class="shell">docker-compose up -d
 docker-compose ps
 </code></pre>
 <p>The docker-compose run command allows you to run one-off commands for your services. For example, to see what environment variables are available to the web service:<br><code>$ docker-compose run web env</code></p>
-<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><pre><code class="shell">docker-compose stop
-</code></pre>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><p><code>docker-compose stop</code></p>
 <p>You can bring everything down, removing the containers entirely, with the down command. Pass –volumes to also remove the data volume used by the Redis container:<br><code>$ docker-compose down --volumes</code><br><code>docker-compose rm --force</code></p>
 <h3 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h3><ol>
 <li>http: server gave HTTP response to HTTPS client<br>解决办法：<br>在 &#x2F;etc&#x2F;docker 下，创建 daemon.json 文件，写入：</li>
@@ -1863,7 +1926,7 @@ docker-compose ps
   &quot;experimental&quot;: false,
   &quot;registry-mirrors&quot;: [
     &quot;http://hub-mirror.c.163.com&quot;,
-    &quot;https://d4u3cjo2.mirror.aliyuncs.com&quot;
+    &quot;https://&lt;修改成自己的&gt;.mirror.aliyuncs.com&quot;
   ],
   &quot;insecure-registries&quot;: [
     &quot;IP:PORT&quot;
@@ -1875,8 +1938,8 @@ docker-compose ps
 <pre><code class="shell">systemctl restart docker.service
 sudo service docker restart
 </code></pre>
-<p>docker启动日志：<br><code>/var/log/upstart/docker.log</code></p>
-<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>Get started with Docker Compose[<a href="https://docs.docker.com/compose/gettingstarted/]">https://docs.docker.com/compose/gettingstarted/]</a></p>
+<p>docker启动日志：<code>/var/log/upstart/docker.log</code></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p>Get started with Docker Compose[<a href="https://docs.docker.com/compose/gettingstarted/]">https://docs.docker.com/compose/gettingstarted/]</a></p>
 ]]></content>
       <categories>
         <category>工具</category>
@@ -2160,52 +2223,35 @@ vi .profile
 # 添加下面一行代码到最后
 TZ=&#39;Asia/Shanghai&#39;; export TZ
 </code></pre>
-<h1 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h1><p>备份 sources.list<br>cd &#x2F;etc&#x2F;apt<br>sudo cp sources.list sources.list.bak</p>
-<p>编辑 sources.list<br>添加如下内容（选择一个源即可）：</p>
-<pre><code># tsinghua
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted
+<h1 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h1><p>不同版本操作系统配置不同，最新版本 Ubuntu 24.04.3 LTS 的配置方法如下：</p>
+<ol>
+<li><code>cd /etc/apt/sources.list.d/</code></li>
+<li><code>sudo vi aliyun.sources</code> 添加如下内容：</li>
+</ol>
+<pre><code>Types: deb
+URIs: http://mirrors.aliyun.com/ubuntu/
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+# 清华源
+Types: deb
+URIs: http://mirrors.tuna.tsinghua.edu.cn/ubuntu/
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+# 中科大源
+Types: deb
+URIs: http://mirrors.ustc.edu.cn/ubuntu/
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
-## Major bug fix updates produced after the final release of the
-## distribution.
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted
-
-## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
-## team. Also, please note that software in universe WILL NOT receive any
-## review or updates from the Ubuntu security team.
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy universe
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates universe
-
-## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
-## team, and may not be under a free licence. Please satisfy yourself as to
-## your rights to use the software. Also, please note that software in
-## multiverse WILL NOT receive any review or updates from the Ubuntu
-## security team.
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy multiverse
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates multiverse
-
-## N.B. software from this repository may not have been tested as
-## extensively as that contained in the main release, although it includes
-## newer versions of some applications which may provide useful features.
-## Also, please note that software in backports WILL NOT receive any review
-## or updates from the Ubuntu security team.
-deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
-
-deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted
-deb http://security.ubuntu.com/ubuntu/ jammy-security universe
-deb http://security.ubuntu.com/ubuntu/ jammy-security multiverse
-
-# 阿里源
-deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+# 其他版本的配置方法参见【参考文档】
 </code></pre>
+<ol start="3">
+<li>使用命令行更新软件源 <code>sudo apt update</code>。这个命令会从你的软件源列表中下载最新的软件包信息。</li>
+</ol>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://developer.aliyun.com/mirror/ubuntu">https://developer.aliyun.com/mirror/ubuntu</a></p>
 ]]></content>
       <categories>
         <category>运维</category>
@@ -3336,7 +3382,7 @@ cd acme.sh
 <p>接着，执行以下命令进行安装：</p>
 <pre><code class="shell">./acme.sh --install -m mail@163.com
 </code></pre>
-<p>其中 -m 参数后的邮箱 <a href="mailto:&#109;&#97;&#105;&#108;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;">&#109;&#97;&#105;&#108;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;</a> 用于生成证书。</p>
+<p>其中 -m 参数后的邮箱 <a href="mailto:&#109;&#97;&#105;&#x6c;&#x40;&#49;&#54;&#51;&#46;&#99;&#x6f;&#109;">&#109;&#97;&#105;&#x6c;&#x40;&#49;&#54;&#51;&#46;&#99;&#x6f;&#109;</a> 用于生成证书。</p>
 <h1 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h1><p>DNS 方式的可以使用域名解析商提供的 API 自动添加 TXT 记录，且在完成验证后删除对应的记录。这里以 aliyun 为例，具体操作步骤如下：</p>
 <ul>
 <li>登录 Aliyun 账号，创建一个 RAM API key. <a href="https://ram.console.aliyun.com/users">https://ram.console.aliyun.com/users</a></li>
@@ -3407,14 +3453,15 @@ export Ali_Secret=&quot;secretStr&quot;
     <title>FastGPT 应用配置指南</title>
     <url>/2025/04/17/fastgpt-config-instructions/</url>
     <content><![CDATA[<h2 id="知识库搜索配置技巧"><a href="#知识库搜索配置技巧" class="headerlink" title="知识库搜索配置技巧"></a>知识库搜索配置技巧</h2><ol>
-<li>搜索方式推荐优先使用全文检索，其次是语义检索。全文检索匹配度高时，搜索结果会更加准确。语义搜索可能会返回一些无关的结果，需要根据具体情况进行筛选。</li>
+<li>搜索方式推荐优先使用全文检索，其次是语义检索。全文检索匹配度高时，搜索结果会更加准确，特别是对特定词汇、公司名称这类语义不明的场景下，语义搜索可能会返回一些无关的结果，具体要根据实际测试情况进行选择。</li>
 </ol>
 ]]></content>
       <categories>
         <category>大模型</category>
+        <category>FastGPT</category>
       </categories>
       <tags>
-        <tag>FastGPT</tag>
+        <tag>RAG</tag>
       </tags>
   </entry>
   <entry>
@@ -3619,6 +3666,270 @@ server &#123;
       <tags>
         <tag>nginx</tag>
         <tag>dns</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PMP 证书续证操作</title>
+    <url>/2025/04/28/pmp-renewal/</url>
+    <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>PMP 证书有效期为 3 年，到期后需要重新申请。如果让机构代办，需要交 1700 元。自己在线缴费是 150 美元，折算后可以省几百块钱。</p>
+<h1 id="准备步骤"><a href="#准备步骤" class="headerlink" title="准备步骤"></a>准备步骤</h1><ol>
+<li><p>登录 <a href="https://www.pmi.org/">PMP网站</a></p>
+</li>
+<li><p>确保 PDU 数量已满足续证要求。在“Dashboard”页面查看。如图：<br><img src="/2025-04-28-pmp-renewal/pmp-dashboard.png" alt="pmp-dashboard"></p>
+</li>
+<li><p>确保自己的地址（可以填中文地址）准确。登录后在“Account”页面查看。如图：<br><img src="/2025-04-28-pmp-renewal/pmp-address.png" alt="pmp-address"></p>
+</li>
+</ol>
+<h1 id="缴费步骤"><a href="#缴费步骤" class="headerlink" title="缴费步骤"></a>缴费步骤</h1><ol>
+<li><p>在“Dashboard”页面，点击“Renew”按钮。在预览页面选择收件地址，然后继续。</p>
+</li>
+<li><p>在订单页面确认价格，然后点击“Checkout”。如图：<br><img src="/2025-04-28-pmp-renewal/pmp-checkout.png" alt="pmp-checkout"></p>
+</li>
+<li><p>选择支付方式（可以选择支付宝，更方便），然后点击“Pay With Alipay”。如图：<br><img src="/2025-04-28-pmp-renewal/pay.png" alt="pmp-pay"></p>
+</li>
+<li><p>扫码支付后等待自动跳转到成功页面。然后到 Dashboard 页面下载电子证书。</p>
+</li>
+<li><p>在 Account 菜单中的 Order History 页面可以查看订单历史，下载收据（不能支持报销），如图：<br><img src="/2025-04-28-pmp-renewal/pmp-order-history.png" alt="pmp-order-history"></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>PMP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用 Docker 打包 FastGPT</title>
+    <url>/2025/05/05/build-FastGPT-by-docker/</url>
+    <content><![CDATA[<p>🎉 好嘞！手把手教你用 Docker 打包 FastGPT，超详细步骤来咯~</p>
+<hr>
+<h3 id="🔧-打包全流程"><a href="#🔧-打包全流程" class="headerlink" title="🔧 打包全流程"></a>🔧 <strong>打包全流程</strong></h3><pre><code class="bash"># 1. 先克隆代码仓库（记得提前装好git）
+git clone https://github.com/labring/FastGPT.git
+cd FastGPT
+
+# 2. 进入项目目录开整！
+# 基础打包命令（无代理）
+docker build -f ./projects/app/Dockerfile -t 你的镜像名:版本号 . --build-arg name=app
+
+# 🌰 举个栗子（用阿里云镜像）：
+docker build -f ./projects/app/Dockerfile -t registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:v4.8.1 . --build-arg name=app
+
+# 🚀 如果需要代理加速（比如国内网络）：
+docker build -f ./projects/app/Dockerfile -t 你的镜像名:版本号 . --build-arg name=app --build-arg proxy=taobao
+</code></pre>
+<hr>
+<h3 id="⚡-省心技巧"><a href="#⚡-省心技巧" class="headerlink" title="⚡ 省心技巧"></a>⚡ <strong>省心技巧</strong></h3><ol>
+<li><p><strong>镜像命名自由</strong><br>把 <code>registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt</code> 换成你自己的镜像仓库地址。</p>
+</li>
+<li><p><strong>一键式 Make 命令</strong><br>懒人可以直接用官方提供的 make 脚本👇  </p>
+<pre><code class="bash">make build name=app image=你的镜像名:版本号
+</code></pre>
+</li>
+<li><p><strong>代理加速开关</strong><br>在命令末尾加 <code>proxy=taobao</code> 就能用淘宝源加速构建（墙裂推荐国内用户！）</p>
+</li>
+</ol>
+<hr>
+<h3 id="🚢-打完包怎么用？"><a href="#🚢-打完包怎么用？" class="headerlink" title="🚢 打完包怎么用？"></a>🚢 <strong>打完包怎么用？</strong></h3><pre><code class="bash"># 1. 运行镜像测试
+docker run -p 3000:3000 你的镜像名:版本号
+
+# 2. 推送到镜像仓库（如果需要）
+docker push 你的镜像名:版本号
+</code></pre>
+<hr>
+<p>💡 <strong>避坑指南</strong>  </p>
+<ul>
+<li>构建前确保本地有完整的项目代码  </li>
+<li>如果报错「Dockerfile not found」，检查是否在项目根目录执行</li>
+</ul>
+<p>搞定收工！遇到问题随时喊我~ 🛠️</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.csdn.net/djdjnxnd/article/details/145929994">FastGpt二次开发</a></p>
+]]></content>
+      <categories>
+        <category>大模型</category>
+        <category>FastGPT</category>
+      </categories>
+      <tags>
+        <tag>build</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>fastgpt 数据统计</title>
+    <url>/2025/05/05/fastgpt-data-statistic/</url>
+    <content><![CDATA[<h2 id="数据统计"><a href="#数据统计" class="headerlink" title="数据统计"></a>数据统计</h2><h3 id="知识库数据量统计"><a href="#知识库数据量统计" class="headerlink" title="知识库数据量统计"></a>知识库数据量统计</h3><h4 id="🌱-知识库索引数量查询"><a href="#🌱-知识库索引数量查询" class="headerlink" title="🌱 知识库索引数量查询"></a>🌱 知识库索引数量查询</h4><ol>
+<li>打开 MongoDB 的 <code>dataset_datas</code> 表</li>
+<li>每个文档的 <code>indexes</code> 字段数组长度就是该数据的索引数量</li>
+<li>用这个命令快速统计👇</li>
+</ol>
+<pre><code class="bash">db.getCollection(&#39;dataset_datas&#39;).aggregate([
+  &#123; $project: &#123; count: &#123; $size: &quot;$indexes&quot; &#125; &#125; &#125;,
+  &#123; $group: &#123; _id: null, total: &#123; $sum: &quot;$count&quot; &#125; &#125; &#125;
+]);
+</code></pre>
+<h4 id="🌱-知识库总数据量查询"><a href="#🌱-知识库总数据量查询" class="headerlink" title="🌱 知识库总数据量查询"></a>🌱 知识库总数据量查询</h4><pre><code class="bash"># 直接对 `dataset_datas` 表里的 `q` 和 `a` 字段来波聚合操作：
+db.getCollection(&#39;dataset_datas&#39;).aggregate([
+  &#123; 
+    $project: &#123;
+      qLength: &#123; $strLenCP: &quot;$q&quot; &#125;,
+      aLength: &#123; $strLenCP: &quot;$a&quot; &#125;
+    &#125;
+  &#125;,
+  &#123;
+    $group: &#123;
+      _id: null,
+      totalLength: &#123; $sum: &#123; $add: [&quot;$qLength&quot;, &quot;$aLength&quot;] &#125; &#125;
+    &#125;
+  &#125;
+])
+# 连自定义索引内容一起算长度
+db.getCollection(&#39;dataset_datas&#39;).aggregate([
+  &#123;
+    $unwind: &quot;$indexes&quot; // 先展开索引数组
+  &#125;,
+  &#123;
+    $project: &#123;
+      qLen: &#123; $strLenCP: &quot;$q&quot; &#125;,
+      aLen: &#123; $strLenCP: &quot;$a&quot; &#125;,
+      indexLen: &#123; $strLenCP: &quot;$indexes.text&quot; &#125;
+    &#125;
+  &#125;,
+  &#123;
+    $group: &#123;
+      _id: null,
+      total: &#123; $sum: &#123; $add: [&quot;$qLen&quot;, &quot;$aLen&quot;, &quot;$indexLen&quot;] &#125; &#125;
+    &#125;
+  &#125;
+])
+</code></pre>
+<h3 id="会话次数统计"><a href="#会话次数统计" class="headerlink" title="会话次数统计"></a>会话次数统计</h3><pre><code class="bash">db.chats.countDocuments(&#123;&#125;)
+db.chatitems.countDocuments(&#123;&#125;)
+</code></pre>
+]]></content>
+      <categories>
+        <category>大模型</category>
+        <category>FastGPT</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Prompts-提示词记录</title>
+    <url>/2025/05/22/prompts/</url>
+    <content><![CDATA[<h2 id="画流程图"><a href="#画流程图" class="headerlink" title="画流程图"></a>画流程图</h2><ol>
+<li>请用 Mermaid 语法绘制流程图，包含开始、决策节点、操作步骤和结束标志。</li>
+<li>帮我把这个流程图转换成 Mermaid 语法输出。</li>
+</ol>
+<h2 id="画架构图"><a href="#画架构图" class="headerlink" title="画架构图"></a>画架构图</h2><h3 id="功能架构图"><a href="#功能架构图" class="headerlink" title="功能架构图"></a>功能架构图</h3><ol>
+<li>功能架构图分为基础层、应用层、门户层。</li>
+<li>基础层一般包含：组织人员管理、菜单管理、权限管理、流程管理、字典管理、日志管理等。</li>
+<li>应用层包含功能模块有：</li>
+<li>门户层分PC端、移动端。</li>
+</ol>
+<h2 id="大模型生成SQL"><a href="#大模型生成SQL" class="headerlink" title="大模型生成SQL"></a>大模型生成SQL</h2><p><a href="https://mp.weixin.qq.com/s/uIPtSbBOknFayPWsvr2zwg">langchain-智能sql查询</a></p>
+<h2 id="图片生成"><a href="#图片生成" class="headerlink" title="图片生成"></a>图片生成</h2><p>帮我生成一张图片：帮我生成一张平白无奇的自拍照片，没有明确的构图感，随手一拍。室内打光不均导致的轻微曝光，整体呈现出一种刻意的平庸感，像是从口袋拿出手机随便一张自拍。人物为五官精致的美女，穿着还原动漫角色(不要重复)的装扮，着重体现出腿部和身材，姿势要自然符合现实自拍逻辑，身材比例不用过于夸张，手机要体现出真实，更加还原真实女性皮肤质感，照片略带运动模糊。比例 3:4。</p>
+<p>帮我生成一张图片：帮我生成一张平白无奇的自拍照片，没有明确的构图感，随手一拍。室内打光不均导致的轻微曝光，整体呈现出一种刻意的平庸感，像是从口袋拿出手机随便一张自拍。人物为五官精致的美女，穿着还原动漫角色(王者荣耀里的不知火舞)的装扮，着重体现出腿部和身材，姿势要自然符合现实自拍逻辑，身材比例不用过于夸张，手机要体现出真实，更加还原真实女性皮肤质感，照片略带运动模糊。比例 3:4。</p>
+<h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><p>把这几个名称翻译成英文，名称有多个单词时用下划线拼接，不要使用 is 开头，不要使用 mysql 关键字。</p>
+]]></content>
+      <categories>
+        <category>大模型</category>
+      </categories>
+      <tags>
+        <tag>prompt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Clash 使用配置</title>
+    <url>/2025/05/27/clash-usage-tips/</url>
+    <content><![CDATA[<h2 id="网站不走代理配置"><a href="#网站不走代理配置" class="headerlink" title="网站不走代理配置"></a>网站不走代理配置</h2><p><code>Proxy Mode</code>选择<code>Rule</code>模式时，正常来讲不需要代理的网站是不会走代理的，但是也有特殊情况。如果需要明确某个网站或者 IP 不走代理，可以按下面方法进行配置：<br>在<code>Setting -&gt; System Proxy</code> 中找到 <code>Bypass Domain/IPNet</code>，把需要绕过去的网站加在后面。示例：</p>
+<pre><code class="yml">bypass:
+  - localhost
+  - 127.*
+  - 192.168.*
+  - baidu.com
+</code></pre>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>clash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node 安装与使用指南</title>
+    <url>/2025/07/31/node-install-guide/</url>
+    <content><![CDATA[<h2 id="安装-nvs"><a href="#安装-nvs" class="headerlink" title="安装 nvs"></a>安装 nvs</h2><h3 id="Mac-Linux"><a href="#Mac-Linux" class="headerlink" title="Mac,Linux"></a>Mac,Linux</h3><p>设置安装路径，下载源码，然后执行安装命令：</p>
+<pre><code class="shell">export NVS_HOME=&quot;$HOME/.nvs&quot;
+git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;
+. &quot;$NVS_HOME/nvs.sh&quot; install
+</code></pre>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>使用 PowerShell 执行以下命令：</p>
+<pre><code class="shell">$NVS_HOME = &quot;$HOME\.nvs&quot;
+git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;
+. &quot;$NVS_HOME\nvs.ps1&quot; install
+</code></pre>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><ol>
+<li>查看版本号：<code>nvs --version</code></li>
+<li>查看可以下载 node 版本： <code>nvs ls-remote v20</code></li>
+<li>下载指定版本的 node：<code>nvs add v20.14.0</code></li>
+<li>查看已安装的 node 版本：<code>nvs ls</code></li>
+<li>使用指定版本 node：<code>nvs use node/20.14.0/x64</code></li>
+<li>设置默认使用版本：<code>nvs link v20.14.0</code></li>
+</ol>
+<h2 id="安装-pnpm"><a href="#安装-pnpm" class="headerlink" title="安装 pnpm"></a>安装 pnpm</h2><p>全局安装指定版本的 pnpm： <code>npm install -g pnpm@9.4.0</code></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>miniconda 安装与 VS Code 环境配置</title>
+    <url>/2025/08/01/install-minicoda-and-VS-Code-config/</url>
+    <content><![CDATA[<h2 id="miniconda-安装"><a href="#miniconda-安装" class="headerlink" title="miniconda 安装"></a>miniconda 安装</h2><h3 id="下载安装-miniconda"><a href="#下载安装-miniconda" class="headerlink" title="下载安装 miniconda"></a>下载安装 miniconda</h3><p>安装参考文档（<a href="https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2%EF%BC%89%E3%80%82">https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2）。</a></p>
+<ul>
+<li>在用户目录下创建一个目录：<code>miniconda3</code></li>
+<li>下载安装命令脚本，并重命名为：<code>miniconda.sh</code></li>
+<li>通过 bash 执行安装命令脚本。</li>
+<li>安装完成后删除安装脚本。</li>
+</ul>
+<pre><code class="shell">mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
+</code></pre>
+<ul>
+<li>安装完成后，执行命令激活：<code>source ~/miniconda3/bin/activate</code></li>
+<li>最后为所有 shells 初始化 conda： <code>conda init --all</code></li>
+</ul>
+<h3 id="conda-常用命令"><a href="#conda-常用命令" class="headerlink" title="conda 常用命令"></a>conda 常用命令</h3><ol>
+<li>查看 conda 环境：<code>conda info -e</code></li>
+<li>激活某个环境： <code>conda activate base</code></li>
+<li>退出一个激活的环境：  <code>conda deactivate</code></li>
+</ol>
+<h3 id="python-常用命令"><a href="#python-常用命令" class="headerlink" title="python 常用命令"></a>python 常用命令</h3><ol>
+<li>查看版本：<code>python3 -version</code>, <code>pip3 --version</code></li>
+<li>安装模块命令：<code>pip3 install &lt;模块名&gt;</code></li>
+</ol>
+<h2 id="VS-Code-配置-python-环境"><a href="#VS-Code-配置-python-环境" class="headerlink" title="VS Code 配置 python 环境"></a>VS Code 配置 python 环境</h2><p>VS Code 或者基于 vscode 的 IDE 都可以使用 USL Ubuntu 中的 Python 环境，并且这是微软官方强烈推荐并深度集成的标准工作流之一。</p>
+<ul>
+<li>安装扩展：Remote-WSL, Python.</li>
+<li>连接到 WSL Ubuntu： 按<code>Ctrl+Shift+P</code>打开命令面板，输入并选择命令<code>Remoe-WSL: Connect to WSL</code>，VS Code 会启动一个新的窗口，状态栏左下角会显示<code>WSL: Ubuntu...</code></li>
+<li>VS Code 检测到 Python 文件时，右下角会提示选择解释器。</li>
+</ul>
+<p>完成这些步骤后，VS Code 就完全在 WSL Ubuntu 的 Python 环境中工作了，享受最接近原生 Linux 的开发体验。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>miniconda</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://mp127.fun/atom.xml" rel="self"/>
   
   <link href="https://mp127.fun/"/>
-  <updated>2025-04-20T10:30:10.000Z</updated>
+  <updated>2025-08-01T06:43:23.000Z</updated>
   <id>https://mp127.fun/</id>
   
   <author>
@@ -15,6 +15,186 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>miniconda 安装与 VS Code 环境配置</title>
+    <link href="https://mp127.fun/2025/08/01/install-minicoda-and-VS-Code-config/"/>
+    <id>https://mp127.fun/2025/08/01/install-minicoda-and-VS-Code-config/</id>
+    <published>2025-08-01T06:43:23.000Z</published>
+    <updated>2025-08-01T06:43:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="miniconda-安装"><a href="#miniconda-安装" class="headerlink" title="miniconda 安装"></a>miniconda 安装</h2><h3 id="下载安装-miniconda"><a href="#下载安装-miniconda" class="headerlink" title="下载安装 miniconda"></a>下载安装 miniconda</h3><p>安装参考文档（<a href="https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2%EF%BC%89%E3%80%82">https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2）。</a></p><ul><li>在用户目录下创建一个目录：<code>miniconda3</code></li><li>下载安装命令脚本，并重命名为：<code>miniconda.sh</code></li><li>通过 bash 执行安装命令脚本。</li><li>安装完成后删除安装脚本。</li></ul><pre><code class="shell">mkdir -p ~/miniconda3wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.shbash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3rm ~/miniconda3/miniconda.sh</code></pre><ul><li>安装完成后，执行命令激活：<code>source ~/miniconda3/bin/activate</code></li><li>最后为所有 shells 初始化 conda： <code>conda init --all</code></li></ul><h3 id="conda-常用命令"><a href="#conda-常用命令" class="headerlink" title="conda 常用命令"></a>conda 常用命令</h3><ol><li>查看 conda 环境：<code>conda info -e</code></li><li>激活某个环境： <code>conda activate base</code></li><li>退出一个激活的环境：  <code>conda deactivate</code></li></ol><h3 id="python-常用命令"><a href="#python-常用命令" class="headerlink" title="python 常用命令"></a>python 常用命令</h3><ol><li>查看版本：<code>python3 -version</code>, <code>pip3 --version</code></li><li>安装模块命令：<code>pip3 install &lt;模块名&gt;</code></li></ol><h2 id="VS-Code-配置-python-环境"><a href="#VS-Code-配置-python-环境" class="headerlink" title="VS Code 配置 python 环境"></a>VS Code 配置 python 环境</h2><p>VS Code 或者基于 vscode 的 IDE 都可以使用 USL Ubuntu 中的 Python 环境，并且这是微软官方强烈推荐并深度集成的标准工作流之一。</p><ul><li>安装扩展：Remote-WSL, Python.</li><li>连接到 WSL Ubuntu： 按<code>Ctrl+Shift+P</code>打开命令面板，输入并选择命令<code>Remoe-WSL: Connect to WSL</code>，VS Code 会启动一个新的窗口，状态栏左下角会显示<code>WSL: Ubuntu...</code></li><li>VS Code 检测到 Python 文件时，右下角会提示选择解释器。</li></ul><p>完成这些步骤后，VS Code 就完全在 WSL Ubuntu 的 Python 环境中工作了，享受最接近原生 Linux 的开发体验。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;miniconda-安装&quot;&gt;&lt;a href=&quot;#miniconda-安装&quot; class=&quot;headerlink&quot; title=&quot;miniconda 安装&quot;&gt;&lt;/a&gt;miniconda 安装&lt;/h2&gt;&lt;h3 id=&quot;下载安装-miniconda&quot;&gt;&lt;a href=&quot;</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="https://mp127.fun/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="miniconda" scheme="https://mp127.fun/tags/miniconda/"/>
+    
+    <category term="Python" scheme="https://mp127.fun/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>node 安装与使用指南</title>
+    <link href="https://mp127.fun/2025/07/31/node-install-guide/"/>
+    <id>https://mp127.fun/2025/07/31/node-install-guide/</id>
+    <published>2025-07-31T13:01:40.000Z</published>
+    <updated>2025-07-31T13:01:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装-nvs"><a href="#安装-nvs" class="headerlink" title="安装 nvs"></a>安装 nvs</h2><h3 id="Mac-Linux"><a href="#Mac-Linux" class="headerlink" title="Mac,Linux"></a>Mac,Linux</h3><p>设置安装路径，下载源码，然后执行安装命令：</p><pre><code class="shell">export NVS_HOME=&quot;$HOME/.nvs&quot;git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;. &quot;$NVS_HOME/nvs.sh&quot; install</code></pre><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>使用 PowerShell 执行以下命令：</p><pre><code class="shell">$NVS_HOME = &quot;$HOME\.nvs&quot;git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;. &quot;$NVS_HOME\nvs.ps1&quot; install</code></pre><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><ol><li>查看版本号：<code>nvs --version</code></li><li>查看可以下载 node 版本： <code>nvs ls-remote v20</code></li><li>下载指定版本的 node：<code>nvs add v20.14.0</code></li><li>查看已安装的 node 版本：<code>nvs ls</code></li><li>使用指定版本 node：<code>nvs use node/20.14.0/x64</code></li><li>设置默认使用版本：<code>nvs link v20.14.0</code></li></ol><h2 id="安装-pnpm"><a href="#安装-pnpm" class="headerlink" title="安装 pnpm"></a>安装 pnpm</h2><p>全局安装指定版本的 pnpm： <code>npm install -g pnpm@9.4.0</code></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;安装-nvs&quot;&gt;&lt;a href=&quot;#安装-nvs&quot; class=&quot;headerlink&quot; title=&quot;安装 nvs&quot;&gt;&lt;/a&gt;安装 nvs&lt;/h2&gt;&lt;h3 id=&quot;Mac-Linux&quot;&gt;&lt;a href=&quot;#Mac-Linux&quot; class=&quot;headerlink</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="https://mp127.fun/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="node" scheme="https://mp127.fun/tags/node/"/>
+    
+    <category term="npm" scheme="https://mp127.fun/tags/npm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Clash 使用配置</title>
+    <link href="https://mp127.fun/2025/05/27/clash-usage-tips/"/>
+    <id>https://mp127.fun/2025/05/27/clash-usage-tips/</id>
+    <published>2025-05-27T01:49:14.000Z</published>
+    <updated>2025-05-27T01:49:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="网站不走代理配置"><a href="#网站不走代理配置" class="headerlink" title="网站不走代理配置"></a>网站不走代理配置</h2><p><code>Proxy Mode</code>选择<code>Rule</code>模式时，正常来讲不需要代理的网站是不会走代理的，但是也有特殊情况。如果需要明确某个网站或者 IP 不走代理，可以按下面方法进行配置：<br>在<code>Setting -&gt; System Proxy</code> 中找到 <code>Bypass Domain/IPNet</code>，把需要绕过去的网站加在后面。示例：</p><pre><code class="yml">bypass:  - localhost  - 127.*  - 192.168.*  - baidu.com</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;网站不走代理配置&quot;&gt;&lt;a href=&quot;#网站不走代理配置&quot; class=&quot;headerlink&quot; title=&quot;网站不走代理配置&quot;&gt;&lt;/a&gt;网站不走代理配置&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Proxy Mode&lt;/code&gt;选择&lt;code&gt;Rule&lt;/code&gt;模式时，</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="https://mp127.fun/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="clash" scheme="https://mp127.fun/tags/clash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Prompts-提示词记录</title>
+    <link href="https://mp127.fun/2025/05/22/prompts/"/>
+    <id>https://mp127.fun/2025/05/22/prompts/</id>
+    <published>2025-05-22T01:55:41.000Z</published>
+    <updated>2025-05-22T01:55:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="画流程图"><a href="#画流程图" class="headerlink" title="画流程图"></a>画流程图</h2><ol><li>请用 Mermaid 语法绘制流程图，包含开始、决策节点、操作步骤和结束标志。</li><li>帮我把这个流程图转换成 Mermaid 语法输出。</li></ol><h2 id="画架构图"><a href="#画架构图" class="headerlink" title="画架构图"></a>画架构图</h2><h3 id="功能架构图"><a href="#功能架构图" class="headerlink" title="功能架构图"></a>功能架构图</h3><ol><li>功能架构图分为基础层、应用层、门户层。</li><li>基础层一般包含：组织人员管理、菜单管理、权限管理、流程管理、字典管理、日志管理等。</li><li>应用层包含功能模块有：</li><li>门户层分PC端、移动端。</li></ol><h2 id="大模型生成SQL"><a href="#大模型生成SQL" class="headerlink" title="大模型生成SQL"></a>大模型生成SQL</h2><p><a href="https://mp.weixin.qq.com/s/uIPtSbBOknFayPWsvr2zwg">langchain-智能sql查询</a></p><h2 id="图片生成"><a href="#图片生成" class="headerlink" title="图片生成"></a>图片生成</h2><p>帮我生成一张图片：帮我生成一张平白无奇的自拍照片，没有明确的构图感，随手一拍。室内打光不均导致的轻微曝光，整体呈现出一种刻意的平庸感，像是从口袋拿出手机随便一张自拍。人物为五官精致的美女，穿着还原动漫角色(不要重复)的装扮，着重体现出腿部和身材，姿势要自然符合现实自拍逻辑，身材比例不用过于夸张，手机要体现出真实，更加还原真实女性皮肤质感，照片略带运动模糊。比例 3:4。</p><p>帮我生成一张图片：帮我生成一张平白无奇的自拍照片，没有明确的构图感，随手一拍。室内打光不均导致的轻微曝光，整体呈现出一种刻意的平庸感，像是从口袋拿出手机随便一张自拍。人物为五官精致的美女，穿着还原动漫角色(王者荣耀里的不知火舞)的装扮，着重体现出腿部和身材，姿势要自然符合现实自拍逻辑，身材比例不用过于夸张，手机要体现出真实，更加还原真实女性皮肤质感，照片略带运动模糊。比例 3:4。</p><h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><p>把这几个名称翻译成英文，名称有多个单词时用下划线拼接，不要使用 is 开头，不要使用 mysql 关键字。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;画流程图&quot;&gt;&lt;a href=&quot;#画流程图&quot; class=&quot;headerlink&quot; title=&quot;画流程图&quot;&gt;&lt;/a&gt;画流程图&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;请用 Mermaid 语法绘制流程图，包含开始、决策节点、操作步骤和结束标志。&lt;/li&gt;
+&lt;li&gt;帮我把这个流程</summary>
+      
+    
+    
+    
+    <category term="大模型" scheme="https://mp127.fun/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+    <category term="prompt" scheme="https://mp127.fun/tags/prompt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用 Docker 打包 FastGPT</title>
+    <link href="https://mp127.fun/2025/05/05/build-FastGPT-by-docker/"/>
+    <id>https://mp127.fun/2025/05/05/build-FastGPT-by-docker/</id>
+    <published>2025-05-05T11:34:39.000Z</published>
+    <updated>2025-05-05T11:34:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>🎉 好嘞！手把手教你用 Docker 打包 FastGPT，超详细步骤来咯~</p><hr><h3 id="🔧-打包全流程"><a href="#🔧-打包全流程" class="headerlink" title="🔧 打包全流程"></a>🔧 <strong>打包全流程</strong></h3><pre><code class="bash"># 1. 先克隆代码仓库（记得提前装好git）git clone https://github.com/labring/FastGPT.gitcd FastGPT# 2. 进入项目目录开整！# 基础打包命令（无代理）docker build -f ./projects/app/Dockerfile -t 你的镜像名:版本号 . --build-arg name=app# 🌰 举个栗子（用阿里云镜像）：docker build -f ./projects/app/Dockerfile -t registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:v4.8.1 . --build-arg name=app# 🚀 如果需要代理加速（比如国内网络）：docker build -f ./projects/app/Dockerfile -t 你的镜像名:版本号 . --build-arg name=app --build-arg proxy=taobao</code></pre><hr><h3 id="⚡-省心技巧"><a href="#⚡-省心技巧" class="headerlink" title="⚡ 省心技巧"></a>⚡ <strong>省心技巧</strong></h3><ol><li><p><strong>镜像命名自由</strong><br>把 <code>registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt</code> 换成你自己的镜像仓库地址。</p></li><li><p><strong>一键式 Make 命令</strong><br>懒人可以直接用官方提供的 make 脚本👇  </p><pre><code class="bash">make build name=app image=你的镜像名:版本号</code></pre></li><li><p><strong>代理加速开关</strong><br>在命令末尾加 <code>proxy=taobao</code> 就能用淘宝源加速构建（墙裂推荐国内用户！）</p></li></ol><hr><h3 id="🚢-打完包怎么用？"><a href="#🚢-打完包怎么用？" class="headerlink" title="🚢 打完包怎么用？"></a>🚢 <strong>打完包怎么用？</strong></h3><pre><code class="bash"># 1. 运行镜像测试docker run -p 3000:3000 你的镜像名:版本号# 2. 推送到镜像仓库（如果需要）docker push 你的镜像名:版本号</code></pre><hr><p>💡 <strong>避坑指南</strong>  </p><ul><li>构建前确保本地有完整的项目代码  </li><li>如果报错「Dockerfile not found」，检查是否在项目根目录执行</li></ul><p>搞定收工！遇到问题随时喊我~ 🛠️</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.csdn.net/djdjnxnd/article/details/145929994">FastGpt二次开发</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;🎉 好嘞！手把手教你用 Docker 打包 FastGPT，超详细步骤来咯~&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;🔧-打包全流程&quot;&gt;&lt;a href=&quot;#🔧-打包全流程&quot; class=&quot;headerlink&quot; title=&quot;🔧 打包全流程&quot;&gt;&lt;/a&gt;🔧 &lt;strong</summary>
+      
+    
+    
+    
+    <category term="大模型" scheme="https://mp127.fun/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="FastGPT" scheme="https://mp127.fun/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/FastGPT/"/>
+    
+    
+    <category term="build" scheme="https://mp127.fun/tags/build/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fastgpt 数据统计</title>
+    <link href="https://mp127.fun/2025/05/05/fastgpt-data-statistic/"/>
+    <id>https://mp127.fun/2025/05/05/fastgpt-data-statistic/</id>
+    <published>2025-05-05T09:22:46.000Z</published>
+    <updated>2025-05-05T09:22:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数据统计"><a href="#数据统计" class="headerlink" title="数据统计"></a>数据统计</h2><h3 id="知识库数据量统计"><a href="#知识库数据量统计" class="headerlink" title="知识库数据量统计"></a>知识库数据量统计</h3><h4 id="🌱-知识库索引数量查询"><a href="#🌱-知识库索引数量查询" class="headerlink" title="🌱 知识库索引数量查询"></a>🌱 知识库索引数量查询</h4><ol><li>打开 MongoDB 的 <code>dataset_datas</code> 表</li><li>每个文档的 <code>indexes</code> 字段数组长度就是该数据的索引数量</li><li>用这个命令快速统计👇</li></ol><pre><code class="bash">db.getCollection(&#39;dataset_datas&#39;).aggregate([  &#123; $project: &#123; count: &#123; $size: &quot;$indexes&quot; &#125; &#125; &#125;,  &#123; $group: &#123; _id: null, total: &#123; $sum: &quot;$count&quot; &#125; &#125; &#125;]);</code></pre><h4 id="🌱-知识库总数据量查询"><a href="#🌱-知识库总数据量查询" class="headerlink" title="🌱 知识库总数据量查询"></a>🌱 知识库总数据量查询</h4><pre><code class="bash"># 直接对 `dataset_datas` 表里的 `q` 和 `a` 字段来波聚合操作：db.getCollection(&#39;dataset_datas&#39;).aggregate([  &#123;     $project: &#123;      qLength: &#123; $strLenCP: &quot;$q&quot; &#125;,      aLength: &#123; $strLenCP: &quot;$a&quot; &#125;    &#125;  &#125;,  &#123;    $group: &#123;      _id: null,      totalLength: &#123; $sum: &#123; $add: [&quot;$qLength&quot;, &quot;$aLength&quot;] &#125; &#125;    &#125;  &#125;])# 连自定义索引内容一起算长度db.getCollection(&#39;dataset_datas&#39;).aggregate([  &#123;    $unwind: &quot;$indexes&quot; // 先展开索引数组  &#125;,  &#123;    $project: &#123;      qLen: &#123; $strLenCP: &quot;$q&quot; &#125;,      aLen: &#123; $strLenCP: &quot;$a&quot; &#125;,      indexLen: &#123; $strLenCP: &quot;$indexes.text&quot; &#125;    &#125;  &#125;,  &#123;    $group: &#123;      _id: null,      total: &#123; $sum: &#123; $add: [&quot;$qLen&quot;, &quot;$aLen&quot;, &quot;$indexLen&quot;] &#125; &#125;    &#125;  &#125;])</code></pre><h3 id="会话次数统计"><a href="#会话次数统计" class="headerlink" title="会话次数统计"></a>会话次数统计</h3><pre><code class="bash">db.chats.countDocuments(&#123;&#125;)db.chatitems.countDocuments(&#123;&#125;)</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;数据统计&quot;&gt;&lt;a href=&quot;#数据统计&quot; class=&quot;headerlink&quot; title=&quot;数据统计&quot;&gt;&lt;/a&gt;数据统计&lt;/h2&gt;&lt;h3 id=&quot;知识库数据量统计&quot;&gt;&lt;a href=&quot;#知识库数据量统计&quot; class=&quot;headerlink&quot; title=&quot;知</summary>
+      
+    
+    
+    
+    <category term="大模型" scheme="https://mp127.fun/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="FastGPT" scheme="https://mp127.fun/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/FastGPT/"/>
+    
+    
+    <category term="统计" scheme="https://mp127.fun/tags/%E7%BB%9F%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PMP 证书续证操作</title>
+    <link href="https://mp127.fun/2025/04/28/pmp-renewal/"/>
+    <id>https://mp127.fun/2025/04/28/pmp-renewal/</id>
+    <published>2025-04-28T01:25:02.000Z</published>
+    <updated>2025-04-28T01:25:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>PMP 证书有效期为 3 年，到期后需要重新申请。如果让机构代办，需要交 1700 元。自己在线缴费是 150 美元，折算后可以省几百块钱。</p><h1 id="准备步骤"><a href="#准备步骤" class="headerlink" title="准备步骤"></a>准备步骤</h1><ol><li><p>登录 <a href="https://www.pmi.org/">PMP网站</a></p></li><li><p>确保 PDU 数量已满足续证要求。在“Dashboard”页面查看。如图：<br><img src="/2025-04-28-pmp-renewal/pmp-dashboard.png" alt="pmp-dashboard"></p></li><li><p>确保自己的地址（可以填中文地址）准确。登录后在“Account”页面查看。如图：<br><img src="/2025-04-28-pmp-renewal/pmp-address.png" alt="pmp-address"></p></li></ol><h1 id="缴费步骤"><a href="#缴费步骤" class="headerlink" title="缴费步骤"></a>缴费步骤</h1><ol><li><p>在“Dashboard”页面，点击“Renew”按钮。在预览页面选择收件地址，然后继续。</p></li><li><p>在订单页面确认价格，然后点击“Checkout”。如图：<br><img src="/2025-04-28-pmp-renewal/pmp-checkout.png" alt="pmp-checkout"></p></li><li><p>选择支付方式（可以选择支付宝，更方便），然后点击“Pay With Alipay”。如图：<br><img src="/2025-04-28-pmp-renewal/pay.png" alt="pmp-pay"></p></li><li><p>扫码支付后等待自动跳转到成功页面。然后到 Dashboard 页面下载电子证书。</p></li><li><p>在 Account 菜单中的 Order History 页面可以查看订单历史，下载收据（不能支持报销），如图：<br><img src="/2025-04-28-pmp-renewal/pmp-order-history.png" alt="pmp-order-history"></p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;PMP 证书有效期为 3 年，到期后需要重新申请。如果让机构代办，需要交 1700 元。自己在线缴费是 150 美元，折算后可以省几百块钱。</summary>
+      
+    
+    
+    
+    <category term="blog" scheme="https://mp127.fun/categories/blog/"/>
+    
+    
+    <category term="PMP" scheme="https://mp127.fun/tags/PMP/"/>
+    
+  </entry>
   
   <entry>
     <title>磁盘分区不足时，移动文件到其他磁盘分区</title>
@@ -50,7 +230,7 @@
     <published>2025-04-17T10:48:17.000Z</published>
     <updated>2025-04-17T10:48:17.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="知识库搜索配置技巧"><a href="#知识库搜索配置技巧" class="headerlink" title="知识库搜索配置技巧"></a>知识库搜索配置技巧</h2><ol><li>搜索方式推荐优先使用全文检索，其次是语义检索。全文检索匹配度高时，搜索结果会更加准确。语义搜索可能会返回一些无关的结果，需要根据具体情况进行筛选。</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="知识库搜索配置技巧"><a href="#知识库搜索配置技巧" class="headerlink" title="知识库搜索配置技巧"></a>知识库搜索配置技巧</h2><ol><li>搜索方式推荐优先使用全文检索，其次是语义检索。全文检索匹配度高时，搜索结果会更加准确，特别是对特定词汇、公司名称这类语义不明的场景下，语义搜索可能会返回一些无关的结果，具体要根据实际测试情况进行选择。</li></ol>]]></content>
     
     
       
@@ -63,8 +243,10 @@
     
     <category term="大模型" scheme="https://mp127.fun/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
+    <category term="FastGPT" scheme="https://mp127.fun/categories/%E5%A4%A7%E6%A8%A1%E5%9E%8B/FastGPT/"/>
     
-    <category term="FastGPT" scheme="https://mp127.fun/tags/FastGPT/"/>
+    
+    <category term="RAG" scheme="https://mp127.fun/tags/RAG/"/>
     
   </entry>
   
@@ -102,7 +284,7 @@
     <published>2025-01-23T10:36:14.000Z</published>
     <updated>2025-01-23T11:17:14.000Z</updated>
     
-    <content type="html"><![CDATA[<p>本文详细介绍了如何在目标服务器上使用 acme.sh 工具(下载地址：<a href="https://github.com/acmesh-official/acme.sh)%EF%BC%8C%E9%80%9A%E8%BF%87">https://github.com/acmesh-official/acme.sh)，通过</a> DNS 模式申请证书、安装证书的一系列操作步骤。<br>DNS 验证：在您的服务器网络环境比较复杂情况下，可以使用 DNS 验证，不需要任何公网 IP，不需要任何服务器，只需要 DNS 的解析记录即可完成验证。</p><h1 id="安装-acme-sh-工具"><a href="#安装-acme-sh-工具" class="headerlink" title="安装 acme.sh 工具"></a>安装 acme.sh 工具</h1><p>首先，使用 scp 命令将 acme.sh.tar 文件传输到指定服务器的指定目录：</p><pre><code class="shell">scp acme.sh.tar shumei@ip:/home/shumei/software</code></pre><p>这里 shumei 是用户名，ip 是目标服务器的 IP 地址。</p><p>然后登录服务器，解压 acme.sh.tar 文件后，进入到 acme.sh 所在的目录，命令如下：</p><pre><code class="shell">tar -zxvf acme.sh.tarcd acme.sh</code></pre><p>接着，执行以下命令进行安装：</p><pre><code class="shell">./acme.sh --install -m mail@163.com</code></pre><p>其中 -m 参数后的邮箱 <a href="mailto:&#109;&#97;&#105;&#108;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;">&#109;&#97;&#105;&#108;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;</a> 用于生成证书。</p><h1 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h1><p>DNS 方式的可以使用域名解析商提供的 API 自动添加 TXT 记录，且在完成验证后删除对应的记录。这里以 aliyun 为例，具体操作步骤如下：</p><ul><li>登录 Aliyun 账号，创建一个 RAM API key. <a href="https://ram.console.aliyun.com/users">https://ram.console.aliyun.com/users</a></li><li>将 key 和 secret 保存在环境变量中，命令如下：</li></ul><pre><code class="shell">export Ali_Key=&quot;keyStr&quot;export Ali_Secret=&quot;secretStr&quot;</code></pre><ul><li>使用 acme.sh 命令申请证书。</li></ul><pre><code class="shell">acme.sh --issue --dns dns_ali -d example.com -d *.example.com</code></pre><p>-d 指定域名，*.example.com 表示通配符域名。也可以仅指定一个域名，如 example.com。</p><p>Ali_Key 和 Ali_Secret 会保存在 ~&#x2F;.acme.sh&#x2F;account.conf 中，当后期更新证书时会用到。</p><h1 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h1><p>使用 acme.sh 命令将申请到的证书安装到指定目录。–key-file 指定私钥文件路径，–fullchain-file 指定证书文件路径，–reloadcmd<br>指定安装完成后重新加载 nginx 服务的命令，命令如下：<br>acme.sh –install-cert -d example.com -d *.example.com <br>–key-file &#x2F;etc&#x2F;nginx&#x2F;cert&#x2F;example&#x2F;cert.key  <br>–fullchain-file &#x2F;etc&#x2F;nginx&#x2F;cert&#x2F;example&#x2F;cert.cer <br>–reloadcmd     “service nginx force-reload”</p><p>通过以上步骤，我们就完成了从证书申请和安装的整个过程。<br>相关技术资源链接：<br>acme.sh 官方文档：<a href="https://github.com/acmesh-official/acme.sh/wiki">https://github.com/acmesh-official/acme.sh/wiki</a><br>nginx官方文档：<a href="https://nginx.org/en/docs/">https://nginx.org/en/docs/</a></p>]]></content>
+    <content type="html"><![CDATA[<p>本文详细介绍了如何在目标服务器上使用 acme.sh 工具(下载地址：<a href="https://github.com/acmesh-official/acme.sh)%EF%BC%8C%E9%80%9A%E8%BF%87">https://github.com/acmesh-official/acme.sh)，通过</a> DNS 模式申请证书、安装证书的一系列操作步骤。<br>DNS 验证：在您的服务器网络环境比较复杂情况下，可以使用 DNS 验证，不需要任何公网 IP，不需要任何服务器，只需要 DNS 的解析记录即可完成验证。</p><h1 id="安装-acme-sh-工具"><a href="#安装-acme-sh-工具" class="headerlink" title="安装 acme.sh 工具"></a>安装 acme.sh 工具</h1><p>首先，使用 scp 命令将 acme.sh.tar 文件传输到指定服务器的指定目录：</p><pre><code class="shell">scp acme.sh.tar shumei@ip:/home/shumei/software</code></pre><p>这里 shumei 是用户名，ip 是目标服务器的 IP 地址。</p><p>然后登录服务器，解压 acme.sh.tar 文件后，进入到 acme.sh 所在的目录，命令如下：</p><pre><code class="shell">tar -zxvf acme.sh.tarcd acme.sh</code></pre><p>接着，执行以下命令进行安装：</p><pre><code class="shell">./acme.sh --install -m mail@163.com</code></pre><p>其中 -m 参数后的邮箱 <a href="mailto:&#109;&#97;&#105;&#x6c;&#x40;&#49;&#54;&#51;&#46;&#99;&#x6f;&#109;">&#109;&#97;&#105;&#x6c;&#x40;&#49;&#54;&#51;&#46;&#99;&#x6f;&#109;</a> 用于生成证书。</p><h1 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h1><p>DNS 方式的可以使用域名解析商提供的 API 自动添加 TXT 记录，且在完成验证后删除对应的记录。这里以 aliyun 为例，具体操作步骤如下：</p><ul><li>登录 Aliyun 账号，创建一个 RAM API key. <a href="https://ram.console.aliyun.com/users">https://ram.console.aliyun.com/users</a></li><li>将 key 和 secret 保存在环境变量中，命令如下：</li></ul><pre><code class="shell">export Ali_Key=&quot;keyStr&quot;export Ali_Secret=&quot;secretStr&quot;</code></pre><ul><li>使用 acme.sh 命令申请证书。</li></ul><pre><code class="shell">acme.sh --issue --dns dns_ali -d example.com -d *.example.com</code></pre><p>-d 指定域名，*.example.com 表示通配符域名。也可以仅指定一个域名，如 example.com。</p><p>Ali_Key 和 Ali_Secret 会保存在 ~&#x2F;.acme.sh&#x2F;account.conf 中，当后期更新证书时会用到。</p><h1 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h1><p>使用 acme.sh 命令将申请到的证书安装到指定目录。–key-file 指定私钥文件路径，–fullchain-file 指定证书文件路径，–reloadcmd<br>指定安装完成后重新加载 nginx 服务的命令，命令如下：<br>acme.sh –install-cert -d example.com -d *.example.com <br>–key-file &#x2F;etc&#x2F;nginx&#x2F;cert&#x2F;example&#x2F;cert.key  <br>–fullchain-file &#x2F;etc&#x2F;nginx&#x2F;cert&#x2F;example&#x2F;cert.cer <br>–reloadcmd     “service nginx force-reload”</p><p>通过以上步骤，我们就完成了从证书申请和安装的整个过程。<br>相关技术资源链接：<br>acme.sh 官方文档：<a href="https://github.com/acmesh-official/acme.sh/wiki">https://github.com/acmesh-official/acme.sh/wiki</a><br>nginx官方文档：<a href="https://nginx.org/en/docs/">https://nginx.org/en/docs/</a></p>]]></content>
     
     
       
@@ -350,189 +532,6 @@
     
     
     <category term="systemd" scheme="https://mp127.fun/tags/systemd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jasypt spring boot</title>
-    <link href="https://mp127.fun/2023/07/14/jasypt-spring-boot/"/>
-    <id>https://mp127.fun/2023/07/14/jasypt-spring-boot/</id>
-    <published>2023-07-14T10:34:53.000Z</published>
-    <updated>2023-07-14T10:34:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文介绍如何将 jasypt 集成进 spring boot 项目中，用于解决用户、密码等敏感信息在代码中明文存储的问题。</p><h1 id="什么是-jasypt-spring-boot"><a href="#什么是-jasypt-spring-boot" class="headerlink" title="什么是 jasypt spring boot"></a>什么是 jasypt spring boot</h1><p><strong><a href="http://www.jasypt.org/">Jasypt</a></strong>  is a java library which allows the developer to add basic encryption capabilities to his&#x2F;her projects with minimum effort, and without the need of having deep knowledge on how cryptography works.</p><p>Jasypt 的特点请参看：<a href="http://www.jasypt.org/features.html">http://www.jasypt.org/features.html</a></p><h1 id="集成方法"><a href="#集成方法" class="headerlink" title="集成方法"></a>集成方法</h1><p><strong><a href="https://github.com/ulisesbocchio/jasypt-spring-boot">开源项目文档</a></strong> 中介绍了三种集成方式，本文仅详细介绍第一种详细集成方式（本文只做参考，应以开源项目文档未准）。</p><h2 id="三种集成方式"><a href="#三种集成方式" class="headerlink" title="三种集成方式"></a>三种集成方式</h2><h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><p>如果项目使用<code>@SpringBootApplication</code> 或者 <code>@EnableAutoConfiguration</code>，直接添加 jar 依赖即可。加密的配置项会在整个 Spring 项目中生效（This means any system property, environment property, command line argument, application.properties, application-*.properties, yaml properties, and any other property sources can contain encrypted properties）。</p><pre><code class="xml">&lt;dependency&gt;        &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;        &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;        &lt;version&gt;3.0.5&lt;/version&gt;&lt;/dependency&gt;</code></pre><h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><p>如何项目中不使用自动配置注解 <code>@SpringBootApplication</code> 或<code>@EnableAutoConfiguration</code> ，那么添加如下依赖到项目中：</p><pre><code class="xml">&lt;dependency&gt;        &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;        &lt;artifactId&gt;jasypt-spring-boot&lt;/artifactId&gt;        &lt;version&gt;3.0.5&lt;/version&gt;&lt;/dependency&gt;</code></pre><p>再添加 <code>@EnableEncryptableProperties</code> 到你的 Configuration class. 示例：</p><pre><code class="java">@Configuration@EnableEncryptablePropertiespublic class MyApplication &#123;    ...&#125;</code></pre><p>这样加密配置项就会在整个 Spring 项目中生效（This means any system property, environment property, command line argument, application.properties, yaml properties, and any other custom property sources can contain encrypted properties）。</p><h3 id="第三种"><a href="#第三种" class="headerlink" title="第三种"></a>第三种</h3><p>如果项目中不使用自动装配注解 <code>@SpringBootApplication</code> or <code>@EnableAutoConfiguration</code> ，并且你也不想在整个 Spring 项目中启用加密配置，有第三种配置方式可以满足。首先添加下面依赖到项目中：</p><pre><code class="xml">&lt;dependency&gt;        &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;        &lt;artifactId&gt;jasypt-spring-boot&lt;/artifactId&gt;        &lt;version&gt;3.0.5&lt;/version&gt;&lt;/dependency&gt;</code></pre><p>然后在你的配置文件中根据需要添加注解<code>@EncryptablePropertySource</code>，就像添加 Spring 的注解<code>@PropertySource</code>一样，例如：</p><pre><code class="java">@Configuration@EncryptablePropertySource(name = &quot;EncryptedProperties&quot;, value = &quot;classpath:encrypted.properties&quot;)public class MyApplication &#123;    ...&#125;</code></pre><p>还有一个注解<code>@EncryptablePropertySources</code>，用于添加一组<code>@EncryptablePropertySource</code>注解，例如：</p><pre><code class="java">    @Configuration    @EncryptablePropertySources(&#123;@EncryptablePropertySource(&quot;classpath:encrypted.properties&quot;),                                 @EncryptablePropertySource(&quot;classpath:encrypted2.properties&quot;)&#125;)    public class MyApplication &#123;        ...    &#125;</code></pre><p>Also, note that as of version 1.8, <code>@EncryptablePropertySource</code> supports YAML files.</p><h2 id="集成详细步骤"><a href="#集成详细步骤" class="headerlink" title="集成详细步骤"></a>集成详细步骤</h2><h3 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h3><p>第一步添加依赖略，参看上面<strong>三种集成方式</strong>的第一种。</p><h3 id="2-添加加密配置项"><a href="#2-添加加密配置项" class="headerlink" title="2. 添加加密配置项"></a>2. 添加加密配置项</h3><p>在 application.yml 配置文件中添加如下配置项：</p><pre><code class="yaml">jasypt:  encryptor:    algorithm: PBEWITHHMACSHA512ANDAES_256    saltGeneratorClassName: org.jasypt.salt.RandomSaltGenerator    ivGeneratorClassName: org.jasypt.iv.RandomIvGenerator    property:      prefix: &quot;DC@[&quot;      suffix: &quot;]&quot;</code></pre><p>配置中的 prefix 和 suffix 是<strong>自定义</strong>的密码串标识。其中还有一个必须的参数<code>jasypt.encryptor.password</code>，用于加密。但为了安全需要通过命令行方式传入，不能放入配置文件中（<del>测试环境为了方便可以临时使用，但不能提交到代码仓库</del>）。启动命令示例：</p><pre><code class="yaml">java -Djasypt.encryptor.password=自己的加密秘钥 -jar xx.jar</code></pre><p>其中<code>自己的加密秘钥</code>是自定义密码字符串，推荐 32 为 md5 码。<strong>测试环境和生产环境不要用同一个秘钥</strong>。</p><p>如果使用 idea ，运行程序前需要在 Run&#x2F;Debug configuration 中的 VM option 中加入下面参数：</p><p><code>-Djasypt.encryptor.password=测试环境秘钥</code></p><h3 id="3-敏感信息加密"><a href="#3-敏感信息加密" class="headerlink" title="3. 敏感信息加密"></a>3. 敏感信息加密</h3><p>编写加密测试类如下：（**&#x3D;&#x3D;加密方法推荐使用附 1 中的脚本&#x3D;&#x3D;**）</p><pre><code class="java">package com.ahshumei.common.utils;import com.ahshumei.BaseTest;import org.jasypt.encryption.StringEncryptor;import org.junit.Test;import org.slf4j.Logger;import org.slf4j.LoggerFactory;import org.springframework.beans.factory.annotation.Value;import javax.annotation.Resource;/** * 对称加密算法测试类 * * @author ethan * @datetime 2023/7/14 14:01 */public class StringEncryptorTest extends BaseTest &#123;    protected Logger logger = LoggerFactory.getLogger(getClass());    @Resource    StringEncryptor stringEncryptor;    /**     * 对称加密测试方法     *     * @author ethan     * @datetime 2023/7/14 13:57     */    @Test    public void encryptTest() &#123;        String usernameEnc = stringEncryptor.encrypt(&quot;empower&quot;);        String passwordEnc = stringEncryptor.encrypt(&quot;teststr&quot;);        System.out.println(usernameEnc);        System.out.println(passwordEnc);        logger.info(&quot;test username encrypt is &#123;&#125;ª&quot;, usernameEnc);        logger.info(&quot;test password encrypt is &#123;&#125;&quot;, passwordEnc);        logger.info(&quot;test username is &#123;&#125;&quot;, stringEncryptor.decrypt(usernameEnc));        logger.info(&quot;test password is &#123;&#125;&quot;, stringEncryptor.decrypt(passwordEnc));    &#125;&#125;</code></pre><h3 id="4-配置加密项"><a href="#4-配置加密项" class="headerlink" title="4. 配置加密项"></a>4. 配置加密项</h3><p>将需要加密的配置项明文通过上一步测试方式进行加密，然后将加密后密文配置进配置文件中，示例：</p><pre><code class="yaml">spring:  datasource:    type: com.alibaba.druid.pool.DruidDataSource    driverClassName: com.mysql.cj.jdbc.Driver    druid:      # 主库数据源      master:        url: jdbc:mysql://10.10.1.7:3306/moon        username: DC@[4Y2s7d6D8rVQ3NAS/oWT+08QZT3dLcqN95i8YDtujnY6eFYshKGHDdniy7R5vyymª]        password: DC@[xImPkGcaY6qMK3vctVxkpKRg1KgxEG4hhMlgSQwiJhdueooHFGSUEccZFezeD2ig]</code></pre><p><code>DC@[]</code>占位符是上面配置文件中自定义配置的。</p><p>读取配置项测试类：</p><pre><code class="java">package com.ahshumei.common.utils;import com.ahshumei.BaseTest;import org.junit.Test;import org.slf4j.Logger;import org.slf4j.LoggerFactory;import org.springframework.beans.factory.annotation.Value;/** * 对称加密算法测试类 * * @author ethan * @datetime 2023/7/14 14:01 */public class StringEncryptorTest extends BaseTest &#123;    protected Logger logger = LoggerFactory.getLogger(getClass());    @Value(&quot;$&#123;spring.datasource.druid.master.username&#125;&quot;)    private String username;    @Value(&quot;$&#123;spring.datasource.druid.master.password&#125;&quot;)    private String password;    /**     * 测试读取加密配置项方法     *     * @author ethan     * @datetime 2023/7/14 18:13     */    @Test    public void decodeTest() &#123;        logger.info(username);        logger.info(password);    &#125;&#125;</code></pre><h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>jasypt 开源库为 Spring 项目提供了一种加解密能力来保护项目中的敏感信息，通过以上 4 步简单的配置即可使用，我们不需要去了解复杂加解密机制即可使用。并且 jasypt 不仅能集成到 Spring 中，还能集成到 Apache、Hibernate、SpringSecurity 等框架中。</p><h1 id="附-1：其他加密字符串生成方法"><a href="#附-1：其他加密字符串生成方法" class="headerlink" title="附 1：其他加密字符串生成方法"></a>附 1：其他加密字符串生成方法</h1><p>除了上面通过测试方法生成加密字符串外，还有以下两种更方便的方式：</p><h2 id="1-Java-命令行"><a href="#1-Java-命令行" class="headerlink" title="1 Java 命令行"></a>1 Java 命令行</h2><p>Jasypt提供了一个类专门用于加密解密，提供了main方法，调用如下：</p><pre><code class="shell">java -cp ./jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI password=自己的加密秘钥 algorithm=PBEWithMD5AndTripleDES input=要加密的字符串</code></pre><h2 id="2-脚本"><a href="#2-脚本" class="headerlink" title="2 脚本"></a>2 脚本</h2><p>Jasypt为我们提供了脚本，可以直接用于加密解密，从 <a href="http://www.jasypt.org/download.html">http://www.jasypt.org/download.html</a> 可以下载（会引导到 github 项目中下载）。下载（jasypt-1.9.3-dist.zip）解压后的文件中有一个 bin 目录，其中有加密、解密的脚本。</p><p>脚本的使用方法与 java 命令一样，脚本本质上是封装了调用 java 类的工具。使用方法如下（参数含义参看<a href="http://www.jasypt.org/cli.html">官网文档</a>）：</p><pre><code class="shell">sh encrypt.sh password=自己的加密秘钥 algorithm=PBEWITHHMACSHA512ANDAES_256 saltGeneratorClassName=org.jasypt.salt.RandomSaltGenerator ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator input=要加密的字符串</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;本文介绍如何将 jasypt 集成进 spring boot 项目中，用于解决用户、密码等敏感信息在代码中明文存储的问题。&lt;/p&gt;
-&lt;h1 id=&quot;什么是-jasypt-spring-boot&quot;&gt;&lt;a href=&quot;#什么是-jasypt-spring-boot&quot; class</summary>
-      
-    
-    
-    
-    <category term="工具" scheme="https://mp127.fun/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-    <category term="jasypt" scheme="https://mp127.fun/tags/jasypt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>发送定时任务执行结果到指定邮箱</title>
-    <link href="https://mp127.fun/2023/05/27/send-result-of-crontab-to-mail/"/>
-    <id>https://mp127.fun/2023/05/27/send-result-of-crontab-to-mail/</id>
-    <published>2023-05-27T12:32:14.000Z</published>
-    <updated>2023-07-18T12:32:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下：</p><h1 id="1-安装配置环境"><a href="#1-安装配置环境" class="headerlink" title="1 安装配置环境"></a>1 安装配置环境</h1><h2 id="1-1-安装-ssmtp-和-mailutils"><a href="#1-1-安装-ssmtp-和-mailutils" class="headerlink" title="1.1 安装 ssmtp 和 mailutils"></a>1.1 安装 ssmtp 和 mailutils</h2><pre><code class="shell">bash sudo apt install ssmtp mailutils</code></pre><p>配置过程需要选择配置类型，选择 <code>No configuration</code>。</p><p>安装好后需要配置两个文件：<code>/etc/ssmtp/ssmtp.conf /etc/ssmtp/revaliases</code></p><h2 id="1-2-修改配置"><a href="#1-2-修改配置" class="headerlink" title="1.2 修改配置"></a>1.2 修改配置</h2><h3 id="修改-ssmtp-配置文件"><a href="#修改-ssmtp-配置文件" class="headerlink" title="修改 ssmtp 配置文件"></a>修改 ssmtp 配置文件</h3><p>设置发送邮箱、SMTP服务器和端口等：</p><p><code>vi /etc/ssmtp/ssmtp.conf</code></p><pre><code class="shell"># Config file for sSMTP sendmail## The person who gets all mail for userids &lt; 1000# Make this empty to disable rewriting.root=postmaster# The place where the mail goes. The actual machine name is required no# MX records are consulted. Commonly mailhosts are named mail.domain.com#mailhub=smtp.aliyun.com:465mailhub=smtp.163.com:465# The full hostnamehostname=ubuntuUseTLS=Yes# Are users allowed to set their own From: address?# YES - Allow the user to specify their own From: address# NO - Use the system generated From: addressFromLineOverride=NO#邮箱名AuthUser=your_email@163.com#授权码AuthPass=authpassasdfasdf</code></pre><p>其中授权码 AuthPass 需要登录邮箱客户端获取。</p><h3 id="修改配置文件-revaliases"><a href="#修改配置文件-revaliases" class="headerlink" title="修改配置文件 revaliases"></a>修改配置文件 revaliases</h3><p><code>vi /etc/ssmtp/revaliases</code></p><pre><code class="shell"># sSMTP aliases## Format:       local_account:outgoing_address:mailhub## Example: root:your_login@your.domain:mailhub.your.domain[:port]# where [:port] is an optional port number that defaults to 25.# shumei 请修改为服务器用户名shumei:your_email@163.com:smtp.163.com:465</code></pre><p>至此邮件发送的环境已搭建完成。下面是编写脚本测试发送邮件。</p><h1 id="2-测试邮件发送"><a href="#2-测试邮件发送" class="headerlink" title="2 测试邮件发送"></a>2 测试邮件发送</h1><h2 id="2-1-编写任务脚本"><a href="#2-1-编写任务脚本" class="headerlink" title="2.1 编写任务脚本"></a>2.1 编写任务脚本</h2><p>在脚本中判断任务是否执行成功，如果失败则发送邮件。例如：</p><pre><code class="shell">bash#!/bin/bash# 执行任务some_command# 判断任务执行结果if [ $? -ne 0 ]; then    # 发送邮件,邮件内容为任务输出    echo &quot;Subject: Task Failed&quot; | mail -s &quot;Task Failed&quot; mailname@domain.comfi </code></pre><p>- <code>some_command</code> 替换为要执行的命令<br>- <code>$?</code> 用于获取上一条命令的返回值,如果不等于 0 表示失败<br>- <code>mail</code> 命令用于发送邮件<br>- <code>-s</code> 指定邮件主题<br>- <code>$MAIL</code> 为预先配置的接收邮箱环境变量</p><p>完成后为任务脚本添加可执行权限:<code>chmod +x script.sh</code></p><h2 id="2-2-添加定时任务"><a href="#2-2-添加定时任务" class="headerlink" title="2.2 添加定时任务"></a>2.2 添加定时任务</h2><p>在 crontab 文件中添加定时任务，例如:</p><pre><code class="shell">*/5 * * * * sh /path/to/script.sh   # 每5分钟执行一次</code></pre><p>当定时任务执行失败时，会发送一封邮件通知到您指定的邮箱，实现了只在任务失败时发送邮件的效果。</p><h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://blog.csdn.net/gmaaa123/article/details/137954791">https://blog.csdn.net/gmaaa123/article/details/137954791</a><br><a href="https://devpress.csdn.net/linux/62eba51020df032da732ba45.html">https://devpress.csdn.net/linux/62eba51020df032da732ba45.html</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在 Ubuntu 中，可以通过 crontab 服务的邮件功能，将定时任务的执行结果发送到指定邮箱。环境搭建方法如下：&lt;/p&gt;
-&lt;h1 id=&quot;1-安装配置环境&quot;&gt;&lt;a href=&quot;#1-安装配置环境&quot; class=&quot;headerlink&quot; title=&quot;1 安装配置环境&quot;</summary>
-      
-    
-    
-    
-    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    <category term="mail" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/mail/"/>
-    
-    
-    <category term="ssmtp" scheme="https://mp127.fun/tags/ssmtp/"/>
-    
-    <category term="mailutils" scheme="https://mp127.fun/tags/mailutils/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>迁移 mysql 数据目录</title>
-    <link href="https://mp127.fun/2023/05/25/migrate-mysql-data-directory/"/>
-    <id>https://mp127.fun/2023/05/25/migrate-mysql-data-directory/</id>
-    <published>2023-05-25T00:59:25.000Z</published>
-    <updated>2023-05-25T00:59:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在 CentOS 中迁移 MySQL 的数据目录 &#x2F;var&#x2F;lib&#x2F;mysql 到其他磁盘可以按以下步骤进行:</p><ol><li>停止MySQL服务</li></ol><pre><code class="shell">sudo service mysqld stop</code></pre><ol start="2"><li>新建目标数据目录，假设新的数据目录为 &#x2F;home&#x2F;mysql&#x2F;data，创建该目录：</li></ol><pre><code class="shell">sudo mkdir /home/mysql/data</code></pre><ol start="3"><li>将原数据目录中的内容复制到新目录</li></ol><pre><code class="shell">sudo cp -r /var/lib/mysql /home/mysql/data</code></pre><ol start="4"><li>修改新数据目录权限</li></ol><pre><code class="shell">sudo chown -R mysql:mysql /home/mysql/data/mysqlsudo chmod -R 755 /home/mysql/data/mysql</code></pre><ol start="5"><li>修改 MySQL 配置编辑MySQL配置文件 &#x2F;etc&#x2F;my.cnf，在 [mysqld] 部分添加：</li></ol><pre><code class="shell">log-bin = /home/mysql/data/mysql/hfgc-5-binlog_bin_index = /home/mysql/data/mysql/hfgc-5-bin.indexdatadir=/home/mysql/data/mysqlsocket=/home/mysql/data/mysql/mysql.sock</code></pre><p>将 datadir、log-bin 等相关项的值修改为新的数据目录路径。</p><ol start="6"><li>重新启动MySQL服务</li></ol><pre><code class="shell">sudo service mysqld start</code></pre><p> MySQL会自动使用新的 datadir 路径启动。</p><ol start="7"><li>检查 MySQL 是否正常运行进入 MySQL 命令行,检查数据库、表等是否正常：</li></ol><pre><code class="sql">show databases;use test; show tables;</code></pre><p>确认无异常后说明迁移成功。</p><ol start="8"><li>删除原数据目录（可选）确认迁移成功后可以删除原数据目录 &#x2F;var&#x2F;lib&#x2F;mysql。</li></ol><p>以上步骤通过修改配置、复制数据并修改权限的方式完成 MySQL 数据目录的迁移。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在 CentOS 中迁移 MySQL 的数据目录 &amp;#x2F;var&amp;#x2F;lib&amp;#x2F;mysql 到其他磁盘可以按以下步骤进行:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;停止MySQL服务&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;sudo se</summary>
-      
-    
-    
-    
-    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-    <category term="mysql" scheme="https://mp127.fun/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>kettle experiences</title>
-    <link href="https://mp127.fun/2023/05/23/kettle-experiences/"/>
-    <id>https://mp127.fun/2023/05/23/kettle-experiences/</id>
-    <published>2023-05-23T11:56:35.000Z</published>
-    <updated>2023-05-23T11:56:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="kettle-部署"><a href="#kettle-部署" class="headerlink" title="kettle 部署"></a>kettle 部署</h1><ol><li>解压 pdi-ce 压缩包</li><li>放入 mysql 驱动至 lib 文件夹下</li><li>配置环境变量 .profile</li></ol><pre><code class="shell">export KETTLE=/home/shumei/soft/data-integrationexport PATH=$&#123;KETTLE&#125;:$PATH</code></pre><h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ul><li>日期转换</li></ul><pre><code class="sql">date_format(a.start_date, &#39;%Y/%m/%d 00:00:00.000&#39;) as start_datedate_format(create_time, &#39;%Y/%m/%d %T.%f&#39;) as data_create_timedate_format(a.payedDate, &#39;%Y/%m&#39;) as payedDatedate_format(DATE_ADD(now(), INTERVAL -1 MONTH), &#39;%Y%m&#39;);</code></pre><ul><li>日期计算</li></ul><pre><code class="sql">a.update_time &gt;= DATE_ADD(now(), INTERVAL -15 MINUTE)a.update_time &gt;= DATE_ADD(now(), INTERVAL -3 DAY)a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 MONTH)a.update_time &gt;= DATE_ADD(now(), INTERVAL -1 YEAR)</code></pre><ul><li>类型转换</li></ul><pre><code class="sql"># 把字段 id 的类型转换为字符串 charCAST(id as CHAR) AS CODE</code></pre><h2 id="设定变量"><a href="#设定变量" class="headerlink" title="设定变量"></a>设定变量</h2><p>转换命名参数就是在转换内部定义的变量，作用范围是在转换内部。在转换的空白处双击左键，在转换属性中能看到“命名参数”。</p><p>引用：可以在表输入SQL语句中使用${变量名} 或者 %%变量名%%</p><h1 id="作业执行"><a href="#作业执行" class="headerlink" title="作业执行"></a>作业执行</h1><ul><li>执行转换</li></ul><pre><code class="shell">pan.sh -file tr1.ktrpan.sh -file tr1.ktr -param:year=2023 -param:month=5</code></pre><ul><li>执行作业</li></ul><pre><code class="shell">kitchen.sh -file jobname1.kjbkitchen.sh -file jobname2.kjb -param:input=/kettle -param:output=/kettle</code></pre><h1 id="定时任务脚本"><a href="#定时任务脚本" class="headerlink" title="定时任务脚本"></a>定时任务脚本</h1><pre><code class="shell">#!/bin/bash# 环境变量JAVA_HOME=/home/shumei/soft/jdk1.8.0_171KETTLE_HOME=&quot;/home/shumei/soft/data-integration&quot;export CLASSPATH=.:$&#123;JAVA_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin::$PATH# 公共变量DATE_STR=`date +%Y%m%d`;BASE_DIR=&#39;/home/shumei/kettle&#39;# 局部变量v_script_dir=&#39;/kettle/1015dca/pro&#39;v_shell_name=dca1mv_result=&quot;执行成功&quot;# 脚本名称JOB01_NAME=tr1.ktrJOB02_NAME=tr2.ktr# X 企业名录入库v_date_str=$(date +&quot;%Y-%m-%d %H:%M:%S&quot;)$&#123;KETTLE_HOME&#125;/pan.sh -file $&#123;BASE_DIR&#125;$&#123;v_script_dir&#125;/$&#123;v_job01_name&#125; -level=Basic &gt;&gt; $&#123;BASE_DIR&#125;/logs/$&#123;v_shell_name&#125;.$&#123;DATE_STR&#125;pan_return=$?if [ $pan_return -eq 0 ]; then    v_result=&quot;执行成功&quot;elif [ $pan_return -eq 1 ]; then    v_result=&quot;执行失败&quot;else    v_result=&quot;执行取消&quot;fiecho $v_resultif [ $pan_return -ne 0 ]; then    echo &quot;Task X 企业名录入库-$v_result $&#123;v_date_str&#125;&quot; | mail -s &quot;Subject: Task Failed&quot; ethan@ahshumei.comfiecho $&#123;v_date_str&#125;-X 企业名录入库 startecho -e $(date +&quot;%Y-%m-%d %H:%M:%S&quot;)-X 企业名录入库 end\nsleep 2</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;kettle-部署&quot;&gt;&lt;a href=&quot;#kettle-部署&quot; class=&quot;headerlink&quot; title=&quot;kettle 部署&quot;&gt;&lt;/a&gt;kettle 部署&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;解压 pdi-ce 压缩包&lt;/li&gt;
-&lt;li&gt;放入 mysql 驱动至 </summary>
-      
-    
-    
-    
-    <category term="工具" scheme="https://mp127.fun/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-    <category term="kettle" scheme="https://mp127.fun/tags/kettle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>联通云服务器初始化</title>
-    <link href="https://mp127.fun/2022/07/14/cloud-server-init-cucloud/"/>
-    <id>https://mp127.fun/2022/07/14/cloud-server-init-cucloud/</id>
-    <published>2022-07-14T10:43:55.000Z</published>
-    <updated>2022-07-14T10:43:55.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="挂载并格式化磁盘"><a href="#挂载并格式化磁盘" class="headerlink" title="挂载并格式化磁盘"></a>挂载并格式化磁盘</h1><p>查看磁盘<br>fdisk -l</p><p>格式化磁盘<br>sudo mkfs.ext4 &#x2F;dev&#x2F;vdb<br>mount &#x2F;dev&#x2F;vdb &#x2F;home</p><p>查看挂载结果<br>df -TH</p><h1 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h1><p>id # 查看用户信息<br>passwd # 修改用户密码</p><h1 id="修改-ssh-默认端口"><a href="#修改-ssh-默认端口" class="headerlink" title="修改 ssh 默认端口"></a>修改 ssh 默认端口</h1><p>sudo vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>修改 22 为 10021<br>Port 10021<br>重启 ssh 服务<br>sudo systemctl restart ssh</p><h1 id="创建用户组及用户"><a href="#创建用户组及用户" class="headerlink" title="创建用户组及用户"></a>创建用户组及用户</h1><p>[参考]<a href="https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/">https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/</a></p><pre><code># 查看用户组是否存在grep shumei /etc/group# 添加用户组 shumeigroupadd shumei# 查看用户 shumei 是否存在grep shumei /etc/passwd# 添加用户useradd -g shumei -d /home/shumei -m shumei# 查看 shumei 信息id shumei# 设置用户密码passwd shumei# 赋给用户 sudo 权限：http://man.linuxde.net/sudovi /etc/sudoers# 仿照现有root的例子就行，加一行（最好用tab作为空白）shumei  ALL=(ALL:ALL)   ALL</code></pre><p>Ubuntu 创建的用户为普通账户，默认 shell 为 &#x2F;bin&#x2F;sh，需要将账号的 shell 修改为 &#x2F;bin&#x2F;bash</p><pre><code># echo $SHELL 可查看当前使用的 shellusermod -s /bin/bash shumei</code></pre><h1 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h1><pre><code>scp jdk-8u25-linux-x64.tar.gz shumei@IP:port/pathvi .profileexport JAVA_HOME=/home/shumei/software/jdk1.8.0_25export CLASSPATH=.:$&#123;JAVA_HOME&#125;/libexport PATH=$&#123;JAVA_HOME&#125;/bin:$PATH# 使配置生效source .profile# 检查配置是否成功java -version</code></pre><h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><p>[请参考官网文档]<a href="https://nginx.org/en/linux_packages.html#Ubuntu">https://nginx.org/en/linux_packages.html#Ubuntu</a></p><h1 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h1><pre><code># 安装sudo apt install redis-server查看是否启动# redis-cli以上命令将打开以下终端：redis 127.0.0.1:6379&gt;</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;挂载并格式化磁盘&quot;&gt;&lt;a href=&quot;#挂载并格式化磁盘&quot; class=&quot;headerlink&quot; title=&quot;挂载并格式化磁盘&quot;&gt;&lt;/a&gt;挂载并格式化磁盘&lt;/h1&gt;&lt;p&gt;查看磁盘&lt;br&gt;fdisk -l&lt;/p&gt;
-&lt;p&gt;格式化磁盘&lt;br&gt;sudo mkfs.ext</summary>
-      
-    
-    
-    
-    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-    <category term="server" scheme="https://mp127.fun/tags/server/"/>
-    
-    <category term="联通云" scheme="https://mp127.fun/tags/%E8%81%94%E9%80%9A%E4%BA%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu 安装 SFTP 服务</title>
-    <link href="https://mp127.fun/2021/11/23/ubuntu-sftp-install/"/>
-    <id>https://mp127.fun/2021/11/23/ubuntu-sftp-install/</id>
-    <published>2021-11-23T13:44:47.000Z</published>
-    <updated>2021-11-23T13:44:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>在 Ubuntu 系统上开通 sftp 文件服务，允许指定用户上传及下载文件。但是这些用户只能使用 sftp 传输文件，不能使用 SSH 终端访问服务器，并且 sftp 不能访问系统文件。系统管理员则既能使用 sftp 传输文件，也能使用 SSH 远程管理服务器。<br>以下是将允许 sftp 用户组内的用户使用 sftp，但不允许使用 SSH Shell，且该组用户不能访问系统文件。</p><h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="查看是否已安装-sftp"><a href="#查看是否已安装-sftp" class="headerlink" title="查看是否已安装 sftp"></a>查看是否已安装 sftp</h2><pre><code class="shell">dpkg --get-selections | grep ssh</code></pre><h2 id="新建-sftp-用户组"><a href="#新建-sftp-用户组" class="headerlink" title="新建 sftp 用户组"></a>新建 sftp 用户组</h2><pre><code class="shell"># 查看用户组是否存在grep sftp /etc/group# 添加用户组 sftpgroupadd sftp</code></pre><h2 id="新建-sftp-用户"><a href="#新建-sftp-用户" class="headerlink" title="新建 sftp 用户"></a>新建 sftp 用户</h2><pre><code class="shell"># 查看用户 sftp 是否存在grep sftp /etc/passwd# 添加用户useradd -g sftp -m sftp</code></pre><p>将 sftp 从所有其他用户组中移除并加入到 sftp 组，并且关闭其 Shell 访问：<br>sudo usermod -G sftp -s &#x2F;bin&#x2F;false sftp</p><h2 id="创建并设置-sftp-用户目录"><a href="#创建并设置-sftp-用户目录" class="headerlink" title="创建并设置 sftp 用户目录"></a>创建并设置 sftp 用户目录</h2><p>准备“监狱”的根目录及共享目录，“监狱”的根目录必须满足以下要求：<br>所有者为 root，其他任何用户都不能拥有写入权限。<br>因此，为了让 sftp 用户能够上传文件，还必须在“监狱”根目录下再创建一个普通用户能够写入的共享文件目录。</p><pre><code class="shell">sudo mkdir /home/sftpsudo mkdir /home/sftp/sharedsudo chown shumei:sftp /home/sftp/sharedsudo chmod 770 /home/sftp/shared</code></pre><h2 id="修改SSH配置文件"><a href="#修改SSH配置文件" class="headerlink" title="修改SSH配置文件"></a>修改SSH配置文件</h2><pre><code>vi  /etc/ssh/sshd_config注释内容：#Subsystem      sftp    /usr/libexec/openssh/sftp-server在文件的最后，添加以下内容：Subsystem       sftp    internal-sftpAllowGroups shumei sftpMatch Group sftpChrootDirectory /home/sftpAllowTcpForwarding noX11Forwarding noForceCommand internal-sftp -d shared</code></pre><p>这些内容的意思是：<br>只允许 shumei 及 sftp 通过SSH访问系统；<br>针对 sftp 用户，额外增加一些设置：<br>将“&#x2F;home&#x2F;sftp”设置为该组用户的系统根目录（因此它们将不能访问该目录之外的其他系统文件）；<br>禁止 TCP Forwarding 和X11 Forwarding；<br>强制该组用户仅仅使用 SFTP，“-d shared”默认用户登陆后自动进入 shared 目录。<br>如果需要进一步了解细节，可以使用“man sshd_config”命令。这样设置之后，SSH用户组可以访问SSH，并且不受其他限制；而SFTP用户组仅能使用SFTP进行访问，而且被关进监狱目录。</p><h2 id="设置-sftp-端口"><a href="#设置-sftp-端口" class="headerlink" title="设置 sftp 端口"></a>设置 sftp 端口</h2><p><code>sudo vim /etc/ssh/sshd_config</code></p><p>搜索以端口22开头的行。通常，该行使用井号(＃)注释掉。 删除哈希号，然后输入新的SSH端口号： Port 2222</p><p>编辑配置文件时要非常小心。 错误的配置可能会阻止SSH服务启动。</p><p>完成后，保存文件并重新启动SSH服务以使更改生效： <code>sudo systemctl restart ssh</code></p><h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>访问 sftp 服务：</p><pre><code class="shell">sftp -P 2222 sftp@127.0.0.1# 上传一个文件put local_file remote_fileput /home/user/test.txt /test/test_upload.txt# 下载一个文件get remote_file local_fileget /test/test.txt ~/Downloads/download.txt</code></pre><h1 id="使用-SSH-密钥对来访问-sftp-服务"><a href="#使用-SSH-密钥对来访问-sftp-服务" class="headerlink" title="使用 SSH 密钥对来访问 sftp 服务"></a>使用 SSH 密钥对来访问 sftp 服务</h1><p>首先为 sftp 用户创建 SSH 密钥对，然后将公钥添加到 sftp 用户的 SSH 允许列表中。这样 sftp 用户就可以使用 SSH 密钥对来访问 sftp 服务了。</p><h2 id="第一步查看已存在的密钥对"><a href="#第一步查看已存在的密钥对" class="headerlink" title="第一步查看已存在的密钥对"></a>第一步查看已存在的密钥对</h2><p>先检查是否已存在 SSH 密钥，SSH 密钥对一般存放在本地用户的根目录下。已存在本地公钥，你可以跳过生成 SSH 密钥。</p><p>ED25519 算法</p><pre><code class="shell">cat ~/.ssh/id_ed25519.pub</code></pre><p>RSA 算法</p><pre><code class="shell">cat ~/.ssh/id_rsa.pub</code></pre><p>如果返回一长串以 ssh-ed25519 或 ssh-rsa 开头的字符串, 说明已存在本地公钥，你可以跳过生成 SSH 密钥。如果不存在，参考第二步生成 SSH 密钥对。</p><h2 id="第二步生成-SSH-密钥对"><a href="#第二步生成-SSH-密钥对" class="headerlink" title="第二步生成 SSH 密钥对"></a>第二步生成 SSH 密钥对</h2><p>SSH 加密算法类型有 ED25519、RSA 等。</p><p>ED25519 是一种基于椭圆曲线密码学的数字签名算法，属于 EdDSA 签名方案的一部分。它使用 SHA-512&#x2F;256 散列函数和 Curve25519 椭圆曲线。由于其数学特性，ED25519 被认为是目前最安全、加解密速度最快的密钥类型之一。它的密钥长度比 RSA 小很多，因此具有更好的性能。然而，由于它的新颖性和复杂性，一些旧的软件或系统可能不支持 ED25519。</p><p>RSA 是一种广泛使用的公钥加密算法，既可以用于数据加密，也可以用于数字签名。RSA 的安全性基于大质数的难以分解性质。然而，随着计算机技术的发展，RSA 的安全性可能会受到威胁。RSA 密钥的长度通常比 ED25519 长，因此加解密速度相对较慢。但是，由于 RSA 的广泛使用和支持，它仍然是最兼容的密钥类型之一。</p><p>推荐使用 ED25519 算法生成 SSH 密钥对：</p><pre><code class="shell"># 注释会出现在.pub文件中，一般可使用邮箱作为注释内容，或者使用用户名作为注释内容ssh-keygen -t ed25519 -C &quot;&lt;注释内容&gt;&quot;</code></pre><p>基于 RSA 算法，生成密钥对命令如下：</p><pre><code class="shell">ssh-keygen -t rsa -C &quot;&lt;注释内容&gt;&quot;</code></pre><blockquote><p>警告：密钥用于鉴权，请谨慎保管。公钥文件以 .pub 扩展名结尾，可以公开给其他人，而没有 .pub 扩展名的私钥文件不要泄露给任何人！</p></blockquote><h2 id="第三步复制公钥"><a href="#第三步复制公钥" class="headerlink" title="第三步复制公钥"></a>第三步复制公钥</h2><p>查看公钥，然后复制到剪贴板</p><pre><code class="shell"># ED25519 算法cat ~/.ssh/id_ed25519.pub# 如果使用 RSA 算法生成密钥对，使用以下命令cat ~/.ssh/id_rsa.pub</code></pre><h2 id="第四步添加公钥"><a href="#第四步添加公钥" class="headerlink" title="第四步添加公钥"></a>第四步添加公钥</h2><p>将公钥添加到 sftp 用户的 SSH 允许列表中：</p><pre><code class="shell"># 添加公钥vi /home/sftp/.ssh/authorized_keys</code></pre><h2 id="测试确认"><a href="#测试确认" class="headerlink" title="测试确认"></a>测试确认</h2><p>测试确认是否可以使用 SSH 密钥对来访问 sftp 服务：</p><pre><code class="shell">sftp -P 2222 sftpuser@ip</code></pre><p>如果登陆成功，说明可以使用 SSH 密钥对来访问 sftp 服务了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;目标&quot;&gt;&lt;a href=&quot;#目标&quot; class=&quot;headerlink&quot; title=&quot;目标&quot;&gt;&lt;/a&gt;目标&lt;/h1&gt;&lt;p&gt;在 Ubuntu 系统上开通 sftp 文件服务，允许指定用户上传及下载文件。但是这些用户只能使用 sftp 传输文件，不能使用 SSH 终</summary>
-      
-    
-    
-    
-    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-    <category term="sftp" scheme="https://mp127.fun/tags/sftp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记 MySql 数据库被勒索病毒攻击</title>
-    <link href="https://mp127.fun/2021/04/19/mysql-attacked-by-blackmail-virus/"/>
-    <id>https://mp127.fun/2021/04/19/mysql-attacked-by-blackmail-virus/</id>
-    <published>2021-04-19T05:37:42.000Z</published>
-    <updated>2021-04-19T05:37:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="被勒索病毒攻击"><a href="#被勒索病毒攻击" class="headerlink" title="被勒索病毒攻击"></a>被勒索病毒攻击</h1><p>To recover your lost databases and avoid leaking it: visit <a href="http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion/">http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion</a> and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser <a href="https://www.torproject.org/projects/torbrowser.html">https://www.torproject.org/projects/torbrowser.html</a></p><h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><h2 id="1-第一时间修改密码"><a href="#1-第一时间修改密码" class="headerlink" title="1. 第一时间修改密码"></a>1. 第一时间修改密码</h2><ol><li>修改服务器密码</li><li>修改数据库密码</li><li>修改数据库访问端口</li></ol><h2 id="2-确认数据恢复条件"><a href="#2-确认数据恢复条件" class="headerlink" title="2. 确认数据恢复条件"></a>2. 确认数据恢复条件</h2><p>数据恢复需要具备两个条件：</p><ol><li>有历史数据库备份文件；</li><li>MySql服务开启了 binlog；<br>若条件具备，才可进行数据恢复。</li></ol><h2 id="3-恢复方法"><a href="#3-恢复方法" class="headerlink" title="3. 恢复方法"></a>3. 恢复方法</h2><h3 id="1-查看binlog信息"><a href="#1-查看binlog信息" class="headerlink" title="1. 查看binlog信息"></a>1. 查看binlog信息</h3><p>show variables like ‘%log_bin%’;</p><p>备份 binlog 文件，防止日志文件丢失，binlog 文件目录可能为：&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;var，具体位置查询方式有两种：</p><ol><li>查询 MySql 配置文件 my.cnf，查看 binlog 路径配置项</li><li>通过 sql 命令查询</li></ol><pre><code># 查询当前主日志show master status; # 查询日志名为 binlog.000002 的相关信息，其中含日志路径show binlog events in &#39;binlog.000002&#39;;</code></pre><p>日志文件备份后，查询日志，确认数据被删除时间。先使用 mysqlbinlog 命令导出指定时间之后的日志信息：</p><pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 &gt; /home/shumei/sqllog/log89.sql</code></pre><p>若不知道 mysqlbinlog 命令位置，可通过 find 命令查找：</p><pre><code>find / -name mysqlbinlog</code></pre><p>输入日志后，查看日志内容如下：</p><pre><code># at 3809968#210416 17:46:19 server id 1  end_log_pos 3810094 Querythread_id=27527exec_time=0error_code=0use `emerge`/*!*/;SET TIMESTAMP=1618566379/*!*/;SET @@session.sql_mode=0/*!*/;CREATE TABLE whiteeyes (name VARCHAR(255), code VARCHAR(255))/*!*/;# at 3810094#210416 17:46:19 server id 1  end_log_pos 3810207 Querythread_id=27527exec_time=0error_code=0SET TIMESTAMP=1618566379/*!*/;DROP TABLE `whiteeyes` /* generated by server *//*!*/;# at 3810207#210416 17:48:59 server id 1  end_log_pos 3810294 Querythread_id=27529exec_time=0error_code=0SET TIMESTAMP=1618566539/*!*/;DROP DATABASE `emerge`/*!*/;# at 3810294#210416 17:49:01 server id 1  end_log_pos 3810448 Querythread_id=27530exec_time=0error_code=0SET TIMESTAMP=1618566541/*!*/;SET @@session.sql_mode=524288/*!*/;CREATE DATABASE IF NOT EXISTS `emerge` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci/*!*/;# at 3810448#210416 17:49:02 server id 1  end_log_pos 3810736 Querythread_id=27530exec_time=0error_code=0use `emerge`/*!*/;SET TIMESTAMP=1618566542/*!*/;CREATE TABLE `WARNING`( `id` int(11) NOT NULL, `warning` text COLLATE utf8_unicode_ci, `website` text COLLATE utf8_unicode_ci, `token` text COLLATE utf8_unicode_ci) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci/*!*/;# at 3810736#210416 17:49:03 server id 1  end_log_pos 3810806 Querythread_id=27530exec_time=0error_code=0SET TIMESTAMP=1618566543/*!*/;BEGIN/*!*/;# at 3810806#210416 17:49:03 server id 1  end_log_pos 3811614 Querythread_id=27530exec_time=0error_code=0SET TIMESTAMP=1618566543/*!*/;INSERT INTO `WARNING` (`id`, `warning`, `website`, `token`) VALUES (1, &#39;To recover your lost databases and avoid leaking it: visit http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion and enter your unique token e620354e995a068f and pay the required amount of Bitcoin to get it back. Databases that we have: emerge, dev_oa, wcjd_admin, oa, stock. Your databases are downloaded and backed up on our servers. If we dont receive your payment in the next 9 Days, we will sell your database to the highest bidder or use them otherwise. To access this site you have use the tor browser https://www.torproject.org/projects/torbrowser.html&#39;, &#39;http://o42xfh5kao7mrtesnok5jgdsfagjsgzxlxdlpkpd2x6lpckhzk225yad.onion&#39;, &#39;e620354e995a068f&#39;)</code></pre><p>确定数据库被删除时间为：210416 17:48:59，并根据日志推断需要恢复数据的时间点。</p><h3 id="2-根据推断确认恢复内容"><a href="#2-根据推断确认恢复内容" class="headerlink" title="2. 根据推断确认恢复内容"></a>2. 根据推断确认恢复内容</h3><p>导出日志内容：</p><pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000086 &gt; /home/shumei/sqllog/mysql_restore_86.sql/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000087 &gt; /home/shumei/sqllog/mysql_restore_87.sql/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge /home/shumei/sqllog/mysql-bin.000088 &gt; /home/shumei/sqllog/mysql_restore_88.sql/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --stop-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 &gt; /home/shumei/sqllog/mysql_restore_89.sql</code></pre><p>start-datetime 为拥有的最新数据库备份时间；<br>stop-datetime 为数据库被攻击时间；<br>日志导出后进行查看、确认，确定没问题可进行下一步数据恢复。</p><h3 id="3-恢复操作"><a href="#3-恢复操作" class="headerlink" title="3. 恢复操作"></a>3. 恢复操作</h3><ol><li>导入历史数据库备份。</li><li>通过 binlog 恢复备份时间至被攻击时间段内的数据。</li></ol><pre><code>/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --start-datetime=&quot;2020-10-13 11:15:52&quot; /home/shumei/sqllog/mysql-bin.000087 | mysql -u root -p********/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge /home/shumei/sqllog/mysql-bin.000088 | mysql -u root -p********/usr/local/mysql/bin/mysqlbinlog --no-defaults --database=emerge --stop-datetime=&quot;2021-04-16 17:46:14&quot; /home/shumei/sqllog/mysql-bin.000089 | mysql -u root -p********</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;被勒索病毒攻击&quot;&gt;&lt;a href=&quot;#被勒索病毒攻击&quot; class=&quot;headerlink&quot; title=&quot;被勒索病毒攻击&quot;&gt;&lt;/a&gt;被勒索病毒攻击&lt;/h1&gt;&lt;p&gt;To recover your lost databases and avoid leaking i</summary>
-      
-    
-    
-    
-    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-    <category term="mysql" scheme="https://mp127.fun/tags/mysql/"/>
     
   </entry>
   
