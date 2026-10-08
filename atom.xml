@@ -6,7 +6,7 @@
   <link href="https://mp127.fun/atom.xml" rel="self"/>
   
   <link href="https://mp127.fun/"/>
-  <updated>2025-08-01T06:43:23.000Z</updated>
+  <updated>2025-11-05T07:07:51.000Z</updated>
   <id>https://mp127.fun/</id>
   
   <author>
@@ -17,13 +17,70 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>FastGPT 如何创建用户</title>
+    <link href="https://mp127.fun/2025/11/05/how-to-create-a-user-of-FastGPT/"/>
+    <id>https://mp127.fun/2025/11/05/how-to-create-a-user-of-FastGPT/</id>
+    <published>2025-11-05T07:07:51.000Z</published>
+    <updated>2025-11-05T07:07:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>FastGPT 开源版没有提供团队管理机用户管理功能，如果需要创建用户，只能通过直接操作数据库来实现。本文介绍如何创建用户密码。</p><p>假设我们要创建的用户是 <code>user11</code> 密码是 <code>#demo01!@</code></p><h2 id="创建密码"><a href="#创建密码" class="headerlink" title="创建密码"></a>创建密码</h2><p>FastGPT 用户密码的加密规则如下：</p><ol><li>使用 SHA-256 算法对 <code>#demo01!@</code> 进行 hash 运算；</li><li>把 hash 值转成十六进制字符串；</li><li>把得到的字符串，再重复一次以上两个步骤；<br>加密算法在源码中的位置: <a href="https://github.com/labring/FastGPT/tree/main/packages/global/common/string/tools.ts">https://github.com/labring/FastGPT/tree/main/packages/global/common/string/tools.ts</a> 第12行。</li></ol><p>写一段测试代码来生成 <code>#demo01!@</code> 的密码密文。</p><pre><code class="shell"># 修改下面代码中的密码明文，执行测试方法生成密文。下面两个命令都可以pnpm run test pnpm vitest test/cases/global/common/string/tools.test.ts</code></pre><p>测试代码实例：</p><pre><code class="typescript">import &#123; describe, expect, it &#125; from &#39;vitest&#39;;import &#123; hashStr &#125; from &#39;@fastgpt/global/common/string/tools&#39;;describe(&#39;hashStr&#39;, () =&gt; &#123;  test(&#39;should return a valid SHA-256 hash&#39;, () =&gt; &#123;    const input = &#39;#demo01!@&#39;;    const result = hashStr(hashStr(input));    console.log(input + &#39;: &#39; + result);    // 验证结果是否为一个有效的 SHA-256 哈希值    expect(typeof result).toBe(&#39;string&#39;);    // SHA-256 哈希值的长度为 64 个字符    expect(result.length).toBe(64);    expect(/^[0-9a-f]&#123;64&#125;$/.test(result)).toBe(true);  &#125;);&#125;);</code></pre><h2 id="访问数据库创建用户"><a href="#访问数据库创建用户" class="headerlink" title="访问数据库创建用户"></a>访问数据库创建用户</h2><h3 id="访问容器"><a href="#访问容器" class="headerlink" title="访问容器"></a>访问容器</h3><pre><code class="shell">sudo docker exec -it mongo bashmongosh --username myusername --password mypassword --authenticationDatabase adminuse fastgptshow tables</code></pre><h3 id="增加新用户"><a href="#增加新用户" class="headerlink" title="增加新用户"></a>增加新用户</h3><pre><code class="shell">db.users.find().pretty();# 增加新用户db.users.insert(&#123;    username: &quot;user11&quot;,    password: &quot;73b30f4023367b065ad0e01d958fb0d25f43e179dc6eb63b45fb4d068bf98fb0&quot;,    status: &quot;active&quot;,    avatar: &quot;/icon/human.svg&quot;,    balance: NumberInt(&quot;100000&quot;),    promotionRate: NumberInt(&quot;10&quot;),    timezone: &quot;Asia/Shanghai&quot;,    createTime: new ISODate()&#125;);# 创建新团队db.teams.find().pretty();db.teams.insert(&#123;    name: &quot;DevOpsTeam&quot;,    ownerId: db.users.findOne(&#123;username:&quot;user11&quot;&#125;, &#123;_id:1&#125;)._id, // 新创建用户的ObjectId    avatar: &quot;/icon/logo.svg&quot;,    createTime: new ISODate(),&#125;);# 将用户加入团队db.team_members.find().pretty();db.team_members.insert(&#123;    teamId: db.teams.findOne(&#123;name:&quot;DevOpsTeam&quot;&#125;, &#123;_id:1&#125;)._id, // 团队的ObjectId    userId: db.users.findOne(&#123;username:&quot;user11&quot;&#125;, &#123;_id:1&#125;)._id, // 用户的ObjectId    name: &quot;Owner&quot;,    role: &quot;owner&quot;,    status: &quot;active&quot;,    createTime: new ISODate(),    defaultTeam: true&#125;);# 通过ID新增团队成员db.getCollection(&quot;team_members&quot;).insert(&#123;    teamId: ObjectId(&quot;65916f3952ac39c5d10bb506&quot;), // 团队的ObjectId    userId: ObjectId(&quot;65916f1a52ac39c5d10bb505&quot;), // 用户的ObjectId    name: &quot;Owner&quot;,    role: &quot;owner&quot;,    status: &quot;active&quot;,    createTime: new ISODate(),    defaultTeam: true&#125;);# 删除团队成员db.team_members.deleteOne(&#123; _id: ObjectId(&quot;67d944ac768f7fbbf20ca6b8&quot;)&#125;);# 修改密码db.users.updateOne(    &#123; username: &quot;user11&quot; &#125;,    &#123; $set: &#123; password: &quot;new_password_hash&quot; &#125; &#125;);# 修改用户名db.users.updateOne(  &#123;_id: ObjectId(&quot;67d9568b26b5ecb24ba83653&quot;)&#125;,   &#123;$set: &#123;username: &quot;user12&quot;&#125;&#125;);</code></pre><p><a href="https://blog.csdn.net/friendlytkyj/article/details/146015964">参考文档</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;FastGPT 开源版没有提供团队管理机用户管理功能，如果需要创建用户，只能通过直接操作数据库来实现。本文介绍如何创建用户密码。&lt;/p&gt;
+&lt;p&gt;假设我们要创建的用户是 &lt;code&gt;user11&lt;/code&gt; 密码是 &lt;code&gt;#demo01!@&lt;/code&gt;&lt;/p&gt;
+&lt;h</summary>
+      
+    
+    
+    
+    <category term="FastGPT" scheme="https://mp127.fun/categories/FastGPT/"/>
+    
+    
+    <category term="FastGPT" scheme="https://mp127.fun/tags/FastGPT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何统计项目代码行数？</title>
+    <link href="https://mp127.fun/2025/10/22/how-to-count-code-lines/"/>
+    <id>https://mp127.fun/2025/10/22/how-to-count-code-lines/</id>
+    <published>2025-10-22T07:28:13.000Z</published>
+    <updated>2025-10-22T07:28:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在软件开发过程中，统计项目代码行数是一项常见的任务。这不仅可以帮助我们了解项目规模，还能在一定程度上评估开发进度和代码质量。本文将介绍几种在Linux&#x2F;Unix环境下使用<code>find</code>命令结合其他工具统计代码行数的实用方法。</p><h2 id="1-基本方法：find-wc"><a href="#1-基本方法：find-wc" class="headerlink" title="1. 基本方法：find + wc"></a>1. 基本方法：find + wc</h2><p>最简单的方法是使用<code>find</code>命令查找所有的代码文件，然后通过管道传递给<code>wc -l</code>命令来统计行数。</p><h3 id="1-1-统计特定扩展名的文件行数"><a href="#1-1-统计特定扩展名的文件行数" class="headerlink" title="1.1 统计特定扩展名的文件行数"></a>1.1 统计特定扩展名的文件行数</h3><pre><code class="bash">find . -name &quot;*.js&quot; -o -name &quot;*.css&quot; -o -name &quot;*.html&quot; | xargs wc -l</code></pre><p>这个命令会查找当前目录及其子目录下所有<code>.js</code>、<code>.css</code>和<code>.html</code>文件，并统计它们的总行数。</p><h3 id="1-2-排除特定目录"><a href="#1-2-排除特定目录" class="headerlink" title="1.2 排除特定目录"></a>1.2 排除特定目录</h3><p>在实际项目中，我们可能需要排除一些目录，如<code>node_modules</code>、<code>vendor</code>或<code>dist</code>等。可以使用<code>-not -path</code>参数来实现：</p><pre><code class="bash">find . -name &quot;*.js&quot; -not -path &quot;*/node_modules/*&quot; -not -path &quot;*/dist/*&quot; | xargs wc -l</code></pre><h3 id="1-3-仅显示总行数"><a href="#1-3-仅显示总行数" class="headerlink" title="1.3 仅显示总行数"></a>1.3 仅显示总行数</h3><p>如果只需要知道总行数而不需要每个文件的行数，可以使用<code>-c</code>参数：</p><pre><code class="bash">find . -name &quot;*.java&quot; -type f -exec cat &#123;&#125; \; | wc -l</code></pre><p>或者更简单的方式：</p><pre><code class="bash">find . -name &quot;*.java&quot; -type f | xargs cat | wc -l</code></pre><h2 id="2-更详细的统计：按文件类型分组"><a href="#2-更详细的统计：按文件类型分组" class="headerlink" title="2. 更详细的统计：按文件类型分组"></a>2. 更详细的统计：按文件类型分组</h2><p>有时候我们需要了解不同类型文件的代码行数分布，可以通过以下方法实现：</p><pre><code class="bash">for ext in js css html; do  echo &quot;$ext 文件总行数：&quot;  find . -name &quot;*.$ext&quot; -type f | xargs cat | wc -ldone</code></pre><h2 id="3-过滤空行和注释"><a href="#3-过滤空行和注释" class="headerlink" title="3. 过滤空行和注释"></a>3. 过滤空行和注释</h2><p>如果想要得到更准确的代码行数统计（去除空行和注释），可以结合<code>grep</code>命令：</p><h3 id="3-1-去除空行"><a href="#3-1-去除空行" class="headerlink" title="3.1 去除空行"></a>3.1 去除空行</h3><pre><code class="bash">find . -name &quot;*.py&quot; -type f | xargs grep -v &quot;^$&quot; | wc -l</code></pre><h3 id="3-2-去除空行和注释（以Python为例）"><a href="#3-2-去除空行和注释（以Python为例）" class="headerlink" title="3.2 去除空行和注释（以Python为例）"></a>3.2 去除空行和注释（以Python为例）</h3><pre><code class="bash">find . -name &quot;*.py&quot; -type f | xargs grep -v &quot;^$&quot; | grep -v &quot;^[[:space:]]*#&quot; | wc -l</code></pre><p>对于其他语言，注释的格式不同，需要调整正则表达式。例如，对于JavaScript：</p><pre><code class="bash">find . -name &quot;*.js&quot; -type f | xargs grep -v &quot;^$&quot; | grep -v &quot;^[[:space:]]*//&quot; | grep -v &quot;^[[:space:]]*/\*&quot; | grep -v &quot;^[[:space:]]*\*/&quot; | wc -l</code></pre><h2 id="4-根据-gitignore-文件排除文件和目录"><a href="#4-根据-gitignore-文件排除文件和目录" class="headerlink" title="4. 根据 .gitignore 文件排除文件和目录"></a>4. 根据 .gitignore 文件排除文件和目录</h2><p>在实际项目开发中，<code>.gitignore</code>文件已经定义了我们不需要跟踪的文件和目录（如编译输出、依赖包、临时文件等）。我们可以利用这个文件来排除这些文件进行代码统计，这样可以获得更准确的项目代码量统计。</p><h3 id="4-1-使用-git-ls-files-命令"><a href="#4-1-使用-git-ls-files-命令" class="headerlink" title="4.1 使用 git ls-files 命令"></a>4.1 使用 git ls-files 命令</h3><p><code>git ls-files</code>命令会列出所有被git跟踪的文件，自动排除了<code>.gitignore</code>中定义的文件和目录。我们可以结合这个命令来统计代码行数：</p><pre><code class="bash"># 统计所有被git跟踪的文件的总行数git ls-files | xargs wc -l# 仅显示总行数git ls-files | xargs cat | wc -l# 统计特定类型的文件行数git ls-files &quot;*.js&quot; &quot;*.css&quot; &quot;*.html&quot; | xargs wc -l</code></pre><h3 id="4-2-使用-git-check-ignore-结合-find-命令"><a href="#4-2-使用-git-check-ignore-结合-find-命令" class="headerlink" title="4.2 使用 git check-ignore 结合 find 命令"></a>4.2 使用 git check-ignore 结合 find 命令</h3><p>如果你的项目还没有初始化git仓库，或者你想自定义一些排除规则，可以使用<code>git check-ignore</code>命令来检查文件是否被忽略：</p><pre><code class="bash"># 使用git check-ignore过滤被忽略的文件find . -type f -not -path &quot;*/\.git/*&quot; | git check-ignore -v --stdin | cut -f 3 | xargs wc -l</code></pre><p>这个命令的工作原理是：</p><ol><li>使用<code>find</code>查找所有文件（排除<code>.git</code>目录）</li><li>通过<code>git check-ignore</code>检查每个文件是否被忽略</li><li>使用<code>cut</code>提取文件路径</li><li>通过<code>xargs</code>和<code>wc -l</code>统计行数</li></ol><h3 id="4-3-手动实现-gitignore-过滤（不依赖git）"><a href="#4-3-手动实现-gitignore-过滤（不依赖git）" class="headerlink" title="4.3 手动实现 .gitignore 过滤（不依赖git）"></a>4.3 手动实现 .gitignore 过滤（不依赖git）</h3><p>如果你不想使用git，也可以手动实现类似<code>.gitignore</code>的过滤功能：</p><pre><code class="bash">#!/bin/bash# 读取.gitignore文件中的规则gitignore_rules=()if [ -f &quot;.gitignore&quot; ]; then  while IFS= read -r line || [ -n &quot;$line&quot; ]; do    # 跳过空行和注释行    [[ -z &quot;$line&quot; || &quot;$line&quot; == \#* ]] &amp;&amp; continue    # 添加到规则数组    gitignore_rules+=(&quot;$line&quot;)  done &lt; &quot;.gitignore&quot;fi# 构建find命令参数exclude_args=&quot;&quot;for rule in &quot;$&#123;gitignore_rules[@]&#125;&quot;; do  # 简单处理.gitignore规则，实际情况可能更复杂  if [[ &quot;$rule&quot; == */* ]]; then    exclude_args+=&quot; -not -path \&quot;*/$rule\&quot;&quot;  else    exclude_args+=&quot; -not -name \&quot;$rule\&quot;&quot;  fidone# 执行代码行数统计command=&quot;find . -type f -not -path \&quot;*/\.git/*\&quot; $exclude_args | xargs wc -l&quot;eval &quot;$command&quot;</code></pre><p>注意：这个脚本只是简单实现了<code>.gitignore</code>的部分功能，对于复杂的模式匹配（如<code>**</code>递归匹配、<code>!</code>否定等）可能不够准确。</p><h2 id="5-实用脚本示例"><a href="#5-实用脚本示例" class="headerlink" title="5. 实用脚本示例"></a>5. 实用脚本示例</h2><p>下面是一个综合的shell脚本，可以统计多种类型文件的代码行数，并支持根据.gitignore排除文件：</p><pre><code class="bash">#!/bin/bash# 定义文件类型declare -a extensions=(&quot;.js&quot; &quot;.ts&quot; &quot;.jsx&quot; &quot;.tsx&quot; &quot;.css&quot; &quot;.scss&quot; &quot;.html&quot; &quot;.json&quot; &quot;.md&quot;)# 定义要排除的目录declare -a exclude_dirs=()# 从.gitignore读取排除规则（可选）if [ -f &quot;.gitignore&quot; ]; then  while IFS= read -r line || [ -n &quot;$line&quot; ]; do    # 跳过空行、注释行和否定规则    [[ -z &quot;$line&quot; || &quot;$line&quot; == \#* || &quot;$line&quot; == \!* ]] &amp;&amp; continue        # 处理目录规则    if [[ &quot;$line&quot; == */ ]]; then      dir_name=&quot;$&#123;line%/&#125;&quot;      exclude_dirs+=($dir_name)    fi  done &lt; &quot;.gitignore&quot;fi# 手动添加常见的排除目录exclude_dirs+=(&quot;node_modules&quot; &quot;dist&quot; &quot;build&quot; &quot;coverage&quot; &quot;.git&quot;)# 构建排除路径参数exclude_args=&quot;&quot;for dir in &quot;$&#123;exclude_dirs[@]&#125;&quot;; do  exclude_args+=&quot; -not -path \&quot;*/$dir/*\&quot;&quot;done# 统计总行数total_lines=0# 按文件类型统计for ext in &quot;$&#123;extensions[@]&#125;&quot;; do  # 执行find命令并统计行数  command=&quot;find . -name \&quot;*$ext\&quot; -type f $exclude_args | xargs cat | wc -l&quot;  lines=$(eval &quot;$command&quot;)    # 累加总行数  total_lines=$((total_lines + lines))    # 输出结果  printf &quot;%10s 文件: %7d 行\n&quot; &quot;$ext&quot; &quot;$lines&quot;done# 输出总行数echo &quot;----------------------------&quot;printf &quot;%10s: %7d 行\n&quot; &quot;总计&quot; &quot;$total_lines&quot;</code></pre><h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>统计代码行数是一项简单但实用的工作。通过本文介绍的方法，你可以轻松地统计项目代码行数，无论是简单的计数还是更复杂的分组统计，甚至可以利用现有的.gitignore文件来排除不需要统计的文件。</p><p>主要方法包括：</p><ol><li>使用<code>find</code>命令结合<code>wc</code>命令进行基本统计</li><li>根据<code>.gitignore</code>文件排除不需要统计的文件和目录，可以通过<code>git ls-files</code>命令或手动解析<code>.gitignore</code>文件实现</li><li>使用<code>grep</code>命令过滤空行和注释，获得更准确的统计结果</li></ol><p><code>find</code>命令是Linux&#x2F;Unix系统中功能强大的文件查找工具，结合<code>wc</code>、<code>grep</code>等命令，可以完成各种复杂的代码统计任务。通过合理利用这些工具，你可以得到更准确、更有意义的代码行数统计结果。</p><p>希望这些方法对你有所帮助！如果你有其他更好的方法，欢迎在评论区分享。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在软件开发过程中，统计项目代码行数是一项常见的任务。这不仅可以帮助我们了解项目规模，还能在一定程度上评估开发进度和代码质量。本文将介绍几种在Linux&amp;#x2F;Unix环境下使用&lt;code&gt;find&lt;/code&gt;命令结合其他工具统计代码行数的实用方法。&lt;/p&gt;
+&lt;h2 i</summary>
+      
+    
+    
+    
+    <category term="工具" scheme="https://mp127.fun/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="find" scheme="https://mp127.fun/tags/find/"/>
+    
+    <category term="代码统计" scheme="https://mp127.fun/tags/%E4%BB%A3%E7%A0%81%E7%BB%9F%E8%AE%A1/"/>
+    
+    <category term="shell" scheme="https://mp127.fun/tags/shell/"/>
+    
+    <category term="开发工具" scheme="https://mp127.fun/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>miniconda 安装与 VS Code 环境配置</title>
     <link href="https://mp127.fun/2025/08/01/install-minicoda-and-VS-Code-config/"/>
     <id>https://mp127.fun/2025/08/01/install-minicoda-and-VS-Code-config/</id>
     <published>2025-08-01T06:43:23.000Z</published>
     <updated>2025-08-01T06:43:23.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="miniconda-安装"><a href="#miniconda-安装" class="headerlink" title="miniconda 安装"></a>miniconda 安装</h2><h3 id="下载安装-miniconda"><a href="#下载安装-miniconda" class="headerlink" title="下载安装 miniconda"></a>下载安装 miniconda</h3><p>安装参考文档（<a href="https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2%EF%BC%89%E3%80%82">https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2）。</a></p><ul><li>在用户目录下创建一个目录：<code>miniconda3</code></li><li>下载安装命令脚本，并重命名为：<code>miniconda.sh</code></li><li>通过 bash 执行安装命令脚本。</li><li>安装完成后删除安装脚本。</li></ul><pre><code class="shell">mkdir -p ~/miniconda3wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.shbash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3rm ~/miniconda3/miniconda.sh</code></pre><ul><li>安装完成后，执行命令激活：<code>source ~/miniconda3/bin/activate</code></li><li>最后为所有 shells 初始化 conda： <code>conda init --all</code></li></ul><h3 id="conda-常用命令"><a href="#conda-常用命令" class="headerlink" title="conda 常用命令"></a>conda 常用命令</h3><ol><li>查看 conda 环境：<code>conda info -e</code></li><li>激活某个环境： <code>conda activate base</code></li><li>退出一个激活的环境：  <code>conda deactivate</code></li></ol><h3 id="python-常用命令"><a href="#python-常用命令" class="headerlink" title="python 常用命令"></a>python 常用命令</h3><ol><li>查看版本：<code>python3 -version</code>, <code>pip3 --version</code></li><li>安装模块命令：<code>pip3 install &lt;模块名&gt;</code></li></ol><h2 id="VS-Code-配置-python-环境"><a href="#VS-Code-配置-python-环境" class="headerlink" title="VS Code 配置 python 环境"></a>VS Code 配置 python 环境</h2><p>VS Code 或者基于 vscode 的 IDE 都可以使用 USL Ubuntu 中的 Python 环境，并且这是微软官方强烈推荐并深度集成的标准工作流之一。</p><ul><li>安装扩展：Remote-WSL, Python.</li><li>连接到 WSL Ubuntu： 按<code>Ctrl+Shift+P</code>打开命令面板，输入并选择命令<code>Remoe-WSL: Connect to WSL</code>，VS Code 会启动一个新的窗口，状态栏左下角会显示<code>WSL: Ubuntu...</code></li><li>VS Code 检测到 Python 文件时，右下角会提示选择解释器。</li></ul><p>完成这些步骤后，VS Code 就完全在 WSL Ubuntu 的 Python 环境中工作了，享受最接近原生 Linux 的开发体验。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="miniconda-安装"><a href="#miniconda-安装" class="headerlink" title="miniconda 安装"></a>miniconda 安装</h2><h3 id="下载安装-miniconda"><a href="#下载安装-miniconda" class="headerlink" title="下载安装 miniconda"></a>下载安装 miniconda</h3><p>安装参考文档（<a href="https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2%EF%BC%89%E3%80%82">https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2）。</a></p><ul><li>在用户目录下创建一个目录：<code>miniconda3</code></li><li>下载安装命令脚本，并重命名为：<code>miniconda.sh</code></li><li>通过 bash 执行安装命令脚本。</li><li>安装完成后删除安装脚本。</li></ul><pre><code class="shell">mkdir -p ~/miniconda3wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.shbash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3rm ~/miniconda3/miniconda.sh</code></pre><ul><li>安装完成后，执行命令激活：<code>source ~/miniconda3/bin/activate</code></li><li>最后为所有 shells 初始化 conda： <code>conda init --all</code></li></ul><h3 id="conda-常用命令"><a href="#conda-常用命令" class="headerlink" title="conda 常用命令"></a>conda 常用命令</h3><ol><li>查看 conda 环境：<code>conda info -e</code></li><li>激活某个环境： <code>conda activate base</code></li><li>退出一个激活的环境：  <code>conda deactivate</code></li></ol><h3 id="检查当前激活的环境"><a href="#检查当前激活的环境" class="headerlink" title="检查当前激活的环境"></a>检查当前激活的环境</h3><ul><li>检查当前激活的环境：<code>conda info --envs</code> 或者 <code>conda env list</code></li></ul><h3 id="python-常用命令"><a href="#python-常用命令" class="headerlink" title="python 常用命令"></a>python 常用命令</h3><ol><li>查看版本：<code>python3 -version</code>, <code>pip3 --version</code></li><li>安装模块命令：<code>pip3 install &lt;模块名&gt;</code></li></ol><h2 id="VS-Code-配置-python-环境"><a href="#VS-Code-配置-python-环境" class="headerlink" title="VS Code 配置 python 环境"></a>VS Code 配置 python 环境</h2><p>VS Code 或者基于 vscode 的 IDE 都可以使用 USL Ubuntu 中的 Python 环境，并且这是微软官方强烈推荐并深度集成的标准工作流之一。</p><ul><li>安装扩展：Remote-WSL, Python.</li><li>连接到 WSL Ubuntu： 按<code>Ctrl+Shift+P</code>打开命令面板，输入并选择命令<code>Remoe-WSL: Connect to WSL</code>，VS Code 会启动一个新的窗口，状态栏左下角会显示<code>WSL: Ubuntu...</code></li><li>VS Code 检测到 Python 文件时，右下角会提示选择解释器。</li></ul><p>完成这些步骤后，VS Code 就完全在 WSL Ubuntu 的 Python 环境中工作了，享受最接近原生 Linux 的开发体验。</p>]]></content>
     
     
       
@@ -49,7 +106,7 @@
     <published>2025-07-31T13:01:40.000Z</published>
     <updated>2025-07-31T13:01:40.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="安装-nvs"><a href="#安装-nvs" class="headerlink" title="安装 nvs"></a>安装 nvs</h2><h3 id="Mac-Linux"><a href="#Mac-Linux" class="headerlink" title="Mac,Linux"></a>Mac,Linux</h3><p>设置安装路径，下载源码，然后执行安装命令：</p><pre><code class="shell">export NVS_HOME=&quot;$HOME/.nvs&quot;git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;. &quot;$NVS_HOME/nvs.sh&quot; install</code></pre><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>使用 PowerShell 执行以下命令：</p><pre><code class="shell">$NVS_HOME = &quot;$HOME\.nvs&quot;git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;. &quot;$NVS_HOME\nvs.ps1&quot; install</code></pre><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><ol><li>查看版本号：<code>nvs --version</code></li><li>查看可以下载 node 版本： <code>nvs ls-remote v20</code></li><li>下载指定版本的 node：<code>nvs add v20.14.0</code></li><li>查看已安装的 node 版本：<code>nvs ls</code></li><li>使用指定版本 node：<code>nvs use node/20.14.0/x64</code></li><li>设置默认使用版本：<code>nvs link v20.14.0</code></li></ol><h2 id="安装-pnpm"><a href="#安装-pnpm" class="headerlink" title="安装 pnpm"></a>安装 pnpm</h2><p>全局安装指定版本的 pnpm： <code>npm install -g pnpm@9.4.0</code></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="安装-nvs"><a href="#安装-nvs" class="headerlink" title="安装 nvs"></a>安装 nvs</h2><h3 id="Mac-Linux"><a href="#Mac-Linux" class="headerlink" title="Mac,Linux"></a>Mac,Linux</h3><p>设置安装路径，下载源码，然后执行安装命令：</p><pre><code class="shell">export NVS_HOME=&quot;$HOME/.nvs&quot;git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;. &quot;$NVS_HOME/nvs.sh&quot; install</code></pre><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>使用 PowerShell 执行以下命令：</p><pre><code class="shell">$NVS_HOME = &quot;$HOME\.nvs&quot;git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;. &quot;$NVS_HOME\nvs.ps1&quot; install</code></pre><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><ol><li>查看版本号：<code>nvs --version</code></li><li>查看可以下载 node 版本： <code>nvs ls-remote v20</code></li><li>下载指定版本的 node：<code>nvs add v20.14.0</code></li><li>查看已安装的 node 版本：<code>nvs ls</code></li><li>使用指定版本 node：<code>nvs use node/20.14.0/x64</code></li><li>设置默认使用版本：<code>nvs link v20.14.0</code></li></ol><h2 id="安装-pnpm"><a href="#安装-pnpm" class="headerlink" title="安装 pnpm"></a>安装 pnpm</h2><p>全局安装指定版本的 pnpm： <code>npm install -g pnpm@10.34.4</code></p>]]></content>
     
     
       
@@ -481,57 +538,6 @@
     
     
     <category term="ssh" scheme="https://mp127.fun/tags/ssh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>防止域名被恶意解析</title>
-    <link href="https://mp127.fun/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/"/>
-    <id>https://mp127.fun/2024/02/23/prevent-domain-names-from-being-maliciously-resolved/</id>
-    <published>2024-02-23T10:17:51.000Z</published>
-    <updated>2024-02-23T10:17:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="恶意域名解析的原理"><a href="#恶意域名解析的原理" class="headerlink" title="恶意域名解析的原理"></a>恶意域名解析的原理</h1><p>假如公网 IP 暴露，那么别人可以随意用一个域名解析到公网 IP，如果解析的域名未备案，那会有安全风险。那如何防止呢？下面是 Nignx 的解决办法：</p><p>如果 ip 对应的80（或者443）端口在 nginx 里没有指定默认资源，默认会以 conf.d 目录下的顺序第一的配置文件指向的资源为准，也就是用 80 或者 443 各排第一个的配置文件为默认资源。这时候如果用一个不相关的域名解析到 IP上，就会阴差阳错的关联到 conf.d 目录下 80 或者 443 各排第一位的配置文件对应的资源上。</p><p>防解析的解决方法也很简单，就是指定 80 和 443 端口的默认资源，让他们只返回 403 报错，默认资源没法显示有效内容，域名就没法解析成功。</p><h1 id="80-端口反代配置"><a href="#80-端口反代配置" class="headerlink" title="80 端口反代配置"></a>80 端口反代配置</h1><pre><code class="nginx">server &#123;    listen       80 default;    server_name  _;    return 403;&#125;</code></pre><h1 id="443-端口反代配置"><a href="#443-端口反代配置" class="headerlink" title="443 端口反代配置"></a>443 端口反代配置</h1><p>443 端口防范配置则需要配置 ssl 证书，否则所有 https 请求都会失败，下面是颁发自签名证书和配置过程。</p><h2 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h2><pre><code class="shell"># 首先，进入你想创建证书和私钥的目录，例如：cd /home/certs/# 创建服务器私钥，命令会让你输入一个口令：openssl genrsa -des3 -out server.key 2048# 创建签名请求的证书，最后两步密码留空（CSR）：openssl req -new -key server.key -out server.csr# 在加载 SSL 支持的 Nginx 并使用上述私钥时除去必须的口令：cp server.key server.key.orgopenssl rsa -in server.key.org -out server.key# 最后标记证书使用上述私钥和 CSR：openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt</code></pre><h2 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h2><p>在 nginx 目录下的 conf 目录内创建 403.conf：</p><pre><code class="nginx"># 防止域名被恶意解析server &#123;    listen       80 default;    server_name  403.abc.com;    return 403;    location ~/.well-known/acme-challenge/ &#123;        root /usr/share/nginx/html/;    &#125;&#125;server &#123;    listen       443 ssl default;    server_name  403.abc.com;    ssl_certificate      /etc/nginx/cert/server.crt;    ssl_certificate_key  /etc/nginx/cert/server.key;    ssl_session_timeout 5m;    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;    #表示使用的加密套件的类型。    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #表示使用的TLS协议的类型。    ssl_prefer_server_ciphers on;    return 403;&#125;</code></pre><p>重启nginx，未报错，说明配置成功。</p><p>访问 <a href="http://ip/">http://ip</a> 返回 403，说明 80 端口的防解析配置成功！</p><p>访问 <a href="https://ip/">https://ip</a> 返回 403，说明 443 端口的防解析配置成功！</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;恶意域名解析的原理&quot;&gt;&lt;a href=&quot;#恶意域名解析的原理&quot; class=&quot;headerlink&quot; title=&quot;恶意域名解析的原理&quot;&gt;&lt;/a&gt;恶意域名解析的原理&lt;/h1&gt;&lt;p&gt;假如公网 IP 暴露，那么别人可以随意用一个域名解析到公网 IP，如果解析的域名未备</summary>
-      
-    
-    
-    
-    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-    <category term="nginx" scheme="https://mp127.fun/tags/nginx/"/>
-    
-    <category term="dns" scheme="https://mp127.fun/tags/dns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为应用创建守护进程</title>
-    <link href="https://mp127.fun/2023/09/21/use-systemd-manage-application/"/>
-    <id>https://mp127.fun/2023/09/21/use-systemd-manage-application/</id>
-    <published>2023-09-21T14:34:53.000Z</published>
-    <updated>2023-09-21T14:34:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。</p><h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>通过 systemd 管理 Spring Boot 应用，防止服务意外停止，增强可靠性。<br>可以实现开机自启并自动重启，意外停止自动重启等，守护线上应用。</p><h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><h2 id="1-创建服务文件"><a href="#1-创建服务文件" class="headerlink" title="1. 创建服务文件"></a>1. 创建服务文件</h2><p>在&#x2F;etc&#x2F;systemd&#x2F;system目录下创建一个文件，如 moon.service，内容如下：</p><pre><code class="text">[Unit]Description=moon data center service[Service]ExecStart=/home/ethan/software/jdk1.8.0_171/bin/java -server -Xms256m -Xmx1024m -Dfile.encoding=utf-8 -jar /home/ethan/servers/moon-admin/moon-admin-1.0.0-SNAPSHOT.jar &amp;Restart=on-failure[Install]WantedBy=multi-user.target</code></pre><blockquote><p>💡 Tips：Restart 参数可以设置为 always、on-failure。其中 always 表示程序异常退出时总是重启；on-failure 表示只在程序非正常退出时重启。</p></blockquote><h2 id="2-启动服务"><a href="#2-启动服务" class="headerlink" title="2.启动服务"></a>2.启动服务</h2><p><code>systemctl start moon</code></p><blockquote><p>💡 Tips：可以执行命令systemctl enable moon，来设定服务在开机启动。</p></blockquote><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>可以添加一些状态检查的脚本来确保应用已完全启动。另外还需要注意日志管理、资源分配等细节问题。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;本文介绍在 Linux 系统中，通过 systemd 来管理 Spring Boot 应用，实现当服务意外终止后自动重启。&lt;/p&gt;
-&lt;h1 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的&quot;&gt;&lt;/a&gt;目的&lt;/h1&gt;&lt;p&gt;通</summary>
-      
-    
-    
-    
-    <category term="运维" scheme="https://mp127.fun/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-    <category term="systemd" scheme="https://mp127.fun/tags/systemd/"/>
     
   </entry>
   

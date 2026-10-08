@@ -509,24 +509,22 @@ svn cp http://code.taobao.org/svn/nakri/trunk http://code.taobao.org/svn/nakri/t
     <title>Idea 常用配置</title>
     <url>/2017/08/19/idea-config-instructions/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>总结的一些 idea 配置方法</p>
-<h2 id="隐藏-idea-文件夹和-iml-等文件（可选）"><a href="#隐藏-idea-文件夹和-iml-等文件（可选）" class="headerlink" title="隐藏 .idea 文件夹和 .iml 等文件（可选）"></a>隐藏 .idea 文件夹和 .iml 等文件（可选）</h2><p>在 File -&gt; Settings -&gt; Editor -&gt; File Types 下的 “Ignore files and folders” 中添加：</p>
-<pre><code>.idea;*.iml;
-</code></pre>
+<h2 id="隐藏-idea-文件夹和-iml-等文件（可选）"><a href="#隐藏-idea-文件夹和-iml-等文件（可选）" class="headerlink" title="隐藏 .idea 文件夹和 .iml 等文件（可选）"></a>隐藏 .idea 文件夹和 .iml 等文件（可选）</h2><p>在 File -&gt; Settings -&gt; Editor -&gt; File Types 下的 “Ignore files and folders” 中添加：<br><code>.idea;*.iml;</code></p>
 <h2 id="文件编码设置"><a href="#文件编码设置" class="headerlink" title="文件编码设置"></a>文件编码设置</h2><p>File -&gt; Settings -&gt; Editor -&gt; File Encodings 下设置：</p>
-<pre><code>Global Encoding: UTF-8
+<pre><code class="yaml">Global Encoding: UTF-8
 Projectt Encoding: UTF-8
 Default encoding for properties files: UTF-8
 </code></pre>
-<p>勾选上 Transparent native-to-ascii conversion</p>
-<h2 id="生成-javadoc-配置"><a href="#生成-javadoc-配置" class="headerlink" title="生成 javadoc 配置"></a>生成 javadoc 配置</h2><p>打开 Tools -&gt; Gerenate JavaDoc<br>在 Other command line arguments 中输入：-encoding utf-8 -charset utf-8, 避免中文乱码</p>
-<h2 id="设置代码行宽度-Columns"><a href="#设置代码行宽度-Columns" class="headerlink" title="设置代码行宽度(Columns)"></a>设置代码行宽度(Columns)</h2><p>打开 File -&gt; Other Settings -&gt; Default Settings -&gt; Editor -&gt; Code Style<br>修改 Default Options -&gt; Right Margin (Columns) 可以为所有类型的文件设置默认宽度，设置为 120。<br>另外可以在 Code Style 下特定类型文件（例如 Java、Jsp）的 Wrapping tab 下修改该类型文件的代码行宽度。</p>
+<p>勾选上 <code>Transparent native-to-ascii conversion</code></p>
+<h2 id="生成-javadoc-配置"><a href="#生成-javadoc-配置" class="headerlink" title="生成 javadoc 配置"></a>生成 javadoc 配置</h2><p>打开 Tools -&gt; Gerenate JavaDoc<br>在 Other command line arguments 中输入：<code>-encoding utf-8 -charset utf-8</code>, 避免中文乱码</p>
+<h2 id="设置代码行宽度-Columns"><a href="#设置代码行宽度-Columns" class="headerlink" title="设置代码行宽度(Columns)"></a>设置代码行宽度(Columns)</h2><p>打开 File -&gt; Other Settings -&gt; Default Settings -&gt; Editor -&gt; Code Style<br>修改 Default Options -&gt; Right Margin (Columns) 可以为所有类型的文件设置默认宽度，设置为 <code>120</code>。<br>另外可以在 Code Style 下特定类型文件（例如 Java、Jsp）的 Wrapping tab 下修改该类型文件的代码行宽度。</p>
 <h2 id="自定义-Live-Template"><a href="#自定义-Live-Template" class="headerlink" title="自定义 Live Template"></a>自定义 Live Template</h2><p>Preferences -&gt; Editor -&gt; Live Templates 选择 Java, 添加自定义模板以及自己的快捷输入方法。</p>
 <h3 id="方法注释模板配置示例"><a href="#方法注释模板配置示例" class="headerlink" title="方法注释模板配置示例"></a>方法注释模板配置示例</h3><ul>
 <li>Abbreviation: mc</li>
 <li>Description: method comments</li>
 <li>Template Text内容：</li>
 </ul>
-<pre><code>/**
+<pre><code class="java">/**
  * $notes$
  *
  $params$
@@ -535,29 +533,23 @@ Default encoding for properties files: UTF-8
  * @datetime $DATE$ $TIME$
  */
 </code></pre>
-<p>params Default value:</p>
-<pre><code> groovyScript(&quot;if(\&quot;$&#123;_1&#125;\&quot;.length() == 2) &#123;return &#39;&#39;;&#125; else &#123;def result=&#39;&#39;; def params=\&quot;$&#123;_1&#125;\&quot;.replaceAll(&#39;[\\\\[|\\\\]|\\\\s]&#39;, &#39;&#39;).split(&#39;,&#39;).toList();for(i = 0; i &lt; params.size(); i++) &#123;if(i&lt;(params.size()-1))&#123;result+=&#39; * @param &#39; + params[i] + &#39;\\n&#39;&#125;else&#123;result+=&#39; * @param &#39; + params[i]&#125;&#125;; return result;&#125;&quot;, methodParameters());
+<p><strong>Edit Variables</strong><br>notes Default value: comments for this method<br>params Default value:</p>
+<pre><code class="javascript"> groovyScript(&quot;if(\&quot;$&#123;_1&#125;\&quot;.length() == 2) &#123;return &#39;&#39;;&#125; else &#123;def result=&#39;&#39;; def params=\&quot;$&#123;_1&#125;\&quot;.replaceAll(&#39;[\\\\[|\\\\]|\\\\s]&#39;, &#39;&#39;).split(&#39;,&#39;).toList();for(i = 0; i &lt; params.size(); i++) &#123;if(i&lt;(params.size()-1))&#123;result+=&#39; * @param &#39; + params[i] + &#39;\\n&#39;&#125;else&#123;result+=&#39; * @param &#39; + params[i]&#125;&#125;; return result;&#125;&quot;, methodParameters());
 </code></pre>
-<p>note: comments for this method</p>
+<p>date Expression: date()<br>time Expression: time()</p>
 <h3 id="代码块注释示例"><a href="#代码块注释示例" class="headerlink" title="代码块注释示例"></a>代码块注释示例</h3><ul>
 <li>Abbreviation: cc</li>
 <li>Description: class comments</li>
 <li>Template Text内容：</li>
 </ul>
-<pre><code>**
+<pre><code class="java">/**
  * $notes$
  *
  * @author LingJun
  * @datetime $DATE$ $TIME$
  */
 </code></pre>
-<p>注意:</p>
-<ul>
-<li>需要编辑 date，time 等变量的值。</li>
-<li>日期的变量值推荐加参数如：date(“yyyy&#x2F;MM&#x2F;dd”)</li>
-<li>define 选择 java</li>
-<li>note: comments for this class</li>
-</ul>
+<p><strong>Edit Variables</strong><br>notes Default value: comments for this class<br>date Expression: date()<br>time Expression: time()</p>
 <h2 id="换行符"><a href="#换行符" class="headerlink" title="换行符"></a>换行符</h2><p>使用 Unix 格式，不要使用 Windows 格式。</p>
 <h2 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h2><p>禁止使用 tab 缩进，采用 4 个空格缩进。如果使用 tab 缩进，必须在 IDE 中 Use tab character。</p>
 ]]></content>
@@ -688,30 +680,34 @@ git remote add origin git@code.aliyun.com:lingjun/jee-octopus.git
 <h1 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h1><pre><code>git branch -a
 git checkout master_herbinate
 </code></pre>
-<h1 id="Keep-your-fork-synced"><a href="#Keep-your-fork-synced" class="headerlink" title="Keep your fork synced"></a>Keep your fork synced</h1><ol>
-<li>See the current configured remote repository for your fork：</li>
-</ol>
-<pre><code>git remote -v
+<h1 id="基于指定分支创建新分支"><a href="#基于指定分支创建新分支" class="headerlink" title="基于指定分支创建新分支"></a>基于指定分支创建新分支</h1><pre><code># 基于当前分支创建新分支
+git checkout -b new-branch
+
+# 基于指定分支创建新分支
+git checkout -b new-branch base-branch
+
+# 或者使用 switch 命令（Git 2.23+）
+git switch -c new-branch base-branch
 </code></pre>
-<ol start="2">
-<li>Add remote upstream</li>
-</ol>
-<pre><code>git remote add upstream https://github.com/thinkgem/jeesite.git
+<h1 id="Keep-your-fork-synced"><a href="#Keep-your-fork-synced" class="headerlink" title="Keep your fork synced"></a>Keep your fork synced</h1><pre><code class="shell"># 1. See the current configured remote repository for your fork：
+git remote -v
+
+# 2. Add remote upstream
+git remote add upstream https://github.com/thinkgem/jeesite.git
+
+# 3. Fetch the branches and their respective commits from the upstream repository
+git fetch upstream
+
+# 4. 确保当前分支是 master, 如果不是，切换至 master
+git branch -a
+
+# 5. Merge the changes from upstream/master into your local master branch
+git merge upstream/master
 </code></pre>
-<ol start="3">
-<li>Fetch the branches and their respective commits from the upstream repository</li>
-</ol>
-<pre><code>git fetch upstream
-</code></pre>
-<ol start="4">
-<li>确保当前分支是 master, 如果不是，切换至 master</li>
-</ol>
-<pre><code>git branch -a
-</code></pre>
-<ol start="5">
-<li>Merge the changes from upstream&#x2F;master into your local master branch</li>
-</ol>
-<pre><code>git merge upstream/master
+<h2 id="同步上游仓库的Tag"><a href="#同步上游仓库的Tag" class="headerlink" title="同步上游仓库的Tag"></a>同步上游仓库的Tag</h2><pre><code class="shell"># 查看所有Tag
+git tag -l
+# 手动同步特定Tag
+git fetch upstream tag v4.13.2-fix
 </code></pre>
 <h1 id="Revert-file"><a href="#Revert-file" class="headerlink" title="Revert file"></a>Revert file</h1><pre><code>git rm --cached -f -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
@@ -723,6 +719,7 @@ git checkout HEAD -- naisen/src/main/webapp/WEB-INF/pages/crm/customer/add.jsp
 ]]></content>
       <categories>
         <category>工具</category>
+        <category>git</category>
       </categories>
       <tags>
         <tag>git</tag>
@@ -1064,7 +1061,16 @@ du -h -d1 | sort -hr
 <li><code>vmstat [选项] [延迟时间] [重复次数]</code> 监控系统虚拟内存、进程、CPU活动以及I&#x2F;O操作的工具。它能够提供系统资源的实时快照，帮助识别性能瓶颈。示例：<code>vmstat -w 3</code></li>
 <li><code>tmux</code> 通过一个终端登录远程主机并运行tmux后，在其中可以开启多个控制台而无需再“浪费”多余的终端来连接这台远程主机；当然其功能远不止于此。</li>
 </ul>
-<h3 id="挂在硬盘"><a href="#挂在硬盘" class="headerlink" title="挂在硬盘"></a>挂在硬盘</h3><pre><code class="shell">blkid -o device
+<h3 id="CPU-与系统信息"><a href="#CPU-与系统信息" class="headerlink" title="CPU 与系统信息"></a>CPU 与系统信息</h3><ul>
+<li><code>lscpu</code> 查看 CPU 架构、型号、核心数、线程数等详细信息。</li>
+<li><code>cat /proc/cpuinfo</code> 查看每个 CPU 核心的详细参数。</li>
+<li><code>nproc</code> 查看可用的 CPU 核心数量。</li>
+<li><code>uptime</code> 查看系统负载和运行时长。</li>
+<li><code>uname -a</code> 查看内核版本、主机名和操作系统类型。</li>
+<li><code>hostnamectl</code> 查看系统主机名、操作系统版本、内核版本等信息。</li>
+<li><code>dmidecode -t processor</code> 查看 CPU 硬件信息（需要 root 权限）。</li>
+</ul>
+<h3 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h3><pre><code class="shell">blkid -o device
 mount /dev/xvde1 /home
 </code></pre>
 <h3 id="重启定时任务"><a href="#重启定时任务" class="headerlink" title="重启定时任务"></a>重启定时任务</h3><pre><code class="shell">sudo /etc/init.d/crond restart
@@ -1143,6 +1149,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ]]></content>
       <categories>
         <category>运维</category>
+        <category>linux</category>
       </categories>
       <tags>
         <tag>ufw</tag>
@@ -1612,7 +1619,13 @@ grant all privileges on fund_management.* to shumei@&#39;%&#39;;
   <entry>
     <title>通过 docker 初始化服务器运行环境</title>
     <url>/2020/08/07/server-env-init-with-docker/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用官方安装脚本自动安装<br>安装命令如下：<code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code></p>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用官方安装脚本自动安装</p>
+<pre><code class="shell"># 安装命令如下：
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+# 或者把脚本下载下来，执行脚本安装
+sudo sh install-docker.sh --mirror Aliyun
+systemctl enable --now docker
+</code></pre>
 <p>如果要使用 Docker 作为非 root 用户，则应考虑使用类似以下方式将用户添加到 docker 组：<br><code>sudo usermod -aG docker ethan</code></p>
 <h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><p>使用以下命令编辑或创建 daemon.json 文件：</p>
 <pre><code class="shell">sudo vim /etc/docker/daemon.json
@@ -1621,8 +1634,25 @@ grant all privileges on fund_management.* to shumei@&#39;%&#39;;
 <pre><code class="json">&#123;
   &quot;registry-mirrors&quot;: [
     &quot;https://&lt;your-mirror&gt;.mirror.aliyuncs.com&quot;,
-    &quot;https://hub-mirror.c.163.com&quot;,
-    &quot;https://mirror.ccs.tencentyun.com&quot;
+        &quot;https://registry.cn-hangzhou.aliyuncs.com&quot;,
+        &quot;https://2a6bf1988cb6428c877f723ec7530dbc.mirror.swr.myhuaweicloud.com&quot;,
+        &quot;https://docker.m.daocloud.io&quot;,
+        &quot;https://hub-mirror.c.163.com&quot;,
+        &quot;https://mirror.baidubce.com&quot;,
+        &quot;https://dockerhub.icu&quot;,
+        &quot;https://docker.registry.cyou&quot;,
+        &quot;https://docker-cf.registry.cyou&quot;,
+        &quot;https://dockercf.jsdelivr.fyi&quot;,
+        &quot;https://docker.jsdelivr.fyi&quot;,
+        &quot;https://dockertest.jsdelivr.fyi&quot;,
+        &quot;https://mirror.aliyuncs.com&quot;,
+        &quot;https://dockerproxy.com&quot;,
+        &quot;https://docker.nju.edu.cn&quot;,
+        &quot;https://docker.mirrors.sjtug.sjtu.edu.cn&quot;,
+        &quot;https://docker.mirrors.ustc.edu.cn&quot;,
+        &quot;https://mirror.iscas.ac.cn&quot;,
+        &quot;https://docker.rainbond.cc&quot;,
+        &quot;https://registry.docker-cn.com&quot;
   ]
 &#125;
 </code></pre>
@@ -1876,8 +1906,9 @@ data_volume: /home/shumei/soft/harbor/data
     <title>docker compose 服务编排</title>
     <url>/2020/08/23/docker-compose/</url>
     <content><![CDATA[<p>安装 docker-compose</p>
-<pre><code class="shell">sudo curl -L https://github.com/docker/compose/releases/download/2.36.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
-sudo chmod +x /usr/bin/docker-compose
+<pre><code class="shell"># 注意版本号，可访问github查看最新版本
+sudo curl -L https://github.com/docker/compose/releases/download/2.36.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 </code></pre>
 <p>如果服务器网络无法下载，可下载后手动安装。</p>
 <ol>
@@ -1885,11 +1916,11 @@ sudo chmod +x /usr/bin/docker-compose
 <li>将下载的文件移动到 <code>/usr/local/bin</code> 目录。</li>
 </ol>
 <pre><code class="shell">
-sudo mv ~/softwares/docker-compose-linux-x86_64 /usr/bin/docker-compose
-sudo chmod +x /usr/bin/docker-compose
+sudo mv ~/softwares/docker-compose-linux-x86_64 /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 </code></pre>
-<p>验证安装：<code>docker-compose -version</code></p>
-<p>PS：如果想要卸载docker-compose，请执行以下命令<br>sudo rm &#x2F;usr&#x2F;bin&#x2F;docker-compose</p>
+<p>验证安装：<code>docker-compose -v</code></p>
+<p>PS：如果想要卸载docker-compose，请执行以下命令<br>sudo rm &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose</p>
 <p>docker-compose 配置示例</p>
 <pre><code class="yaml">version: &#39;3&#39;
 services:
@@ -2799,10 +2830,11 @@ ls /usr/lib/systemd/system/ssh*
 <p>Jasypt 的特点请参看：<a href="http://www.jasypt.org/features.html">http://www.jasypt.org/features.html</a></p>
 <h1 id="集成方法"><a href="#集成方法" class="headerlink" title="集成方法"></a>集成方法</h1><p><strong><a href="https://github.com/ulisesbocchio/jasypt-spring-boot">开源项目文档</a></strong> 中介绍了三种集成方式，本文仅详细介绍第一种详细集成方式（本文只做参考，应以开源项目文档未准）。</p>
 <h2 id="三种集成方式"><a href="#三种集成方式" class="headerlink" title="三种集成方式"></a>三种集成方式</h2><h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><p>如果项目使用<code>@SpringBootApplication</code> 或者 <code>@EnableAutoConfiguration</code>，直接添加 jar 依赖即可。加密的配置项会在整个 Spring 项目中生效（This means any system property, environment property, command line argument, application.properties, application-*.properties, yaml properties, and any other property sources can contain encrypted properties）。</p>
-<pre><code class="xml">&lt;dependency&gt;
-        &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
-        &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;
-        &lt;version&gt;3.0.5&lt;/version&gt;
+<pre><code class="xml">&lt;!-- https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
+    &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;3.0.5&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 <h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><p>如何项目中不使用自动配置注解 <code>@SpringBootApplication</code> 或<code>@EnableAutoConfiguration</code> ，那么添加如下依赖到项目中：</p>
@@ -2851,15 +2883,12 @@ public class MyApplication &#123;
     saltGeneratorClassName: org.jasypt.salt.RandomSaltGenerator
     ivGeneratorClassName: org.jasypt.iv.RandomIvGenerator
     property:
-      prefix: &quot;DC@[&quot;
+      prefix: &quot;LJ@[&quot;
       suffix: &quot;]&quot;
 </code></pre>
-<p>配置中的 prefix 和 suffix 是<strong>自定义</strong>的密码串标识。其中还有一个必须的参数<code>jasypt.encryptor.password</code>，用于加密。但为了安全需要通过命令行方式传入，不能放入配置文件中（<del>测试环境为了方便可以临时使用，但不能提交到代码仓库</del>）。启动命令示例：</p>
-<pre><code class="yaml">java -Djasypt.encryptor.password=自己的加密秘钥 -jar xx.jar
-</code></pre>
+<p>配置中的 prefix 和 suffix 是<strong>自定义</strong>的密码串标识。其中还有一个必须的参数<code>jasypt.encryptor.password</code>，用于加密。但为了安全需要通过命令行方式传入，不能放入配置文件中（<del>测试环境为了方便可以临时使用，但不能提交到代码仓库</del>）。<br>启动命令示例：<code>java -Djasypt.encryptor.password=自己的加密秘钥 -jar xx.jar</code></p>
 <p>其中<code>自己的加密秘钥</code>是自定义密码字符串，推荐 32 为 md5 码。<strong>测试环境和生产环境不要用同一个秘钥</strong>。</p>
-<p>如果使用 idea ，运行程序前需要在 Run&#x2F;Debug configuration 中的 VM option 中加入下面参数：</p>
-<p><code>-Djasypt.encryptor.password=测试环境秘钥</code></p>
+<p>如果使用 idea ，运行程序前需要在 Run&#x2F;Debug configuration 中的 VM option 中加入下面参数：<br><code>-Djasypt.encryptor.password=测试环境秘钥</code></p>
 <h3 id="3-敏感信息加密"><a href="#3-敏感信息加密" class="headerlink" title="3. 敏感信息加密"></a>3. 敏感信息加密</h3><p>编写加密测试类如下：（**&#x3D;&#x3D;加密方法推荐使用附 1 中的脚本&#x3D;&#x3D;**）</p>
 <pre><code class="java">package com.ahshumei.common.utils;
 
@@ -2915,10 +2944,10 @@ public class StringEncryptorTest extends BaseTest &#123;
       # 主库数据源
       master:
         url: jdbc:mysql://10.10.1.7:3306/moon
-        username: DC@[4Y2s7d6D8rVQ3NAS/oWT+08QZT3dLcqN95i8YDtujnY6eFYshKGHDdniy7R5vyymª]
-        password: DC@[xImPkGcaY6qMK3vctVxkpKRg1KgxEG4hhMlgSQwiJhdueooHFGSUEccZFezeD2ig]
+        username: LJ@[4Y2s7d6D8rVQ3NAS/oWT+08QZT3dLcqN95i8YDtujnY6eFYshKGHDdniy7R5vyymª]
+        password: LJ@[xImPkGcaY6qMK3vctVxkpKRg1KgxEG4hhMlgSQwiJhdueooHFGSUEccZFezeD2ig]
 </code></pre>
-<p><code>DC@[]</code>占位符是上面配置文件中自定义配置的。</p>
+<p><code>LJ@[]</code>占位符是上面配置文件中自定义配置的。</p>
 <p>读取配置项测试类：</p>
 <pre><code class="java">package com.ahshumei.common.utils;
 
@@ -2957,14 +2986,10 @@ public class StringEncryptorTest extends BaseTest &#123;
 &#125;
 </code></pre>
 <h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>jasypt 开源库为 Spring 项目提供了一种加解密能力来保护项目中的敏感信息，通过以上 4 步简单的配置即可使用，我们不需要去了解复杂加解密机制即可使用。并且 jasypt 不仅能集成到 Spring 中，还能集成到 Apache、Hibernate、SpringSecurity 等框架中。</p>
-<h1 id="附-1：其他加密字符串生成方法"><a href="#附-1：其他加密字符串生成方法" class="headerlink" title="附 1：其他加密字符串生成方法"></a>附 1：其他加密字符串生成方法</h1><p>除了上面通过测试方法生成加密字符串外，还有以下两种更方便的方式：</p>
-<h2 id="1-Java-命令行"><a href="#1-Java-命令行" class="headerlink" title="1 Java 命令行"></a>1 Java 命令行</h2><p>Jasypt提供了一个类专门用于加密解密，提供了main方法，调用如下：</p>
-<pre><code class="shell">java -cp ./jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI password=自己的加密秘钥 algorithm=PBEWithMD5AndTripleDES input=要加密的字符串
-</code></pre>
+<h1 id="附-1：其他加密字符串生成方法"><a href="#附-1：其他加密字符串生成方法" class="headerlink" title="附 1：其他加密字符串生成方法"></a>附 1：其他加密字符串生成方法</h1><p>除了上面通过测试方法生成加密字符串外，还有以下两种更方便的方式：<br>其中<code>algorithm</code>参数为加密算法，需要根据配置<code>jasypt.encryptor.algorithm</code>中指定的算法进行填写。</p>
+<h2 id="1-Java-命令行"><a href="#1-Java-命令行" class="headerlink" title="1 Java 命令行"></a>1 Java 命令行</h2><p>Jasypt提供了一个类专门用于加密解密，提供了main方法，调用如下：<br><code>java -cp ./jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI password=自己的加密秘钥 algorithm=PBEWithMD5AndTripleDES input=要加密的字符串</code><br>当算法改为<code>PBEWITHHMACSHA512ANDAES_256</code>时，可能会遇到报错<code>Operation not possible (Bad input or parameters)</code>，这是因为该算法需要额外的参数<code>saltGeneratorClassName</code>和<code>ivGeneratorClassName</code>，可以通过如下命令指定：<br><code>java -cp ./jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI password=自己的加密秘钥 algorithm=PBEWITHHMACSHA512ANDAES_256 saltGeneratorClassName=org.jasypt.salt.RandomSaltGenerator ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator input=要加密的字符串</code></p>
 <h2 id="2-脚本"><a href="#2-脚本" class="headerlink" title="2 脚本"></a>2 脚本</h2><p>Jasypt为我们提供了脚本，可以直接用于加密解密，从 <a href="http://www.jasypt.org/download.html">http://www.jasypt.org/download.html</a> 可以下载（会引导到 github 项目中下载）。下载（jasypt-1.9.3-dist.zip）解压后的文件中有一个 bin 目录，其中有加密、解密的脚本。</p>
-<p>脚本的使用方法与 java 命令一样，脚本本质上是封装了调用 java 类的工具。使用方法如下（参数含义参看<a href="http://www.jasypt.org/cli.html">官网文档</a>）：</p>
-<pre><code class="shell">sh encrypt.sh password=自己的加密秘钥 algorithm=PBEWITHHMACSHA512ANDAES_256 saltGeneratorClassName=org.jasypt.salt.RandomSaltGenerator ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator input=要加密的字符串
-</code></pre>
+<p>脚本的使用方法与 java 命令一样，脚本本质上是封装了调用 java 类的工具。使用方法如下（参数含义参看<a href="http://www.jasypt.org/cli.html">官网文档</a>）：<br><code>sh encrypt.sh password=自己的加密秘钥 algorithm=PBEWITHHMACSHA512ANDAES_256 saltGeneratorClassName=org.jasypt.salt.RandomSaltGenerator ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator input=要加密的字符串</code></p>
 ]]></content>
       <categories>
         <category>工具</category>
@@ -3878,7 +3903,7 @@ git clone https://github.com/jasongin/nvs &quot;$NVS_HOME&quot;
 <li>使用指定版本 node：<code>nvs use node/20.14.0/x64</code></li>
 <li>设置默认使用版本：<code>nvs link v20.14.0</code></li>
 </ol>
-<h2 id="安装-pnpm"><a href="#安装-pnpm" class="headerlink" title="安装 pnpm"></a>安装 pnpm</h2><p>全局安装指定版本的 pnpm： <code>npm install -g pnpm@9.4.0</code></p>
+<h2 id="安装-pnpm"><a href="#安装-pnpm" class="headerlink" title="安装 pnpm"></a>安装 pnpm</h2><p>全局安装指定版本的 pnpm： <code>npm install -g pnpm@10.34.4</code></p>
 ]]></content>
       <categories>
         <category>工具</category>
@@ -3912,6 +3937,9 @@ rm ~/miniconda3/miniconda.sh
 <li>激活某个环境： <code>conda activate base</code></li>
 <li>退出一个激活的环境：  <code>conda deactivate</code></li>
 </ol>
+<h3 id="检查当前激活的环境"><a href="#检查当前激活的环境" class="headerlink" title="检查当前激活的环境"></a>检查当前激活的环境</h3><ul>
+<li>检查当前激活的环境：<code>conda info --envs</code> 或者 <code>conda env list</code></li>
+</ul>
 <h3 id="python-常用命令"><a href="#python-常用命令" class="headerlink" title="python 常用命令"></a>python 常用命令</h3><ol>
 <li>查看版本：<code>python3 -version</code>, <code>pip3 --version</code></li>
 <li>安装模块命令：<code>pip3 install &lt;模块名&gt;</code></li>
@@ -3930,6 +3958,267 @@ rm ~/miniconda3/miniconda.sh
       <tags>
         <tag>miniconda</tag>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何统计项目代码行数？</title>
+    <url>/2025/10/22/how-to-count-code-lines/</url>
+    <content><![CDATA[<p>在软件开发过程中，统计项目代码行数是一项常见的任务。这不仅可以帮助我们了解项目规模，还能在一定程度上评估开发进度和代码质量。本文将介绍几种在Linux&#x2F;Unix环境下使用<code>find</code>命令结合其他工具统计代码行数的实用方法。</p>
+<h2 id="1-基本方法：find-wc"><a href="#1-基本方法：find-wc" class="headerlink" title="1. 基本方法：find + wc"></a>1. 基本方法：find + wc</h2><p>最简单的方法是使用<code>find</code>命令查找所有的代码文件，然后通过管道传递给<code>wc -l</code>命令来统计行数。</p>
+<h3 id="1-1-统计特定扩展名的文件行数"><a href="#1-1-统计特定扩展名的文件行数" class="headerlink" title="1.1 统计特定扩展名的文件行数"></a>1.1 统计特定扩展名的文件行数</h3><pre><code class="bash">find . -name &quot;*.js&quot; -o -name &quot;*.css&quot; -o -name &quot;*.html&quot; | xargs wc -l
+</code></pre>
+<p>这个命令会查找当前目录及其子目录下所有<code>.js</code>、<code>.css</code>和<code>.html</code>文件，并统计它们的总行数。</p>
+<h3 id="1-2-排除特定目录"><a href="#1-2-排除特定目录" class="headerlink" title="1.2 排除特定目录"></a>1.2 排除特定目录</h3><p>在实际项目中，我们可能需要排除一些目录，如<code>node_modules</code>、<code>vendor</code>或<code>dist</code>等。可以使用<code>-not -path</code>参数来实现：</p>
+<pre><code class="bash">find . -name &quot;*.js&quot; -not -path &quot;*/node_modules/*&quot; -not -path &quot;*/dist/*&quot; | xargs wc -l
+</code></pre>
+<h3 id="1-3-仅显示总行数"><a href="#1-3-仅显示总行数" class="headerlink" title="1.3 仅显示总行数"></a>1.3 仅显示总行数</h3><p>如果只需要知道总行数而不需要每个文件的行数，可以使用<code>-c</code>参数：</p>
+<pre><code class="bash">find . -name &quot;*.java&quot; -type f -exec cat &#123;&#125; \; | wc -l
+</code></pre>
+<p>或者更简单的方式：</p>
+<pre><code class="bash">find . -name &quot;*.java&quot; -type f | xargs cat | wc -l
+</code></pre>
+<h2 id="2-更详细的统计：按文件类型分组"><a href="#2-更详细的统计：按文件类型分组" class="headerlink" title="2. 更详细的统计：按文件类型分组"></a>2. 更详细的统计：按文件类型分组</h2><p>有时候我们需要了解不同类型文件的代码行数分布，可以通过以下方法实现：</p>
+<pre><code class="bash">for ext in js css html; do
+  echo &quot;$ext 文件总行数：&quot;
+  find . -name &quot;*.$ext&quot; -type f | xargs cat | wc -l
+done
+</code></pre>
+<h2 id="3-过滤空行和注释"><a href="#3-过滤空行和注释" class="headerlink" title="3. 过滤空行和注释"></a>3. 过滤空行和注释</h2><p>如果想要得到更准确的代码行数统计（去除空行和注释），可以结合<code>grep</code>命令：</p>
+<h3 id="3-1-去除空行"><a href="#3-1-去除空行" class="headerlink" title="3.1 去除空行"></a>3.1 去除空行</h3><pre><code class="bash">find . -name &quot;*.py&quot; -type f | xargs grep -v &quot;^$&quot; | wc -l
+</code></pre>
+<h3 id="3-2-去除空行和注释（以Python为例）"><a href="#3-2-去除空行和注释（以Python为例）" class="headerlink" title="3.2 去除空行和注释（以Python为例）"></a>3.2 去除空行和注释（以Python为例）</h3><pre><code class="bash">find . -name &quot;*.py&quot; -type f | xargs grep -v &quot;^$&quot; | grep -v &quot;^[[:space:]]*#&quot; | wc -l
+</code></pre>
+<p>对于其他语言，注释的格式不同，需要调整正则表达式。例如，对于JavaScript：</p>
+<pre><code class="bash">find . -name &quot;*.js&quot; -type f | xargs grep -v &quot;^$&quot; | grep -v &quot;^[[:space:]]*//&quot; | grep -v &quot;^[[:space:]]*/\*&quot; | grep -v &quot;^[[:space:]]*\*/&quot; | wc -l
+</code></pre>
+<h2 id="4-根据-gitignore-文件排除文件和目录"><a href="#4-根据-gitignore-文件排除文件和目录" class="headerlink" title="4. 根据 .gitignore 文件排除文件和目录"></a>4. 根据 .gitignore 文件排除文件和目录</h2><p>在实际项目开发中，<code>.gitignore</code>文件已经定义了我们不需要跟踪的文件和目录（如编译输出、依赖包、临时文件等）。我们可以利用这个文件来排除这些文件进行代码统计，这样可以获得更准确的项目代码量统计。</p>
+<h3 id="4-1-使用-git-ls-files-命令"><a href="#4-1-使用-git-ls-files-命令" class="headerlink" title="4.1 使用 git ls-files 命令"></a>4.1 使用 git ls-files 命令</h3><p><code>git ls-files</code>命令会列出所有被git跟踪的文件，自动排除了<code>.gitignore</code>中定义的文件和目录。我们可以结合这个命令来统计代码行数：</p>
+<pre><code class="bash"># 统计所有被git跟踪的文件的总行数
+git ls-files | xargs wc -l
+
+# 仅显示总行数
+git ls-files | xargs cat | wc -l
+
+# 统计特定类型的文件行数
+git ls-files &quot;*.js&quot; &quot;*.css&quot; &quot;*.html&quot; | xargs wc -l
+</code></pre>
+<h3 id="4-2-使用-git-check-ignore-结合-find-命令"><a href="#4-2-使用-git-check-ignore-结合-find-命令" class="headerlink" title="4.2 使用 git check-ignore 结合 find 命令"></a>4.2 使用 git check-ignore 结合 find 命令</h3><p>如果你的项目还没有初始化git仓库，或者你想自定义一些排除规则，可以使用<code>git check-ignore</code>命令来检查文件是否被忽略：</p>
+<pre><code class="bash"># 使用git check-ignore过滤被忽略的文件
+find . -type f -not -path &quot;*/\.git/*&quot; | git check-ignore -v --stdin | cut -f 3 | xargs wc -l
+</code></pre>
+<p>这个命令的工作原理是：</p>
+<ol>
+<li>使用<code>find</code>查找所有文件（排除<code>.git</code>目录）</li>
+<li>通过<code>git check-ignore</code>检查每个文件是否被忽略</li>
+<li>使用<code>cut</code>提取文件路径</li>
+<li>通过<code>xargs</code>和<code>wc -l</code>统计行数</li>
+</ol>
+<h3 id="4-3-手动实现-gitignore-过滤（不依赖git）"><a href="#4-3-手动实现-gitignore-过滤（不依赖git）" class="headerlink" title="4.3 手动实现 .gitignore 过滤（不依赖git）"></a>4.3 手动实现 .gitignore 过滤（不依赖git）</h3><p>如果你不想使用git，也可以手动实现类似<code>.gitignore</code>的过滤功能：</p>
+<pre><code class="bash">#!/bin/bash
+
+# 读取.gitignore文件中的规则
+gitignore_rules=()
+if [ -f &quot;.gitignore&quot; ]; then
+  while IFS= read -r line || [ -n &quot;$line&quot; ]; do
+    # 跳过空行和注释行
+    [[ -z &quot;$line&quot; || &quot;$line&quot; == \#* ]] &amp;&amp; continue
+    # 添加到规则数组
+    gitignore_rules+=(&quot;$line&quot;)
+  done &lt; &quot;.gitignore&quot;
+fi
+
+# 构建find命令参数
+exclude_args=&quot;&quot;
+for rule in &quot;$&#123;gitignore_rules[@]&#125;&quot;; do
+  # 简单处理.gitignore规则，实际情况可能更复杂
+  if [[ &quot;$rule&quot; == */* ]]; then
+    exclude_args+=&quot; -not -path \&quot;*/$rule\&quot;&quot;
+  else
+    exclude_args+=&quot; -not -name \&quot;$rule\&quot;&quot;
+  fi
+done
+
+# 执行代码行数统计
+command=&quot;find . -type f -not -path \&quot;*/\.git/*\&quot; $exclude_args | xargs wc -l&quot;
+eval &quot;$command&quot;
+</code></pre>
+<p>注意：这个脚本只是简单实现了<code>.gitignore</code>的部分功能，对于复杂的模式匹配（如<code>**</code>递归匹配、<code>!</code>否定等）可能不够准确。</p>
+<h2 id="5-实用脚本示例"><a href="#5-实用脚本示例" class="headerlink" title="5. 实用脚本示例"></a>5. 实用脚本示例</h2><p>下面是一个综合的shell脚本，可以统计多种类型文件的代码行数，并支持根据.gitignore排除文件：</p>
+<pre><code class="bash">#!/bin/bash
+
+# 定义文件类型
+declare -a extensions=(&quot;.js&quot; &quot;.ts&quot; &quot;.jsx&quot; &quot;.tsx&quot; &quot;.css&quot; &quot;.scss&quot; &quot;.html&quot; &quot;.json&quot; &quot;.md&quot;)
+
+# 定义要排除的目录
+declare -a exclude_dirs=()
+
+# 从.gitignore读取排除规则（可选）
+if [ -f &quot;.gitignore&quot; ]; then
+  while IFS= read -r line || [ -n &quot;$line&quot; ]; do
+    # 跳过空行、注释行和否定规则
+    [[ -z &quot;$line&quot; || &quot;$line&quot; == \#* || &quot;$line&quot; == \!* ]] &amp;&amp; continue
+    
+    # 处理目录规则
+    if [[ &quot;$line&quot; == */ ]]; then
+      dir_name=&quot;$&#123;line%/&#125;&quot;
+      exclude_dirs+=($dir_name)
+    fi
+  done &lt; &quot;.gitignore&quot;
+fi
+
+# 手动添加常见的排除目录
+exclude_dirs+=(&quot;node_modules&quot; &quot;dist&quot; &quot;build&quot; &quot;coverage&quot; &quot;.git&quot;)
+
+# 构建排除路径参数
+exclude_args=&quot;&quot;
+for dir in &quot;$&#123;exclude_dirs[@]&#125;&quot;; do
+  exclude_args+=&quot; -not -path \&quot;*/$dir/*\&quot;&quot;
+done
+
+# 统计总行数
+total_lines=0
+
+# 按文件类型统计
+for ext in &quot;$&#123;extensions[@]&#125;&quot;; do
+  # 执行find命令并统计行数
+  command=&quot;find . -name \&quot;*$ext\&quot; -type f $exclude_args | xargs cat | wc -l&quot;
+  lines=$(eval &quot;$command&quot;)
+  
+  # 累加总行数
+  total_lines=$((total_lines + lines))
+  
+  # 输出结果
+  printf &quot;%10s 文件: %7d 行\n&quot; &quot;$ext&quot; &quot;$lines&quot;
+done
+
+# 输出总行数
+echo &quot;----------------------------&quot;
+printf &quot;%10s: %7d 行\n&quot; &quot;总计&quot; &quot;$total_lines&quot;
+</code></pre>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>统计代码行数是一项简单但实用的工作。通过本文介绍的方法，你可以轻松地统计项目代码行数，无论是简单的计数还是更复杂的分组统计，甚至可以利用现有的.gitignore文件来排除不需要统计的文件。</p>
+<p>主要方法包括：</p>
+<ol>
+<li>使用<code>find</code>命令结合<code>wc</code>命令进行基本统计</li>
+<li>根据<code>.gitignore</code>文件排除不需要统计的文件和目录，可以通过<code>git ls-files</code>命令或手动解析<code>.gitignore</code>文件实现</li>
+<li>使用<code>grep</code>命令过滤空行和注释，获得更准确的统计结果</li>
+</ol>
+<p><code>find</code>命令是Linux&#x2F;Unix系统中功能强大的文件查找工具，结合<code>wc</code>、<code>grep</code>等命令，可以完成各种复杂的代码统计任务。通过合理利用这些工具，你可以得到更准确、更有意义的代码行数统计结果。</p>
+<p>希望这些方法对你有所帮助！如果你有其他更好的方法，欢迎在评论区分享。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>find</tag>
+        <tag>代码统计</tag>
+        <tag>shell</tag>
+        <tag>开发工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FastGPT 如何创建用户</title>
+    <url>/2025/11/05/how-to-create-a-user-of-FastGPT/</url>
+    <content><![CDATA[<p>FastGPT 开源版没有提供团队管理机用户管理功能，如果需要创建用户，只能通过直接操作数据库来实现。本文介绍如何创建用户密码。</p>
+<p>假设我们要创建的用户是 <code>user11</code> 密码是 <code>#demo01!@</code></p>
+<h2 id="创建密码"><a href="#创建密码" class="headerlink" title="创建密码"></a>创建密码</h2><p>FastGPT 用户密码的加密规则如下：</p>
+<ol>
+<li>使用 SHA-256 算法对 <code>#demo01!@</code> 进行 hash 运算；</li>
+<li>把 hash 值转成十六进制字符串；</li>
+<li>把得到的字符串，再重复一次以上两个步骤；<br>加密算法在源码中的位置: <a href="https://github.com/labring/FastGPT/tree/main/packages/global/common/string/tools.ts">https://github.com/labring/FastGPT/tree/main/packages/global/common/string/tools.ts</a> 第12行。</li>
+</ol>
+<p>写一段测试代码来生成 <code>#demo01!@</code> 的密码密文。</p>
+<pre><code class="shell"># 修改下面代码中的密码明文，执行测试方法生成密文。下面两个命令都可以
+pnpm run test 
+pnpm vitest test/cases/global/common/string/tools.test.ts
+</code></pre>
+<p>测试代码实例：</p>
+<pre><code class="typescript">import &#123; describe, expect, it &#125; from &#39;vitest&#39;;
+import &#123; hashStr &#125; from &#39;@fastgpt/global/common/string/tools&#39;;
+
+describe(&#39;hashStr&#39;, () =&gt; &#123;
+  test(&#39;should return a valid SHA-256 hash&#39;, () =&gt; &#123;
+    const input = &#39;#demo01!@&#39;;
+    const result = hashStr(hashStr(input));
+    console.log(input + &#39;: &#39; + result);
+    // 验证结果是否为一个有效的 SHA-256 哈希值
+    expect(typeof result).toBe(&#39;string&#39;);
+    // SHA-256 哈希值的长度为 64 个字符
+    expect(result.length).toBe(64);
+    expect(/^[0-9a-f]&#123;64&#125;$/.test(result)).toBe(true);
+  &#125;);
+&#125;);
+</code></pre>
+<h2 id="访问数据库创建用户"><a href="#访问数据库创建用户" class="headerlink" title="访问数据库创建用户"></a>访问数据库创建用户</h2><h3 id="访问容器"><a href="#访问容器" class="headerlink" title="访问容器"></a>访问容器</h3><pre><code class="shell">sudo docker exec -it mongo bash
+mongosh --username myusername --password mypassword --authenticationDatabase admin
+use fastgpt
+show tables
+</code></pre>
+<h3 id="增加新用户"><a href="#增加新用户" class="headerlink" title="增加新用户"></a>增加新用户</h3><pre><code class="shell">db.users.find().pretty();
+
+# 增加新用户
+db.users.insert(&#123;
+    username: &quot;user11&quot;,
+    password: &quot;73b30f4023367b065ad0e01d958fb0d25f43e179dc6eb63b45fb4d068bf98fb0&quot;,
+    status: &quot;active&quot;,
+    avatar: &quot;/icon/human.svg&quot;,
+    balance: NumberInt(&quot;100000&quot;),
+    promotionRate: NumberInt(&quot;10&quot;),
+    timezone: &quot;Asia/Shanghai&quot;,
+    createTime: new ISODate()
+&#125;);
+
+# 创建新团队
+db.teams.find().pretty();
+db.teams.insert(&#123;
+    name: &quot;DevOpsTeam&quot;,
+    ownerId: db.users.findOne(&#123;username:&quot;user11&quot;&#125;, &#123;_id:1&#125;)._id, // 新创建用户的ObjectId
+    avatar: &quot;/icon/logo.svg&quot;,
+    createTime: new ISODate(),
+&#125;);
+
+# 将用户加入团队
+db.team_members.find().pretty();
+db.team_members.insert(&#123;
+    teamId: db.teams.findOne(&#123;name:&quot;DevOpsTeam&quot;&#125;, &#123;_id:1&#125;)._id, // 团队的ObjectId
+    userId: db.users.findOne(&#123;username:&quot;user11&quot;&#125;, &#123;_id:1&#125;)._id, // 用户的ObjectId
+    name: &quot;Owner&quot;,
+    role: &quot;owner&quot;,
+    status: &quot;active&quot;,
+    createTime: new ISODate(),
+    defaultTeam: true
+&#125;);
+# 通过ID新增团队成员
+db.getCollection(&quot;team_members&quot;).insert(&#123;
+    teamId: ObjectId(&quot;65916f3952ac39c5d10bb506&quot;), // 团队的ObjectId
+    userId: ObjectId(&quot;65916f1a52ac39c5d10bb505&quot;), // 用户的ObjectId
+    name: &quot;Owner&quot;,
+    role: &quot;owner&quot;,
+    status: &quot;active&quot;,
+    createTime: new ISODate(),
+    defaultTeam: true
+&#125;);
+
+# 删除团队成员
+db.team_members.deleteOne(&#123; _id: ObjectId(&quot;67d944ac768f7fbbf20ca6b8&quot;)&#125;);
+
+# 修改密码
+db.users.updateOne(
+    &#123; username: &quot;user11&quot; &#125;,
+    &#123; $set: &#123; password: &quot;new_password_hash&quot; &#125; &#125;
+);
+# 修改用户名
+db.users.updateOne(
+  &#123;_id: ObjectId(&quot;67d9568b26b5ecb24ba83653&quot;)&#125;, 
+  &#123;$set: &#123;username: &quot;user12&quot;&#125;
+&#125;);
+</code></pre>
+<p><a href="https://blog.csdn.net/friendlytkyj/article/details/146015964">参考文档</a></p>
+]]></content>
+      <categories>
+        <category>FastGPT</category>
+      </categories>
+      <tags>
+        <tag>FastGPT</tag>
       </tags>
   </entry>
 </search>

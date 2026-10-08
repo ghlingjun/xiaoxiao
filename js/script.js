@@ -623,14 +623,25 @@ function bind() {
     initArticle();
     $(".article_number").text($("#yelog_site_posts_number").val());
     $(".site_word_count").text($("#yelog_site_word_count").val());
-    $(".site_uv").text($("#busuanzi_value_site_uv").text());
-    $("#busuanzi_value_site_uv").bind("DOMNodeInserted", function (e) {
-        $(".site_uv").text($(this).text())
-    });
-    $(".site_pv").text($("#busuanzi_value_site_pv").text())
-    $("#busuanzi_value_site_pv").bind("DOMNodeInserted", function (e) {
-        $(".site_pv").text($(this).text())
-    });
+    // Chrome 127+ 已移除 DOMNodeInserted，改用 MutationObserver 同步不蒜子计数
+    function syncBusuanzi(sourceId, targetSelector) {
+        var source = document.getElementById(sourceId);
+        if (!source) return;
+        var sync = function () {
+            var text = source.textContent || "";
+            if (text) $(targetSelector).text(text);
+        };
+        sync();
+        if (window.MutationObserver) {
+            new MutationObserver(sync).observe(source, {
+                childList: true,
+                characterData: true,
+                subtree: true
+            });
+        }
+    }
+    syncBusuanzi("busuanzi_value_site_uv", ".site_uv");
+    syncBusuanzi("busuanzi_value_site_pv", ".site_pv");
     $("#post .pjax .index").find("br").remove();
     $("#post .pjax .index h1:eq(0)").addClass("article-title");
     //绑定文章内tag的搜索事件
